@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+      http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
+  <kcfgfile name="kdiamondrc"/>
+  <group name="General">
+    <entry name="Theme" type="String" key="Theme">
+      <label>The graphical theme to be used.</label>
+    </entry>
+  </group>
+  <group name="Preferences">
+    <entry name="skill" type="Enum">
+      <label>The difficulty level.</label>
+      <default>Easy</default>
+      <choices>
+        <choice name="VeryEasy"/>
+        <choice name="Easy"/>
+        <choice name="Medium"/>
+        <choice name="Hard"/>
+        <choice name="VeryHard"/>
+      </choices>
+    </entry>
+  </group>
+</kcfg>

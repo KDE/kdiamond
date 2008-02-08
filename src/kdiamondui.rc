@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
+<gui name="kdiamond" version="1">
+  <MenuBar/>
+  <ToolBar name="mainToolBar">
+    <text>Main Toolbar</text>
+    <Action name="game_new"/>
+    <Action name="game_pause"/>
+    <Action name="game_highscores"/>
+    <Separator/>
+  </ToolBar>
+  <StatusBar/>
+</gui>
