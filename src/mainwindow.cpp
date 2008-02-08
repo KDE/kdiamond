@@ -23,6 +23,7 @@
 #include "greeter.h"
 #include "settings.h"
 
+#include <time.h>
 #include <QCloseEvent>
 #include <QTime>
 #include <QTimer>
