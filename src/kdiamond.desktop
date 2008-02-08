@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Exec=kdiamond -caption "%c"
+Name=KDiamond
+GenericName=Three-in-a-row game
+Terminal=false
+Icon=kdiamond
+X-KDE-StartupNotify=true
+Categories=Qt;KDE;Game;LogicGame;
