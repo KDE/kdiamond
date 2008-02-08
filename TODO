@@ -1,0 +1,2 @@
+* Port Board and Diamond classes to QGraphicsView and QGraphicsItem.
+* Remove greeter, replace with "game over" widget.
