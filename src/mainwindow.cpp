@@ -109,6 +109,9 @@ void MainWindow::startGame()
     connect(m_game, SIGNAL(remainingTimeChanged(int)), this, SLOT(updateRemainingTime(int)));
     connect(m_game, SIGNAL(gameFinished(int)), this, SLOT(finishGame(int)));
     m_container->setWidget(m_game->board());
+    //reset status bar
+    updatePoints(0);
+    updateRemainingTime(KDiamond::GameDuration);
 }
 
 void MainWindow::stopGame(bool showGreeter)
