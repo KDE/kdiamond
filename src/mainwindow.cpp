@@ -20,7 +20,6 @@
 #include "board.h"
 #include "container.h"
 #include "game.h"
-#include "greeter.h"
 #include "settings.h"
 
 #include <time.h>
@@ -28,6 +27,7 @@
 #include <QTime>
 #include <QTimer>
 #include <KActionCollection>
+#include <KApplication>
 #include <KGameDifficulty>
 #include <KLocalizedString>
 #include <KScoreDialog>
@@ -49,7 +49,7 @@ MainWindow::MainWindow(QWidget *parent)
     KStandardGameAction::gameNew(this, SLOT(startGame()), actionCollection());
     KStandardGameAction::highscores(this, SLOT(showHighscores()), actionCollection());
     KStandardGameAction::pause(this, SIGNAL(pause(bool)), actionCollection());
-    KStandardGameAction::quit(this, SLOT(close()), actionCollection());
+    KStandardGameAction::quit(kapp, SLOT(quit()), actionCollection());
     statusBar()->insertPermanentItem(i18n("Points: %1", 0), 1, 1);
     statusBar()->insertPermanentItem(i18np("Time left: 1 second", "Time left: %1 seconds", 0), 2, 1);
     setAutoSaveSettings();
@@ -57,9 +57,6 @@ MainWindow::MainWindow(QWidget *parent)
     m_game = 0;
     m_container = new Container(this);
     setCentralWidget(m_container);
-    m_greeter = new Greeter(this);
-    connect(m_greeter, SIGNAL(startGame()), this, SLOT(startGame()));
-    m_container->setWidget(m_greeter);
     //difficulty
     KGameDifficulty::init(this, this, SLOT(startGame()));
     KGameDifficulty::addStandardLevel(KGameDifficulty::VeryEasy);
@@ -85,22 +82,19 @@ MainWindow::~MainWindow()
     delete m_updateTimer;
     if (m_game != 0)
         delete m_game;
-    if (m_greeter != 0)
-        delete m_greeter;
 }
 
 void MainWindow::startGame()
 {
-    //remove what was on the screen
+    //save (eventually changed) difficulty level
+    KGameDifficulty::standardLevel level = KGameDifficulty::level();
+    Settings::setSkill((int) level);
+    //delete old game
     if (m_game != 0)
-        stopGame(false);
-    if (m_greeter != 0)
     {
-        delete m_greeter;
-        m_greeter = 0;
+        delete m_game;
+        m_game = 0;
     }
-    //reset the Pause button's toggle state
-    ((KToggleAction *) actionCollection()->action("game_pause"))->setChecked(false);
     //start new game
     m_game = new Game(KGameDifficulty::level(), this);
     connect(this, SIGNAL(pause(bool)), m_game, SLOT(pause(bool)));
@@ -109,38 +103,15 @@ void MainWindow::startGame()
     connect(m_game, SIGNAL(remainingTimeChanged(int)), this, SLOT(updateRemainingTime(int)));
     connect(m_game, SIGNAL(gameFinished(int)), this, SLOT(finishGame(int)));
     m_container->setWidget(m_game);
+    //reset the Pause button's toggle state
+    ((KToggleAction *) actionCollection()->action("game_pause"))->setChecked(false);
     //reset status bar
     updatePoints(0);
     updateRemainingTime(KDiamond::GameDuration);
 }
 
-void MainWindow::stopGame(bool showGreeter)
-{
-    //save (eventually changed) difficulty level
-    KGameDifficulty::standardLevel level = KGameDifficulty::level();
-    Settings::setSkill((int) level);
-    //stop game
-    if (m_game != 0)
-    {
-        delete m_game;
-        m_game = 0;
-    }
-    //show greeter if necessary
-    if (showGreeter)
-    {
-        if (m_greeter == 0)
-        {
-            m_greeter = new Greeter();
-            connect(m_greeter, SIGNAL(startGame()), this, SLOT(startGame()));
-        }
-        m_container->setWidget(m_greeter);
-    }
-}
-
 void MainWindow::finishGame(int points)
 {
-    //stop game
-    stopGame(true);
     updateRemainingTime(0);
     //report score
     KScoreDialog dialog(KScoreDialog::Name | KScoreDialog::Score, this);

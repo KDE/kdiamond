@@ -22,7 +22,6 @@
 #include "renderer.h"
 
 #include <QGraphicsSvgItem>
-#include <KDebug>
 
 Board::Board(KGameDifficulty::standardLevel difficulty)
     : QGraphicsScene()
@@ -123,7 +122,30 @@ int Board::diamondCountOnEdge() const
 
 void Board::mouseOnDiamond(int xIndex, int yIndex)
 {
-    if (m_selected1x == -1 || m_selected1y == -1)
+    if (m_selected1x == xIndex && m_selected1y == yIndex)
+    {
+        //clicked again on first selected diamond - remove selection
+        m_selected1x = m_selected2x;
+        m_selected1y = m_selected2y;
+        if (m_selected1x == -1 || m_selected1y == -1)
+            m_selection1->hide();
+        else
+        {
+            m_selection1->setPos(m_selected1x, m_selected1y);
+            m_selection1->show();
+        }
+        m_selected2x = -1;
+        m_selected2y = -1;
+        m_selection2->hide();
+    }
+    else if (m_selected2x == xIndex && m_selected2y == yIndex)
+    {
+        //clicked again on second selected diamond - remove selection
+        m_selected2x = -1;
+        m_selected2y = -1;
+        m_selection2->hide();
+    }
+    else if (m_selected1x == -1 || m_selected1y == -1)
     {
         //nothing selected - this is the first selected diamond
         m_selected1x = xIndex;
@@ -135,7 +157,7 @@ void Board::mouseOnDiamond(int xIndex, int yIndex)
     {
         //this could be the second selected diamond - ensure that the second one is a neighbor of the other one
         int dx = qAbs(m_selected1x - xIndex), dy = qAbs(m_selected1y - yIndex);
-        if ((dx == 1 && dy == 0) || (dx == 0 && dy == 1))
+        if (dx + dy == 1)
         {
             m_selected2x = xIndex;
             m_selected2y = yIndex;
@@ -152,31 +174,6 @@ void Board::mouseOnDiamond(int xIndex, int yIndex)
             m_selection1->show();
         }
     }
-    else
-    {
-        //two diamonds selected - if one of these is the clicked one, remove the selection
-        if (m_selected1x == xIndex && m_selected1y == yIndex)
-        {
-            m_selected1x = m_selected2x;
-            m_selected1y = m_selected2y;
-            if (m_selected1x == -1 || m_selected1y == -1)
-                m_selection1->hide();
-            else
-            {
-                m_selection1->setPos(m_selected1x, m_selected1y);
-                m_selection1->show();
-            }
-            m_selected2x = -1;
-            m_selected2y = -1;
-            m_selection2->hide();
-        }
-        else if (m_selected2x == xIndex && m_selected2y == yIndex)
-        {
-            m_selected2x = -1;
-            m_selected2y = -1;
-            m_selection2->hide();
-        }
-    }
 }
 
 void Board::pause(bool paused)
@@ -187,8 +184,16 @@ void Board::pause(bool paused)
         for (int y = 0; y < m_size; ++y)
             m_diamonds[x][y]->setVisible(!paused);
     }
-    m_selection1->setVisible(!paused);
-    m_selection2->setVisible(!paused);
+    if (paused)
+    {
+        m_selection1->hide();
+        m_selection2->hide();
+    }
+    else
+    {
+        m_selection1->setVisible(m_selected1x != -1 && m_selected1y != -1);
+        m_selection2->setVisible(m_selected2x != -1 && m_selected2y != -1);
+    }
 }
 
 void Board::update(int /*milliseconds*/)

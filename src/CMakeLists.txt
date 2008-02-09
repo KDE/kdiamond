@@ -6,7 +6,6 @@ set(kdiamond_SRCS
     container.cpp
     diamond.cpp
     game.cpp
-    greeter.cpp
     main.cpp
     mainwindow.cpp
     renderer.cpp

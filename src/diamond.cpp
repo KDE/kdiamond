@@ -22,7 +22,6 @@
 
 #include <QGraphicsItemAnimation>
 #include <QTimeLine>
-#include <KDebug>
 
 KDiamond::Color KDiamond::colorFromNumber(int number)
 {
@@ -54,6 +53,9 @@ Diamond::Diamond(int xIndex, int yIndex, qreal xPos, qreal yPos, KDiamond::Color
     QRectF bounds = sceneBoundingRect();
     scale(1.0 / bounds.width(), 1.0 / bounds.height());
     setPos(QPointF(xPos, yPos));
+    //selection markers do not react to mouse events
+    if (color == KDiamond::Selection)
+        setAcceptedMouseButtons(0);
     //add to board
     board->addItem(this);
 }

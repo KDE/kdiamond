@@ -20,22 +20,23 @@
 #include "board.h"
 #include "mainwindow.h"
 
+#include <QMouseEvent>
 #include <QTime>
 #include <QWheelEvent>
-#include <KDebug>
 
 Game::Game(KGameDifficulty::standardLevel difficulty, MainWindow *mainWindow = 0)
     : QGraphicsView(mainWindow)
 {
+    m_mainWindow = mainWindow;
     //init timers
     m_gameTime = new QTime;
     m_gameTime->start();
     m_pauseTime = new QTime;
     m_pauseTime->start(); //now we can always call restart()
-    connect(mainWindow, SIGNAL(updateScheduled(int)), this, SLOT(update(int)), Qt::DirectConnection);
+    connect(m_mainWindow, SIGNAL(updateScheduled(int)), this, SLOT(update(int)), Qt::DirectConnection);
     //init board
     m_board = new Board(difficulty);
-    connect(mainWindow, SIGNAL(updateScheduled(int)), m_board, SLOT(update(int)), Qt::DirectConnection);
+    connect(m_mainWindow, SIGNAL(updateScheduled(int)), m_board, SLOT(update(int)), Qt::DirectConnection);
     connect(m_board, SIGNAL(diamondsRemoved(int, int)), this, SLOT(diamondsRemoved(int, int)));
     //init view
     setScene(m_board);
@@ -44,9 +45,9 @@ Game::Game(KGameDifficulty::standardLevel difficulty, MainWindow *mainWindow = 0
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     //internal values
     m_points = 0;
-    m_secondsEarned = 0;
-    m_secondsRemaining = 0;
+    m_secondsEarned = m_secondsPaused = m_secondsRemaining = 0;
     m_paused = false;
+    m_finished = false;
 }
 
 Game::~Game()
@@ -77,7 +78,12 @@ void Game::update(int /*milliseconds*/)
     //calculate new time
     int secondsRemaining = KDiamond::GameDuration + m_secondsPaused + m_secondsEarned - (m_gameTime->elapsed() / 1000);
     if (secondsRemaining <= 0)
+    {
+        m_finished = true;
+        disconnect(m_mainWindow, SIGNAL(updateScheduled(int)), this, SLOT(update(int)));
+        disconnect(m_mainWindow, SIGNAL(updateScheduled(int)), m_board, SLOT(update(int)));
         emit gameFinished(m_points);
+    }
     else if (m_secondsRemaining != secondsRemaining)
         emit remainingTimeChanged(secondsRemaining);
     m_secondsRemaining = secondsRemaining;
@@ -93,9 +99,17 @@ void Game::diamondsRemoved(int count, int cascade)
     update(0); //calculate new remaining time
 }
 
-void Game::drawBackground(QPainter *painter, const QRectF &rect)
+void Game::drawBackground(QPainter */*painter*/, const QRectF &/*rect*/)
 {
     //TODO: Implement Game::drawBackground.
+}
+
+void Game::mouseReleaseEvent(QMouseEvent *event)
+{
+    if (m_finished)
+        event->ignore(); //block input after the end of the game
+    else
+        QGraphicsView::mouseReleaseEvent(event);
 }
 
 void Game::resizeEvent(QResizeEvent *)

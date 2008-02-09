@@ -25,9 +25,6 @@
 #ifndef KDIAMOND_GAME_H
     class Game;
 #endif
-#ifndef KDIAMOND_GREETER_H
-    class Greeter;
-#endif
 
 class QTime;
 class QTimer;
@@ -47,7 +44,6 @@ class MainWindow : public KXmlGuiWindow
         ~MainWindow();
     public slots:
         void startGame();
-        void stopGame(bool showGreeter);
         void finishGame(int points);
         void showHighscores();
         void close();
@@ -62,7 +58,6 @@ class MainWindow : public KXmlGuiWindow
         void updateRemainingTime(int remainingSeconds);
     private:
         Game *m_game;
-        Greeter *m_greeter;
         Container *m_container;
 
         QTime *m_updateTime;

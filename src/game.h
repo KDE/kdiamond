@@ -53,17 +53,19 @@ class Game : public QGraphicsView
         void gameFinished(int points);
     protected:
         virtual void drawBackground(QPainter *painter, const QRectF &rect);
+        virtual void mouseReleaseEvent(QMouseEvent *);
         virtual void resizeEvent(QResizeEvent *);
         virtual void wheelEvent(QWheelEvent *event);
     protected slots:
         void diamondsRemoved(int count, int cascade);
     private:
         Board *m_board;
+        MainWindow *m_mainWindow;
         QTime *m_gameTime, *m_pauseTime;
 
         int m_points;
         int m_secondsEarned, m_secondsPaused, m_secondsRemaining;
-        bool m_paused;
+        bool m_paused, m_finished;
 };
 
 #endif //KDIAMOND_GAME_H
