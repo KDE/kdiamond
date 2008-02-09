@@ -33,6 +33,7 @@
 #include <KScoreDialog>
 #include <KStandardGameAction>
 #include <KStatusBar>
+#include <KToggleAction>
 
 MainWindow::MainWindow(QWidget *parent)
     : KXmlGuiWindow(parent)
@@ -61,8 +62,6 @@ MainWindow::MainWindow(QWidget *parent)
     m_container->setWidget(m_greeter);
     //difficulty
     KGameDifficulty::init(this, this, SLOT(startGame()));
-    KGameDifficulty::setRestartOnChange(KGameDifficulty::NoRestartOnChange); //allows to initialise the skill
-    //TODO: Why does the above line not have the desired effect?
     KGameDifficulty::addStandardLevel(KGameDifficulty::VeryEasy);
     KGameDifficulty::addStandardLevel(KGameDifficulty::Easy);
     KGameDifficulty::addStandardLevel(KGameDifficulty::Medium);
@@ -74,7 +73,6 @@ MainWindow::MainWindow(QWidget *parent)
         KGameDifficulty::setLevel(KGameDifficulty::Easy);
     else
         KGameDifficulty::setLevel((KGameDifficulty::standardLevel) (Settings::skill()));
-    KGameDifficulty::setRestartOnChange(KGameDifficulty::RestartOnChange);
     //late GUI initiation
     setupGUI(QSize(550, 400));
     setCaption(i18n("KDiamond"));
@@ -101,6 +99,8 @@ void MainWindow::startGame()
         delete m_greeter;
         m_greeter = 0;
     }
+    //reset the Pause button's toggle state
+    ((KToggleAction *) actionCollection()->action("game_pause"))->setChecked(false);
     //start new game
     m_game = new Game(KGameDifficulty::level(), this);
     connect(this, SIGNAL(pause(bool)), m_game, SLOT(pause(bool)));
