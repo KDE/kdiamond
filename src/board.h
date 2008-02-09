@@ -31,6 +31,7 @@
 #include <QList>
 #include <QSet>
 #include <KGameDifficulty>
+class KGamePopupItem;
 
 namespace KDiamond
 {
@@ -72,6 +73,7 @@ class Board : public QGraphicsScene
         void mouseOnDiamond(int xIndex, int yIndex);
     public slots:
         void pause(bool paused);
+        void showMessage(const QString &message);
         void update(int milliseconds);
     signals:
         void diamondsRemoved(int count, int cascade);
@@ -83,10 +85,11 @@ class Board : public QGraphicsScene
     private:
         KDiamond::Size m_size;
         KDiamond::ColorCount m_colorCount;
+        QList<KDiamond::Job> m_jobQueue;
 
         Diamond ***m_diamonds;
         QGraphicsSvgItem *m_selection1, *m_selection2;
-        QList<KDiamond::Job> m_jobQueue;
+        KGamePopupItem *m_messenger;
 
         int m_selected1x, m_selected1y, m_selected2x, m_selected2y; //coordinates of the selected items (or -1 if they are not selected)
         int m_swapping1x, m_swapping1y, m_swapping2x, m_swapping2y; //coordinates of the swapping/swapped items (stored to revoke the swapping if necessary)

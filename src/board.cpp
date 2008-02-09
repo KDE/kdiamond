@@ -22,6 +22,8 @@
 #include "renderer.h"
 
 #include <QGraphicsSvgItem>
+#include <KGamePopupItem>
+#include <KDebug>
 
 Board::Board(KGameDifficulty::standardLevel difficulty)
     : QGraphicsScene()
@@ -51,7 +53,7 @@ Board::Board(KGameDifficulty::standardLevel difficulty)
             break;
     }
     //init scene
-    setSceneRect(0, -m_size, m_size, 2 * m_size);
+    setSceneRect(0, 0, m_size, m_size);
     //fill diamond field and scene
     m_diamonds = new Diamond**[m_size];
     for (int x = 0; x < m_size; ++x)
@@ -94,10 +96,17 @@ Board::Board(KGameDifficulty::standardLevel difficulty)
     m_selection2 = new Diamond(0, 0, 0, 0, KDiamond::Selection, this);
     m_selection2->hide();
     m_selection2->setZValue(1);
+    //init messengers
+    m_messenger = new KGamePopupItem;
+    m_messenger->setMessageOpacity(0.8);
+    addItem(m_messenger);
+    QRectF messengerRect = m_messenger->sceneBoundingRect();
+    //m_messenger->scale(5.0 / messengerRect.width(), 5.0 / messengerRect.height());
     //init GUI and internal values (any metrical values are calc'ed in the first resizeEvent())
     m_selected1x = m_selected1y = m_selected2x = m_selected2y = -1;
     m_swapping1x = m_swapping1y = m_swapping2x = m_swapping2y = -1;
     m_paused = false;
+    //test
 }
 
 Board::~Board()
@@ -113,6 +122,7 @@ Board::~Board()
     delete[] m_diamonds;
     delete m_selection1;
     delete m_selection2;
+    delete m_messenger;
 }
 
 int Board::diamondCountOnEdge() const
@@ -124,6 +134,7 @@ void Board::mouseOnDiamond(int xIndex, int yIndex)
 {
     if (m_selected1x == xIndex && m_selected1y == yIndex)
     {
+        //showMessage("This is a message test.");
         //clicked again on first selected diamond - remove selection
         m_selected1x = m_selected2x;
         m_selected1y = m_selected2y;
@@ -375,6 +386,11 @@ void Board::fillGaps()
             m_diamonds[x][y]->move(QPointF(x, y));
         }
     }
+}
+
+void Board::showMessage(const QString &message)
+{
+    m_messenger->showMessage(message, KGamePopupItem::BottomLeft);
 }
 
 #include "board.moc"
