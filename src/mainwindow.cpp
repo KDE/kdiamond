@@ -75,7 +75,7 @@ MainWindow::MainWindow(QWidget *parent)
         KGameDifficulty::setLevel((KGameDifficulty::standardLevel) (Settings::skill()));
     //late GUI initiation
     setupGUI(QSize(550, 400));
-    setCaption(i18n("KDiamond"));
+    setCaption(i18nc("The application's name", "KDiamond"));
 }
 
 MainWindow::~MainWindow()
@@ -108,7 +108,7 @@ void MainWindow::startGame()
     connect(m_game, SIGNAL(pointsChanged(int)), this, SLOT(updatePoints(int)));
     connect(m_game, SIGNAL(remainingTimeChanged(int)), this, SLOT(updateRemainingTime(int)));
     connect(m_game, SIGNAL(gameFinished(int)), this, SLOT(finishGame(int)));
-    m_container->setWidget(m_game->board());
+    m_container->setWidget(m_game);
     //reset status bar
     updatePoints(0);
     updateRemainingTime(KDiamond::GameDuration);

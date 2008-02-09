@@ -1,4 +1,5 @@
-* Port Board and Diamond classes to QGraphicsView and QGraphicsItem.
 * Remove greeter, replace with "game over" widget. (KGamePopupItem might be of help here)
 * When pausing game, show some message like "Game is paused. Press "resume" to continue plaing"
   (Again can use KGamePopupItem for displaying it) 
+* Bring the board background back to life.
+* Merge all SVGs into one file.

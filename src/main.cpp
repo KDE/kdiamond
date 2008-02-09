@@ -31,15 +31,15 @@ static const char version[] = "0.1.1";
 
 int main(int argc, char ** argv)
 {
-    KAboutData about("kdiamond", 0, ki18n("KDiamond"), version, ki18n(description),
+    KAboutData about("kdiamond", 0, ki18nc("The application's name", "KDiamond"), version, ki18n(description),
         KAboutData::License_GPL, ki18n("(C) 2008 Stefan Majewsky"));
-    about.addAuthor(ki18n("Stefan Majewsky"), ki18n("Original author and current maintainer"), "majewsky.stefan@ages-skripte.org");
+    about.addAuthor(ki18n("Stefan Majewsky"), ki18n("Original author and current maintainer"), "majewsky@gmx.net");
     about.addCredit(ki18n("Felix Lemke"), ki18n("First theme"), "lemke.felix@ages-skripte.org");
     about.addCredit(ki18n("Jeffrey Kelling"), ki18n("Technical consultant"), "kelling.jeffrey@ages-skripte.org");
     KCmdLineArgs::init(argc, argv, &about);
 
     KCmdLineOptions options;
-    options.add("VeryEasy", ki18n("Start with VeryEasy difficulty level"));
+    options.add("VeryEasy", ki18n("Start with Very Easy difficulty level"));
     options.add("Easy", ki18n("Start with Easy difficulty level"));
     options.add("Medium", ki18n("Start with Medium difficulty level"));
     options.add("Hard", ki18n("Start with Hard difficulty level"));

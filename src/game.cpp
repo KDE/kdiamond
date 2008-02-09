@@ -21,8 +21,11 @@
 #include "mainwindow.h"
 
 #include <QTime>
+#include <QWheelEvent>
+#include <KDebug>
 
 Game::Game(KGameDifficulty::standardLevel difficulty, MainWindow *mainWindow = 0)
+    : QGraphicsView(mainWindow)
 {
     //init timers
     m_gameTime = new QTime;
@@ -31,9 +34,14 @@ Game::Game(KGameDifficulty::standardLevel difficulty, MainWindow *mainWindow = 0
     m_pauseTime->start(); //now we can always call restart()
     connect(mainWindow, SIGNAL(updateScheduled(int)), this, SLOT(update(int)), Qt::DirectConnection);
     //init board
-    m_board = new Board(difficulty, this, mainWindow);
+    m_board = new Board(difficulty);
     connect(mainWindow, SIGNAL(updateScheduled(int)), m_board, SLOT(update(int)), Qt::DirectConnection);
     connect(m_board, SIGNAL(diamondsRemoved(int, int)), this, SLOT(diamondsRemoved(int, int)));
+    //init view
+    setScene(m_board);
+    setFrameStyle(QFrame::NoFrame);
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     //internal values
     m_points = 0;
     m_secondsEarned = 0;
@@ -51,6 +59,15 @@ Game::~Game()
 Board *Game::board()
 {
     return m_board;
+}
+
+void Game::pause(bool paused)
+{
+    if (!m_paused && paused)
+        m_pauseTime->restart();
+    else if (m_paused && !paused)
+        m_secondsPaused += m_pauseTime->elapsed() / 1000; //add pause time to calculate time correctly
+    m_paused = paused;
 }
 
 void Game::update(int /*milliseconds*/)
@@ -76,13 +93,22 @@ void Game::diamondsRemoved(int count, int cascade)
     update(0); //calculate new remaining time
 }
 
-void Game::pause(bool paused)
+void Game::drawBackground(QPainter *painter, const QRectF &rect)
 {
-    if (!m_paused && paused)
-        m_pauseTime->restart();
-    else if (m_paused && !paused)
-        m_secondsPaused += m_pauseTime->elapsed() / 1000; //add pause time to calculate time correctly
-    m_paused = paused;
+    //TODO: Implement Game::drawBackground.
 }
+
+void Game::resizeEvent(QResizeEvent *)
+{
+    qreal boardSize = m_board->diamondCountOnEdge();
+    fitInView(QRectF(0.0, 0.0, boardSize, boardSize), Qt::KeepAspectRatio);
+    centerOn(boardSize / 2.0, boardSize / 2.0);
+}
+
+void Game::wheelEvent(QWheelEvent *event)
+{
+    event->ignore(); //prevent user-triggered scrolling
+}
+
 
 #include "game.moc"

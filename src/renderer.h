@@ -21,14 +21,14 @@
 
 #include "diamond.h"
 
-#include <QPainter> //do not use forward declaration (if you include this header, you'll need to construct a QPainter anyway)
+#include <QSvgRenderer> //do not use forward declaration: if you include this header, you'll need to cope with QSvgRenderers anyway
 
 class Renderer {
     public:
         static void init();
-        static void drawBackground(QPainter *painter, const QRectF &bounds);
-        static void drawDiamond(QPainter *painter, const QRectF &bounds, KDiamond::Color color);
-        static void drawShadow(QPainter *painter, const QRectF &bounds);
+        static QSvgRenderer *background();
+        static QSvgRenderer *diamond(KDiamond::Color color);
+        static QSvgRenderer *shadow();
 };
 
 #endif // KDIAMOND_RENDERER_H

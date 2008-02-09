@@ -23,15 +23,18 @@
     class Board;
 #endif
 
-#include <QWidget>
+#include <QGraphicsSvgItem>
 
 namespace KDiamond //auf die entsprechenden Header-Dateien verteilen
 {
-    //duration of a move animation in milliseconds
-    const qreal MoveDuration = 200.0;
+    //duration of a move animation (per coordinate unit) in milliseconds
+    const int MoveDuration = 250;
+    //update interval during a move animation (KDiamond::MoveDuration should be divideable by KDiamond::MoveInterval)
+    const int MoveInterval = 20;
     //registered colors of diamonds
     enum Color
     {
+        Selection = 0, //that is actually no diamond type, but gives the chance to reuse the Diamond class' code for the selection marker
         RedDiamond = 1,
         GreenDiamond,
         BlueDiamond,
@@ -44,7 +47,7 @@ namespace KDiamond //auf die entsprechenden Header-Dateien verteilen
     KDiamond::Color colorFromNumber(int number);
 };
 
-class Diamond : public QWidget
+class Diamond : public QGraphicsSvgItem
 {
     Q_OBJECT
     public:
@@ -53,26 +56,21 @@ class Diamond : public QWidget
         KDiamond::Color color() const;
         int xIndex() const;
         int yIndex() const;
-        qreal xPos() const;
-        qreal yPos() const;
 
         void setXIndex(int xIndex);
         void setYIndex(int yIndex);
     public slots:
-        void move(qreal xPos, qreal yPos);
-        void select(bool selected);
+        void move(const QPointF &target);
+        void animationInProgress(){} //see definition of KDiamond::move(const QPointF &) for explanation
     protected:
-        virtual void paintEvent(QPaintEvent *);
-        virtual void mouseReleaseEvent(QMouseEvent *);
-    private slots:
-        void moveAnimation(int milliseconds);
+        virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *);
+    protected slots:
+        void moveComplete();
     private:
         Board *m_board;
 
         KDiamond::Color m_color;
-        int m_xIndex, m_yIndex;
-        qreal m_xPos, m_yPos, m_xTarget, m_yTarget;
-        bool m_moving, m_selected;
+        int m_xIndex, m_yIndex; //the index of the diamond in the Board's internal array (used for communication with Board)
 };
 
 #endif //KDIAMOND_DIAMOND_H

@@ -18,58 +18,39 @@
 
 #include "renderer.h"
 
-#include <QPainter>
-#include <QPixmap>
-#include <KPixmapCache>
 #include <KStandardDirs>
 
-KPixmapCache *g_cache;
+//TODO: This is just an intermediate solution which needs to see further performance improvements.
+
+QSvgRenderer *g_background;
+QSvgRenderer **g_diamonds;
 
 void Renderer::init()
 {
-    g_cache = new KPixmapCache("kdiamond-pixmaps");
-    g_cache->setCacheLimit(2048); //2 megabytes should be enough and not too big
+    g_background = new QSvgRenderer(KStandardDirs::locate("data", "kdiamond/kdiamond-background.svg"));
+    g_diamonds = new QSvgRenderer*[8]; //index 0 = shadow, 1 - 7 = diamonds
+    g_diamonds[0] = new QSvgRenderer(KStandardDirs::locate("data", "kdiamond/kdiamond-selected.svg"));
+    g_diamonds[1] = new QSvgRenderer(KStandardDirs::locate("data", "kdiamond/kdiamond-red.svg"));
+    g_diamonds[2] = new QSvgRenderer(KStandardDirs::locate("data", "kdiamond/kdiamond-green.svg"));
+    g_diamonds[3] = new QSvgRenderer(KStandardDirs::locate("data", "kdiamond/kdiamond-blue.svg"));
+    g_diamonds[4] = new QSvgRenderer(KStandardDirs::locate("data", "kdiamond/kdiamond-yellow.svg"));
+    g_diamonds[5] = new QSvgRenderer(KStandardDirs::locate("data", "kdiamond/kdiamond-white.svg"));
+    g_diamonds[6] = new QSvgRenderer(KStandardDirs::locate("data", "kdiamond/kdiamond-black.svg"));
+    g_diamonds[7] = new QSvgRenderer(KStandardDirs::locate("data", "kdiamond/kdiamond-orange.svg"));
+    //No cleanup is performed because these objects life until the end of the application. Their memory is then freed up by the kernel.
 }
 
-void Renderer::drawDiamond(QPainter *painter, const QRectF &bounds, KDiamond::Color color)
+QSvgRenderer *Renderer::diamond(KDiamond::Color color)
 {
-    QPixmap pixmap;
-    QSize size = bounds.size().toSize();
-    switch (color)
-    {
-        case KDiamond::RedDiamond:
-            pixmap = g_cache->loadFromSvg(KStandardDirs::locate("data", "kdiamond/kdiamond-red.svg"), size);
-            break;
-        case KDiamond::GreenDiamond:
-            pixmap = g_cache->loadFromSvg(KStandardDirs::locate("data", "kdiamond/kdiamond-green.svg"), size);
-            break;
-        case KDiamond::BlueDiamond:
-            pixmap = g_cache->loadFromSvg(KStandardDirs::locate("data", "kdiamond/kdiamond-blue.svg"), size);
-            break;
-        case KDiamond::YellowDiamond:
-            pixmap = g_cache->loadFromSvg(KStandardDirs::locate("data", "kdiamond/kdiamond-yellow.svg"), size);
-            break;
-        case KDiamond::WhiteDiamond:
-            pixmap = g_cache->loadFromSvg(KStandardDirs::locate("data", "kdiamond/kdiamond-white.svg"), size);
-            break;
-        case KDiamond::BlackDiamond:
-            pixmap = g_cache->loadFromSvg(KStandardDirs::locate("data", "kdiamond/kdiamond-black.svg"), size);
-            break;
-        case KDiamond::OrangeDiamond:
-            pixmap = g_cache->loadFromSvg(KStandardDirs::locate("data", "kdiamond/kdiamond-orange.svg"), size);
-            break;
-    }
-    painter->drawPixmap(bounds, pixmap, QRectF(0.0, 0.0, bounds.width(), bounds.height()));
+    return g_diamonds[(int) color];
 }
 
-void Renderer::drawBackground(QPainter *painter, const QRectF &bounds)
+QSvgRenderer *Renderer::background()
 {
-    QPixmap pixmap = g_cache->loadFromSvg(KStandardDirs::locate("data", "kdiamond/kdiamond-background.svg"), bounds.size().toSize());
-    painter->drawPixmap(bounds, pixmap, QRectF(0.0, 0.0, bounds.width(), bounds.height()));
+    return g_background;
 }
 
-void Renderer::drawShadow(QPainter *painter, const QRectF &bounds)
+QSvgRenderer *Renderer::shadow()
 {
-    QPixmap pixmap = g_cache->loadFromSvg(KStandardDirs::locate("data", "kdiamond/kdiamond-selected.svg"), bounds.size().toSize());
-    painter->drawPixmap(bounds, pixmap, QRectF(0.0, 0.0, bounds.width(), bounds.height()));
+    return g_diamonds[0];
 }

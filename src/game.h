@@ -26,7 +26,7 @@
     class MainWindow;
 #endif
 
-#include <QObject>
+#include <QGraphicsView>
 class QTime;
 #include <KGameDifficulty>
 
@@ -36,7 +36,7 @@ namespace KDiamond
     const int GameDuration = 120;
 };
 
-class Game : public QObject
+class Game : public QGraphicsView
 {
     Q_OBJECT
     public:
@@ -51,6 +51,10 @@ class Game : public QObject
         void pointsChanged(int points);
         void remainingTimeChanged(int remainingTime);
         void gameFinished(int points);
+    protected:
+        virtual void drawBackground(QPainter *painter, const QRectF &rect);
+        virtual void resizeEvent(QResizeEvent *);
+        virtual void wheelEvent(QWheelEvent *event);
     protected slots:
         void diamondsRemoved(int count, int cascade);
     private:

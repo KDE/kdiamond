@@ -21,14 +21,15 @@
 
 #ifndef KDIAMOND_DIAMOND_H
     class Diamond;
+    class QGraphicsSvgItem;
 #endif
 #ifndef KDIAMOND_GAME_H
     class Game;
 #endif
 
+#include <QGraphicsScene>
 #include <QList>
 #include <QSet>
-#include <QWidget>
 #include <KGameDifficulty>
 
 namespace KDiamond
@@ -60,25 +61,22 @@ namespace KDiamond
     };
 };
 
-class Board : public QWidget
+class Board : public QGraphicsScene
 {
     Q_OBJECT
     public:
-        Board(KGameDifficulty::standardLevel difficulty, Game *game, QWidget *parent = 0);
+        Board(KGameDifficulty::standardLevel difficulty);
         ~Board();
+        int diamondCountOnEdge() const;
 
-        void selectDiamond(int xIndex, int yIndex);
-        void unselectDiamond(int xIndex, int yIndex);
-        void updateDiamond(int xIndex, int yIndex);
+        void mouseOnDiamond(int xIndex, int yIndex);
     public slots:
         void pause(bool paused);
         void update(int milliseconds);
     signals:
         void diamondsRemoved(int count, int cascade);
         void updateScheduled(int milliseconds);
-    protected:
-        virtual void paintEvent(QPaintEvent *);
-        virtual void resizeEvent(QResizeEvent *);
+        void animationInProgress(); //see Diamond::move(const QPointF &) for details
     private:
         QSet<QPoint *> findCompletedRows();
         void fillGaps();
@@ -87,13 +85,13 @@ class Board : public QWidget
         KDiamond::ColorCount m_colorCount;
 
         Diamond ***m_diamonds;
+        QGraphicsSvgItem *m_selection1, *m_selection2;
         QList<KDiamond::Job> m_jobQueue;
-        qreal m_topOffset, m_leftOffset, m_diamondEdgeLength;
 
-        int m_selected1x, m_selected1y, m_selected2x, m_selected2y;
-        int m_swapping1x, m_swapping1y, m_swapping2x, m_swapping2y;
+        int m_selected1x, m_selected1y, m_selected2x, m_selected2y; //coordinates of the selected items (or -1 if they are not selected)
+        int m_swapping1x, m_swapping1y, m_swapping2x, m_swapping2y; //coordinates of the swapping/swapped items (stored to revoke the swapping if necessary)
         bool m_paused;
-        int m_cascade;
+        int m_cascade; //cascade count (necessary for score calculation in Game)
 };
 
 #endif //KDIAMOND_BOARD_H

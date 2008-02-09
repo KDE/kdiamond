@@ -20,7 +20,9 @@
 #include "board.h"
 #include "renderer.h"
 
-#include <QPainter>
+#include <QGraphicsItemAnimation>
+#include <QTimeLine>
+#include <KDebug>
 
 KDiamond::Color KDiamond::colorFromNumber(int number)
 {
@@ -33,21 +35,27 @@ KDiamond::Color KDiamond::colorFromNumber(int number)
         case 5: return KDiamond::WhiteDiamond;
         case 6: return KDiamond::BlackDiamond;
         case 7: return KDiamond::OrangeDiamond;
-        default: return KDiamond::RedDiamond; //will be a sane default in most cases
+        default: return KDiamond::Selection;
     }
 }
 
 Diamond::Diamond(int xIndex, int yIndex, qreal xPos, qreal yPos, KDiamond::Color color, Board *board)
-    : QWidget(board)
+    : QGraphicsSvgItem()
 {
+    //init internal values
     m_xIndex = xIndex;
     m_yIndex = yIndex;
-    m_xPos = xPos;
-    m_yPos = yPos;
     m_color = color;
     m_board = board;
-    m_moving = false;
-    m_selected = false;
+    //init QGraphicsSvgItem
+    setSharedRenderer(Renderer::diamond(color));
+    setVisible(true);
+    //scale to width = height = 1, set position of center
+    QRectF bounds = sceneBoundingRect();
+    scale(1.0 / bounds.width(), 1.0 / bounds.height());
+    setPos(QPointF(xPos, yPos));
+    //add to board
+    board->addItem(this);
 }
 
 KDiamond::Color Diamond::color() const
@@ -65,16 +73,6 @@ int Diamond::yIndex() const
     return m_yIndex;
 }
 
-qreal Diamond::xPos() const
-{
-    return m_xPos;
-}
-
-qreal Diamond::yPos() const
-{
-    return m_yPos;
-}
-
 void Diamond::setXIndex(int xIndex)
 {
     m_xIndex = xIndex;
@@ -85,61 +83,37 @@ void Diamond::setYIndex(int yIndex)
     m_yIndex = yIndex;
 }
 
-void Diamond::move(qreal xPos, qreal yPos)
+void Diamond::move(const QPointF &target)
 {
-    m_xTarget = xPos;
-    m_yTarget = yPos;
-    connect(m_board, SIGNAL(updateScheduled(int)), this, SLOT(moveAnimation(int)));
+    //position differences
+    QPointF current = pos();
+    qreal dx = qAbs(current.x() - target.x());
+    qreal dy = qAbs(current.y() - target.y());
+    //timeline
+    int duration = KDiamond::MoveDuration * qMax(dx, dy); //MoveDuration is the duration per scene unit
+    QTimeLine *timer = new QTimeLine(duration);
+    timer->setFrameRange(0, duration / KDiamond::MoveInterval);
+    timer->setCurveShape(QTimeLine::LinearCurve);
+    connect(timer, SIGNAL(finished()), this, SLOT(moveComplete()), Qt::DirectConnection);
+    //animation
+    QGraphicsItemAnimation *animation = new QGraphicsItemAnimation;
+    animation->setItem(this);
+    animation->setTimeLine(timer);
+    animation->setPosAt(0.0, current);
+    animation->setPosAt(1.0, target);
+    timer->start();
+    //This connection can be used by the board to determine whether there are animations in progress. The board's job queue is not processed during animations to make the movements on the screen clearer for the user.
+    connect(m_board, SIGNAL(animationInProgress()), this, SLOT(animationInProgress()));
 }
 
-void Diamond::select(bool selected)
+void Diamond::moveComplete()
 {
-    if (m_selected == selected)
-        return;
-    m_selected = selected;
-    update();
+    disconnect(m_board, SIGNAL(animationInProgress()), this, SLOT(animationInProgress()));
 }
 
-void Diamond::paintEvent(QPaintEvent *)
+void Diamond::mouseReleaseEvent(QGraphicsSceneMouseEvent *)
 {
-    QPainter p(this);
-    QRectF bounds(0.0, 0.0, width(), height());
-    if (m_selected)
-        Renderer::drawShadow(&p, bounds);
-    Renderer::drawDiamond(&p, bounds, m_color);
-}
-
-void Diamond::mouseReleaseEvent(QMouseEvent *)
-{
-    if (m_selected)
-        m_board->unselectDiamond(m_xIndex, m_yIndex);
-    else
-        m_board->selectDiamond(m_xIndex, m_yIndex);
-    m_selected = !m_selected;
-    update();
-}
-
-void Diamond::moveAnimation(int milliseconds)
-{
-    //move each coordinate towards the target position
-    qreal dx = m_xTarget - m_xPos;
-    qreal dy = m_yTarget - m_yPos;
-    if (dx == 0.0 && dy == 0.0)
-        //advertise end of animation to m_board by disconnecting from update signal
-        m_board->disconnect(SIGNAL(updateScheduled(int)), this, SLOT(moveAnimation(int)));
-    else
-    {
-        //maximum absolute value is maxStep
-        qreal maxStep = ((qreal) milliseconds) / KDiamond::MoveDuration;
-        if (qAbs(dx) > maxStep)
-            dx = maxStep * dx / qAbs(dx); // = maxStep * sign of dx
-        if (qAbs(dy) > maxStep)
-            dy = maxStep * dy / qAbs(dy);
-        //apply position change
-        m_xPos += dx;
-        m_yPos += dy;
-        m_board->updateDiamond(m_xIndex, m_yIndex);
-    }
+    m_board->mouseOnDiamond(m_xIndex, m_yIndex);
 }
 
 #include "diamond.moc"
