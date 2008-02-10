@@ -29,9 +29,9 @@ class QGraphicsItemAnimation;
 namespace KDiamond //auf die entsprechenden Header-Dateien verteilen
 {
     //duration of a move animation (per coordinate unit) in milliseconds
-    const int MoveDuration = 250;
+    const int MoveDuration = 300;
     //update interval during a move animation (KDiamond::MoveDuration should be divideable by KDiamond::MoveInterval)
-    const int MoveInterval = 20;
+    const int MoveInterval = 10;
     //registered colors of diamonds
     enum Color
     {

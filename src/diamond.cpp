@@ -105,7 +105,7 @@ void Diamond::move(const QPointF &target)
     int duration = KDiamond::MoveDuration * qMax(dx, dy); //MoveDuration is the duration per scene unit
     QTimeLine *timer = new QTimeLine(duration);
     timer->setFrameRange(0, duration / KDiamond::MoveInterval);
-    timer->setCurveShape(QTimeLine::LinearCurve);
+    timer->setCurveShape(QTimeLine::EaseInCurve);
     connect(timer, SIGNAL(finished()), this, SLOT(moveComplete()), Qt::DirectConnection);
     //animation
     m_animation = new QGraphicsItemAnimation;
@@ -162,7 +162,9 @@ void Diamond::setPosInBoardCoords(const QPointF &pos)
 
 void Diamond::mouseReleaseEvent(QGraphicsSceneMouseEvent *)
 {
-    m_board->mouseOnDiamond(m_xIndex, m_yIndex);
+    //propagate the mouse click to the board (to change the selection); clicking is blocked during movement
+    if (m_animation == 0)
+        m_board->mouseOnDiamond(m_xIndex, m_yIndex);
 }
 
 #include "diamond.moc"

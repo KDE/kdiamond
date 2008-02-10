@@ -34,8 +34,6 @@ class KGamePopupItem;
 
 namespace KDiamond
 {
-    //the width and height in pixels after which the background of the board is repeated
-    const int BackgroundTileSize = 200;
     //specification of the difficulties
     enum Size
     {
@@ -57,7 +55,8 @@ namespace KDiamond
     enum Job {
         SwapDiamondsJob = 1, //swap selected diamonds
         RemoveRowsJob, //remove complete rows of diamonds and add points
-        RevokeSwapDiamondsJob //revoke swapping of diamonds (will be requested by the RemoveRowsJob if no rows have been formed)
+        RevokeSwapDiamondsJob, //revoke swapping of diamonds (will be requested by the RemoveRowsJob if no rows have been formed)
+        FillGapsJob
     };
 };
 

@@ -24,6 +24,8 @@
 #include <QGraphicsSvgItem>
 #include <KGamePopupItem>
 
+#include <KDebug>
+
 Board::Board(KGameDifficulty::standardLevel difficulty)
     : QGraphicsScene()
 {
@@ -218,6 +220,7 @@ void Board::mouseOnDiamond(int xIndex, int yIndex)
             m_selection1->show();
         }
     }
+    kDebug() << m_selected1x << m_selected1y << m_selected2x << m_selected2y;
 }
 
 void Board::pause(bool paused)
@@ -255,6 +258,8 @@ void Board::update(int /*milliseconds*/)
     switch (job)
     {
         case KDiamond::SwapDiamondsJob:
+            if (m_selected1x == -1 || m_selected1y == -1 || m_selected2x == -1 || m_selected2y == -1)
+                break; //this can be the case if, during a cascade, two diamonds are selected (inserts SwapDiamondsJob) and then deselected
             m_cascade = 0; //starting a new cascade
             //copy selection info into another storage (to allow the user to select the next two diamonds while the cascade runs)
             m_swapping1x = m_selected1x;
@@ -287,24 +292,29 @@ void Board::update(int /*milliseconds*/)
                 //no diamond rows were formed by the last move -> revoke movement (unless we are in a cascade)
                 if (m_swapping1x != -1 && m_swapping1y != -1 && m_swapping2x != -1 && m_swapping2y != -1)
                     m_jobQueue << KDiamond::RevokeSwapDiamondsJob;
-                break;
             }
             else
+            {
+                //it is now safe to delete the position of the swapping diamonds
+                m_swapping1x = m_swapping1y = m_swapping2x = m_swapping2y = -1;
                 //report to Game
                 emit diamondsRemoved(removeTheseDiamonds.count(), m_cascade);
-            //delete diamonds
-            foreach (QPoint *diamondPos, removeTheseDiamonds)
-            {
-                delete m_diamonds[diamondPos->x()][diamondPos->y()];
-                m_diamonds[diamondPos->x()][diamondPos->y()] = 0;
+                //delete diamonds
+                foreach (QPoint *diamondPos, removeTheseDiamonds)
+                {
+                    delete m_diamonds[diamondPos->x()][diamondPos->y()];
+                    m_diamonds[diamondPos->x()][diamondPos->y()] = 0;
+                }
+                //prepare to fill gaps
+                m_jobQueue << KDiamond::FillGapsJob;
             }
             //cleanup pointers
             foreach (QPoint *toDelete, removeTheseDiamonds)
                 delete toDelete;
+            break;
+        case KDiamond::FillGapsJob:
             //fill gaps
             fillGaps();
-            //it is now safe to delete the position of the swapping diamonds
-            m_swapping1x = m_swapping1y = m_swapping2x = m_swapping2y = -1;
             m_jobQueue.prepend(KDiamond::RemoveRowsJob); //allow cascades (i.e. clear rows that have been formed by falling diamonds); prepend this job as it has to be executed immediately after the animations (before handling any further user input)
             break;
     }
