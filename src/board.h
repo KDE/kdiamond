@@ -21,7 +21,6 @@
 
 #ifndef KDIAMOND_DIAMOND_H
     class Diamond;
-    class QGraphicsSvgItem;
 #endif
 #ifndef KDIAMOND_GAME_H
     class Game;
@@ -70,12 +69,19 @@ class Board : public QGraphicsScene
         ~Board();
         int diamondCountOnEdge() const;
 
+        QPointF boardToScene(const QPointF &boardCoord) const;
+        QPointF sceneToBoard(const QPointF &sceneCoord) const;
+        void resizeScene(qreal width, qreal height);
+        qreal diamondEdgeLength() const;
+
         void mouseOnDiamond(int xIndex, int yIndex);
     public slots:
+        void hideMessage();
         void pause(bool paused);
-        void showMessage(const QString &message);
+        void showMessage(const QString &message, int timeout = 0);
         void update(int milliseconds);
     signals:
+        void boardResized();
         void diamondsRemoved(int count, int cascade);
         void updateScheduled(int milliseconds);
         void animationInProgress(); //see Diamond::move(const QPointF &) for details
@@ -88,9 +94,10 @@ class Board : public QGraphicsScene
         QList<KDiamond::Job> m_jobQueue;
 
         Diamond ***m_diamonds;
-        QGraphicsSvgItem *m_selection1, *m_selection2;
+        Diamond *m_selection1, *m_selection2;
         KGamePopupItem *m_messenger;
 
+        qreal m_leftOffset, m_topOffset, m_diamondEdgeLength; //necessary for conversion between board coordinates (i.e. (0,0) for the top left point, 1 unit = 1 diamond) and scene coordinates (as defined by Qt)
         int m_selected1x, m_selected1y, m_selected2x, m_selected2y; //coordinates of the selected items (or -1 if they are not selected)
         int m_swapping1x, m_swapping1y, m_swapping2x, m_swapping2y; //coordinates of the swapping/swapped items (stored to revoke the swapping if necessary)
         bool m_paused;

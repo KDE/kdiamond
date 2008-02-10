@@ -23,6 +23,7 @@
 #include <QMouseEvent>
 #include <QTime>
 #include <QWheelEvent>
+#include <KLocalizedString>
 
 Game::Game(KGameDifficulty::standardLevel difficulty, MainWindow *mainWindow = 0)
     : QGraphicsView(mainWindow)
@@ -69,6 +70,10 @@ void Game::pause(bool paused)
     else if (m_paused && !paused)
         m_secondsPaused += m_pauseTime->elapsed() / 1000; //add pause time to calculate time correctly
     m_paused = paused;
+    if (paused)
+        m_board->showMessage(i18n("Click the pause button again to resume the game."), 0);
+    else
+        m_board->hideMessage();
 }
 
 void Game::update(int /*milliseconds*/)
@@ -82,6 +87,7 @@ void Game::update(int /*milliseconds*/)
         m_finished = true;
         disconnect(m_mainWindow, SIGNAL(updateScheduled(int)), this, SLOT(update(int)));
         disconnect(m_mainWindow, SIGNAL(updateScheduled(int)), m_board, SLOT(update(int)));
+        m_board->showMessage(i18n("Game over."), 0);
         emit gameFinished(m_points);
     }
     else if (m_secondsRemaining != secondsRemaining)
@@ -114,15 +120,14 @@ void Game::mouseReleaseEvent(QMouseEvent *event)
 
 void Game::resizeEvent(QResizeEvent *)
 {
-    qreal boardSize = m_board->diamondCountOnEdge();
-    fitInView(QRectF(0.0, 0.0, boardSize, boardSize), Qt::KeepAspectRatio);
-    centerOn(boardSize / 2.0, boardSize / 2.0);
+    qreal newWidth = width(), newHeight = height();
+    m_board->resizeScene(newWidth, newHeight);
+    fitInView(QRectF(0.0, 0.0, newWidth, newHeight));
 }
 
 void Game::wheelEvent(QWheelEvent *event)
 {
     event->ignore(); //prevent user-triggered scrolling
 }
-
 
 #include "game.moc"

@@ -23,6 +23,7 @@
     class Board;
 #endif
 
+class QGraphicsItemAnimation;
 #include <QGraphicsSvgItem>
 
 namespace KDiamond //auf die entsprechenden Header-Dateien verteilen
@@ -59,18 +60,22 @@ class Diamond : public QGraphicsSvgItem
 
         void setXIndex(int xIndex);
         void setYIndex(int yIndex);
+        void setPosInBoardCoords(const QPointF &pos);
     public slots:
         void move(const QPointF &target);
         void animationInProgress(){} //see definition of KDiamond::move(const QPointF &) for explanation
     protected:
         virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *);
     protected slots:
+        void boardResized();
         void moveComplete();
     private:
         Board *m_board;
+        QGraphicsItemAnimation *m_animation; //pointer to the animation currently in progress
 
         KDiamond::Color m_color;
         int m_xIndex, m_yIndex; //the index of the diamond in the Board's internal array (used for communication with Board)
+        QPointF m_pos, m_target; //current position of diamond in board coordinates (see Board::boardToScene for details)
 };
 
 #endif //KDIAMOND_DIAMOND_H

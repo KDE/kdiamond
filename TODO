@@ -1,5 +1,2 @@
-* Remove greeter, replace with "game over" widget. (KGamePopupItem might be of help here)
-* When pausing game, show some message like "Game is paused. Press "resume" to continue plaing"
-  (Again can use KGamePopupItem for displaying it) 
-* Bring the board background back to life.
-* Merge all SVGs into one file.
+Feel free to add your own suggestions for KDiamond below.
+* Merge all SVGs into one file, bring the board background back to life. (Practically, this summarizes "wait for a proper theme to appear, then integrate it".)

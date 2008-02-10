@@ -51,8 +51,10 @@ Board::Board(KGameDifficulty::standardLevel difficulty)
             m_colorCount = KDiamond::VeryHardColors;
             break;
     }
-    //init scene
-    setSceneRect(0, 0, m_size, m_size);
+    //init scene (with some default scene size that makes board coordinates equal scene coordinates)
+    setSceneRect(0.0, 0.0, m_size, m_size);
+    m_diamondEdgeLength = 1.0;
+    m_topOffset = m_leftOffset = 0.0;
     //fill diamond field and scene
     m_diamonds = new Diamond**[m_size];
     for (int x = 0; x < m_size; ++x)
@@ -125,11 +127,47 @@ int Board::diamondCountOnEdge() const
     return m_size;
 }
 
+//Converts board coordinates (i.e. (0,0) is the top left point of the board, 1 unit = 1 diamond) to scene coordinates.
+QPointF Board::boardToScene(const QPointF &boardCoords) const
+{
+    return QPointF(
+        boardCoords.x() * m_diamondEdgeLength + m_leftOffset,
+        boardCoords.y() * m_diamondEdgeLength + m_topOffset
+    );
+}
+
+QPointF Board::sceneToBoard(const QPointF &sceneCoords) const
+{
+    return QPointF(
+        (sceneCoords.x() - m_leftOffset) / m_diamondEdgeLength,
+        (sceneCoords.y() - m_topOffset) / m_diamondEdgeLength
+    );
+}
+
+qreal Board::diamondEdgeLength() const
+{
+    return m_diamondEdgeLength;
+}
+
+//Adapt scene coordinates to size of view. (This congruence is required by KGamePopupItem.)
+void Board::resizeScene(qreal newWidth, qreal newHeight)
+{
+    //do not resize if nothing would change
+    if (width() == newWidth && height() == newHeight)
+        return;
+    setSceneRect(0.0, 0.0, newWidth, newHeight);
+    //calculate new metrics - A board margin of half a diamond's size is hard-coded.
+    m_diamondEdgeLength = qMin(newWidth, newHeight) / (m_size + 1);
+    qreal boardSize = m_size * m_diamondEdgeLength;
+    m_leftOffset = (newWidth - boardSize) / 2.0;
+    m_topOffset = (newHeight - boardSize) / 2.0;
+    emit boardResized(); //give diamonds the chance to change their metrics
+}
+
 void Board::mouseOnDiamond(int xIndex, int yIndex)
 {
     if (m_selected1x == xIndex && m_selected1y == yIndex)
     {
-        //showMessage("This is a message test.");
         //clicked again on first selected diamond - remove selection
         m_selected1x = m_selected2x;
         m_selected1y = m_selected2y;
@@ -137,7 +175,7 @@ void Board::mouseOnDiamond(int xIndex, int yIndex)
             m_selection1->hide();
         else
         {
-            m_selection1->setPos(m_selected1x, m_selected1y);
+            m_selection1->setPosInBoardCoords(QPointF(m_selected1x, m_selected1y));
             m_selection1->show();
         }
         m_selected2x = -1;
@@ -156,7 +194,7 @@ void Board::mouseOnDiamond(int xIndex, int yIndex)
         //nothing selected - this is the first selected diamond
         m_selected1x = xIndex;
         m_selected1y = yIndex;
-        m_selection1->setPos(xIndex, yIndex);
+        m_selection1->setPosInBoardCoords(QPointF(xIndex, yIndex));
         m_selection1->show();
     }
     else if (m_selected2x == -1 || m_selected2y == -1)
@@ -167,7 +205,7 @@ void Board::mouseOnDiamond(int xIndex, int yIndex)
         {
             m_selected2x = xIndex;
             m_selected2y = yIndex;
-            m_selection2->setPos(xIndex, yIndex);
+            m_selection2->setPosInBoardCoords(QPointF(xIndex, yIndex));
             m_selection2->show();
             m_jobQueue << KDiamond::SwapDiamondsJob;
         }
@@ -176,7 +214,7 @@ void Board::mouseOnDiamond(int xIndex, int yIndex)
             //selected a diamond that it is not a neighbor - move the first selection to this diamond
             m_selected1x = xIndex;
             m_selected1y = yIndex;
-            m_selection1->setPos(xIndex, yIndex);
+            m_selection1->setPosInBoardCoords(QPointF(xIndex, yIndex));
             m_selection1->show();
         }
     }
@@ -377,15 +415,21 @@ void Board::fillGaps()
                 continue; //inside of diamond stack - no gaps to fill
             --yt;
             m_diamonds[x][y] = new Diamond(x, y, x, yt, KDiamond::colorFromNumber(qrand() % m_colorCount + 1), this);
-            m_diamonds[x][y]->setPos(QPointF(x, yt));
+            m_diamonds[x][y]->setPosInBoardCoords(QPointF(x, yt));
             m_diamonds[x][y]->move(QPointF(x, y));
         }
     }
 }
 
-void Board::showMessage(const QString &message)
+void Board::showMessage(const QString &message, int timeout)
 {
-    m_messenger->showMessage(message, KGamePopupItem::BottomLeft);
+    m_messenger->setMessageTimeout(timeout);
+    m_messenger->showMessage(message, KGamePopupItem::TopLeft);
+}
+
+void Board::hideMessage()
+{
+    m_messenger->forceHide();
 }
 
 #include "board.moc"
