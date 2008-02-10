@@ -23,7 +23,6 @@
 
 #include <QGraphicsSvgItem>
 #include <KGamePopupItem>
-#include <KDebug>
 
 Board::Board(KGameDifficulty::standardLevel difficulty)
     : QGraphicsScene()
@@ -86,16 +85,13 @@ Board::Board(KGameDifficulty::standardLevel difficulty)
             }
             //set diamond
             m_diamonds[x][y] = new Diamond(x, y, x, y, KDiamond::colorFromNumber(color), this);
-            m_diamonds[x][y]->setZValue(2);
         }
     }
     //init selection markers
     m_selection1 = new Diamond(0, 0, 0, 0, KDiamond::Selection, this);
     m_selection1->hide();
-    m_selection1->setZValue(1);
     m_selection2 = new Diamond(0, 0, 0, 0, KDiamond::Selection, this);
     m_selection2->hide();
-    m_selection2->setZValue(1);
     //init messengers
     m_messenger = new KGamePopupItem;
     m_messenger->setMessageOpacity(0.8);
@@ -106,7 +102,6 @@ Board::Board(KGameDifficulty::standardLevel difficulty)
     m_selected1x = m_selected1y = m_selected2x = m_selected2y = -1;
     m_swapping1x = m_swapping1y = m_swapping2x = m_swapping2y = -1;
     m_paused = false;
-    //test
 }
 
 Board::~Board()

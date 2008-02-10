@@ -53,9 +53,14 @@ Diamond::Diamond(int xIndex, int yIndex, qreal xPos, qreal yPos, KDiamond::Color
     QRectF bounds = sceneBoundingRect();
     scale(1.0 / bounds.width(), 1.0 / bounds.height());
     setPos(QPointF(xPos, yPos));
-    //selection markers do not react to mouse events
+    //selection markers do not react to mouse events; they should also appear behind diamonds
     if (color == KDiamond::Selection)
+    {
         setAcceptedMouseButtons(0);
+        setZValue(1);
+    }
+    else
+        setZValue(2);
     //add to board
     board->addItem(this);
 }
