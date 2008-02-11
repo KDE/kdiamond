@@ -47,6 +47,7 @@ Diamond::Diamond(int xIndex, int yIndex, qreal xPos, qreal yPos, KDiamond::Color
     m_color = color;
     m_board = board;
     m_animation = 0;
+    m_timer = 0;
     m_pos = QPoint(xPos, yPos);
     //init QGraphicsSvgItem
     setSharedRenderer(Renderer::diamond(color));
@@ -103,17 +104,17 @@ void Diamond::move(const QPointF &target)
     qreal dy = qAbs(m_pos.y() - target.y());
     //timeline
     int duration = KDiamond::MoveDuration * qMax(dx, dy); //MoveDuration is the duration per scene unit
-    QTimeLine *timer = new QTimeLine(duration);
-    timer->setFrameRange(0, duration / KDiamond::MoveInterval);
-    timer->setCurveShape(QTimeLine::EaseInCurve);
-    connect(timer, SIGNAL(finished()), this, SLOT(moveComplete()), Qt::DirectConnection);
+    m_timer = new QTimeLine(duration);
+    m_timer->setFrameRange(0, duration / KDiamond::MoveInterval);
+    m_timer->setCurveShape(QTimeLine::EaseInCurve);
+    connect(m_timer, SIGNAL(finished()), this, SLOT(moveComplete()), Qt::DirectConnection);
     //animation
     m_animation = new QGraphicsItemAnimation;
     m_animation->setItem(this);
-    m_animation->setTimeLine(timer);
+    m_animation->setTimeLine(m_timer);
     m_animation->setPosAt(0.0, m_board->boardToScene(m_pos));
     m_animation->setPosAt(1.0, m_board->boardToScene(m_target));
-    timer->start();
+    m_timer->start();
     //This connection can be used by the board to determine whether there are animations in progress. The board's job queue is not processed during animations to make the movements on the screen clearer for the user.
     connect(m_board, SIGNAL(animationInProgress()), this, SLOT(animationInProgress()));
 }
@@ -122,7 +123,9 @@ void Diamond::moveComplete()
 {
     disconnect(m_board, SIGNAL(animationInProgress()), this, SLOT(animationInProgress()));
     delete m_animation;
-    m_animation = 0; //the animation is deleted internally, this makes sure we do not access it any more
+    m_animation = 0;
+    delete m_timer;
+    m_timer = 0;
     m_pos = m_target; //the target has now been reached - use this as position for further resize events
 }
 

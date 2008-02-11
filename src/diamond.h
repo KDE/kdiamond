@@ -25,6 +25,7 @@
 
 class QGraphicsItemAnimation;
 #include <QGraphicsSvgItem>
+class QTimeLine;
 
 namespace KDiamond //auf die entsprechenden Header-Dateien verteilen
 {
@@ -72,6 +73,7 @@ class Diamond : public QGraphicsSvgItem
     private:
         Board *m_board;
         QGraphicsItemAnimation *m_animation; //pointer to the animation currently in progress
+        QTimeLine *m_timer;
 
         KDiamond::Color m_color;
         int m_xIndex, m_yIndex; //the index of the diamond in the Board's internal array (used for communication with Board)

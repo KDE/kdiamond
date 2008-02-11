@@ -24,8 +24,6 @@
 #include <QGraphicsSvgItem>
 #include <KGamePopupItem>
 
-#include <KDebug>
-
 Board::Board(KGameDifficulty::standardLevel difficulty)
     : QGraphicsScene()
 {
@@ -220,7 +218,6 @@ void Board::mouseOnDiamond(int xIndex, int yIndex)
             m_selection1->show();
         }
     }
-    kDebug() << m_selected1x << m_selected1y << m_selected2x << m_selected2y;
 }
 
 void Board::pause(bool paused)
