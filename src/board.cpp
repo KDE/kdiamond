@@ -265,6 +265,7 @@ void Board::update(int /*milliseconds*/)
         return;
     //execute first job in queue
     KDiamond::Job job = m_jobQueue.takeFirst();
+    int dx, dy;
     Diamond *temp;
     QSet<QPoint *> removeTheseDiamonds;
     switch (job)
@@ -272,7 +273,18 @@ void Board::update(int /*milliseconds*/)
         case KDiamond::SwapDiamondsJob:
             if (m_selected1x == -1 || m_selected1y == -1 || m_selected2x == -1 || m_selected2y == -1)
                 break; //this can be the case if, during a cascade, two diamonds are selected (inserts SwapDiamondsJob) and then deselected
-            m_cascade = 0; //starting a new cascade
+            //ensure that the selected diamonds are neighbors (this is not necessarily the case as diamonds can move to fill gaps)
+            dx = qAbs(m_selected1x - m_selected2x);
+            dy = qAbs(m_selected1y - m_selected2y);
+            if (dx + dy != 1)
+            {
+                m_selected1x = m_selected1y = m_selected2x = m_selected2y = -1;
+                m_selection1->hide();
+                m_selection2->hide();
+                break;
+            }
+            //start a new cascade
+            m_cascade = 0;
             //copy selection info into another storage (to allow the user to select the next two diamonds while the cascade runs)
             m_swapping1x = m_selected1x;
             m_swapping1y = m_selected1y;
@@ -420,11 +432,21 @@ void Board::fillGaps()
                 if (m_diamonds[x][yt + 1] != 0)
                     break; //xt now holds the lowest possible position
             }
-            //continue;
             m_diamonds[x][yt] = m_diamonds[x][y];
             m_diamonds[x][y] = 0;
             m_diamonds[x][yt]->setYIndex(yt);
             m_diamonds[x][yt]->move(QPointF(x, yt));
+            //if this element is selected, move the selection, too
+            if (m_selected1x == x && m_selected1y == y)
+            {
+                m_selected1y = yt;
+                m_selection1->move(QPointF(x, yt));
+            }
+            if (m_selected2x == x && m_selected2y == y)
+            {
+                m_selected2y = yt;
+                m_selection2->move(QPointF(x, yt));
+            }
         }
     }
     //fill top rows with new elements
