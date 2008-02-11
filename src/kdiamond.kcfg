@@ -5,12 +5,13 @@
       http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
   <kcfgfile name="kdiamondrc"/>
   <group name="General">
-    <entry name="Theme" type="String" key="Theme">
+    <entry name="Theme" type="String">
       <label>The graphical theme to be used.</label>
+      <default>themes/classic.desktop</default>
     </entry>
   </group>
   <group name="Preferences">
-    <entry name="skill" type="Enum">
+    <entry name="Skill" type="Enum">
       <label>The difficulty level.</label>
       <default>Easy</default>
       <choices>
@@ -20,6 +21,10 @@
         <choice name="Hard"/>
         <choice name="VeryHard"/>
       </choices>
+    </entry>
+    <entry name="ShowMinutes" type="Bool">
+     <label>Show minutes separately on the timer.</label>
+     <default>false</default>
     </entry>
   </group>
 </kcfg>

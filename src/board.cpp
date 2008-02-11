@@ -466,6 +466,12 @@ void Board::fillGaps()
     }
 }
 
+void Board::gameFinished()
+{
+    m_selection1->hide();
+    m_selection2->hide();
+}
+
 void Board::showMessage(const QString &message, int timeout)
 {
     m_messenger->setMessageTimeout(timeout);

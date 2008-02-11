@@ -1,4 +1,4 @@
 File=kdiamond.kcfg
 ClassName=Settings
 Singleton=true
-Mutators=skill
+Mutators=true

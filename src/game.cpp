@@ -89,6 +89,7 @@ void Game::update(int /*milliseconds*/)
         m_finished = true;
         disconnect(m_mainWindow, SIGNAL(updateScheduled(int)), this, SLOT(update(int)));
         disconnect(m_mainWindow, SIGNAL(updateScheduled(int)), m_board, SLOT(update(int)));
+        m_board->gameFinished();
         m_board->showMessage(i18n("Game over."), 0);
         emit gameFinished(m_points);
     }

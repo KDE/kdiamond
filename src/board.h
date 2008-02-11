@@ -76,6 +76,7 @@ class Board : public QGraphicsScene
 
         void mouseOnDiamond(int xIndex, int yIndex);
     public slots:
+        void gameFinished();
         void hideMessage();
         void pause(bool paused);
         void showMessage(const QString &message, int timeout = 0);

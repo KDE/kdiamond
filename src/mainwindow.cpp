@@ -20,6 +20,7 @@
 #include "board.h"
 #include "container.h"
 #include "game.h"
+#include "renderer.h"
 #include "settings.h"
 
 #include <time.h>
@@ -28,9 +29,13 @@
 #include <QTimer>
 #include <KActionCollection>
 #include <KApplication>
+#include <KConfigDialog>
 #include <KGameDifficulty>
+#include <KGameThemeSelector>
 #include <KLocalizedString>
+#include <KMessageBox>
 #include <KScoreDialog>
+#include <KStandardAction>
 #include <KStandardGameAction>
 #include <KStatusBar>
 #include <KToggleAction>
@@ -50,6 +55,7 @@ MainWindow::MainWindow(QWidget *parent)
     KStandardGameAction::highscores(this, SLOT(showHighscores()), actionCollection());
     KStandardGameAction::pause(this, SIGNAL(pause(bool)), actionCollection());
     KStandardGameAction::quit(kapp, SLOT(quit()), actionCollection());
+    KStandardAction::preferences(this, SLOT(configureSettings()), actionCollection());
     statusBar()->insertPermanentItem(i18n("Points: %1", 0), 1, 1);
     statusBar()->insertPermanentItem(i18np("Time left: 1 second", "Time left: %1 seconds", 0), 2, 1);
     setAutoSaveSettings();
@@ -152,6 +158,32 @@ void MainWindow::updatePoints(int points)
 void MainWindow::updateRemainingTime(int remainingSeconds)
 {
     statusBar()->changeItem(i18np("Time left: 1 second", "Time left: %1 seconds", remainingSeconds), 2);
+}
+
+void MainWindow::configureSettings()
+{
+    if (KConfigDialog::showDialog("settings"))
+        return;
+    KConfigDialog *dialog = new KConfigDialog(this, "settings", Settings::self());
+    dialog->addPage(new KGameThemeSelector(dialog, Settings::self(), KGameThemeSelector::NewStuffDisableDownload), i18n("Theme"), "games-config-theme");
+    connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SLOT(loadSettings()));
+    dialog->setHelp(QString(), "kdiamond");
+    dialog->show();
+}
+
+void MainWindow::loadSettings()
+{
+    if (!Renderer::loadTheme(Settings::theme()))
+    {
+        KMessageBox::error(this, i18n("Failed to load \"%1\" theme. Please check your installation.", Settings::theme()));
+        return;
+    }
+    //redraw game scene if necessary
+    if (m_game != 0)
+    {
+        m_game->scene()->resizeScene(m_game->width(), m_game->height()); //resets the diamonds' pixmaps
+        m_game->scene()->invalidate(m_game->scene()->sceneRect(), QGraphicsScene::BackgroundLayer );
+    }
 }
 
 #include "mainwindow.moc"
