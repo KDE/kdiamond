@@ -318,7 +318,7 @@ void Board::update(int /*milliseconds*/)
                     m_diamonds[diamondPos->x()][diamondPos->y()] = 0;
                 }
                 //prepare to fill gaps
-                m_jobQueue << KDiamond::FillGapsJob;
+                m_jobQueue.prepend(KDiamond::FillGapsJob); //prepend this job as it has to be executed immediately after the animations (before handling any further user input)
             }
             //cleanup pointers
             foreach (QPoint *toDelete, removeTheseDiamonds)
@@ -327,7 +327,7 @@ void Board::update(int /*milliseconds*/)
         case KDiamond::FillGapsJob:
             //fill gaps
             fillGaps();
-            m_jobQueue.prepend(KDiamond::RemoveRowsJob); //allow cascades (i.e. clear rows that have been formed by falling diamonds); prepend this job as it has to be executed immediately after the animations (before handling any further user input)
+            m_jobQueue.prepend(KDiamond::RemoveRowsJob); //allow cascades (i.e. clear rows that have been formed by falling diamonds)
             break;
     }
 }

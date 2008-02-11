@@ -49,6 +49,8 @@ Game::Game(KGameDifficulty::standardLevel difficulty, MainWindow *mainWindow = 0
     m_secondsEarned = m_secondsPaused = m_secondsRemaining = 0;
     m_paused = false;
     m_finished = false;
+    //"What's this?" context help
+    setWhatsThis(i18n("<h3>Rules of Game</h3><p>Your goal is to assemble lines of at least three similar diamonds. Click on two adjacent diamonds to swap them.</p><p>Earn extra points by building cascades, and extra seconds by assembling big lines or multiple lines at one time.</p>"));
 }
 
 Game::~Game()
