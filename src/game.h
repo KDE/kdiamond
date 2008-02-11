@@ -52,7 +52,6 @@ class Game : public QGraphicsView
         void remainingTimeChanged(int remainingTime);
         void gameFinished(int points);
     protected:
-        virtual void drawBackground(QPainter *painter, const QRectF &rect);
         virtual void mouseReleaseEvent(QMouseEvent *);
         virtual void resizeEvent(QResizeEvent *);
         virtual void wheelEvent(QWheelEvent *event);

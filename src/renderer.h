@@ -21,14 +21,15 @@
 
 #include "diamond.h"
 
-#include <QSvgRenderer> //do not use forward declaration: if you include this header, you'll need to cope with QSvgRenderers anyway
+class QPixmap;
 
-class Renderer {
-    public:
-        static void init();
-        static QSvgRenderer *background();
-        static QSvgRenderer *diamond(KDiamond::Color color);
-        static QSvgRenderer *shadow();
+namespace Renderer {
+    bool init();
+    bool loadTheme(const QString &name);
+    void boardResized(int width, int height, int diamondEdgeLength);
+
+    QPixmap diamond(KDiamond::Color color);
+    QPixmap background();
 };
 
 #endif // KDIAMOND_RENDERER_H

@@ -105,11 +105,6 @@ void Game::diamondsRemoved(int count, int cascade)
     update(0); //calculate new remaining time
 }
 
-void Game::drawBackground(QPainter */*painter*/, const QRectF &/*rect*/)
-{
-    //TODO: Implement Game::drawBackground.
-}
-
 void Game::mouseReleaseEvent(QMouseEvent *event)
 {
     if (m_finished)

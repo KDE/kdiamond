@@ -24,7 +24,7 @@
 #endif
 
 class QGraphicsItemAnimation;
-#include <QGraphicsSvgItem>
+#include <QGraphicsPixmapItem>
 class QTimeLine;
 
 namespace KDiamond //auf die entsprechenden Header-Dateien verteilen
@@ -49,7 +49,7 @@ namespace KDiamond //auf die entsprechenden Header-Dateien verteilen
     KDiamond::Color colorFromNumber(int number);
 };
 
-class Diamond : public QGraphicsSvgItem
+class Diamond : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
     public:
@@ -63,12 +63,12 @@ class Diamond : public QGraphicsSvgItem
         void setYIndex(int yIndex);
         void setPosInBoardCoords(const QPointF &pos);
     public slots:
+        void updateGeometry();
         void move(const QPointF &target);
         void animationInProgress(){} //see definition of KDiamond::move(const QPointF &) for explanation
     protected:
         virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *);
     protected slots:
-        void boardResized();
         void moveComplete();
     private:
         Board *m_board;

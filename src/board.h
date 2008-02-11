@@ -21,6 +21,7 @@
 
 #ifndef KDIAMOND_DIAMOND_H
     class Diamond;
+    class QGraphicsPixmapItem;
 #endif
 #ifndef KDIAMOND_GAME_H
     class Game;
@@ -94,6 +95,7 @@ class Board : public QGraphicsScene
 
         Diamond ***m_diamonds;
         Diamond *m_selection1, *m_selection2;
+        QGraphicsPixmapItem *m_background;
         KGamePopupItem *m_messenger;
 
         qreal m_leftOffset, m_topOffset, m_diamondEdgeLength; //necessary for conversion between board coordinates (i.e. (0,0) for the top left point, 1 unit = 1 diamond) and scene coordinates (as defined by Qt)

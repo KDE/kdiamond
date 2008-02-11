@@ -21,7 +21,6 @@
 #include "game.h"
 #include "renderer.h"
 
-#include <QGraphicsSvgItem>
 #include <KGamePopupItem>
 
 Board::Board(KGameDifficulty::standardLevel difficulty)
@@ -94,6 +93,11 @@ Board::Board(KGameDifficulty::standardLevel difficulty)
     m_selection1->hide();
     m_selection2 = new Diamond(0, 0, 0, 0, KDiamond::Selection, this);
     m_selection2->hide();
+    //init background
+    m_background = new QGraphicsPixmapItem(0, this);
+    m_background->setZValue(1);
+    m_background->setVisible(true);
+    m_background->setAcceptedMouseButtons(0);
     //init messengers
     m_messenger = new KGamePopupItem;
     m_messenger->setMessageOpacity(0.8);
@@ -119,6 +123,7 @@ Board::~Board()
     delete[] m_diamonds;
     delete m_selection1;
     delete m_selection2;
+    delete m_background;
     delete m_messenger;
 }
 
@@ -161,7 +166,17 @@ void Board::resizeScene(qreal newWidth, qreal newHeight)
     qreal boardSize = m_size * m_diamondEdgeLength;
     m_leftOffset = (newWidth - boardSize) / 2.0;
     m_topOffset = (newHeight - boardSize) / 2.0;
+    //renderer
+    Renderer::boardResized(newWidth, newHeight, m_diamondEdgeLength);
+    //diamonds
     emit boardResized(); //give diamonds the chance to change their metrics
+    //background
+    m_background->setPixmap(Renderer::background());
+    QRectF bgRect = m_background->sceneBoundingRect();
+    //The 10.0 and -5.0 are part of a nasty hack to avoid white borders around the background.
+    m_background->scale((newWidth + 10.0) / bgRect.width(), (newHeight + 10.0) / bgRect.height());
+    m_background->setPos(-5.0, -5.0);
+    m_background->setVisible(true);
 }
 
 void Board::mouseOnDiamond(int xIndex, int yIndex)
@@ -423,6 +438,7 @@ void Board::fillGaps()
             --yt;
             m_diamonds[x][y] = new Diamond(x, y, x, yt, KDiamond::colorFromNumber(qrand() % m_colorCount + 1), this);
             m_diamonds[x][y]->setPosInBoardCoords(QPointF(x, yt));
+            m_diamonds[x][y]->updateGeometry();
             m_diamonds[x][y]->move(QPointF(x, y));
         }
     }

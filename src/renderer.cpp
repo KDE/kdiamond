@@ -17,40 +17,116 @@
  ***************************************************************************/
 
 #include "renderer.h"
+#include "diamond.h"
 
-#include <KStandardDirs>
+#include <QPainter>
+#include <QPixmap>
+#include <KGameTheme>
+#include <KPixmapCache>
+#include <KSvgRenderer>
 
-//TODO: This is just an intermediate solution which needs to see further performance improvements.
+//TODO: Load theme from settings in Renderer::init().
 
-QSvgRenderer *g_background;
-QSvgRenderer **g_diamonds;
+//global instances (only visible in this file!)
+KSvgRenderer *g_renderer;
+KPixmapCache *g_cache;
+//storage for metrics and more
+int g_sceneWidth, g_sceneHeight, g_diamondEdgeLength;
+QSize g_diamondSize, g_sceneSize;
+QString g_currentTheme;
 
-void Renderer::init()
+bool Renderer::init()
 {
-    g_background = new QSvgRenderer(KStandardDirs::locate("data", "kdiamond/kdiamond-background.svg"));
-    g_diamonds = new QSvgRenderer*[8]; //index 0 = shadow, 1 - 7 = diamonds
-    g_diamonds[0] = new QSvgRenderer(KStandardDirs::locate("data", "kdiamond/kdiamond-selected.svg"));
-    g_diamonds[1] = new QSvgRenderer(KStandardDirs::locate("data", "kdiamond/kdiamond-red.svg"));
-    g_diamonds[2] = new QSvgRenderer(KStandardDirs::locate("data", "kdiamond/kdiamond-green.svg"));
-    g_diamonds[3] = new QSvgRenderer(KStandardDirs::locate("data", "kdiamond/kdiamond-blue.svg"));
-    g_diamonds[4] = new QSvgRenderer(KStandardDirs::locate("data", "kdiamond/kdiamond-yellow.svg"));
-    g_diamonds[5] = new QSvgRenderer(KStandardDirs::locate("data", "kdiamond/kdiamond-white.svg"));
-    g_diamonds[6] = new QSvgRenderer(KStandardDirs::locate("data", "kdiamond/kdiamond-black.svg"));
-    g_diamonds[7] = new QSvgRenderer(KStandardDirs::locate("data", "kdiamond/kdiamond-orange.svg"));
-    //No cleanup is performed because these objects life until the end of the application. Their memory is then freed up by the kernel.
+    g_renderer = new KSvgRenderer();
+    g_cache = new KPixmapCache("kdiamond-cache");
+    g_cache->setCacheLimit(3 * 1024);
+    g_cache->discard();
+    //No cleanup is necessary. The functions are needed during the whole running time of the program, after that the memory will be cleaned up automatically.
+    return Renderer::loadTheme("themes/classic.desktop");
 }
 
-QSvgRenderer *Renderer::diamond(KDiamond::Color color)
+bool Renderer::loadTheme(const QString &name)
 {
-    return g_diamonds[(int) color];
+    bool discardCache = !g_currentTheme.isEmpty();
+    if (!discardCache && g_currentTheme == name)
+        return true; //requested to load the theme that is already loaded
+    KGameTheme theme;
+    //try to load theme
+    if (!theme.load(name))
+    {
+        if (!theme.loadDefault())
+            return false;
+    }
+    g_currentTheme = name;
+    //load graphics
+    if (!g_renderer->load(theme.graphics()))
+        return false;
+    //flush cache
+    if (discardCache)
+        g_cache->discard();
+    return true;
 }
 
-QSvgRenderer *Renderer::background()
+void Renderer::boardResized(int width, int height, int diamondEdgeLength)
 {
-    return g_background;
+    //new metrics
+    g_sceneWidth = width;
+    g_sceneHeight = height;
+    g_diamondEdgeLength = diamondEdgeLength;
+    //new sizes
+    g_diamondSize = QSize(g_diamondEdgeLength, g_diamondEdgeLength);
+    g_sceneSize = QSize(g_sceneWidth, g_sceneHeight);
 }
 
-QSvgRenderer *Renderer::shadow()
+QString colorToString(KDiamond::Color color)
 {
-    return g_diamonds[0];
+    switch (color)
+    {
+        case KDiamond::RedDiamond:
+            return "kdiamond-red";
+        case KDiamond::GreenDiamond:
+            return "kdiamond-green";
+        case KDiamond::BlueDiamond:
+            return "kdiamond-blue";
+        case KDiamond::YellowDiamond:
+            return "kdiamond-yellow";
+        case KDiamond::WhiteDiamond:
+            return "kdiamond-white";
+        case KDiamond::BlackDiamond:
+            return "kdiamond-black";
+        case KDiamond::OrangeDiamond:
+            return "kdiamond-orange";
+        default:
+            return "kdiamond-selection";
+    }
+}
+
+QPixmap pixmapFromCache(const QString &svgName, const QSize &size)
+{
+    if (size.isEmpty())
+        return QPixmap();
+    QPixmap pix;
+    QString pixName = svgName + QString("_%1-%2").arg(size.width()).arg(size.height());
+
+    if (!g_cache->find(pixName, pix))
+    {
+        pix = QPixmap(size);
+        pix.fill(Qt::transparent);
+        QPainter p(&pix);
+        p.setRenderHint(QPainter::Antialiasing);
+        g_renderer->render(&p, svgName);
+        p.end();
+        g_cache->insert(pixName, pix);
+    }
+    return pix;
+}
+
+QPixmap Renderer::diamond(KDiamond::Color color)
+{
+    return pixmapFromCache(colorToString(color), g_diamondSize);
+}
+
+QPixmap Renderer::background()
+{
+    return pixmapFromCache("kdiamond-background", g_sceneSize);
 }
