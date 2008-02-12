@@ -123,6 +123,12 @@ void Game::resizeEvent(QResizeEvent *)
     fitInView(QRectF(0.0, 0.0, newWidth, newHeight));
 }
 
+void Game::updateTheme()
+{
+    //this makes the board reload all pixmaps
+    m_board->resizeScene(width(), height());
+}
+
 void Game::wheelEvent(QWheelEvent *event)
 {
     event->ignore(); //prevent user-triggered scrolling

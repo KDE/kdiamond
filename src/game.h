@@ -47,6 +47,7 @@ class Game : public QGraphicsView
     public slots:
         void pause(bool paused);
         void update(int milliseconds);
+        void updateTheme();
     signals:
         void pointsChanged(int points);
         void remainingTimeChanged(int remainingTime);

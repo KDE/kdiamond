@@ -181,7 +181,7 @@ void MainWindow::loadSettings()
     //redraw game scene if necessary
     if (m_game != 0)
     {
-        m_game->scene()->resizeScene(m_game->width(), m_game->height()); //resets the diamonds' pixmaps
+        m_game->updateTheme(); //resets all pixmaps
         m_game->scene()->invalidate(m_game->scene()->sceneRect(), QGraphicsScene::BackgroundLayer );
     }
 }
