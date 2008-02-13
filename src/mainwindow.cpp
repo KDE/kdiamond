@@ -157,7 +157,27 @@ void MainWindow::updatePoints(int points)
 
 void MainWindow::updateRemainingTime(int remainingSeconds)
 {
-    statusBar()->changeItem(i18np("Time left: 1 second", "Time left: %1 seconds", remainingSeconds), 2);
+    //split time in seconds and minutes if wanted
+    int seconds, minutes;
+    if (Settings::showMinutes())
+    {
+        seconds = remainingSeconds % 60;
+        minutes = remainingSeconds / 60;
+    }
+    else
+    {
+        seconds = remainingSeconds;
+        minutes = 0; //the minutes do not appear in the output when minutes == 0
+    }
+    //compose new string
+    QString sOutput;
+    if (minutes == 0)
+        sOutput = i18n("Time left: %1", i18np("1 second", "%1 seconds", seconds));
+    else if (seconds == 0)
+        sOutput = i18n("Time left: %1", i18np("1 minute", "%1 minutes", minutes));
+    else
+        sOutput = i18nc("The two parameters are strings like '2 minutes' or '1 second'.", "Time left: %1, %2").arg(i18np("1 minute", "%1 minutes", minutes), i18np("1 second", "%1 seconds", seconds));
+    statusBar()->changeItem(sOutput, 2);
 }
 
 void MainWindow::configureSettings()
