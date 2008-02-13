@@ -264,11 +264,13 @@ void Board::pause(bool paused)
     {
         m_selection1->hide();
         m_selection2->hide();
+        m_border->hide();
     }
     else
     {
         m_selection1->setVisible(m_selected1x != -1 && m_selected1y != -1);
         m_selection2->setVisible(m_selected2x != -1 && m_selected2y != -1);
+        m_border->setVisible(true);
     }
 }
 
