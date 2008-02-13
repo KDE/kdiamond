@@ -51,7 +51,7 @@ bool Renderer::init()
 bool Renderer::loadTheme(const QString &name)
 {
     bool discardCache = !g_currentTheme.isEmpty();
-    if (!discardCache && g_currentTheme == name)
+    if (!g_currentTheme.isEmpty() && g_currentTheme == name)
         return true; //requested to load the theme that is already loaded
     KGameTheme theme;
     //try to load theme

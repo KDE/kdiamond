@@ -72,7 +72,7 @@ class Board : public QGraphicsScene
 
         QPointF boardToScene(const QPointF &boardCoord) const;
         QPointF sceneToBoard(const QPointF &sceneCoord) const;
-        void resizeScene(qreal width, qreal height);
+        void resizeScene(qreal width, qreal height, bool force = false);
         qreal diamondEdgeLength() const;
 
         void mouseOnDiamond(int xIndex, int yIndex);

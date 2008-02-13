@@ -126,7 +126,7 @@ void Game::resizeEvent(QResizeEvent *)
 void Game::updateTheme()
 {
     //this makes the board reload all pixmaps
-    m_board->resizeScene(width(), height());
+    m_board->resizeScene(width(), height(), true);
 }
 
 void Game::wheelEvent(QWheelEvent *event)

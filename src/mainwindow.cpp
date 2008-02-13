@@ -186,7 +186,7 @@ void MainWindow::configureSettings()
         return;
     KConfigDialog *dialog = new KConfigDialog(this, "settings", Settings::self());
     dialog->addPage(new KGameThemeSelector(dialog, Settings::self(), KGameThemeSelector::NewStuffDisableDownload), i18n("Theme"), "games-config-theme");
-    connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SLOT(loadSettings()));
+    connect(dialog, SIGNAL(settingsChanged(const QString&)), this, SLOT(loadSettings()));
     dialog->setHelp(QString(), "kdiamond");
     dialog->show();
 }
@@ -202,7 +202,7 @@ void MainWindow::loadSettings()
     if (m_game != 0)
     {
         m_game->updateTheme(); //resets all pixmaps
-        m_game->scene()->invalidate(m_game->scene()->sceneRect(), QGraphicsScene::BackgroundLayer );
+        m_game->scene()->invalidate(m_game->scene()->sceneRect(), QGraphicsScene::BackgroundLayer);
     }
 }
 

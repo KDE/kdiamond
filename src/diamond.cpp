@@ -158,6 +158,7 @@ void Diamond::removeComplete()
 
 void Diamond::updateGeometry()
 {
+    prepareGeometryChange();
     //update pixmap
     if (m_currentRemoveFrame == -1)
         setPixmap(Renderer::diamond(m_color));

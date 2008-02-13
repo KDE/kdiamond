@@ -159,10 +159,10 @@ qreal Board::diamondEdgeLength() const
 }
 
 //Adapt scene coordinates to size of view. (This congruence is required by KGamePopupItem.)
-void Board::resizeScene(qreal newWidth, qreal newHeight)
+void Board::resizeScene(qreal newWidth, qreal newHeight, bool force)
 {
     //do not resize if nothing would change
-    if (width() == newWidth && height() == newHeight)
+    if (!force && width() == newWidth && height() == newHeight)
         return;
     setSceneRect(0.0, 0.0, newWidth, newHeight);
     //calculate new metrics - A board margin of half a diamond's size is hard-coded.
