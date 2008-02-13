@@ -93,17 +93,20 @@ Board::Board(KGameDifficulty::standardLevel difficulty)
     m_selection1->hide();
     m_selection2 = new Diamond(0, 0, 0, 0, KDiamond::Selection, this);
     m_selection2->hide();
-    //init background
+    //init background and border
     m_background = new QGraphicsPixmapItem(0, this);
     m_background->setZValue(1);
     m_background->setVisible(true);
     m_background->setAcceptedMouseButtons(0);
+    m_border = new QGraphicsPixmapItem(0, this);
+    m_border->setZValue(2);
+    m_border->setVisible(true);
+    m_border->setAcceptedMouseButtons(0);
     //init messengers
     m_messenger = new KGamePopupItem;
     m_messenger->setMessageOpacity(0.8);
     addItem(m_messenger);
     QRectF messengerRect = m_messenger->sceneBoundingRect();
-    //m_messenger->scale(5.0 / messengerRect.width(), 5.0 / messengerRect.height());
     //init GUI and internal values (any metrical values are calc'ed in the first resizeEvent())
     m_selected1x = m_selected1y = m_selected2x = m_selected2y = -1;
     m_swapping1x = m_swapping1y = m_swapping2x = m_swapping2y = -1;
@@ -124,6 +127,7 @@ Board::~Board()
     delete m_selection1;
     delete m_selection2;
     delete m_background;
+    delete m_border;
     delete m_messenger;
 }
 
@@ -167,7 +171,7 @@ void Board::resizeScene(qreal newWidth, qreal newHeight)
     m_leftOffset = (newWidth - boardSize) / 2.0;
     m_topOffset = (newHeight - boardSize) / 2.0;
     //renderer
-    Renderer::boardResized(newWidth, newHeight, m_diamondEdgeLength);
+    Renderer::boardResized(newWidth, newHeight, m_diamondEdgeLength, m_size);
     //diamonds
     emit boardResized(); //give diamonds the chance to change their metrics
     //background
@@ -177,6 +181,19 @@ void Board::resizeScene(qreal newWidth, qreal newHeight)
     m_background->scale((newWidth + 10.0) / bgRect.width(), (newHeight + 10.0) / bgRect.height());
     m_background->setPos(-5.0, -5.0);
     m_background->setVisible(true);
+    //border
+    if (Renderer::hasBorder())
+    {
+        m_border->setPixmap(Renderer::border());
+        bgRect = m_border->sceneBoundingRect();
+        int borderPadding = KDiamond::BorderPadding * m_diamondEdgeLength;
+        int borderEdgeLength = m_size * m_diamondEdgeLength + 2.0 * borderPadding;
+        m_border->scale(borderEdgeLength / bgRect.width(), borderEdgeLength / bgRect.height());
+        m_border->setPos(m_leftOffset - borderPadding, m_topOffset - borderPadding);
+        m_border->setVisible(true);
+    }
+    else
+        m_border->setVisible(false);
 }
 
 void Board::mouseOnDiamond(int xIndex, int yIndex)
@@ -267,7 +284,6 @@ void Board::update(int /*milliseconds*/)
     KDiamond::Job job = m_jobQueue.takeFirst();
     int dx, dy;
     Diamond *temp;
-    QSet<QPoint *> removeTheseDiamonds;
     switch (job)
     {
         case KDiamond::SwapDiamondsJob:
@@ -310,8 +326,8 @@ void Board::update(int /*milliseconds*/)
         case KDiamond::RemoveRowsJob:
             m_cascade++;
             //find diamond rows and delete these diamonds
-            removeTheseDiamonds = findCompletedRows();
-            if (removeTheseDiamonds.count() == 0)
+            m_diamondsToRemove = findCompletedRows();
+            if (m_diamondsToRemove.count() == 0)
             {
                 //no diamond rows were formed by the last move -> revoke movement (unless we are in a cascade)
                 if (m_swapping1x != -1 && m_swapping1y != -1 && m_swapping2x != -1 && m_swapping2y != -1)
@@ -322,21 +338,26 @@ void Board::update(int /*milliseconds*/)
                 //it is now safe to delete the position of the swapping diamonds
                 m_swapping1x = m_swapping1y = m_swapping2x = m_swapping2y = -1;
                 //report to Game
-                emit diamondsRemoved(removeTheseDiamonds.count(), m_cascade);
-                //delete diamonds
-                foreach (QPoint *diamondPos, removeTheseDiamonds)
-                {
-                    delete m_diamonds[diamondPos->x()][diamondPos->y()];
-                    m_diamonds[diamondPos->x()][diamondPos->y()] = 0;
-                }
+                emit diamondsRemoved(m_diamondsToRemove.count(), m_cascade);
                 //prepare to fill gaps
                 m_jobQueue.prepend(KDiamond::FillGapsJob); //prepend this job as it has to be executed immediately after the animations (before handling any further user input)
+                //invoke remove animation
+                foreach (QPoint *diamondPos, m_diamondsToRemove)
+                {
+                    m_diamonds[diamondPos->x()][diamondPos->y()]->remove();
+                }
             }
-            //cleanup pointers
-            foreach (QPoint *toDelete, removeTheseDiamonds)
-                delete toDelete;
             break;
         case KDiamond::FillGapsJob:
+            //delete diamonds after their remove animation has played
+            foreach (QPoint *diamondPos, m_diamondsToRemove)
+            {
+                delete m_diamonds[diamondPos->x()][diamondPos->y()];
+                m_diamonds[diamondPos->x()][diamondPos->y()] = 0;
+                //cleanup pointer
+                delete diamondPos;
+            }
+            m_diamondsToRemove.clear();
             //fill gaps
             fillGaps();
             m_jobQueue.prepend(KDiamond::RemoveRowsJob); //allow cascades (i.e. clear rows that have been formed by falling diamonds)

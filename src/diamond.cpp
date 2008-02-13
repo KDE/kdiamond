@@ -46,9 +46,11 @@ Diamond::Diamond(int xIndex, int yIndex, qreal xPos, qreal yPos, KDiamond::Color
     m_yIndex = yIndex;
     m_color = color;
     m_board = board;
-    m_animation = 0;
-    m_timer = 0;
     m_pos = QPointF(xPos, yPos);
+    m_animation = 0;
+    m_timer = new QTimeLine;
+    m_timer->setCurveShape(QTimeLine::EaseInCurve);
+    m_currentRemoveFrame = -1;
     //connect to board
     connect(board, SIGNAL(boardResized()), this, SLOT(updateGeometry()));
     //init QGraphicsPixmapItem (pixmap and geometry is initialized after the first resize event has occured)
@@ -57,13 +59,20 @@ Diamond::Diamond(int xIndex, int yIndex, qreal xPos, qreal yPos, KDiamond::Color
     if (color == KDiamond::Selection)
     {
         setAcceptedMouseButtons(0);
-        setZValue(2);
+        setZValue(3);
     }
     else
     {
         setAcceptedMouseButtons(Qt::LeftButton);
-        setZValue(3);
+        setZValue(4);
     }
+}
+
+Diamond::~Diamond()
+{
+    if (m_animation != 0)
+        moveComplete(); //cleanup the current move animation
+    delete m_timer;
 }
 
 KDiamond::Color Diamond::color() const
@@ -99,10 +108,9 @@ void Diamond::move(const QPointF &target)
     qreal dx = qAbs(m_pos.x() - target.x());
     qreal dy = qAbs(m_pos.y() - target.y());
     //timeline
-    int duration = KDiamond::MoveDuration * qMax(dx, dy); //MoveDuration is the duration per scene unit
-    m_timer = new QTimeLine(duration);
-    m_timer->setFrameRange(0, duration / KDiamond::MoveInterval);
-    m_timer->setCurveShape(QTimeLine::EaseInCurve);
+    int duration = KDiamond::MoveDuration * qMax(dx, dy); //MoveDuration is the duration per board unit
+    m_timer->setDuration(duration);
+    m_timer->setUpdateInterval(KDiamond::MoveInterval);
     connect(m_timer, SIGNAL(finished()), this, SLOT(moveComplete()), Qt::DirectConnection);
     //animation
     m_animation = new QGraphicsItemAnimation;
@@ -121,14 +129,40 @@ void Diamond::moveComplete()
     delete m_animation;
     m_animation = 0;
     delete m_timer;
-    m_timer = 0;
+    m_timer = new QTimeLine;
     m_pos = m_target; //the target has now been reached - use this as position for further resize events
+}
+
+void Diamond::remove()
+{
+    //timeline
+    m_timer->setDuration(KDiamond::RemoveDuration);
+    m_timer->setFrameRange(0, Renderer::removeAnimFrameCount() - 1);
+    connect(m_timer, SIGNAL(frameChanged(int)), this, SLOT(setRemoveAnimFrame(int)));
+    connect(m_timer, SIGNAL(finished()), this, SLOT(removeComplete()));
+    m_timer->start();
+    //see Diamond::move for details on the following connection
+    connect(m_board, SIGNAL(animationInProgress()), this, SLOT(animationInProgress()));
+}
+
+void Diamond::setRemoveAnimFrame(int frame)
+{
+    m_currentRemoveFrame = frame;
+    setPixmap(Renderer::removeFrame(m_color, frame));
+}
+
+void Diamond::removeComplete()
+{
+    disconnect(m_board, SIGNAL(animationInProgress()), this, SLOT(animationInProgress()));
 }
 
 void Diamond::updateGeometry()
 {
     //update pixmap
-    setPixmap(Renderer::diamond(m_color));
+    if (m_currentRemoveFrame == -1)
+        setPixmap(Renderer::diamond(m_color));
+    else
+        setPixmap(Renderer::removeFrame(m_color, m_currentRemoveFrame));
     //resize
     QRectF bounds = sceneBoundingRect();
     qreal diamondEdgeLength = m_board->diamondEdgeLength();

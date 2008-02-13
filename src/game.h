@@ -33,7 +33,7 @@ class QTime;
 namespace KDiamond
 {
     //base duration of a game in seconds
-    const int GameDuration = 120;
+    const int GameDuration = 200;
 };
 
 class Game : public QGraphicsView

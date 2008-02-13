@@ -90,7 +90,7 @@ void Game::update(int /*milliseconds*/)
         disconnect(m_mainWindow, SIGNAL(updateScheduled(int)), this, SLOT(update(int)));
         disconnect(m_mainWindow, SIGNAL(updateScheduled(int)), m_board, SLOT(update(int)));
         m_board->gameFinished();
-        m_board->showMessage(i18n("Game over."), 0);
+        m_board->showMessage(i18nc("Not meant like 'You have lost', more like 'Time is up'.", "Game over."), 0);
         emit gameFinished(m_points);
     }
     else if (m_secondsRemaining != secondsRemaining)

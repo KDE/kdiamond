@@ -6,3 +6,8 @@ FileName=default.svgz
 Author=Eugene Trounev
 AuthorEmail=eugene.trounev@gmail.com
 Preview=default.png
+
+# number of frames in the "remove" animation
+RemoveAnimFrames=7
+# this theme has a border to display around the board
+HasBorder=1

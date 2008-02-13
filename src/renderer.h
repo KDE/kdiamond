@@ -26,9 +26,14 @@ class QPixmap;
 namespace Renderer {
     bool init();
     bool loadTheme(const QString &name);
-    void boardResized(int width, int height, int diamondEdgeLength);
+    void boardResized(int width, int height, int diamondEdgeLength, int diamondCountOnEdge);
+
+    int removeAnimFrameCount();
+    bool hasBorder();
 
     QPixmap diamond(KDiamond::Color color);
+    QPixmap removeFrame(KDiamond::Color color, int frame);
+    QPixmap border();
     QPixmap background();
 };
 

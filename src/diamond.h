@@ -30,9 +30,11 @@ class QTimeLine;
 namespace KDiamond //auf die entsprechenden Header-Dateien verteilen
 {
     //duration of a move animation (per coordinate unit) in milliseconds
-    const int MoveDuration = 300;
+    const int MoveDuration = 250;
     //update interval during a move animation (KDiamond::MoveDuration should be divideable by KDiamond::MoveInterval)
-    const int MoveInterval = 10;
+    const int MoveInterval = 25;
+    //duration of a move animation (frame count is determined by the theme)
+    const int RemoveDuration = 200;
     //registered colors of diamonds
     enum Color
     {
@@ -54,6 +56,7 @@ class Diamond : public QObject, public QGraphicsPixmapItem
     Q_OBJECT
     public:
         Diamond(int xIndex, int yIndex, qreal xPos, qreal yPos, KDiamond::Color color, Board *board);
+        ~Diamond();
 
         KDiamond::Color color() const;
         int xIndex() const;
@@ -65,11 +68,14 @@ class Diamond : public QObject, public QGraphicsPixmapItem
     public slots:
         void updateGeometry();
         void move(const QPointF &target);
+        void remove();
         void animationInProgress(){} //see definition of KDiamond::move(const QPointF &) for explanation
     protected:
         virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *);
     protected slots:
         void moveComplete();
+        void setRemoveAnimFrame(int frame);
+        void removeComplete();
     private:
         Board *m_board;
         QGraphicsItemAnimation *m_animation; //pointer to the animation currently in progress
@@ -78,6 +84,8 @@ class Diamond : public QObject, public QGraphicsPixmapItem
         KDiamond::Color m_color;
         int m_xIndex, m_yIndex; //the index of the diamond in the Board's internal array (used for communication with Board)
         QPointF m_pos, m_target; //current position of diamond in board coordinates (see Board::boardToScene for details)
+
+        int m_currentRemoveFrame; //current frame in the remove animation (needed when updating the pixmap because of resize events); -1 means that there is no remove animation at the moment
 };
 
 #endif //KDIAMOND_DIAMOND_H

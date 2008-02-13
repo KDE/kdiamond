@@ -35,6 +35,7 @@ class KGamePopupItem;
 
 namespace KDiamond
 {
+    const qreal BorderPadding = 0.25; //border of the board has a padding of 0.25 diamond edge lengths (= 0.25 board units)
     //specification of the difficulties
     enum Size
     {
@@ -93,10 +94,12 @@ class Board : public QGraphicsScene
         KDiamond::Size m_size;
         KDiamond::ColorCount m_colorCount;
         QList<KDiamond::Job> m_jobQueue;
+        QSet<QPoint *> m_diamondsToRemove;
 
         Diamond ***m_diamonds;
         Diamond *m_selection1, *m_selection2;
         QGraphicsPixmapItem *m_background;
+        QGraphicsPixmapItem *m_border;
         KGamePopupItem *m_messenger;
 
         qreal m_leftOffset, m_topOffset, m_diamondEdgeLength; //necessary for conversion between board coordinates (i.e. (0,0) for the top left point, 1 unit = 1 diamond) and scene coordinates (as defined by Qt)

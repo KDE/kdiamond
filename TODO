@@ -1,2 +1,6 @@
 Feel free to add your own suggestions for KDiamond below.
+* Debug the KGameThemeSelector. (That is the next item on my personal todo list. -- Stefan)
+* Move pixmap generation for animations to a separate thread. (It might be necessary to turn the renderer into a singleton.)
+* Add KNotify support.
 * Write a handbook.
+If you want to do one of these jobs, please send a mail to majewsky@gmx.net to avoid duplicate effort. Thanks.
