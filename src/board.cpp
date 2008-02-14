@@ -182,6 +182,7 @@ void Board::mouseOnDiamond(int xIndex, int yIndex)
     if (m_selected1x == xIndex && m_selected1y == yIndex)
     {
         //clicked again on first selected diamond - remove selection
+        //Attention: This code is re-used in Board::update for the RemoveRowsJob. If you modify it here, please do also apply your changes over there.
         m_selected1x = m_selected2x;
         m_selected1y = m_selected2y;
         if (m_selected1x == -1 || m_selected1y == -1)
@@ -326,6 +327,28 @@ void Board::update(int /*milliseconds*/)
                 foreach (QPoint *diamondPos, m_diamondsToRemove)
                 {
                     m_diamonds[diamondPos->x()][diamondPos->y()]->remove();
+                    //remove selection if necessary
+                    if (m_selected1x == diamondPos->x() && m_selected1y == diamondPos->y())
+                    {
+                        m_selected1x = m_selected2x;
+                        m_selected1y = m_selected2y;
+                        if (m_selected1x == -1 || m_selected1y == -1)
+                            m_selection1->hide();
+                        else
+                        {
+                            m_selection1->setPosInBoardCoords(QPointF(m_selected1x, m_selected1y));
+                            m_selection1->show();
+                        }
+                        m_selected2x = -1;
+                        m_selected2y = -1;
+                        m_selection2->hide();
+                    }
+                    else if (m_selected2x == diamondPos->x() && m_selected2y == diamondPos->y())
+                    {
+                        m_selected2x = -1;
+                        m_selected2y = -1;
+                        m_selection2->hide();
+                    }
                 }
             }
             break;

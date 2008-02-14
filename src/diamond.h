@@ -27,7 +27,7 @@ class QGraphicsItemAnimation;
 #include <QGraphicsPixmapItem>
 class QTimeLine;
 
-namespace KDiamond //auf die entsprechenden Header-Dateien verteilen
+namespace KDiamond
 {
     //duration of a move animation (per coordinate unit) in milliseconds
     const int MoveDuration = 250;
