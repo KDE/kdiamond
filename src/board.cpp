@@ -93,15 +93,10 @@ Board::Board(KGameDifficulty::standardLevel difficulty)
     m_selection1->hide();
     m_selection2 = new Diamond(0, 0, 0, 0, KDiamond::Selection, this);
     m_selection2->hide();
-    //init background and border
+    //init background
     m_background = new QGraphicsPixmapItem(0, this);
     m_background->setZValue(1);
-    m_background->setVisible(true);
     m_background->setAcceptedMouseButtons(0);
-    m_border = new QGraphicsPixmapItem(0, this);
-    m_border->setZValue(2);
-    m_border->setVisible(true);
-    m_border->setAcceptedMouseButtons(0);
     //init messengers
     m_messenger = new KGamePopupItem;
     m_messenger->setMessageOpacity(0.8);
@@ -127,7 +122,6 @@ Board::~Board()
     delete m_selection1;
     delete m_selection2;
     delete m_background;
-    delete m_border;
     delete m_messenger;
 }
 
@@ -171,7 +165,7 @@ void Board::resizeScene(qreal newWidth, qreal newHeight, bool force)
     m_leftOffset = (newWidth - boardSize) / 2.0;
     m_topOffset = (newHeight - boardSize) / 2.0;
     //renderer
-    Renderer::boardResized(newWidth, newHeight, m_diamondEdgeLength, m_size);
+    Renderer::boardResized(newWidth, newHeight, m_leftOffset, m_topOffset, m_diamondEdgeLength, m_size);
     //diamonds
     emit boardResized(); //give diamonds the chance to change their metrics
     //background
@@ -181,19 +175,6 @@ void Board::resizeScene(qreal newWidth, qreal newHeight, bool force)
     m_background->scale((newWidth + 10.0) / bgRect.width(), (newHeight + 10.0) / bgRect.height());
     m_background->setPos(-5.0, -5.0);
     m_background->setVisible(true);
-    //border
-    if (Renderer::hasBorder())
-    {
-        m_border->setPixmap(Renderer::border());
-        bgRect = m_border->sceneBoundingRect();
-        int borderPadding = KDiamond::BorderPadding * m_diamondEdgeLength;
-        int borderEdgeLength = m_size * m_diamondEdgeLength + 2.0 * borderPadding;
-        m_border->scale(borderEdgeLength / bgRect.width(), borderEdgeLength / bgRect.height());
-        m_border->setPos(m_leftOffset - borderPadding, m_topOffset - borderPadding);
-        m_border->setVisible(true);
-    }
-    else
-        m_border->setVisible(false);
 }
 
 void Board::mouseOnDiamond(int xIndex, int yIndex)
@@ -264,13 +245,11 @@ void Board::pause(bool paused)
     {
         m_selection1->hide();
         m_selection2->hide();
-        m_border->hide();
     }
     else
     {
         m_selection1->setVisible(m_selected1x != -1 && m_selected1y != -1);
         m_selection2->setVisible(m_selected2x != -1 && m_selected2y != -1);
-        m_border->setVisible(true);
     }
 }
 

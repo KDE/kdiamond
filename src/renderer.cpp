@@ -31,8 +31,8 @@
 KSvgRenderer *g_renderer;
 KPixmapCache *g_cache;
 //storage for metrics
-int g_sceneWidth, g_sceneHeight, g_borderEdgeLength, g_diamondEdgeLength;
-QSize g_diamondSize, g_borderSize, g_sceneSize;
+int g_sceneWidth, g_sceneHeight, g_diamondEdgeLength;
+QSize g_diamondSize, g_sceneSize;
 //storage for theme properties
 QString g_currentTheme;
 int g_removeAnimFrameCount;
@@ -72,17 +72,30 @@ bool Renderer::loadTheme(const QString &name)
     return true;
 }
 
-void Renderer::boardResized(int width, int height, int diamondEdgeLength, int diamondCountOnEdge)
+void Renderer::boardResized(int width, int height, int leftOffset, int topOffset, int diamondEdgeLength, int diamondCountOnEdge)
 {
     //new metrics
     g_sceneWidth = width;
     g_sceneHeight = height;
     g_diamondEdgeLength = diamondEdgeLength;
-    g_borderEdgeLength = (diamondCountOnEdge + 2.0 * KDiamond::BorderPadding) * diamondEdgeLength;
+    int borderEdgeLength = (diamondCountOnEdge + 2.0 * KDiamond::BorderPadding) * diamondEdgeLength;
     //new sizes
     g_diamondSize = QSize(g_diamondEdgeLength, g_diamondEdgeLength);
-    g_borderSize = QSize(g_borderEdgeLength, g_borderEdgeLength);
     g_sceneSize = QSize(g_sceneWidth, g_sceneHeight);
+    //pre-render the background (it is more complex than the other pixmaps because it may include the border)
+    QString pixName = QString("kdiamond-background_%1-%2").arg(width).arg(height);
+    QPixmap pix;
+    if (!g_cache->find(pixName, pix))
+    {
+        pix = QPixmap(g_sceneSize);
+        pix.fill(Qt::transparent);
+        QPainter p(&pix);
+        g_renderer->render(&p, "kdiamond-background");
+        if (g_hasBorder)
+            g_renderer->render(&p, "kdiamond-border", QRectF(leftOffset - KDiamond::BorderPadding * diamondEdgeLength, topOffset - KDiamond::BorderPadding * diamondEdgeLength, borderEdgeLength, borderEdgeLength));
+        p.end();
+        g_cache->insert(pixName, pix);
+    }
 }
 
 int Renderer::removeAnimFrameCount()
@@ -168,14 +181,6 @@ QPixmap Renderer::removeFrame(KDiamond::Color color, int frame)
     if (frame >= g_removeAnimFrameCount || color == KDiamond::Selection)
         return QPixmap();
     return pixmapFromCache(colorToString(color) + QString("-%1").arg(frame), g_diamondSize);
-}
-
-QPixmap Renderer::border()
-{
-    if (g_hasBorder)
-        return pixmapFromCache("kdiamond-border", g_borderSize);
-    else
-        return QPixmap();
 }
 
 QPixmap Renderer::background()
