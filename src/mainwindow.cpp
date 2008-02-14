@@ -56,6 +56,10 @@ MainWindow::MainWindow(QWidget *parent)
     KStandardGameAction::pause(this, SIGNAL(pause(bool)), actionCollection());
     KStandardGameAction::quit(kapp, SLOT(quit()), actionCollection());
     KStandardAction::preferences(this, SLOT(configureSettings()), actionCollection());
+    KToggleAction *showMinutes = actionCollection()->add<KToggleAction>("show_minutes");
+    showMinutes->setText(i18n("Show minutes on timer"));
+    connect(showMinutes, SIGNAL(triggered(bool)), this, SLOT(showMinutesOnTimer(bool)));
+    //init GUI - statusbar etc.
     statusBar()->insertPermanentItem(i18n("Points: %1", 0), 1, 1);
     statusBar()->insertPermanentItem(i18np("Time left: 1 second", "Time left: %1 seconds", 0), 2, 1);
     setAutoSaveSettings();
@@ -157,6 +161,12 @@ void MainWindow::updatePoints(int points)
 
 void MainWindow::updateRemainingTime(int remainingSeconds)
 {
+    //store the time: if remainingSeconds == -1, the old time is just re-rendered (used by the configuration action MainWindow::showMinutesOnTimer)
+    static int storeRemainingSeconds = 0;
+    if (remainingSeconds == -1)
+        remainingSeconds = storeRemainingSeconds;
+    else
+        storeRemainingSeconds = remainingSeconds;
     //split time in seconds and minutes if wanted
     int seconds, minutes;
     if (Settings::showMinutes())
@@ -178,6 +188,12 @@ void MainWindow::updateRemainingTime(int remainingSeconds)
     else
         sOutput = i18nc("The two parameters are strings like '2 minutes' or '1 second'.", "Time left: %1, %2").arg(i18np("1 minute", "%1 minutes", minutes), i18np("1 second", "%1 seconds", seconds));
     statusBar()->changeItem(sOutput, 2);
+}
+
+void MainWindow::showMinutesOnTimer(bool showMinutes)
+{
+    Settings::setShowMinutes(showMinutes);
+    updateRemainingTime(-1);
 }
 
 void MainWindow::configureSettings()

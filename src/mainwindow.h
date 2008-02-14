@@ -47,8 +47,10 @@ class MainWindow : public KXmlGuiWindow
         void finishGame(int points);
         void showHighscores();
         void close();
+
         void configureSettings();
         void loadSettings();
+        void showMinutesOnTimer(bool showMinutes);
     signals:
         void pause(bool paused);
         void updateScheduled(int milliseconds);
