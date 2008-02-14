@@ -256,11 +256,8 @@ void Board::pause(bool paused)
 
 void Board::update(int /*milliseconds*/)
 {
-    if (m_paused)
-        return;
-    if (receivers(SIGNAL(animationInProgress())) > 0) //see Diamond::move(const QPointF &) for explanation
-        return;
-    if (m_jobQueue.count() == 0) //nothing to do in this update
+    //see Diamond::move(const QPointF &) for explanation
+    if (m_paused || Diamond::animationsInProgress() > 0 || m_jobQueue.count() == 0) //nothing to do in this update
         return;
     //execute first job in queue
     KDiamond::Job job = m_jobQueue.takeFirst();

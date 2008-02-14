@@ -86,7 +86,6 @@ class Board : public QGraphicsScene
         void boardResized();
         void diamondsRemoved(int count, int cascade);
         void updateScheduled(int milliseconds);
-        void animationInProgress(); //see Diamond::move(const QPointF &) for details
     private:
         QSet<QPoint *> findCompletedRows();
         void fillGaps();

@@ -46,7 +46,7 @@ Game::Game(KGameDifficulty::standardLevel difficulty, MainWindow *mainWindow = 0
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     //internal values
     m_points = 0;
-    m_secondsEarned = m_secondsPaused = m_secondsRemaining = 0;
+    m_secondsEarned = m_millisecondsPaused = m_secondsRemaining = 0;
     m_paused = false;
     m_finished = false;
     //"What's this?" context help
@@ -70,7 +70,7 @@ void Game::pause(bool paused)
     if (!m_paused && paused)
         m_pauseTime->restart();
     else if (m_paused && !paused)
-        m_secondsPaused += m_pauseTime->elapsed() / 1000; //add pause time to calculate time correctly
+        m_millisecondsPaused += m_pauseTime->elapsed(); //add pause time to calculate time correctly
     m_paused = paused;
     if (paused)
         m_board->showMessage(i18n("Click the pause button again to resume the game."), 0);
@@ -83,7 +83,7 @@ void Game::update(int /*milliseconds*/)
     if (m_paused)
         return;
     //calculate new time
-    int secondsRemaining = KDiamond::GameDuration + m_secondsPaused + m_secondsEarned - (m_gameTime->elapsed() / 1000);
+    int secondsRemaining = KDiamond::GameDuration + m_secondsEarned + (m_millisecondsPaused - m_gameTime->elapsed()) / 1000;
     if (secondsRemaining <= 0)
     {
         m_finished = true;

@@ -23,6 +23,8 @@
 #include <QGraphicsItemAnimation>
 #include <QTimeLine>
 
+int g_animationsInProgress = 0; //This counter can be used by the board to determine whether there are animations in progress. The board's job queue is not processed during animations to make the movements on the screen clearer for the user.
+
 KDiamond::Color KDiamond::colorFromNumber(int number)
 {
     switch (number)
@@ -90,6 +92,11 @@ int Diamond::yIndex() const
     return m_yIndex;
 }
 
+int Diamond::animationsInProgress()
+{
+    return g_animationsInProgress;
+}
+
 void Diamond::setXIndex(int xIndex)
 {
     m_xIndex = xIndex;
@@ -119,13 +126,12 @@ void Diamond::move(const QPointF &target)
     m_animation->setPosAt(0.0, m_board->boardToScene(m_pos).toPoint());
     m_animation->setPosAt(1.0, m_board->boardToScene(m_target).toPoint());
     m_timer->start();
-    //This connection can be used by the board to determine whether there are animations in progress. The board's job queue is not processed during animations to make the movements on the screen clearer for the user.
-    connect(m_board, SIGNAL(animationInProgress()), this, SLOT(animationInProgress()));
+    ++g_animationsInProgress;
 }
 
 void Diamond::moveComplete()
 {
-    disconnect(m_board, SIGNAL(animationInProgress()), this, SLOT(animationInProgress()));
+    --g_animationsInProgress;
     delete m_animation;
     m_animation = 0;
     delete m_timer;
@@ -142,7 +148,7 @@ void Diamond::remove()
     connect(m_timer, SIGNAL(finished()), this, SLOT(removeComplete()));
     m_timer->start();
     //see Diamond::move for details on the following connection
-    connect(m_board, SIGNAL(animationInProgress()), this, SLOT(animationInProgress()));
+    ++g_animationsInProgress;
 }
 
 void Diamond::setRemoveAnimFrame(int frame)
@@ -153,7 +159,7 @@ void Diamond::setRemoveAnimFrame(int frame)
 
 void Diamond::removeComplete()
 {
-    disconnect(m_board, SIGNAL(animationInProgress()), this, SLOT(animationInProgress()));
+    --g_animationsInProgress;
 }
 
 void Diamond::updateGeometry()

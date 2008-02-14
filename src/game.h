@@ -64,7 +64,7 @@ class Game : public QGraphicsView
         QTime *m_gameTime, *m_pauseTime;
 
         int m_points;
-        int m_secondsEarned, m_secondsPaused, m_secondsRemaining;
+        int m_secondsEarned, m_millisecondsPaused, m_secondsRemaining;
         bool m_paused, m_finished;
 };
 

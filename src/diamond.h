@@ -61,6 +61,7 @@ class Diamond : public QObject, public QGraphicsPixmapItem
         KDiamond::Color color() const;
         int xIndex() const;
         int yIndex() const;
+        static int animationsInProgress();
 
         void setXIndex(int xIndex);
         void setYIndex(int yIndex);
@@ -69,7 +70,6 @@ class Diamond : public QObject, public QGraphicsPixmapItem
         void updateGeometry();
         void move(const QPointF &target);
         void remove();
-        void animationInProgress(){} //see definition of KDiamond::move(const QPointF &) for explanation
     protected:
         virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *);
     protected slots:
