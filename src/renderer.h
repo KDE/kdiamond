@@ -34,6 +34,6 @@ namespace Renderer {
     QPixmap diamond(KDiamond::Color color);
     QPixmap removeFrame(KDiamond::Color color, int frame);
     QPixmap background();
-};
+}
 
 #endif // KDIAMOND_RENDERER_H

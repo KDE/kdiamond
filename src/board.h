@@ -60,7 +60,7 @@ namespace KDiamond
         RevokeSwapDiamondsJob, //revoke swapping of diamonds (will be requested by the RemoveRowsJob if no rows have been formed)
         FillGapsJob
     };
-};
+}
 
 class Board : public QGraphicsScene
 {
