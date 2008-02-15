@@ -34,7 +34,7 @@ namespace KDiamond
 {
     //maximum update interval in milliseconds
     const int UpdateInterval = 10;
-};
+}
 
 class MainWindow : public KXmlGuiWindow
 {
