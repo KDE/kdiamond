@@ -1,0 +1,28 @@
+[Global]
+IconName=kdiamond
+Comment=kdiamond
+
+[Context/game]
+Name=Game
+Comment=Sounds that appear during a game
+
+[Event/remove]
+Name=Diamonds removed
+Comment=Diamonds were removed.
+Contexts=game
+Sound=KDE-Window-Shade-Down.ogg
+Action=Sound
+
+[Event/move]
+Name=Diamonds moving
+Comment=Diamonds are moving.
+Contexts=game
+Sound=
+Action=None
+
+[Event/gamefinished]
+Name=Game over
+Comment=Time is up.
+Contexts=game
+Sound=KDE-Im-User-Auth.ogg
+Action=Sound

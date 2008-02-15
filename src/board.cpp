@@ -22,6 +22,7 @@
 #include "renderer.h"
 
 #include <KGamePopupItem>
+#include <KNotification>
 
 Board::Board(KGameDifficulty::standardLevel difficulty)
     : QGraphicsScene()
@@ -299,6 +300,7 @@ void Board::update(int /*milliseconds*/)
             m_diamonds[m_swapping2x][m_swapping2y]->setXIndex(m_swapping2x);
             m_diamonds[m_swapping2x][m_swapping2y]->setYIndex(m_swapping2y);
             //invoke movement and unselect
+            KNotification::event("move");
             m_diamonds[m_swapping1x][m_swapping1y]->move(QPointF(m_swapping1x, m_swapping1y));
             m_diamonds[m_swapping2x][m_swapping2y]->move(QPointF(m_swapping2x, m_swapping2y));
             break;
@@ -321,6 +323,7 @@ void Board::update(int /*milliseconds*/)
                 //prepare to fill gaps
                 m_jobQueue.prepend(KDiamond::FillGapsJob); //prepend this job as it has to be executed immediately after the animations (before handling any further user input)
                 //invoke remove animation
+                KNotification::event("remove");
                 foreach (QPoint *diamondPos, m_diamondsToRemove)
                 {
                     m_diamonds[diamondPos->x()][diamondPos->y()]->remove();

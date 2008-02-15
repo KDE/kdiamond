@@ -24,6 +24,7 @@
 #include <QTime>
 #include <QWheelEvent>
 #include <KLocalizedString>
+#include <KNotification>
 
 Game::Game(KGameDifficulty::standardLevel difficulty, MainWindow *mainWindow = 0)
     : QGraphicsView(mainWindow)
@@ -91,6 +92,7 @@ void Game::update(int /*milliseconds*/)
         disconnect(m_mainWindow, SIGNAL(updateScheduled(int)), m_board, SLOT(update(int)));
         m_board->gameFinished();
         m_board->showMessage(i18nc("Not meant like 'You have lost', more like 'Time is up'.", "Game over."), 0);
+        KNotification::event("gamefinished");
         emit gameFinished(m_points);
     }
     else if (m_secondsRemaining != secondsRemaining)

@@ -34,6 +34,7 @@
 #include <KGameThemeSelector>
 #include <KLocalizedString>
 #include <KMessageBox>
+#include <KNotifyConfigWidget>
 #include <KScoreDialog>
 #include <KStandardAction>
 #include <KStandardGameAction>
@@ -56,8 +57,10 @@ MainWindow::MainWindow(QWidget *parent)
     KStandardGameAction::pause(this, SIGNAL(pause(bool)), actionCollection());
     KStandardGameAction::quit(kapp, SLOT(quit()), actionCollection());
     KStandardAction::preferences(this, SLOT(configureSettings()), actionCollection());
+    KStandardAction::configureNotifications(this, SLOT(configureNotifications()), actionCollection());
     KToggleAction *showMinutes = actionCollection()->add<KToggleAction>("show_minutes");
     showMinutes->setText(i18n("Show minutes on timer"));
+    showMinutes->setChecked(Settings::showMinutes());
     connect(showMinutes, SIGNAL(triggered(bool)), this, SLOT(showMinutesOnTimer(bool)));
     //init GUI - statusbar etc.
     statusBar()->insertPermanentItem(i18n("Points: %1", 0), 1, 1);
@@ -194,6 +197,11 @@ void MainWindow::showMinutesOnTimer(bool showMinutes)
 {
     Settings::setShowMinutes(showMinutes);
     updateRemainingTime(-1);
+}
+
+void MainWindow::configureNotifications()
+{
+    KNotifyConfigWidget::configure(this);
 }
 
 void MainWindow::configureSettings()

@@ -48,6 +48,7 @@ class MainWindow : public KXmlGuiWindow
         void showHighscores();
         void close();
 
+        void configureNotifications();
         void configureSettings();
         void loadSettings();
         void showMinutesOnTimer(bool showMinutes);
