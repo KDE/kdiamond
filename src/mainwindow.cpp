@@ -116,8 +116,10 @@ void MainWindow::startGame()
     connect(m_game, SIGNAL(remainingTimeChanged(int)), this, SLOT(updateRemainingTime(int)));
     connect(m_game, SIGNAL(gameFinished(int)), this, SLOT(finishGame(int)));
     m_container->setWidget(m_game);
-    //reset the Pause button's toggle state
-    ((KToggleAction *) actionCollection()->action("game_pause"))->setChecked(false);
+    //reset the Pause button's state
+    QAction *pauseAction = actionCollection()->action("game_pause");
+    pauseAction->setChecked(false);
+    pauseAction->setEnabled(true);
     //reset status bar
     updatePoints(0);
     updateRemainingTime(KDiamond::GameDuration);
@@ -126,6 +128,10 @@ void MainWindow::startGame()
 void MainWindow::finishGame(int points)
 {
     updateRemainingTime(0);
+    //reset the Pause button's state
+    QAction *pauseAction = actionCollection()->action("game_pause");
+    pauseAction->setChecked(false);
+    pauseAction->setEnabled(false);
     //report score
     KScoreDialog dialog(KScoreDialog::Name | KScoreDialog::Score, this);
     dialog.setConfigGroup(KGameDifficulty::levelString());
@@ -135,6 +141,9 @@ void MainWindow::finishGame(int points)
 
 void MainWindow::showHighscores()
 {
+    m_game->pause(true);
+    m_game->board()->pause(true);
+    actionCollection()->action("game_pause")->setChecked(true);
     KScoreDialog dialog(KScoreDialog::Name | KScoreDialog::Score, this);
     dialog.exec();
 }
