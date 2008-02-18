@@ -35,11 +35,13 @@ Game::Game(KGameDifficulty::standardLevel difficulty, MainWindow *mainWindow = 0
     m_gameTime->start();
     m_pauseTime = new QTime;
     m_pauseTime->start(); //now we can always call restart()
-    connect(m_mainWindow, SIGNAL(updateScheduled(int)), this, SLOT(update(int)), Qt::DirectConnection);
+    connect(m_mainWindow, SIGNAL(updateScheduled(int)), this, SLOT(update()), Qt::DirectConnection);
     //init board
     m_board = new Board(difficulty);
-    connect(m_mainWindow, SIGNAL(updateScheduled(int)), m_board, SLOT(update(int)), Qt::DirectConnection);
+    connect(m_mainWindow, SIGNAL(updateScheduled(int)), m_board, SLOT(update()), Qt::DirectConnection);
     connect(m_board, SIGNAL(diamondsRemoved(int, int)), this, SLOT(diamondsRemoved(int, int)));
+    connect(this, SIGNAL(timeIsUp(int)), m_board, SLOT(timeIsUp()));
+    connect(m_board, SIGNAL(gameOver()), this, SLOT(gameOver()));
     //init view
     setScene(m_board);
     setFrameStyle(QFrame::NoFrame);
@@ -61,7 +63,12 @@ Game::~Game()
     delete m_pauseTime;
 }
 
-Board *Game::board()
+int Game::points() const
+{
+    return m_points;
+}
+
+Board *Game::board() const
 {
     return m_board;
 }
@@ -79,7 +86,7 @@ void Game::pause(bool paused)
         m_board->hideMessage();
 }
 
-void Game::update(int /*milliseconds*/)
+void Game::update()
 {
     if (m_paused)
         return;
@@ -88,16 +95,18 @@ void Game::update(int /*milliseconds*/)
     if (secondsRemaining <= 0)
     {
         m_finished = true;
-        disconnect(m_mainWindow, SIGNAL(updateScheduled(int)), this, SLOT(update(int)));
-        disconnect(m_mainWindow, SIGNAL(updateScheduled(int)), m_board, SLOT(update(int)));
-        m_board->gameFinished();
-        m_board->showMessage(i18nc("Not meant like 'You have lost', more like 'Time is up'.", "Game over."), 0);
         KNotification::event("gamefinished");
-        emit gameFinished(m_points);
+        disconnect(m_mainWindow, SIGNAL(updateScheduled(int)), this, SLOT(update()));
+        emit timeIsUp(m_points);
     }
     else if (m_secondsRemaining != secondsRemaining)
         emit remainingTimeChanged(secondsRemaining);
     m_secondsRemaining = secondsRemaining;
+}
+
+void Game::gameOver()
+{
+    disconnect(m_mainWindow, SIGNAL(updateScheduled(int)), m_board, SLOT(update()));
 }
 
 void Game::diamondsRemoved(int count, int cascade)
@@ -107,7 +116,7 @@ void Game::diamondsRemoved(int count, int cascade)
     //If more than three diamonds were removed, give an extra second.
     if (count > 3)
         ++m_secondsEarned;
-    update(0); //calculate new remaining time
+    update(); //calculate new remaining time
 }
 
 void Game::mouseReleaseEvent(QMouseEvent *event)

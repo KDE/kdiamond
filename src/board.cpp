@@ -22,6 +22,7 @@
 #include "renderer.h"
 
 #include <KGamePopupItem>
+#include <KLocalizedString>
 #include <KNotification>
 
 Board::Board(KGameDifficulty::standardLevel difficulty)
@@ -106,7 +107,7 @@ Board::Board(KGameDifficulty::standardLevel difficulty)
     //init GUI and internal values (any metrical values are calc'ed in the first resizeEvent())
     m_selected1x = m_selected1y = m_selected2x = m_selected2y = -1;
     m_swapping1x = m_swapping1y = m_swapping2x = m_swapping2y = -1;
-    m_paused = false;
+    m_paused = m_timeIsUp = false;
 }
 
 Board::~Board()
@@ -255,11 +256,18 @@ void Board::pause(bool paused)
     }
 }
 
-void Board::update(int /*milliseconds*/)
+void Board::update()
 {
     //see Diamond::move(const QPointF &) for explanation
-    if (m_paused || Diamond::animationsInProgress() > 0 || m_jobQueue.count() == 0) //nothing to do in this update
+    if (m_paused || Diamond::animationsInProgress() > 0)
         return;
+    if(m_jobQueue.count() == 0) //nothing to do in this update
+    {
+        //finish game if possible
+        if (m_timeIsUp)
+            emit gameOver();
+        return;
+    }
     //execute first job in queue
     KDiamond::Job job = m_jobQueue.takeFirst();
     int dx, dy;
@@ -491,10 +499,12 @@ void Board::fillGaps()
     }
 }
 
-void Board::gameFinished()
+void Board::timeIsUp()
 {
     m_selection1->hide();
     m_selection2->hide();
+    m_timeIsUp = true;
+    showMessage(i18nc("Not meant like 'You have lost', more like 'Time is up'.", "Game over."), 0);
 }
 
 void Board::showMessage(const QString &message, int timeout)

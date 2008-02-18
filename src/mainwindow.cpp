@@ -114,7 +114,8 @@ void MainWindow::startGame()
     connect(this, SIGNAL(pause(bool)), m_game->board(), SLOT(pause(bool)));
     connect(m_game, SIGNAL(pointsChanged(int)), this, SLOT(updatePoints(int)));
     connect(m_game, SIGNAL(remainingTimeChanged(int)), this, SLOT(updateRemainingTime(int)));
-    connect(m_game, SIGNAL(gameFinished(int)), this, SLOT(finishGame(int)));
+    connect(m_game, SIGNAL(timeIsUp(int)), this, SLOT(timeIsUp()));
+    connect(m_game->board(), SIGNAL(gameOver()), this, SLOT(gameOver()));
     m_container->setWidget(m_game);
     //reset the Pause button's state
     QAction *pauseAction = actionCollection()->action("game_pause");
@@ -125,17 +126,21 @@ void MainWindow::startGame()
     updateRemainingTime(KDiamond::GameDuration);
 }
 
-void MainWindow::finishGame(int points)
+void MainWindow::timeIsUp()
 {
     updateRemainingTime(0);
     //reset the Pause button's state
     QAction *pauseAction = actionCollection()->action("game_pause");
     pauseAction->setChecked(false);
     pauseAction->setEnabled(false);
+}
+
+void MainWindow::gameOver()
+{
     //report score
     KScoreDialog dialog(KScoreDialog::Name | KScoreDialog::Score, this);
     dialog.setConfigGroup(KGameDifficulty::levelString());
-    dialog.addScore(points);
+    dialog.addScore(m_game->points());
     dialog.exec();
 }
 

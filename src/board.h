@@ -77,15 +77,16 @@ class Board : public QGraphicsScene
 
         void mouseOnDiamond(int xIndex, int yIndex);
     public slots:
-        void gameFinished();
         void hideMessage();
         void pause(bool paused);
         void showMessage(const QString &message, int timeout = 0);
-        void update(int milliseconds);
+        void update();
+        void timeIsUp();
     signals:
         void boardResized();
         void diamondsRemoved(int count, int cascade);
         void updateScheduled(int milliseconds);
+        void gameOver();
     private:
         QSet<QPoint *> findCompletedRows();
         void fillGaps();
@@ -103,7 +104,7 @@ class Board : public QGraphicsScene
         qreal m_leftOffset, m_topOffset, m_diamondEdgeLength; //necessary for conversion between board coordinates (i.e. (0,0) for the top left point, 1 unit = 1 diamond) and scene coordinates (as defined by Qt)
         int m_selected1x, m_selected1y, m_selected2x, m_selected2y; //coordinates of the selected items (or -1 if they are not selected)
         int m_swapping1x, m_swapping1y, m_swapping2x, m_swapping2y; //coordinates of the swapping/swapped items (stored to revoke the swapping if necessary)
-        bool m_paused;
+        bool m_paused, m_timeIsUp;
         int m_cascade; //cascade count (necessary for score calculation in Game)
 };
 

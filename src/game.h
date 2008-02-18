@@ -33,7 +33,7 @@ class QTime;
 namespace KDiamond
 {
     //base duration of a game in seconds
-    const int GameDuration = 200;
+    const int GameDuration = 5;
 }
 
 class Game : public QGraphicsView
@@ -43,15 +43,17 @@ class Game : public QGraphicsView
         Game(KGameDifficulty::standardLevel difficulty, MainWindow *mainWindow);
         ~Game();
 
-        Board *board();
+        int points() const;
+        Board *board() const;
     public slots:
         void pause(bool paused);
-        void update(int milliseconds);
+        void update();
         void updateTheme();
+        void gameOver();
     signals:
         void pointsChanged(int points);
         void remainingTimeChanged(int remainingTime);
-        void gameFinished(int points);
+        void timeIsUp(int points);
     protected:
         virtual void mouseReleaseEvent(QMouseEvent *);
         virtual void resizeEvent(QResizeEvent *);

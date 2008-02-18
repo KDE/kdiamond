@@ -44,7 +44,8 @@ class MainWindow : public KXmlGuiWindow
         ~MainWindow();
     public slots:
         void startGame();
-        void finishGame(int points);
+        void timeIsUp();
+        void gameOver();
         void showHighscores();
         void close();
 

@@ -1,5 +1,4 @@
 Feel free to add your own suggestions for KDiamond below.
-* When the time is up, let the board finish all moves before the game is finished.
 * Optimize pixmap generation. (Just to throw in a buzzword: Is multithreading possible?)
 * Write a handbook.
 If you want to do one of these jobs, please send a mail to majewsky@gmx.net to avoid duplicate effort. Thanks.
