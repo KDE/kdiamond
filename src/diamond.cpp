@@ -203,7 +203,7 @@ void Diamond::setPosInBoardCoords(const QPointF &pos)
     }
 }
 
-void Diamond::mouseReleaseEvent(QGraphicsSceneMouseEvent *)
+void Diamond::mousePressEvent(QGraphicsSceneMouseEvent *)
 {
     //propagate the mouse click to the board (to change the selection); clicking is blocked during movement
     if (m_animation == 0)

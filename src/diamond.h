@@ -71,7 +71,7 @@ class Diamond : public QObject, public QGraphicsPixmapItem
         void move(const QPointF &target);
         void remove();
     protected:
-        virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *);
+        virtual void mousePressEvent(QGraphicsSceneMouseEvent *);
     protected slots:
         void moveComplete();
         void setRemoveAnimFrame(int frame);
