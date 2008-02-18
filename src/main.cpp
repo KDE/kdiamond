@@ -16,18 +16,19 @@
  *   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  ***************************************************************************/
 
+#include "mainwindow.h"
+#include "renderer.h"
+#include "settings.h"
+
 #include <KApplication>
 #include <KAboutData>
 #include <KCmdLineArgs>
+#include <KGameDifficulty>
 #include <KLocale>
 #include <KGlobal>
 
-#include "settings.h"
-#include "mainwindow.h"
-#include "renderer.h"
-
 static const char description[] = I18N_NOOP("KDiamond, a three-in-a-row game.");
-static const char version[] = "0.1.1";
+static const char version[] = "0.2.1";
 
 int main(int argc, char ** argv)
 {
@@ -52,15 +53,15 @@ int main(int argc, char ** argv)
 
     KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
     if (args->isSet("VeryEasy"))
-        Settings::setSkill(Settings::EnumSkill::VeryEasy);
+        Settings::setSkill(KGameDifficulty::VeryEasy);
     if (args->isSet("Easy"))
-        Settings::setSkill(Settings::EnumSkill::Easy);
+        Settings::setSkill(KGameDifficulty::Easy);
     if (args->isSet("Medium"))
-        Settings::setSkill(Settings::EnumSkill::Medium);
+        Settings::setSkill(KGameDifficulty::Medium);
     if (args->isSet("Hard"))
-        Settings::setSkill(Settings::EnumSkill::Hard);
+        Settings::setSkill(KGameDifficulty::Hard);
     if (args->isSet("VeryHard"))
-        Settings::setSkill(Settings::EnumSkill::VeryHard);
+        Settings::setSkill(KGameDifficulty::VeryHard);
     args->clear();
 
     Renderer::init();

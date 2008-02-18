@@ -11,16 +11,9 @@
     </entry>
   </group>
   <group name="Preferences">
-    <entry name="Skill" type="Enum">
+    <entry name="Skill" type="Int">
       <label>The difficulty level.</label>
-      <default>Easy</default>
-      <choices>
-        <choice name="VeryEasy"/>
-        <choice name="Easy"/>
-        <choice name="Medium"/>
-        <choice name="Hard"/>
-        <choice name="VeryHard"/>
-      </choices>
+      <default>0</default>
     </entry>
     <entry name="ShowMinutes" type="Bool">
      <label>Show minutes separately on the timer.</label>

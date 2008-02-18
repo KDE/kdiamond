@@ -82,7 +82,7 @@ MainWindow::MainWindow(QWidget *parent)
     if (skill < KGameDifficulty::VeryEasy) //includes default values like 0 or 1
         KGameDifficulty::setLevel(KGameDifficulty::Easy);
     else
-        KGameDifficulty::setLevel((KGameDifficulty::standardLevel) (Settings::skill()));
+        KGameDifficulty::setLevel((KGameDifficulty::standardLevel) (skill));
     //late GUI initiation
     setupGUI(QSize(550, 400));
     setCaption(i18nc("The application's name", "KDiamond"));
