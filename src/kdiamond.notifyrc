@@ -4,25 +4,42 @@ Comment=kdiamond
 
 [Context/game]
 Name=Game
+Name[ga]=Cluiche
+Name[pt]=Jogo
+Name[pt_BR]=Jogo
 Comment=Sounds that appear during a game
+Comment[pt]=Os sons que aparecem durante um jogo
+Comment[pt_BR]=Os sons que aparecem durante um jogo
 
 [Event/remove]
 Name=Diamonds removed
+Name[pt]=Diamantes removidos
+Name[pt_BR]=Diamantes removidos
 Comment=Diamonds were removed.
+Comment[pt]=Foram removidos diamantes.
+Comment[pt_BR]=Foram removidos diamantes.
 Contexts=game
 Sound=KDE-Window-Shade-Down.ogg
 Action=Sound
 
 [Event/move]
 Name=Diamonds moving
+Name[pt]=Diamantes em movimento
+Name[pt_BR]=Diamantes em movimento
 Comment=Diamonds are moving.
+Comment[pt]=Encontram-se diamantes em movimento.
+Comment[pt_BR]=Encontram-se diamantes em movimento.
 Contexts=game
 Sound=
 Action=None
 
 [Event/gamefinished]
 Name=Game over
+Name[pt]=Fim do jogo
+Name[pt_BR]=Fim do jogo
 Comment=Time is up.
+Comment[pt]=O tempo terminou.
+Comment[pt_BR]=O tempo terminou.
 Contexts=game
 Sound=KDE-Im-User-Auth.ogg
 Action=Sound
