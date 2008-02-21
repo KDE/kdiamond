@@ -1,11 +1,7 @@
 [KGameTheme]
 VersionFormat=1
 Name=Classic Theme
-Name[pt]=Tema Clássico
-Name[pt_BR]=Tema Clássico
 Description=The classic theme for KDiamond.
-Description[pt]=O tema clássico do KDiamond.
-Description[pt_BR]=O tema clássico do KDiamond.
 FileName=classic.svgz
 Author=Felix Lemke
 AuthorEmail=lemke.felix@ages-skripte.org
