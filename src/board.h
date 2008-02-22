@@ -35,7 +35,6 @@ class KGamePopupItem;
 
 namespace KDiamond
 {
-    const qreal BorderPadding = 0.25; //border of the board has a padding of 0.25 diamond edge lengths (= 0.25 board units)
     //specification of the difficulties
     enum Size
     {

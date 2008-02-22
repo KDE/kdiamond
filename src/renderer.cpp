@@ -37,6 +37,7 @@ QSize g_diamondSize, g_sceneSize;
 QString g_currentTheme;
 int g_removeAnimFrameCount;
 bool g_hasBorder;
+qreal g_borderPadding;
 
 bool Renderer::init()
 {
@@ -63,6 +64,7 @@ bool Renderer::loadTheme(const QString &name)
     g_currentTheme = name;
     g_removeAnimFrameCount = theme.property("RemoveAnimFrames").toInt();
     g_hasBorder = theme.property("HasBorder").toInt() > 0;
+    g_borderPadding = theme.property("BorderPadding").toFloat();
     //load graphics
     if (!g_renderer->load(theme.graphics()))
         return false;
@@ -78,7 +80,7 @@ void Renderer::boardResized(int width, int height, int leftOffset, int topOffset
     g_sceneWidth = width;
     g_sceneHeight = height;
     g_diamondEdgeLength = diamondEdgeLength;
-    int borderEdgeLength = (diamondCountOnEdge + 2.0 * KDiamond::BorderPadding) * diamondEdgeLength;
+    int borderEdgeLength = (diamondCountOnEdge + 2.0 * g_borderPadding) * diamondEdgeLength;
     //new sizes
     g_diamondSize = QSize(g_diamondEdgeLength, g_diamondEdgeLength);
     g_sceneSize = QSize(g_sceneWidth, g_sceneHeight);
@@ -92,7 +94,7 @@ void Renderer::boardResized(int width, int height, int leftOffset, int topOffset
         QPainter p(&pix);
         g_renderer->render(&p, "kdiamond-background");
         if (g_hasBorder)
-            g_renderer->render(&p, "kdiamond-border", QRectF(leftOffset - KDiamond::BorderPadding * diamondEdgeLength, topOffset - KDiamond::BorderPadding * diamondEdgeLength, borderEdgeLength, borderEdgeLength));
+            g_renderer->render(&p, "kdiamond-border", QRect(leftOffset - g_borderPadding * diamondEdgeLength, topOffset - g_borderPadding * diamondEdgeLength, borderEdgeLength, borderEdgeLength));
         p.end();
         g_cache->insert(pixName, pix);
     }
