@@ -30,9 +30,9 @@ class QTimeLine;
 namespace KDiamond
 {
     //duration of a move animation (per coordinate unit) in milliseconds
-    const int MoveDuration = 250;
-    //update interval during a move animation (KDiamond::MoveDuration should be divideable by KDiamond::MoveInterval)
-    const int MoveInterval = 25;
+    const int MoveDuration = 240;
+    //update interval during a move animation (KDiamond::MoveDuration should be divideable by KDiamond::MoveInterval) - 40 milliseconds is a sane default as it equals 25 pictures per second which is the minimum speed required to get a flicker-free movement (in the ideal case)
+    const int MoveInterval = 40;
     //duration of a move animation (frame count is determined by the theme)
     const int RemoveDuration = 200;
     //registered colors of diamonds

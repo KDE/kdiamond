@@ -14,4 +14,4 @@ RemoveAnimFrames=7
 # this theme has a border to display around the board
 HasBorder=1
 # padding of border image (in diamond edge lengths)
-BorderPadding=0.25
+BorderPadding=0.5
