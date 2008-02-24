@@ -1,12 +1,14 @@
 [Global]
 IconName=kdiamond
 Comment=kdiamond
+Comment[pa]=ਕੇ-ਡਾਈਮਡ
 Comment[uk]=КДіамант
 Comment[zh_TW]=kdiamond 寶石方塊
 
 [Context/game]
 Name=Game
 Name[ga]=Cluiche
+Name[pa]=ਖੇਡ
 Name[pt]=Jogo
 Name[pt_BR]=Jogo
 Name[uk]=Гра
@@ -19,11 +21,13 @@ Comment[zh_TW]=遊戲中的音效
 
 [Event/remove]
 Name=Diamonds removed
+Name[pa]=ਡਾਈਮਡ ਹਟਾਏ ਗਏ
 Name[pt]=Diamantes removidos
 Name[pt_BR]=Diamantes removidos
 Name[uk]=Вилучено діамантів
 Name[zh_TW]=寶石已移除
 Comment=Diamonds were removed.
+Comment[pa]=ਡਾਈਮਡ ਹਟਾਏ ਗਏ ਸਨ।
 Comment[pt]=Foram removidos diamantes.
 Comment[pt_BR]=Foram removidos diamantes.
 Comment[uk]=Діаманти було вилучено.
@@ -49,11 +53,13 @@ Action=None
 
 [Event/gamefinished]
 Name=Game over
+Name[pa]=ਖੇਡ ਖਤਮ
 Name[pt]=Fim do jogo
 Name[pt_BR]=Fim do jogo
 Name[uk]=Гру завершено
 Name[zh_TW]=遊戲結束
 Comment=Time is up.
+Comment[pa]=ਟਾਈਮ ਖਤਮ।
 Comment[pt]=O tempo terminou.
 Comment[pt_BR]=O tempo terminou.
 Comment[uk]=Час збіг.
