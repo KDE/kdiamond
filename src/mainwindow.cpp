@@ -203,7 +203,7 @@ void MainWindow::updateRemainingTime(int remainingSeconds)
     else if (seconds == 0)
         sOutput = i18n("Time left: %1", i18np("1 minute", "%1 minutes", minutes));
     else
-        sOutput = i18nc("The two parameters are strings like '2 minutes' or '1 second'.", "Time left: %1, %2").arg(i18np("1 minute", "%1 minutes", minutes), i18np("1 second", "%1 seconds", seconds));
+        sOutput = i18nc("The two parameters are strings like '2 minutes' or '1 second'.", "Time left: %1, %2", i18np("1 minute", "%1 minutes", minutes), i18np("1 second", "%1 seconds", seconds));
     statusBar()->changeItem(sOutput, 2);
 }
 
