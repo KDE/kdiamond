@@ -1,16 +1,9 @@
 [KGameTheme]
 VersionFormat=1
 Name=KDiamonds Default Theme
-Name[pt]=Tema Predefinido do KDiamonds
-Name[pt_BR]=Tema Predefinido do KDiamonds
-Name[uk]=Типова тема КДіаманта
-Name[zh_TW]=KDiamonds 寶石方塊預設主題
+Name[sv]=Kdiamonds förvalda tema
 Description=Default theme for KDiamond.
-Description[pa]=ਕੇ-ਡਾਈਮਡ ਲਈ ਡਿਫਾਲਟ ਥੀਮ ਹੈ।
-Description[pt]=O tema predefinido do KDiamond.
-Description[pt_BR]=O tema predefinido do KDiamond.
-Description[uk]=Типова тема для КДіаманта.
-Description[zh_TW]=KDiamond 寶石方塊預設主題。
+Description[sv]=Förvalt tema för Kdiamond.
 FileName=default.svgz
 Author=Eugene Trounev
 AuthorEmail=eugene.trounev@gmail.com
