@@ -8,12 +8,14 @@ Comment[zh_TW]=kdiamond 寶石方塊
 [Context/game]
 Name=Game
 Name[ga]=Cluiche
+Name[km]=ល្បែង
 Name[pa]=ਖੇਡ
 Name[pt]=Jogo
 Name[pt_BR]=Jogo
 Name[uk]=Гра
 Name[zh_TW]=遊戲
 Comment=Sounds that appear during a game
+Comment[km]=សំឡេង​ដែល​បង្ហាញ​​នៅ​ក្នុង​ល្បែង
 Comment[pt]=Os sons que aparecem durante um jogo
 Comment[pt_BR]=Os sons que aparecem durante um jogo
 Comment[uk]=Звук, який ви чутимете під час гри
@@ -21,12 +23,14 @@ Comment[zh_TW]=遊戲中的音效
 
 [Event/remove]
 Name=Diamonds removed
+Name[km]=បាន​យក​ពេជ្រ​ចេញ
 Name[pa]=ਡਾਈਮਡ ਹਟਾਏ ਗਏ
 Name[pt]=Diamantes removidos
 Name[pt_BR]=Diamantes removidos
 Name[uk]=Вилучено діамантів
 Name[zh_TW]=寶石已移除
 Comment=Diamonds were removed.
+Comment[km]=យក​ពេជ្រ​ចេញ ។
 Comment[pa]=ਡਾਈਮਡ ਹਟਾਏ ਗਏ ਸਨ।
 Comment[pt]=Foram removidos diamantes.
 Comment[pt_BR]=Foram removidos diamantes.
@@ -38,11 +42,13 @@ Action=Sound
 
 [Event/move]
 Name=Diamonds moving
+Name[km]=ផ្លាស់ទី​ពេជ្រ
 Name[pt]=Diamantes em movimento
 Name[pt_BR]=Diamantes em movimento
 Name[uk]=Зрушено діамантів
 Name[zh_TW]=寶石移動中
 Comment=Diamonds are moving.
+Comment[km]=កំពុង​ផ្លាស់ទី​ពេជ្រ ។
 Comment[pt]=Encontram-se diamantes em movimento.
 Comment[pt_BR]=Encontram-se diamantes em movimento.
 Comment[uk]=Рух діамантів.
@@ -53,12 +59,14 @@ Action=None
 
 [Event/gamefinished]
 Name=Game over
+Name[km]=ល្បែង​ចប់​ហើយ
 Name[pa]=ਖੇਡ ਖਤਮ
 Name[pt]=Fim do jogo
 Name[pt_BR]=Fim do jogo
 Name[uk]=Гру завершено
 Name[zh_TW]=遊戲結束
 Comment=Time is up.
+Comment[km]=អស់​ពេល​ហើយ ។
 Comment[pa]=ਟਾਈਮ ਖਤਮ।
 Comment[pt]=O tempo terminou.
 Comment[pt_BR]=O tempo terminou.
