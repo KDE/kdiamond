@@ -106,7 +106,7 @@ Board::Board(KGameDifficulty::standardLevel difficulty)
     addItem(m_messenger);
     QRectF messengerRect = m_messenger->sceneBoundingRect();
     //init animator
-    m_animator1 = m_animator2 = 0;
+    m_animator = 0;
     //init GUI and internal values (any metrical values are calc'ed in the first resizeEvent())
     m_selected1x = m_selected1y = m_selected2x = m_selected2y = -1;
     m_swapping1x = m_swapping1y = m_swapping2x = m_swapping2y = -1;
@@ -128,8 +128,7 @@ Board::~Board()
     delete m_selection2;
     delete m_background;
     delete m_messenger;
-    delete m_animator1;
-    delete m_animator2;
+    delete m_animator;
 }
 
 int Board::diamondCountOnEdge() const
@@ -264,7 +263,7 @@ void Board::pause(bool paused)
 void Board::update()
 {
     //see Diamond::move(const QPointF &) for explanation
-    if (m_paused || m_animator1 != 0 || m_animator2 != 0)
+    if (m_paused || m_animator != 0)
         return;
     if(m_jobQueue.count() == 0) //nothing to do in this update
     {
@@ -314,22 +313,12 @@ void Board::update()
             m_diamonds[m_swapping2x][m_swapping2y]->setYIndex(m_swapping2y);
             //invoke movement
             KNotification::event("move");
-            if (m_swapping1x == m_swapping2x)
-            {
-                m_animator1 = new YMoveAnimator(m_swapping1y - m_swapping2y);
-                m_animator2 = new YMoveAnimator(m_swapping2y - m_swapping1y);
-            }
-            else
-            {
-                m_animator1 = new XMoveAnimator(m_swapping1x - m_swapping2x);
-                m_animator2 = new XMoveAnimator(m_swapping2x - m_swapping1x);
-            }
-            m_animator1->addItem(m_diamonds[m_swapping1x][m_swapping1y], QPointF(m_swapping2x, m_swapping2y));
-            m_animator2->addItem(m_diamonds[m_swapping2x][m_swapping2y], QPointF(m_swapping1x, m_swapping1y));
-            m_animator1->start();
-            m_animator2->start();
-            connect(m_animator1, SIGNAL(finished()), this, SLOT(animation1Finished()));
-            connect(m_animator2, SIGNAL(finished()), this, SLOT(animation2Finished()));
+            m_animator = new MoveAnimator();
+            ((MoveAnimator*) m_animator)->setMoveLength(1);
+            m_animator->addItem(m_diamonds[m_swapping1x][m_swapping1y], QPointF(m_swapping2x, m_swapping2y), QPointF(m_swapping1x, m_swapping1y));
+            m_animator->addItem(m_diamonds[m_swapping2x][m_swapping2y], QPointF(m_swapping1x, m_swapping1y), QPointF(m_swapping2x, m_swapping2y));
+            m_animator->start();
+            connect(m_animator, SIGNAL(finished()), this, SLOT(animationFinished()));
             break;
         case KDiamond::RemoveRowsJob:
             m_cascade++;
@@ -351,10 +340,10 @@ void Board::update()
                 m_jobQueue.prepend(KDiamond::FillGapsJob); //prepend this job as it has to be executed immediately after the animations (before handling any further user input)
                 //invoke remove animation
                 KNotification::event("remove");
-                m_animator1 = new RemoveAnimator();
+                m_animator = new RemoveAnimator();
                 foreach (QPoint *diamondPos, m_diamondsToRemove)
                 {
-                    m_animator1->addItem(m_diamonds[diamondPos->x()][diamondPos->y()]);
+                    m_animator->addItem(m_diamonds[diamondPos->x()][diamondPos->y()]);
                     //remove selection if necessary
                     if (m_selected1x == diamondPos->x() && m_selected1y == diamondPos->y())
                     {
@@ -378,8 +367,8 @@ void Board::update()
                         m_selection2->hide();
                     }
                 }
-                m_animator1->start();
-                connect(m_animator1, SIGNAL(finished()), this, SLOT(animation1Finished()));
+                m_animator->start();
+                connect(m_animator, SIGNAL(finished()), this, SLOT(animationFinished()));
             }
             break;
         case KDiamond::FillGapsJob:
@@ -466,24 +455,10 @@ QSet<QPoint *> Board::findCompletedRows()
     return diamonds.toSet();
 }
 
-struct DiamondMoveInfo //temporary storage for Board::fillGaps
-{
-    DiamondMoveInfo()
-    {
-        this->diamond = 0; this->pos = QPointF(0.0, 0.0); this->dy = 0;
-    }
-    DiamondMoveInfo(Diamond *diamond, const QPointF &pos, int dy)
-    {
-        this->diamond = diamond; this->pos = pos; this->dy = dy;
-    }
-    Diamond* diamond;
-    QPointF pos;
-    int dy;
-};
-
 void Board::fillGaps()
 {
-    QList<DiamondMoveInfo> moves;
+    m_animator = new MoveAnimator();
+    int maxMoveLength = 0; //necessary to determine the animation duration
     //fill gaps
     int x, y, yt; //counters - (x, yt) is the target position of diamond (x,y)
     for (x = 0; x < m_size; ++x)
@@ -506,17 +481,18 @@ void Board::fillGaps()
             m_diamonds[x][yt] = m_diamonds[x][y];
             m_diamonds[x][yt]->setYIndex(yt);
             m_diamonds[x][y] = 0;
-            moves << DiamondMoveInfo(m_diamonds[x][yt], QPointF(x, y), yt - y);
+            m_animator->addItem(m_diamonds[x][yt], QPointF(x, y), QPointF(x, yt));
+            maxMoveLength = qMax(maxMoveLength, yt - y);
             //if this element is selected, move the selection, too
             if (m_selected1x == x && m_selected1y == y)
             {
                 m_selected1y = yt;
-                moves << DiamondMoveInfo(m_selection1, QPointF(x, y), yt - y);
+                m_animator->addItem(m_selection1, QPointF(x, y), QPointF(x, yt));
             }
             if (m_selected2x == x && m_selected2y == y)
             {
                 m_selected2y = yt;
-                moves << DiamondMoveInfo(m_selection2, QPointF(x, y), yt - y);
+                m_animator->addItem(m_selection2, QPointF(x, y), QPointF(x, yt));
             }
         }
     }
@@ -532,36 +508,19 @@ void Board::fillGaps()
             m_diamonds[x][y] = new Diamond(x, y, x, yt, KDiamond::colorFromNumber(qrand() % m_colorCount + 1), this);
             m_diamonds[x][y]->setPosInBoardCoords(QPointF(x, yt));
             m_diamonds[x][y]->updateGeometry();
-            moves << DiamondMoveInfo(m_diamonds[x][y], QPointF(x, yt), y - yt);
+            m_animator->addItem(m_diamonds[x][y], QPointF(x, yt), QPointF(x, y));
+            maxMoveLength = qMax(maxMoveLength, y - yt);
         }
     }
-    //gather information for the animator
-    DiamondMoveInfo move;
-    int maxDy = 0;
-    foreach (move, moves)
-    {
-        if (maxDy < move.dy)
-            maxDy = move.dy;
-    }
-    m_animator1 = new YMoveAnimator(maxDy);
-    foreach (move, moves)
-    {
-        m_animator1->addItem(move.diamond, move.pos, move.dy);
-    }
-    m_animator1->start();
-    connect(m_animator1, SIGNAL(finished()), this, SLOT(animation1Finished()));
+    ((MoveAnimator*) m_animator)->setMoveLength(maxMoveLength);
+    m_animator->start();
+    connect(m_animator, SIGNAL(finished()), this, SLOT(animationFinished()));
 }
 
-void Board::animation1Finished()
+void Board::animationFinished()
 {
-    delete m_animator1;
-    m_animator1 = 0;
-}
-
-void Board::animation2Finished()
-{
-    delete m_animator2;
-    m_animator2 = 0;
+    delete m_animator;
+    m_animator = 0;
 }
 
 void Board::timeIsUp()

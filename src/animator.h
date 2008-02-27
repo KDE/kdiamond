@@ -38,6 +38,12 @@ namespace KDiamond
     const int RemoveDuration = 200;
 }
 
+struct AnimationData
+{
+    Diamond *diamond;
+    QPointF from, to;
+};
+
 class Animator : public QObject
 {
     Q_OBJECT
@@ -48,7 +54,7 @@ class Animator : public QObject
         int duration() const;
         int frameCount() const;
 
-        void addItem(Diamond *item, const QPointF &position = QPointF(0.0, 0.0), int maxPositionDiff = 0);
+        void addItem(Diamond *item, const QPointF &from = QPointF(), const QPointF &to = QPointF());
         void start();
     protected slots:
         virtual void setFrame(int) = 0;
@@ -62,31 +68,17 @@ class Animator : public QObject
         bool m_started, m_playedLastFrame; //the latter prevents a race condition between the last setFrame and finished
         QTimeLine *m_timer;
 
-        QList<Diamond *> m_items;
-        QList<QPointF> m_positions; //Only used by MoveAnimators.
-        QList<int> m_maxPositionDiffs; //Only used by MoveAnimators. By defining a maximum position difference for the single diamonds if necessary, we can move for example two diamonds by two fields and four diamonds by three fields with only one Animator.
+        QList<AnimationData> m_data;
 };
 
-class XMoveAnimator : public Animator
+class MoveAnimator : public Animator
 {
     Q_OBJECT
     public:
-        XMoveAnimator(int dx);
+        MoveAnimator();
+        void setMoveLength(int moveLength);
     protected slots:
         virtual void setFrame(int);
-    private:
-        qreal m_dx;
-};
-
-class YMoveAnimator : public Animator
-{
-    Q_OBJECT
-    public:
-        YMoveAnimator(int dy);
-    protected slots:
-        virtual void setFrame(int);
-    private:
-        qreal m_dy;
 };
 
 class RemoveAnimator : public Animator

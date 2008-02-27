@@ -79,8 +79,7 @@ class Board : public QGraphicsScene
 
         void mouseOnDiamond(int xIndex, int yIndex);
     public slots:
-        void animation1Finished();
-        void animation2Finished();
+        void animationFinished();
         void hideMessage();
         void pause(bool paused);
         void showMessage(const QString &message, int timeout = 0);
@@ -103,9 +102,9 @@ class Board : public QGraphicsScene
         Diamond ***m_diamonds;
         Diamond *m_selection1, *m_selection2;
         QGraphicsPixmapItem *m_background;
-        KGamePopupItem *m_messenger;
 
-        Animator *m_animator1, *m_animator2;
+        KGamePopupItem *m_messenger;
+        Animator *m_animator;
 
         qreal m_leftOffset, m_topOffset, m_diamondEdgeLength; //necessary for conversion between board coordinates (i.e. (0,0) for the top left point, 1 unit = 1 diamond) and scene coordinates (as defined by Qt)
         int m_selected1x, m_selected1y, m_selected2x, m_selected2y; //coordinates of the selected items (or -1 if they are not selected)
