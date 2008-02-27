@@ -80,8 +80,6 @@ XMoveAnimator::XMoveAnimator(int dx)
     m_frameCount = dx * KDiamond::MoveFrameCount;
 }
 
-#include <KDebug>
-
 void XMoveAnimator::setFrame(int frame)
 {
     //calculate difference
@@ -90,15 +88,13 @@ void XMoveAnimator::setFrame(int frame)
     QList<Diamond *>::const_iterator iterItem = m_items.constBegin();
     QList<QPointF>::const_iterator iterPos = m_positions.constBegin();
     QList<int>::const_iterator iterDiff = m_maxPositionDiffs.constBegin();
-    int debug = 0;
     while (iterItem != m_items.constEnd()) {
         if (*iterDiff == 0 || qAbs(diff) <= qAbs(*iterDiff))
             (*iterItem)->setPosInBoardCoords(QPointF((*iterPos).x() + diff, (*iterPos).y()));
-        ++iterDiff; ++iterItem; ++iterPos; ++debug;
+        ++iterDiff; ++iterItem; ++iterPos;
     }
     if (frame == m_frameCount)
         m_playedLastFrame = true;
-    kDebug() << frame << debug << m_playedLastFrame;
 }
 
 YMoveAnimator::YMoveAnimator(int dy)
@@ -117,15 +113,13 @@ void YMoveAnimator::setFrame(int frame)
     QList<Diamond *>::const_iterator iterItem = m_items.constBegin();
     QList<QPointF>::const_iterator iterPos = m_positions.constBegin();
     QList<int>::const_iterator iterDiff = m_maxPositionDiffs.constBegin();
-    int debug = 0;
     while (iterItem != m_items.constEnd()) {
         if (*iterDiff == 0 || qAbs(diff) <= qAbs(*iterDiff))
             (*iterItem)->setPosInBoardCoords(QPointF((*iterPos).x(), (*iterPos).y() + diff));
-        ++iterDiff; ++iterItem; ++iterPos; ++debug;
+        ++iterDiff; ++iterItem; ++iterPos;
     }
     if (frame == m_frameCount)
         m_playedLastFrame = true;
-    kDebug() << frame << debug << m_playedLastFrame;
 }
 
 RemoveAnimator::RemoveAnimator()
