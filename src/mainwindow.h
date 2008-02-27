@@ -33,7 +33,7 @@ class QTimer;
 namespace KDiamond
 {
     //maximum update interval in milliseconds
-    const int UpdateInterval = 10;
+    const int UpdateInterval = 40;
 }
 
 class MainWindow : public KXmlGuiWindow

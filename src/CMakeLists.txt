@@ -2,6 +2,7 @@ add_subdirectory(pics)
 include_directories(${KDEGAMES_INCLUDE_DIR})
 
 set(kdiamond_SRCS
+    animator.cpp
     board.cpp
     container.cpp
     diamond.cpp

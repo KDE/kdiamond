@@ -23,18 +23,10 @@
     class Board;
 #endif
 
-class QGraphicsItemAnimation;
 #include <QGraphicsPixmapItem>
-class QTimeLine;
 
 namespace KDiamond
 {
-    //duration of a move animation (per coordinate unit) in milliseconds
-    const int MoveDuration = 240;
-    //update interval during a move animation (KDiamond::MoveDuration should be divideable by KDiamond::MoveInterval) - 40 milliseconds is a sane default as it equals 25 pictures per second which is the minimum speed required to get a flicker-free movement (in the ideal case)
-    const int MoveInterval = 40;
-    //duration of a move animation (frame count is determined by the theme)
-    const int RemoveDuration = 200;
     //registered colors of diamonds
     enum Color
     {
@@ -56,36 +48,24 @@ class Diamond : public QObject, public QGraphicsPixmapItem
     Q_OBJECT
     public:
         Diamond(int xIndex, int yIndex, qreal xPos, qreal yPos, KDiamond::Color color, Board *board);
-        ~Diamond();
 
         KDiamond::Color color() const;
         int xIndex() const;
         int yIndex() const;
-        static int animationsInProgress();
 
         void setXIndex(int xIndex);
         void setYIndex(int yIndex);
         void setPosInBoardCoords(const QPointF &pos);
     public slots:
         void updateGeometry();
-        void move(const QPointF &target);
-        void remove();
     protected:
         virtual void mousePressEvent(QGraphicsSceneMouseEvent *);
-    protected slots:
-        void moveComplete();
-        void setRemoveAnimFrame(int frame);
-        void removeComplete();
     private:
         Board *m_board;
-        QGraphicsItemAnimation *m_animation; //pointer to the animation currently in progress
-        QTimeLine *m_timer;
 
         KDiamond::Color m_color;
         int m_xIndex, m_yIndex; //the index of the diamond in the Board's internal array (used for communication with Board)
         QPointF m_pos, m_target; //current position of diamond in board coordinates (see Board::boardToScene for details)
-
-        int m_currentRemoveFrame; //current frame in the remove animation (needed when updating the pixmap because of resize events); -1 means that there is no remove animation at the moment
 };
 
 #endif //KDIAMOND_DIAMOND_H
