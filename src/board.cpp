@@ -525,10 +525,13 @@ void Board::animationFinished()
 
 void Board::timeIsUp()
 {
-    m_selection1->hide();
-    m_selection2->hide();
-    m_timeIsUp = true;
-    showMessage(i18nc("Not meant like 'You have lost', more like 'Time is up'.", "Game over."), 0);
+    if (!m_timeIsUp)
+    {
+        m_selection1->hide();
+        m_selection2->hide();
+        m_timeIsUp = true;
+        showMessage(i18nc("Not meant like 'You have lost', more like 'Time is up'.", "Game over."), 0);
+    }
 }
 
 void Board::showMessage(const QString &message, int timeout)
