@@ -107,7 +107,8 @@ void Diamond::setPosInBoardCoords(const QPointF &pos)
 
 void Diamond::mousePressEvent(QGraphicsSceneMouseEvent *)
 {
-    m_board->mouseOnDiamond(m_xIndex, m_yIndex);
+    if (!m_board->isTimeUp())
+        m_board->mouseOnDiamond(m_xIndex, m_yIndex);
 }
 
 #include "diamond.moc"

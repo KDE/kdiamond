@@ -136,6 +136,11 @@ int Board::diamondCountOnEdge() const
     return m_size;
 }
 
+bool Board::isTimeUp() const
+{
+    return m_timeIsUp;
+}
+
 //Converts board coordinates (i.e. (0,0) is the top left point of the board, 1 unit = 1 diamond) to scene coordinates.
 QPointF Board::boardToScene(const QPointF &boardCoords) const
 {

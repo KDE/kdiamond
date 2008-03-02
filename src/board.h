@@ -71,6 +71,7 @@ class Board : public QGraphicsScene
         Board(KGameDifficulty::standardLevel difficulty);
         ~Board();
         int diamondCountOnEdge() const;
+        bool isTimeUp() const;
 
         QPointF boardToScene(const QPointF &boardCoord) const;
         QPointF sceneToBoard(const QPointF &sceneCoord) const;
