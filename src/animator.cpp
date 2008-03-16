@@ -87,7 +87,7 @@ void MoveAnimator::setMoveLength(int moveLength)
 void MoveAnimator::setFrame(int frame)
 {
     qreal x, y, difference = (qreal) frame / (qreal) KDiamond::MoveFrameCount;
-    foreach (AnimationData data, m_data)
+    foreach (const AnimationData &data, m_data)
     {
         //the absolute value of the actual difference can not be more than the calculated maximum difference
         x = data.from.x() + qBound(-difference, data.to.x() - data.from.x(), difference);
@@ -107,7 +107,7 @@ RemoveAnimator::RemoveAnimator()
 
 void RemoveAnimator::setFrame(int frame)
 {
-    foreach (AnimationData data, m_data)
+    foreach (const AnimationData &data, m_data)
         data.diamond->setPixmap(Renderer::removeFrame(data.diamond->color(), frame - 1));
 }
 
