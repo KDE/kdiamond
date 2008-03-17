@@ -84,7 +84,7 @@ MainWindow::MainWindow(QWidget *parent)
     else
         KGameDifficulty::setLevel((KGameDifficulty::standardLevel) (skill));
     //late GUI initiation
-    setupGUI(QSize(550, 400));
+    setupGUI(QSize(300, 400)); //TODO: find better solution for a minimum size
     setCaption(i18nc("The application's name", "KDiamond"));
 }
 
