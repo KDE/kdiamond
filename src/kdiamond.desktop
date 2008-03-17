@@ -2,9 +2,7 @@
 Type=Application
 Exec=kdiamond -caption "%c"
 Name=KDiamond
-Name[sv]=Kdiamond
 GenericName=Three-in-a-row game
-GenericName[sv]=Tre-i-rad spel
 Terminal=false
 Icon=kdiamond
 X-KDE-StartupNotify=true
