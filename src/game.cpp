@@ -28,17 +28,23 @@
 
 Game::Game(KGameDifficulty::standardLevel difficulty, MainWindow *mainWindow = 0)
     : QGraphicsView(mainWindow)
+    , m_board(new Board(difficulty))
+    , m_mainWindow(mainWindow)
+    , m_gameTime(new QTime)
+    , m_pauseTime(new QTime)
+    , m_points(0)
+    , m_secondsEarned(0)
+    , m_millisecondsPaused(0)
+    , m_secondsRemaining(0)
+    , m_paused(false)
+    , m_finished(false)
 {
-    m_mainWindow = mainWindow;
     //init timers
-    m_gameTime = new QTime;
     m_gameTime->start();
-    m_pauseTime = new QTime;
     m_pauseTime->start(); //now we can always call restart()
-    connect(m_mainWindow, SIGNAL(updateScheduled(int)), this, SLOT(update()), Qt::DirectConnection);
+    connect(m_mainWindow, SIGNAL(updateScheduled(int)), this, SLOT(update()));
     //init board
-    m_board = new Board(difficulty);
-    connect(m_mainWindow, SIGNAL(updateScheduled(int)), m_board, SLOT(update()), Qt::DirectConnection);
+    connect(m_mainWindow, SIGNAL(updateScheduled(int)), m_board, SLOT(update()));
     connect(m_board, SIGNAL(diamondsRemoved(int, int)), this, SLOT(diamondsRemoved(int, int)));
     connect(this, SIGNAL(timeIsUp(int)), m_board, SLOT(timeIsUp()));
     connect(m_board, SIGNAL(gameOver()), this, SLOT(gameOver()));
@@ -47,11 +53,6 @@ Game::Game(KGameDifficulty::standardLevel difficulty, MainWindow *mainWindow = 0
     setFrameStyle(QFrame::NoFrame);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    //internal values
-    m_points = 0;
-    m_secondsEarned = m_millisecondsPaused = m_secondsRemaining = 0;
-    m_paused = false;
-    m_finished = false;
     //"What's this?" context help
     setWhatsThis(i18n("<h3>Rules of Game</h3><p>Your goal is to assemble lines of at least three similar diamonds. Click on two adjacent diamonds to swap them.</p><p>Earn extra points by building cascades, and extra seconds by assembling big lines or multiple lines at one time.</p>"));
 }

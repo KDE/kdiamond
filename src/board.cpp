@@ -28,6 +28,24 @@
 
 Board::Board(KGameDifficulty::standardLevel difficulty)
     : QGraphicsScene()
+    , m_selection1(new Diamond(0, 0, 0, 0, KDiamond::Selection, this))
+    , m_selection2(new Diamond(0, 0, 0, 0, KDiamond::Selection, this))
+    , m_background(new QGraphicsPixmapItem(0, this))
+    , m_messenger(new KGamePopupItem)
+    , m_animator(0)
+    , m_leftOffset(0.0)
+    , m_topOffset(0.0)
+    , m_diamondEdgeLength(1.0)
+    , m_selected1x(-1)
+    , m_selected1y(-1)
+    , m_selected2x(-1)
+    , m_selected2y(-1)
+    , m_swapping1x(-1)
+    , m_swapping1y(-1)
+    , m_swapping2x(-1)
+    , m_swapping2y(-1)
+    , m_paused(false)
+    , m_timeIsUp(false)
 {
     switch (difficulty)
     {
@@ -55,8 +73,6 @@ Board::Board(KGameDifficulty::standardLevel difficulty)
     }
     //init scene (with some default scene size that makes board coordinates equal scene coordinates)
     setSceneRect(0.0, 0.0, m_size, m_size);
-    m_diamondEdgeLength = 1.0;
-    m_topOffset = m_leftOffset = 0.0;
     //fill diamond field and scene
     m_diamonds = new Diamond**[m_size];
     for (int x = 0; x < m_size; ++x)
@@ -92,25 +108,14 @@ Board::Board(KGameDifficulty::standardLevel difficulty)
         }
     }
     //init selection markers
-    m_selection1 = new Diamond(0, 0, 0, 0, KDiamond::Selection, this);
     m_selection1->hide();
-    m_selection2 = new Diamond(0, 0, 0, 0, KDiamond::Selection, this);
     m_selection2->hide();
     //init background
-    m_background = new QGraphicsPixmapItem(0, this);
     m_background->setZValue(1);
     m_background->setAcceptedMouseButtons(0);
     //init messengers
-    m_messenger = new KGamePopupItem;
     m_messenger->setMessageOpacity(0.8);
     addItem(m_messenger);
-    QRectF messengerRect = m_messenger->sceneBoundingRect();
-    //init animator
-    m_animator = 0;
-    //init GUI and internal values (any metrical values are calc'ed in the first resizeEvent())
-    m_selected1x = m_selected1y = m_selected2x = m_selected2y = -1;
-    m_swapping1x = m_swapping1y = m_swapping2x = m_swapping2y = -1;
-    m_paused = m_timeIsUp = false;
 }
 
 Board::~Board()
@@ -176,11 +181,11 @@ void Board::resizeScene(qreal newWidth, qreal newHeight, bool force)
     m_leftOffset = (newWidth - boardSize) / 2.0;
     m_topOffset = (newHeight - boardSize) / 2.0;
     //renderer
-    Renderer::boardResized(newWidth, newHeight, m_leftOffset, m_topOffset, m_diamondEdgeLength, m_size);
+    Renderer::self()->boardResized(newWidth, newHeight, m_leftOffset, m_topOffset, m_diamondEdgeLength, m_size);
     //diamonds
     emit boardResized(); //give diamonds the chance to change their metrics
     //background
-    m_background->setPixmap(Renderer::background());
+    m_background->setPixmap(Renderer::self()->background());
     QRectF bgRect = m_background->sceneBoundingRect();
     //The 10.0 and -5.0 are part of a nasty hack to avoid white borders around the background.
     m_background->scale((newWidth + 10.0) / bgRect.width(), (newHeight + 10.0) / bgRect.height());

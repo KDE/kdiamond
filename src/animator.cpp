@@ -16,17 +16,19 @@
  *   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  ***************************************************************************/
 
+#include <QTimeLine> //gives a compile error if included after my own headers
+
 #include "animator.h"
 #include "diamond.h"
 #include "renderer.h"
 
-#include <QTimeLine>
-
 Animator::Animator()
+    : m_duration(0)
+    , m_frameCount(0)
+    , m_started(false)
+    , m_playedLastFrame(false)
+    , m_timer(0)
 {
-    m_duration = m_frameCount = 0;
-    m_started = m_playedLastFrame = false;
-    m_timer = 0;
 }
 
 Animator::~Animator()
@@ -102,13 +104,13 @@ RemoveAnimator::RemoveAnimator()
     : Animator()
 {
     m_duration = KDiamond::RemoveDuration;
-    m_frameCount = Renderer::removeAnimFrameCount();
+    m_frameCount = Renderer::self()->removeAnimFrameCount();
 }
 
 void RemoveAnimator::setFrame(int frame)
 {
     foreach (const AnimationData &data, m_data)
-        data.diamond->setPixmap(Renderer::removeFrame(data.diamond->color(), frame - 1));
+        data.diamond->setPixmap(Renderer::self()->removeFrame(data.diamond->color(), frame - 1));
 }
 
 #include "animator.moc"

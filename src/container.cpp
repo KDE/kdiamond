@@ -20,6 +20,7 @@
 
 Container::Container(QWidget *parent)
     : QWidget(parent)
+    , m_widget(0)
 {
 }
 

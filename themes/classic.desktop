@@ -10,4 +10,4 @@ Preview=classic.png
 # there is no animation at the moment, so do only try to load one frame; then fail and show an empty pixmap
 RemoveAnimFrames=1
 HasBorder=0
-BorderPadding=0
+BorderPercentage=0

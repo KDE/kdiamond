@@ -37,13 +37,12 @@ KDiamond::Color KDiamond::colorFromNumber(int number)
 
 Diamond::Diamond(int xIndex, int yIndex, qreal xPos, qreal yPos, KDiamond::Color color, Board *board)
     : QGraphicsPixmapItem(0, board)
+    , m_board(board)
+    , m_color(color)
+    , m_xIndex(xIndex)
+    , m_yIndex(yIndex)
+    , m_pos(xPos, yPos)
 {
-    //init internal values
-    m_xIndex = xIndex;
-    m_yIndex = yIndex;
-    m_color = color;
-    m_board = board;
-    m_pos = QPointF(xPos, yPos);
     //connect to board
     connect(board, SIGNAL(boardResized()), this, SLOT(updateGeometry()));
     //init QGraphicsPixmapItem (pixmap and geometry is initialized after the first resize event has occured)
@@ -90,7 +89,7 @@ void Diamond::updateGeometry()
 {
     prepareGeometryChange();
     //update pixmap
-    setPixmap(Renderer::diamond(m_color));
+    setPixmap(Renderer::self()->diamond(m_color));
     //resize
     QRectF bounds = sceneBoundingRect();
     qreal diamondEdgeLength = qMax(1.0, m_board->diamondEdgeLength()); //diamonds should be at least 1 pixel high to avoid problems with zero size

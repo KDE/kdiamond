@@ -22,18 +22,27 @@
 #include "diamond.h"
 
 class QPixmap;
+class RendererPrivate;
 
-namespace Renderer {
-    bool init();
-    bool loadTheme(const QString &name);
-    void boardResized(int width, int height, int leftOffset, int topOffset, int diamondEdgeLength, int diamondCountOnEdge);
+class Renderer {
+    private:
+        Renderer();
+        Renderer(const Renderer &);
+        ~Renderer();
+    public:
+        static Renderer *self();
 
-    int removeAnimFrameCount();
-    bool hasBorder();
+        bool loadTheme(const QString &name);
+        void boardResized(int width, int height, int leftOffset, int topOffset, int diamondEdgeLength, int diamondCountOnEdge);
 
-    QPixmap diamond(KDiamond::Color color);
-    QPixmap removeFrame(KDiamond::Color color, int frame);
-    QPixmap background();
-}
+        int removeAnimFrameCount();
+        bool hasBorder();
+
+        QPixmap diamond(KDiamond::Color color);
+        QPixmap removeFrame(KDiamond::Color color, int frame);
+        QPixmap background();
+    private:
+        RendererPrivate *p;
+};
 
 #endif // KDIAMOND_RENDERER_H

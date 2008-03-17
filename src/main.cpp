@@ -28,7 +28,7 @@
 #include <KGlobal>
 
 static const char description[] = I18N_NOOP("KDiamond, a three-in-a-row game.");
-static const char version[] = "0.2.1";
+static const char version[] = "1.0";
 
 int main(int argc, char ** argv)
 {
@@ -64,7 +64,7 @@ int main(int argc, char ** argv)
         Settings::setSkill(KGameDifficulty::VeryHard);
     args->clear();
 
-    Renderer::init();
+    Renderer::self(); //causes the static Renderer object to be created and initiated
     MainWindow* window = new MainWindow;
     window->show();
 
