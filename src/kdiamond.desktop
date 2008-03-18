@@ -2,7 +2,14 @@
 Type=Application
 Exec=kdiamond -caption "%c"
 Name=KDiamond
+Name[uk]=КДіамант
+Name[zh_TW]=KDiamond 寶石方塊
 GenericName=Three-in-a-row game
+GenericName[km]=ល្បែង​ក្ដារ បី​​ក្នុង​មួយ​ជួរដេក
+GenericName[pt]=Jogo de três-em-linha
+GenericName[pt_BR]=Jogo de três-em-linha
+GenericName[uk]=Гра у три в рядок
+GenericName[zh_TW]=把三個相同的寶石連成一線
 Terminal=false
 Icon=kdiamond
 X-KDE-StartupNotify=true

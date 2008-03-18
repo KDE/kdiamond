@@ -1,28 +1,70 @@
 [Global]
 IconName=kdiamond
 Comment=kdiamond
+Comment[uk]=кдіамант
+Comment[zh_TW]=KDiamond 寶石方塊
 
 [Context/game]
 Name=Game
+Name[km]=ល្បែង
+Name[pt]=Jogo
+Name[pt_BR]=Jogo
+Name[uk]=Гра
+Name[zh_TW]=遊戲
 Comment=Sounds that appear during a game
+Comment[km]=សំឡេង​ដែលបង្ហាញ​​នៅ​ក្នុង​ល្បែង
+Comment[pt]=Os sons que aparecem durante um jogo
+Comment[pt_BR]=Os sons que aparecem durante um jogo
+Comment[uk]=Звуки, що відтворюватимуться під час гри
+Comment[zh_TW]=遊戲間的音效
 
 [Event/remove]
 Name=Diamonds removed
+Name[km]=បាន​យក Diamonds ចេញ
+Name[pt]=Diamantes removidos
+Name[pt_BR]=Diamantes removidos
+Name[uk]=Вилучення діамантів
+Name[zh_TW]=寶石已移除
 Comment=Diamonds were removed.
+Comment[km]=Diamonds ត្រូវ​បាន​យក​ចេញ
+Comment[pt]=Foram removidos diamantes.
+Comment[pt_BR]=Foram removidos diamantes.
+Comment[uk]=Діаманти було вилучено.
+Comment[zh_TW]=寶石已移除
 Contexts=game
 Sound=KDE-Window-Shade-Down.ogg
 Action=Sound
 
 [Event/move]
 Name=Diamonds moving
+Name[km]=ផ្លាស់ទី Diamonds
+Name[pt]=Diamantes em movimento
+Name[pt_BR]=Diamantes em movimento
+Name[uk]=Пересування діамантів
+Name[zh_TW]=寶石移動中
 Comment=Diamonds are moving.
+Comment[km]=Diamonds កំពុង​ផ្លាស់ទី ។
+Comment[pt]=Encontram-se diamantes em movimento.
+Comment[pt_BR]=Encontram-se diamantes em movimento.
+Comment[uk]=Діаманти пересуваються.
+Comment[zh_TW]=寶石移動中
 Contexts=game
 Sound=
 Action=None
 
 [Event/gamefinished]
 Name=Game over
+Name[km]=ល្បែង​ចប់​ហើយ
+Name[pt]=Fim do jogo
+Name[pt_BR]=Fim do jogo
+Name[uk]=Гру завершено
+Name[zh_TW]=遊戲結束
 Comment=Time is up.
+Comment[km]=អស់​ពេល​ហើយ
+Comment[pt]=O tempo terminou.
+Comment[pt_BR]=O tempo terminou.
+Comment[uk]=Час сплинув.
+Comment[zh_TW]=時間到了。
 Contexts=game
 Sound=KDE-Im-User-Auth.ogg
 Action=Sound
