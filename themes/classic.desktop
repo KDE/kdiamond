@@ -1,12 +1,14 @@
 [KGameTheme]
 VersionFormat=1
 Name=Classic Theme
+Name[ga]=Téama Clasaiceach
 Name[km]=ស្បែក​បុរាណ
 Name[pt]=Tema Clássico
 Name[pt_BR]=Tema Clássico
 Name[uk]=Класична тема
 Name[zh_TW]=傳統主題
 Description=The classic theme for KDiamond.
+Description[ga]=Téama clasaiceach le haghaidh KDiamond.
 Description[km]=ស្បែក​បុរាណ​សម្រាប់ KDiamond ។
 Description[pt]=O tema clássico do KDiamond.
 Description[pt_BR]=O tema clássico do KDiamond.
