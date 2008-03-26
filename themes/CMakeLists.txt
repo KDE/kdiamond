@@ -1,7 +1,4 @@
 set(kdiamond_THEME_SRCS
-	classic.desktop
-	classic.png
-	classic.svgz
 	default.desktop
 	default.svgz
 	default.png
