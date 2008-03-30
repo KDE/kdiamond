@@ -47,7 +47,7 @@ class Diamond : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
     public:
-        Diamond(int xIndex, int yIndex, qreal xPos, qreal yPos, KDiamond::Color color, Board *board);
+        Diamond(int xIndex, int yIndex, int xPos, int yPos, KDiamond::Color color, Board *board);
 
         KDiamond::Color color() const;
         int xIndex() const;

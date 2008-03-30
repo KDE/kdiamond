@@ -35,7 +35,7 @@ KDiamond::Color KDiamond::colorFromNumber(int number)
     }
 }
 
-Diamond::Diamond(int xIndex, int yIndex, qreal xPos, qreal yPos, KDiamond::Color color, Board *board)
+Diamond::Diamond(int xIndex, int yIndex, int xPos, int yPos, KDiamond::Color color, Board *board)
     : QGraphicsPixmapItem(0, board)
     , m_board(board)
     , m_color(color)
@@ -90,10 +90,16 @@ void Diamond::updateGeometry()
     prepareGeometryChange();
     //update pixmap
     setPixmap(Renderer::self()->diamond(m_color));
+    //get proper bounding rect (problem: there is a padding of 0.5 in local coords around the pixmap; we want the pixmap's boundary)
+    QRectF bounds = boundingRect();
+    bounds.setLeft(bounds.left() + 0.5);
+    bounds.setTop(bounds.top() + 0.5);
+    bounds.setRight(bounds.right() - 0.5);
+    bounds.setBottom(bounds.bottom() - 0.5);
+    const QRectF sceneBounds = mapToScene(bounds).boundingRect();
     //resize
-    QRectF bounds = sceneBoundingRect();
-    qreal diamondEdgeLength = qMax(1.0, m_board->diamondEdgeLength()); //diamonds should be at least 1 pixel high to avoid problems with zero size
-    scale(diamondEdgeLength / bounds.width(), diamondEdgeLength / bounds.height());
+    const qreal diamondEdgeLength = qMax(1, m_board->diamondEdgeLength()); //diamonds should be at least 1 pixel high to avoid problems with zero size
+    scale(diamondEdgeLength / sceneBounds.width(), diamondEdgeLength / sceneBounds.height());
     //change position
     setPos(m_board->boardToScene(m_pos));
 }
@@ -101,7 +107,7 @@ void Diamond::updateGeometry()
 void Diamond::setPosInBoardCoords(const QPointF &pos)
 {
     m_pos = pos;
-    setPos(m_board->boardToScene(m_pos).toPoint());
+    setPos(m_board->boardToScene(m_pos));
 }
 
 void Diamond::mousePressEvent(QGraphicsSceneMouseEvent *)

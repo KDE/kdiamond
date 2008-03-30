@@ -73,10 +73,9 @@ class Board : public QGraphicsScene
         int diamondCountOnEdge() const;
         bool isTimeUp() const;
 
-        QPointF boardToScene(const QPointF &boardCoord) const;
-        QPointF sceneToBoard(const QPointF &sceneCoord) const;
-        void resizeScene(qreal width, qreal height, bool force = false);
-        qreal diamondEdgeLength() const;
+        QPoint boardToScene(const QPointF &boardCoord) const;
+        void resizeScene(int width, int height, bool force = false);
+        int diamondEdgeLength() const;
 
         void mouseOnDiamond(int xIndex, int yIndex);
     public slots:
@@ -107,7 +106,7 @@ class Board : public QGraphicsScene
         KGamePopupItem *m_messenger;
         Animator *m_animator;
 
-        qreal m_leftOffset, m_topOffset, m_diamondEdgeLength; //necessary for conversion between board coordinates (i.e. (0,0) for the top left point, 1 unit = 1 diamond) and scene coordinates (as defined by Qt)
+        int m_leftOffset, m_topOffset, m_diamondEdgeLength; //necessary for conversion between board coordinates (i.e. (0,0) for the top left point, 1 unit = 1 diamond) and scene coordinates (as defined by Qt)
         int m_selected1x, m_selected1y, m_selected2x, m_selected2y; //coordinates of the selected items (or -1 if they are not selected)
         int m_swapping1x, m_swapping1y, m_swapping2x, m_swapping2y; //coordinates of the swapping/swapped items (stored to revoke the swapping if necessary)
         bool m_paused, m_timeIsUp;

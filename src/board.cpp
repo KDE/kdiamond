@@ -33,9 +33,9 @@ Board::Board(KGameDifficulty::standardLevel difficulty)
     , m_background(new QGraphicsPixmapItem(0, this))
     , m_messenger(new KGamePopupItem)
     , m_animator(0)
-    , m_leftOffset(0.0)
-    , m_topOffset(0.0)
-    , m_diamondEdgeLength(1.0)
+    , m_leftOffset(0)
+    , m_topOffset(0)
+    , m_diamondEdgeLength(1)
     , m_selected1x(-1)
     , m_selected1y(-1)
     , m_selected2x(-1)
@@ -147,29 +147,21 @@ bool Board::isTimeUp() const
 }
 
 //Converts board coordinates (i.e. (0,0) is the top left point of the board, 1 unit = 1 diamond) to scene coordinates.
-QPointF Board::boardToScene(const QPointF &boardCoords) const
+QPoint Board::boardToScene(const QPointF &boardCoords) const
 {
-    return QPointF(
+    return QPoint(
         boardCoords.x() * m_diamondEdgeLength + m_leftOffset,
         boardCoords.y() * m_diamondEdgeLength + m_topOffset
     );
 }
 
-QPointF Board::sceneToBoard(const QPointF &sceneCoords) const
-{
-    return QPointF(
-        (sceneCoords.x() - m_leftOffset) / m_diamondEdgeLength,
-        (sceneCoords.y() - m_topOffset) / m_diamondEdgeLength
-    );
-}
-
-qreal Board::diamondEdgeLength() const
+int Board::diamondEdgeLength() const
 {
     return m_diamondEdgeLength;
 }
 
 //Adapt scene coordinates to size of view. (This congruence is required by KGamePopupItem.)
-void Board::resizeScene(qreal newWidth, qreal newHeight, bool force)
+void Board::resizeScene(int newWidth, int newHeight, bool force)
 {
     //do not resize if nothing would change
     if (!force && width() == newWidth && height() == newHeight)
@@ -177,7 +169,7 @@ void Board::resizeScene(qreal newWidth, qreal newHeight, bool force)
     setSceneRect(0.0, 0.0, newWidth, newHeight);
     //calculate new metrics - A board margin of half a diamond's size is hard-coded.
     m_diamondEdgeLength = qMin(newWidth, newHeight) / (m_size + 1);
-    qreal boardSize = m_size * m_diamondEdgeLength;
+    int boardSize = m_size * m_diamondEdgeLength;
     m_leftOffset = (newWidth - boardSize) / 2.0;
     m_topOffset = (newHeight - boardSize) / 2.0;
     //renderer

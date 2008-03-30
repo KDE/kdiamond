@@ -130,7 +130,7 @@ void Game::mouseReleaseEvent(QMouseEvent *event)
 
 void Game::resizeEvent(QResizeEvent *)
 {
-    qreal newWidth = width(), newHeight = height();
+    int newWidth = width(), newHeight = height();
     m_board->resizeScene(newWidth, newHeight);
     fitInView(QRectF(0.0, 0.0, newWidth, newHeight));
 }
