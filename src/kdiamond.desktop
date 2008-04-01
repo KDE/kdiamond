@@ -12,6 +12,7 @@ GenericName[pt]=Jogo de três-em-linha
 GenericName[pt_BR]=Jogo de três-em-linha
 GenericName[uk]=Гра у три в рядок
 GenericName[x-test]=xxThree-in-a-row gamexx
+GenericName[zh_CN]=三子连线棋游戏
 GenericName[zh_TW]=把三個相同的寶石連成一線
 Terminal=false
 Icon=kdiamond
