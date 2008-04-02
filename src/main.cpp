@@ -20,15 +20,12 @@
 #include "renderer.h"
 #include "settings.h"
 
-#include <QDir>
 #include <KApplication>
 #include <KAboutData>
 #include <KCmdLineArgs>
-#include <KDebug>
 #include <KGameDifficulty>
-#include <KLocale>
 #include <KGlobal>
-#include <KShell>
+#include <KLocale>
 #include <KStandardDirs>
 
 static const char description[] = I18N_NOOP("KDiamond, a three-in-a-row game.");
@@ -54,16 +51,8 @@ int main(int argc, char ** argv)
 
     KApplication app;
     KGlobal::locale()->insertCatalog("libkdegames");
-    //resource directory for KNewStuff2
-    KGlobal::dirs()->addResourceDir("data", KShell::tildeExpand(QLatin1String("~/.kdiamond/")));
-    //make sure that the themes directory exists (KNewStuff2 downloading won't work if it does not exist)
-    const QString themesDirectory = KShell::tildeExpand(QLatin1String("~/.kdiamond/kdiamond/themes/"));
-    const QDir themesDir(themesDirectory);
-    if (!themesDir.exists())
-    {
-        if (!themesDir.mkpath(themesDirectory))
-            kWarning() << i18n("Could not create the themes directory at: %1", themesDirectory);
-    }
+    //resource directory for KNewStuff2 (this call causes the directory to be created; its existence is necessary for the downloader)
+    KStandardDirs::locateLocal("appdata", "themes/");
 
     KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
     if (args->isSet("VeryEasy"))
