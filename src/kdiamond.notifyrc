@@ -8,6 +8,7 @@ Comment[zh_TW]=KDiamond 寶石方塊
 
 [Context/game]
 Name=Game
+Name[es]=Juego
 Name[ga]=Cluiche
 Name[km]=ល្បែង
 Name[pt]=Jogo
@@ -17,6 +18,7 @@ Name[x-test]=xxGamexx
 Name[zh_CN]=游戏
 Name[zh_TW]=遊戲
 Comment=Sounds that appear during a game
+Comment[es]=Sonidos que aparecen durante el juego
 Comment[ga]=Fuaimeanna le linn cluiche
 Comment[km]=សំឡេង​ដែលបង្ហាញ​​នៅ​ក្នុង​ល្បែង
 Comment[pt]=Os sons que aparecem durante um jogo
@@ -28,6 +30,7 @@ Comment[zh_TW]=遊戲間的音效
 
 [Event/remove]
 Name=Diamonds removed
+Name[es]=Diamantes eliminados
 Name[ga]=Baineadh muileataí
 Name[km]=បាន​យក Diamonds ចេញ
 Name[pt]=Diamantes removidos
@@ -37,6 +40,7 @@ Name[x-test]=xxDiamonds removedxx
 Name[zh_CN]=已消去钻石
 Name[zh_TW]=寶石已移除
 Comment=Diamonds were removed.
+Comment[es]=Se eliminaron los diamantes
 Comment[ga]=Baineadh muileataí.
 Comment[km]=Diamonds ត្រូវ​បាន​យក​ចេញ
 Comment[pt]=Foram removidos diamantes.
@@ -51,6 +55,7 @@ Action=Sound
 
 [Event/move]
 Name=Diamonds moving
+Name[es]=Moviendo los diamantes
 Name[ga]=Muileataí á mbogadh
 Name[km]=ផ្លាស់ទី Diamonds
 Name[pt]=Diamantes em movimento
@@ -60,6 +65,7 @@ Name[x-test]=xxDiamonds movingxx
 Name[zh_CN]=移动中的钻石
 Name[zh_TW]=寶石移動中
 Comment=Diamonds are moving.
+Comment[es]=Se movieron los diamantes
 Comment[ga]=Muileataí á mbogadh.
 Comment[km]=Diamonds កំពុង​ផ្លាស់ទី ។
 Comment[pt]=Encontram-se diamantes em movimento.
@@ -74,6 +80,7 @@ Action=None
 
 [Event/gamefinished]
 Name=Game over
+Name[es]=Partida terminada
 Name[ga]=Cluiche thart
 Name[km]=ល្បែង​ចប់​ហើយ
 Name[pt]=Fim do jogo
@@ -83,6 +90,7 @@ Name[x-test]=xxGame overxx
 Name[zh_CN]=游戏结束
 Name[zh_TW]=遊戲結束
 Comment=Time is up.
+Comment[es]=El tiempo ha aumentado.
 Comment[ga]=Tá an cluiche críochnaithe.
 Comment[km]=អស់​ពេល​ហើយ
 Comment[pt]=O tempo terminou.

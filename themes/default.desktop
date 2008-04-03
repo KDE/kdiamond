@@ -1,6 +1,7 @@
 [KGameTheme]
 VersionFormat=1
 Name=KDiamonds Default Theme
+Name[es]=Tema predeterminado para KDiamonds
 Name[ga]=Téama Réamhshocraithe KDiamonds
 Name[km]=ស្បែក​លំនាំដើម KDiamonds
 Name[pt]=Tema Predefinido do KDiamonds
@@ -10,6 +11,7 @@ Name[x-test]=xxKDiamonds Default Themexx
 Name[zh_CN]=KDiamonds 默认主题
 Name[zh_TW]=KDiamonds 預設主題
 Description=Default theme for KDiamond.
+Description[es]=Tema predeterminado para KDiamond
 Description[ga]=Téama réamhshocraithe le haghaidh KDiamond.
 Description[km]=ស្បែក​លំនាំដើម​សម្រាប់ KDiamond ។
 Description[pt]=O tema predefinido do KDiamond.
