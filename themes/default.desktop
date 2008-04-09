@@ -2,6 +2,7 @@
 VersionFormat=1
 Name=KDiamonds Default Theme
 Name[es]=Tema predeterminado para KDiamonds
+Name[fi]=KDiamonds-pelin oletusteema
 Name[ga]=Téama Réamhshocraithe KDiamonds
 Name[km]=ស្បែក​លំនាំដើម KDiamonds
 Name[pt]=Tema Predefinido do KDiamonds
@@ -12,6 +13,7 @@ Name[zh_CN]=KDiamonds 默认主题
 Name[zh_TW]=KDiamonds 預設主題
 Description=Default theme for KDiamond.
 Description[es]=Tema predeterminado para KDiamond
+Description[fi]=Oletusteema KDiamonds-pelille.
 Description[ga]=Téama réamhshocraithe le haghaidh KDiamond.
 Description[km]=ស្បែក​លំនាំដើម​សម្រាប់ KDiamond ។
 Description[pt]=O tema predefinido do KDiamond.
