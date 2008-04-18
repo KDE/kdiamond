@@ -34,7 +34,7 @@ static const char version[] = "1.0";
 int main(int argc, char ** argv)
 {
     KAboutData about("kdiamond", 0, ki18nc("The application's name", "KDiamond"), version, ki18n(description),
-        KAboutData::License_GPL, ki18n("(C) 2008 Stefan Majewsky"));
+        KAboutData::License_GPL, ki18n("(C) 2008 Stefan Majewsky"), KLocalizedString(), "http://games.kde.org/kdiamond" );
     about.addAuthor(ki18n("Stefan Majewsky"), ki18n("Original author and current maintainer"), "majewsky@gmx.net");
     about.addCredit(ki18n("Eugene Trounev"), ki18n("Default theme"), "eugene.trounev@gmail.com");
     about.addCredit(ki18n("Felix Lemke"), ki18n("Classic theme"), "lemke.felix@ages-skripte.org");
