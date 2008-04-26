@@ -30,6 +30,7 @@
 #include <KActionCollection>
 #include <KApplication>
 #include <KConfigDialog>
+#include <KUser>
 #include <KGameDifficulty>
 #include <KGameThemeSelector>
 #include <KLocalizedString>
@@ -137,10 +138,18 @@ void MainWindow::timeIsUp()
 
 void MainWindow::gameOver()
 {
+    KUser user;
+    // Fill in default user
+    QString userName = user.property(KUser::FullName).toString();
+    if (userName.isEmpty())
+        userName = user.loginName();
+    KScoreDialog::FieldInfo scoreInfo;
+    scoreInfo[KScoreDialog::Name] = userName;
+    scoreInfo[KScoreDialog::Score].setNum(m_game->points());
     //report score
     KScoreDialog dialog(KScoreDialog::Name | KScoreDialog::Score, this);
     dialog.setConfigGroup(KGameDifficulty::levelString());
-    dialog.addScore(m_game->points());
+    dialog.addScore(scoreInfo, KScoreDialog::AskName);
     dialog.exec();
 }
 
