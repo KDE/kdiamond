@@ -1,20 +1,25 @@
 [KGameTheme]
 VersionFormat=1
 Name=KDiamond Default Theme
+Name[el]=Προκαθορισμένο θέμα KDiamond
 Name[fa]=چهره پیش‌فرض جواهرات
 Name[ga]=Téama Réamhshocraithe KDiamond
 Name[km]=ស្បែក​លំនាំដើម​របស់ KDiamonds
+Name[nds]=KDiamond-Standardmuster
 Name[pt_BR]=Tema padrão do KDiamante
 Name[sv]=Kdiamant standardtema
 Name[uk]=Типова тема КДіаманта
+Name[zh_CN]=KDiamond 默认主题
 Name[zh_TW]=KDiamonds 預設主題
 Description=Default theme for KDiamond.
+Description[el]=Προκαθορισμένο θέμα για το KDiamond.
 Description[es]=Tema predeterminado para KDiamond
 Description[fa]=چهره پیش‌فرض برای جواهرات
 Description[fi]=Oletusteema KDiamonds-pelille.
 Description[ga]=Téama réamhshocraithe le haghaidh KDiamond.
 Description[ja]=KDiamond の標準テーマ
 Description[km]=ស្បែក​លំនាំដើម​សម្រាប់ KDiamond ។
+Description[nds]=Standardmuster för KDiamond
 Description[pt]=O tema predefinido do KDiamond.
 Description[pt_BR]=Tema padrão do KDiamante para o KDE4
 Description[sv]=Standardtema för Kdiamant.
