@@ -26,6 +26,7 @@
     class Game;
 #endif
 
+class KToggleAction;
 class QTime;
 class QTimer;
 #include <KXmlGuiWindow>
@@ -54,6 +55,7 @@ class MainWindow : public KXmlGuiWindow
         void loadSettings();
         void showMinutesOnTimer(bool showMinutes);
     signals:
+        void showHint();
         void pause(bool paused);
         void updateScheduled(int milliseconds);
     protected:
@@ -61,8 +63,10 @@ class MainWindow : public KXmlGuiWindow
     protected slots:
         void updateTime();
         void updatePoints(int points);
+        void updateMoves(int moves);
         void updateRemainingTime(int remainingSeconds);
     private:
+        KToggleAction *untimed;
         Game *m_game;
         Container *m_container;
 

@@ -19,5 +19,9 @@
      <label>Show minutes separately on the timer.</label>
      <default>false</default>
     </entry>
+    <entry name="Untimed" type="Bool">
+     <label>Play an untimed game.</label>
+     <default>false</default>
+    </entry>
   </group>
 </kcfg>

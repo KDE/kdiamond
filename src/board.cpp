@@ -146,6 +146,72 @@ bool Board::isTimeUp() const
     return m_timeIsUp;
 }
 
+//Checks amount of possible moves remaining
+void Board::getMoves()
+{
+    m_availableMoves.clear();
+    KDiamond::Color curColor;
+    for (int x = 0; x < m_size; ++x)
+    {
+        for (int y = 0; y < m_size; ++y)
+        {
+            curColor = m_diamonds[x][y]->color();
+            if ((x < (m_size-1)) && (m_diamonds[x+1][y]->color() == curColor))
+            {
+                if ((onBoard(x-2, y)) && (m_diamonds[x-2][y]->color() == curColor))
+                    m_availableMoves.append(QPoint(x-2, y));
+                if ((onBoard(x-1, y-1)) && (m_diamonds[x-1][y-1]->color() == curColor))
+                    m_availableMoves.append(QPoint(x-1, y-1));
+                if ((onBoard(x-1, y+1)) && (m_diamonds[x-1][y+1]->color() == curColor))
+                    m_availableMoves.append(QPoint(x-1, y+1));
+                if ((onBoard(x+3, y)) && (m_diamonds[x+3][y]->color() == curColor))
+                    m_availableMoves.append(QPoint(x+3, y));
+                if ((onBoard(x+2, y-1)) && (m_diamonds[x+2][y-1]->color() == curColor))
+                    m_availableMoves.append(QPoint(x+2, y-1));
+                if ((onBoard(x+2, y+1)) && (m_diamonds[x+2][y+1]->color() == curColor))
+                    m_availableMoves.append(QPoint(x+2, y+1));
+            }
+            if ((x < (m_size-2)) && (m_diamonds[x+2][y]->color() == curColor))
+            {
+                if ((onBoard(x+1, y-1)) && (m_diamonds[x+1][y-1]->color() == curColor))
+                    m_availableMoves.append(QPoint(x+1, y-1));
+                if ((onBoard(x+1, y+1)) && (m_diamonds[x+1][y+1]->color() == curColor))
+                    m_availableMoves.append(QPoint(x+1, y+1));
+            }
+            if ((y < (m_size-1)) && (m_diamonds[x][y+1]->color() == curColor))
+            {
+                if ((onBoard(x, y-2)) && (m_diamonds[x][y-2]->color() == curColor))
+                    m_availableMoves.append(QPoint(x, y-2));
+                if ((onBoard(x-1, y-1)) && (m_diamonds[x-1][y-1]->color() == curColor))
+                    m_availableMoves.append(QPoint(x-1, y-1));
+                if ((onBoard(x+1, y-1)) && (m_diamonds[x+1][y-1]->color() == curColor))
+                    m_availableMoves.append(QPoint(x+1, y-1));
+                if ((onBoard(x, y+3)) && (m_diamonds[x][y+3]->color() == curColor))
+                    m_availableMoves.append(QPoint(x, y+3));
+                if ((onBoard(x-1, y+2)) && (m_diamonds[x-1][y+2]->color() == curColor))
+                    m_availableMoves.append(QPoint(x-1, y+2));
+                if ((onBoard(x+1, y+2)) && (m_diamonds[x+1][y+2]->color() == curColor))
+                    m_availableMoves.append(QPoint(x+1, y+2));
+            }
+            if ((y < (m_size-2)) && (m_diamonds[x][y+2]->color() == curColor))
+            {
+                if ((onBoard(x-1, y+1)) && (m_diamonds[x-1][y+1]->color() == curColor))
+                    m_availableMoves.append(QPoint(x-1, y+1));
+                if ((onBoard(x+1, y+1)) && (m_diamonds[x+1][y+1]->color() == curColor))
+                    m_availableMoves.append(QPoint(x+1, y+1));
+            }
+        }
+    }
+    emit numberMoves(m_availableMoves.size());
+    if (m_availableMoves.isEmpty())
+    {
+        m_selection1->hide();
+        m_selection2->hide();
+        m_timeIsUp = true;
+        showMessage(i18nc("No moves remaining", "Game over."), 0);
+    }
+}
+
 //Converts board coordinates (i.e. (0,0) is the top left point of the board, 1 unit = 1 diamond) to scene coordinates.
 QPoint Board::boardToScene(const QPointF &boardCoords) const
 {
@@ -279,6 +345,8 @@ void Board::update()
         //finish game if possible
         if (m_timeIsUp)
             emit gameOver();
+        else
+            getMoves();
         return;
     }
     //execute first job in queue
@@ -524,6 +592,23 @@ void Board::fillGaps()
     ((MoveAnimator*) m_animator)->setMoveLength(maxMoveLength);
     m_animator->start();
     connect(m_animator, SIGNAL(finished()), this, SLOT(animationFinished()));
+}
+
+bool Board::onBoard(int x, int y) const
+{
+    if ((0 <= x && x < m_size) && (0 <= y && y < m_size))
+        return true;
+    else
+        return false;
+}
+
+void Board::showHint()
+{
+    QPoint location = m_availableMoves.at(qrand()%m_availableMoves.size());
+    m_selected1x = location.x();
+    m_selected1y = location.y();
+    m_selection1->setPosInBoardCoords(location);
+    m_selection1->show();
 }
 
 void Board::animationFinished()

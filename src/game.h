@@ -50,6 +50,7 @@ class Game : public QGraphicsView
         void update();
         void updateTheme();
         void gameOver();
+        void setUntimed(bool untimed);
     signals:
         void pointsChanged(int points);
         void remainingTimeChanged(int remainingTime);
@@ -67,7 +68,7 @@ class Game : public QGraphicsView
 
         int m_points;
         int m_secondsEarned, m_millisecondsPaused, m_secondsRemaining;
-        bool m_paused, m_finished;
+        bool m_paused, m_finished, m_untimed;
 };
 
 #endif //KDIAMOND_GAME_H
