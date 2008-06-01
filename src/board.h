@@ -80,6 +80,7 @@ class Board : public QGraphicsScene
         void mouseOnDiamond(int xIndex, int yIndex);
     public slots:
         void animationFinished();
+        void clearSelection();
         void hideMessage();
         void pause(bool paused);
         void showMessage(const QString &message, int timeout = 0);

@@ -20,6 +20,8 @@
 #include "board.h"
 #include "renderer.h"
 
+#include <QGraphicsSceneMouseEvent>
+
 KDiamond::Color KDiamond::colorFromNumber(int number)
 {
     switch (number)
@@ -110,10 +112,55 @@ void Diamond::setPosInBoardCoords(const QPointF &pos)
     setPos(m_board->boardToScene(m_pos));
 }
 
-void Diamond::mousePressEvent(QGraphicsSceneMouseEvent *)
+void Diamond::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-    if (!m_board->isTimeUp())
+    m_mouseDown = true;
+    m_mouseDownPos = event->pos();
+}
+
+void Diamond::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+{
+    if (m_mouseDown)
+    {
+        //check if diamond was dragged onto another one
+        const QPointF pos = event->pos();
+        const qreal dx = pos.x() - m_mouseDownPos.x(), dy = pos.y() - m_mouseDownPos.y();
+        const QSizeF diamondSize = boundingRect().size();
+        static const qreal draggingFuzziness = 2.0 / 3.0;
+        if (qAbs(dx) >= diamondSize.width() * draggingFuzziness)
+        {
+            //do not proceed if the diamond where this one was dragged on does not exist (i.e. this diamond is on one of the board edges)
+            if (dx < 0 && m_xIndex == 0)
+                return;
+            if (dx > 0 && m_xIndex == m_board->diamondCountOnEdge() - 1)
+                return;
+            //dragged in X direction - simulate two clicks (on this one, then on the other one -> that is logically the same operation)
+            m_board->clearSelection();
+            m_board->mouseOnDiamond(m_xIndex, m_yIndex);
+            m_board->mouseOnDiamond(m_xIndex + (dx < 0 ? -1 : 1), m_yIndex);
+            m_mouseDown = false; //mouse action has been handled
+        }
+        if (qAbs(dy) >= diamondSize.height() * draggingFuzziness)
+        {
+            if (dy < 0 && m_yIndex == 0)
+                return;
+            if (dy > 0 && m_yIndex == m_board->diamondCountOnEdge() - 1)
+                return;
+            m_board->clearSelection();
+            m_board->mouseOnDiamond(m_xIndex, m_yIndex);
+            m_board->mouseOnDiamond(m_xIndex, m_yIndex + (dy < 0 ? -1 : 1));
+            m_mouseDown = false;
+        }
+    }
+}
+
+void Diamond::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+{
+    if (!m_board->isTimeUp() && m_mouseDown && boundingRect().contains(event->pos()))
+    {
         m_board->mouseOnDiamond(m_xIndex, m_yIndex);
+        m_mouseDown = false;
+    }
 }
 
 #include "diamond.moc"

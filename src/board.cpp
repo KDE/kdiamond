@@ -242,6 +242,13 @@ void Board::mouseOnDiamond(int xIndex, int yIndex)
     }
 }
 
+void Board::clearSelection()
+{
+    m_selection1->hide();
+    m_selection2->hide();
+    m_selected1x = m_selected1y = m_selected2x = m_selected2y = -1;
+}
+
 void Board::pause(bool paused)
 {
     m_paused = paused;
