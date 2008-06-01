@@ -71,7 +71,7 @@ MainWindow::MainWindow(QWidget *parent)
     //init GUI - statusbar etc.
     statusBar()->insertPermanentItem(i18n("Points: %1", 0), 1, 1);
     statusBar()->insertPermanentItem(i18np("Time left: 1 second", "Time left: %1 seconds", 0), 2, 1);
-    statusBar()->insertPermanentItem(i18n("Moves remaining: %1", 0), 3, 1);
+    statusBar()->insertPermanentItem(i18n("Possible moves: %1", 0), 3, 1);
     setAutoSaveSettings();
     //init GUI - center area
     m_game = 0;
@@ -188,7 +188,7 @@ void MainWindow::updatePoints(int points)
 
 void MainWindow::updateMoves(int moves)
 {
-    statusBar()->changeItem(i18n("Moves remaining: %1", moves), 3);
+    statusBar()->changeItem(i18n("Possible moves: %1", moves), 3);
 }
 
 void MainWindow::updateRemainingTime(int remainingSeconds)
