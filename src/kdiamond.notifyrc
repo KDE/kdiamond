@@ -1,6 +1,7 @@
 [Global]
 IconName=kdiamond
 Comment=kdiamond
+Comment[de]=KDiamond
 Comment[fa]=جواهرات
 Comment[nds]=KDiamond
 Comment[sv]=Kdiamant
@@ -11,6 +12,7 @@ Comment[zh_TW]=KDiamond 寶石方塊
 
 [Context/game]
 Name=Game
+Name[de]=Spiel
 Name[el]=Παιχνίδι
 Name[es]=Juego
 Name[et]=Mäng
@@ -145,6 +147,7 @@ Action=None
 [Event/gamefinished]
 Name=Game over
 Name[ca]=Fi de la partida
+Name[de]=Spielende
 Name[el]=Τέλος παιχνιδιού
 Name[es]=Partida terminada
 Name[et]=Mäng võidetud
