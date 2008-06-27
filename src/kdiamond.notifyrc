@@ -169,6 +169,7 @@ Name[x-test]=xxGame overxx
 Name[zh_CN]=游戏结束
 Name[zh_TW]=遊戲結束
 Comment=Time is up.
+Comment[de]=Zeit ist abgelaufen
 Comment[el]=Τέλος χρόνου.
 Comment[es]=El tiempo ha aumentado.
 Comment[et]=Aeg on läbi.
