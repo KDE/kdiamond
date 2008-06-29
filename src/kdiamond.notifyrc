@@ -12,6 +12,7 @@ Comment[zh_TW]=KDiamond 寶石方塊
 
 [Context/game]
 Name=Game
+Name[da]=Spil
 Name[de]=Spiel
 Name[el]=Παιχνίδι
 Name[es]=Juego
@@ -34,6 +35,8 @@ Name[x-test]=xxGamexx
 Name[zh_CN]=游戏
 Name[zh_TW]=遊戲
 Comment=Sounds that appear during a game
+Comment[da]=Lyde der fremkommer under et spil
+Comment[de]=Klangeffekte während des Spiels
 Comment[el]=Ήχοι κατά τη διάρκεια του παιχνιδιού
 Comment[es]=Sonidos que aparecen durante el juego
 Comment[et]=Mänguaegsed helid
@@ -56,6 +59,7 @@ Comment[zh_TW]=遊戲間的音效
 
 [Event/remove]
 Name=Diamonds removed
+Name[da]=Diamanter fjernet
 Name[el]=Αφαιρέθηκαν διαμάντια
 Name[es]=Diamantes eliminados
 Name[et]=Teemandid eemaldati
@@ -76,6 +80,7 @@ Name[x-test]=xxDiamonds removedxx
 Name[zh_CN]=已消去钻石
 Name[zh_TW]=寶石已移除
 Comment=Diamonds were removed.
+Comment[da]=Diamanter blev fjernet
 Comment[el]=Τα διαμάντια αφαιρέθηκαν.
 Comment[es]=Se eliminaron los diamantes
 Comment[et]=Teemandid eemaldati.
@@ -101,6 +106,7 @@ Action=Sound
 
 [Event/move]
 Name=Diamonds moving
+Name[da]=Diamanter der flytter
 Name[el]=Κίνηση διαμαντιών
 Name[es]=Moviendo los diamantes
 Name[et]=Teemantide liikumine
@@ -121,6 +127,7 @@ Name[x-test]=xxDiamonds movingxx
 Name[zh_CN]=移动中的钻石
 Name[zh_TW]=寶石移動中
 Comment=Diamonds are moving.
+Comment[da]=Diamanter flytter
 Comment[el]=Τα διαμάντια κινούνται.
 Comment[es]=Se movieron los diamantes
 Comment[et]=Teemandid liiguvad.
@@ -147,6 +154,7 @@ Action=None
 [Event/gamefinished]
 Name=Game over
 Name[ca]=Fi de la partida
+Name[da]=Spillet er slut
 Name[de]=Spielende
 Name[el]=Τέλος παιχνιδιού
 Name[es]=Partida terminada
@@ -169,6 +177,7 @@ Name[x-test]=xxGame overxx
 Name[zh_CN]=游戏结束
 Name[zh_TW]=遊戲結束
 Comment=Time is up.
+Comment[da]=Tiden er gået
 Comment[de]=Zeit ist abgelaufen
 Comment[el]=Τέλος χρόνου.
 Comment[es]=El tiempo ha aumentado.
