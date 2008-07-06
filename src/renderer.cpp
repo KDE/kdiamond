@@ -31,7 +31,7 @@ class RendererPrivate
 {
     public:
         RendererPrivate();
-        ~RendererPrivate();
+        ~RendererPrivate() {};
 
         KSvgRenderer m_renderer;
         KPixmapCache m_cache;
@@ -68,6 +68,7 @@ Renderer::Renderer(const Renderer &)
 
 Renderer::~Renderer()
 {
+    delete p;
 }
 
 Renderer *Renderer::self()
