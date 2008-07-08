@@ -13,6 +13,7 @@ Comment[zh_TW]=KDiamond 寶石方塊
 
 [Context/game]
 Name=Game
+Name[cs]=Hra
 Name[da]=Spil
 Name[de]=Spiel
 Name[el]=Παιχνίδι
