@@ -26,6 +26,7 @@
 #include <QList>
 #include <QObject>
 #include <QPointF>
+class QTime;
 class QTimeLine;
 
 namespace KDiamond
@@ -66,6 +67,7 @@ class Animator : public QObject
         int m_frameCount;
 
         bool m_started, m_playedLastFrame; //the latter prevents a race condition between the last setFrame and finished
+        QTime *m_time;
         QTimeLine *m_timer;
 
         QList<AnimationData> m_data;

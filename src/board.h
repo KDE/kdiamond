@@ -41,7 +41,7 @@ namespace KDiamond
     //specification of the difficulties
     enum Size
     {
-        VeryEasySize = 12,
+        VeryEasySize = 50,
         EasySize = 10,
         MediumSize = 8,
         HardSize = 8,
@@ -49,7 +49,7 @@ namespace KDiamond
     };
     enum ColorCount
     {
-        VeryEasyColors = 5,
+        VeryEasyColors = 3,
         EasyColors = 5,
         MediumColors = 5,
         HardColors = 6,
@@ -72,6 +72,7 @@ class Board : public QGraphicsScene
         ~Board();
         int diamondCountOnEdge() const;
         bool isTimeUp() const;
+        void getMoves();
 
         QPoint boardToScene(const QPointF &boardCoord) const;
         void resizeScene(int width, int height, bool force = false);
@@ -80,24 +81,29 @@ class Board : public QGraphicsScene
         void mouseOnDiamond(int xIndex, int yIndex);
     public slots:
         void animationFinished();
+        void clearSelection();
         void hideMessage();
         void pause(bool paused);
         void showMessage(const QString &message, int timeout = 0);
         void update();
         void timeIsUp();
+        void showHint();
     signals:
         void boardResized();
         void diamondsRemoved(int count, int cascade);
+        void numberMoves(int moves);
         void updateScheduled(int milliseconds);
         void gameOver();
     private:
         QSet<QPoint *> findCompletedRows();
         void fillGaps();
+        bool onBoard(int x, int y) const;
     private:
         KDiamond::Size m_size;
         KDiamond::ColorCount m_colorCount;
         QList<KDiamond::Job> m_jobQueue;
         QSet<QPoint *> m_diamondsToRemove;
+        QList<QPoint> m_availableMoves;
 
         Diamond ***m_diamonds;
         Diamond *m_selection1, *m_selection2;

@@ -60,12 +60,16 @@ class Diamond : public QObject, public QGraphicsPixmapItem
         void updateGeometry();
     protected:
         virtual void mousePressEvent(QGraphicsSceneMouseEvent *);
+        virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *);
+        virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *);
     private:
         Board *m_board;
 
         KDiamond::Color m_color;
         int m_xIndex, m_yIndex; //the index of the diamond in the Board's internal array (used for communication with Board)
         QPointF m_pos, m_target; //current position of diamond in board coordinates (see Board::boardToScene for details)
+        bool m_mouseDown;
+        QPointF m_mouseDownPos; //position of last mouse-down event in diamond coordinates
 };
 
 #endif //KDIAMOND_DIAMOND_H

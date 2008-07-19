@@ -19,6 +19,7 @@
 #include "game.h"
 #include "board.h"
 #include "mainwindow.h"
+#include "settings.h"
 
 #include <QMouseEvent>
 #include <QTime>
@@ -38,6 +39,7 @@ Game::Game(KGameDifficulty::standardLevel difficulty, MainWindow *mainWindow = 0
     , m_secondsRemaining(0)
     , m_paused(false)
     , m_finished(false)
+    , m_untimed(Settings::untimed())
 {
     //init timers
     m_gameTime->start();
@@ -89,15 +91,12 @@ void Game::pause(bool paused)
 
 void Game::update()
 {
-    if (m_paused)
+    if (m_paused || m_untimed)
         return;
     //calculate new time
     int secondsRemaining = KDiamond::GameDuration + m_secondsEarned + (m_millisecondsPaused - m_gameTime->elapsed()) / 1000;
     if (secondsRemaining <= 0)
     {
-        m_finished = true;
-        KNotification::event("gamefinished");
-        disconnect(m_mainWindow, SIGNAL(updateScheduled(int)), this, SLOT(update()));
         emit timeIsUp(m_points);
     }
     else if (m_secondsRemaining != secondsRemaining)
@@ -107,6 +106,9 @@ void Game::update()
 
 void Game::gameOver()
 {
+    m_finished = true;
+    KNotification::event("gamefinished");
+    disconnect(m_mainWindow, SIGNAL(updateScheduled(int)), this, SLOT(update()));
     disconnect(m_mainWindow, SIGNAL(updateScheduled(int)), m_board, SLOT(update()));
 }
 
@@ -144,6 +146,12 @@ void Game::updateTheme()
 void Game::wheelEvent(QWheelEvent *event)
 {
     event->ignore(); //prevent user-triggered scrolling
+}
+
+void Game::setUntimed(bool untimed)
+{
+    m_untimed = untimed;
+    Settings::setUntimed(untimed);
 }
 
 #include "game.moc"

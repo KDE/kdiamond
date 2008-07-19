@@ -36,5 +36,3 @@ void Container::resizeEvent(QResizeEvent *)
 {
     m_widget->setGeometry(0, 0, width(), height());
 }
-
-#include "container.moc"

@@ -111,10 +111,9 @@ void Renderer::boardResized(int width, int height, int leftOffset, int topOffset
     const QString svgName("kdiamond-background");
     const QString boardSvgName("kdiamond-border");
     QString pixName = svgName + sizeSuffix.arg(width).arg(height);
-    QPixmap pix;
+    QPixmap pix(p->m_sceneSize);
     if (!p->m_cache.find(pixName, pix))
     {
-        pix = QPixmap(p->m_sceneSize);
         pix.fill(Qt::transparent);
         QPainter painter(&pix);
         p->m_renderer.render(&painter, svgName);
@@ -167,12 +166,11 @@ QPixmap pixmapFromCache(RendererPrivate *p, const QString &svgName, const QSize 
 {
     if (size.isEmpty())
         return QPixmap();
-    QPixmap pix;
+    QPixmap pix(size);
     QString pixName = svgName + sizeSuffix.arg(size.width()).arg(size.height());
 
     if (!p->m_cache.find(pixName, pix))
     {
-        pix = QPixmap(size);
         pix.fill(Qt::transparent);
         QPainter painter(&pix);
         p->m_renderer.render(&painter, svgName);
@@ -189,20 +187,7 @@ QPixmap Renderer::diamond(KDiamond::Color color)
     if (color != KDiamond::Selection)
     {
         for (int i = 0; i < p->m_removeAnimFrameCount; ++i)
-        {
-            QString frameSvgName = svgName + frameSuffix.arg(i);
-            QString framePixName = frameSvgName + sizeSuffix.arg(p->m_diamondSize.width()).arg(p->m_diamondSize.height());
-            QPixmap pix;
-            if (!p->m_cache.find(framePixName, pix))
-            {
-                pix = QPixmap(p->m_diamondSize);
-                pix.fill(Qt::transparent);
-                QPainter painter(&pix);
-                p->m_renderer.render(&painter, frameSvgName);
-                painter.end();
-                p->m_cache.insert(framePixName, pix);
-            }
-        }
+            pixmapFromCache(p, svgName + frameSuffix.arg(i), p->m_diamondSize);
     }
     //return the static pixmap
     return pixmapFromCache(p, svgName, p->m_diamondSize);

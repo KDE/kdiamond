@@ -22,11 +22,15 @@
 #include "diamond.h"
 #include "renderer.h"
 
+#include <QTime>
+#include <KDebug>
+
 Animator::Animator()
     : m_duration(0)
     , m_frameCount(0)
     , m_started(false)
     , m_playedLastFrame(false)
+    , m_time(0)
     , m_timer(0)
 {
 }
@@ -63,8 +67,10 @@ void Animator::start()
     m_timer = new QTimeLine;
     m_timer->setDuration(m_duration);
     m_timer->setFrameRange(1, m_frameCount);
+    m_time = new QTime;
     connect(m_timer, SIGNAL(frameChanged(int)), this, SLOT(setFrame(int)));
     connect(m_timer, SIGNAL(finished()), this, SLOT(slotFinished()));
+    m_time->start();
     m_timer->start();
 }
 
@@ -89,15 +95,18 @@ void MoveAnimator::setMoveLength(int moveLength)
 void MoveAnimator::setFrame(int frame)
 {
     qreal x, y, difference = (qreal) frame / (qreal) KDiamond::MoveFrameCount;
+    kDebug() << "Calculating " << m_data.count() << " animations in frame " << frame << " of " << m_frameCount << " starts at " << m_time->elapsed() << " msecs with a scheduled total of " << m_duration << " msecs";
     foreach (const AnimationData &data, m_data)
     {
+        //kDebug() << "Diamond moving from " << data.from << " to " << data.to << " at " << time.elapsed();
         //the absolute value of the actual difference can not be more than the calculated maximum difference
         x = data.from.x() + qBound(-difference, data.to.x() - data.from.x(), difference);
         y = data.from.y() + qBound(-difference, data.to.y() - data.from.y(), difference);
         data.diamond->setPosInBoardCoords(QPointF(x, y));
+        //kDebug() << "Diamond moved from " << data.from << " to " << data.to << " at " << time.elapsed();
     }
-//     if (frame == m_frameCount)
-//         m_playedLastFrame = true;
+    if (frame == m_frameCount)
+        m_playedLastFrame = true;
 }
 
 RemoveAnimator::RemoveAnimator()
@@ -109,8 +118,11 @@ RemoveAnimator::RemoveAnimator()
 
 void RemoveAnimator::setFrame(int frame)
 {
+    kDebug() << "Calculating " << m_data.count() << " animations in frame " << frame << " of " << m_frameCount << " starts at " << m_time->elapsed() << " msecs with a scheduled total of " << m_duration << " msecs";
     foreach (const AnimationData &data, m_data)
         data.diamond->setPixmap(Renderer::self()->removeFrame(data.diamond->color(), frame - 1));
+    if (frame == m_frameCount)
+        m_playedLastFrame = true;
 }
 
 #include "animator.moc"

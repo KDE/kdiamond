@@ -40,10 +40,12 @@
 #include <KStandardGameAction>
 #include <KStatusBar>
 #include <KToggleAction>
+#include <KToolBar>
 
 MainWindow::MainWindow(QWidget *parent)
     : KXmlGuiWindow(parent)
 {
+    QAction *action;
     //init timers and randomizer (necessary for the board)
     m_updateTimer = new QTimer;
     connect(m_updateTimer, SIGNAL(timeout()), this, SLOT(updateTime()), Qt::DirectConnection);
@@ -56,15 +58,20 @@ MainWindow::MainWindow(QWidget *parent)
     KStandardGameAction::highscores(this, SLOT(showHighscores()), actionCollection());
     KStandardGameAction::pause(this, SIGNAL(pause(bool)), actionCollection());
     KStandardGameAction::quit(kapp, SLOT(quit()), actionCollection());
+    KStandardGameAction::hint(this, SIGNAL(showHint()), actionCollection());
     KStandardAction::preferences(this, SLOT(configureSettings()), actionCollection());
     KStandardAction::configureNotifications(this, SLOT(configureNotifications()), actionCollection());
     KToggleAction *showMinutes = actionCollection()->add<KToggleAction>("show_minutes");
     showMinutes->setText(i18n("Show minutes on timer"));
     showMinutes->setChecked(Settings::showMinutes());
     connect(showMinutes, SIGNAL(triggered(bool)), this, SLOT(showMinutesOnTimer(bool)));
+    untimed = actionCollection()->add<KToggleAction>("untimed");
+    untimed->setText(i18n("Untimed Game"));
+    untimed->setChecked(Settings::untimed());
     //init GUI - statusbar etc.
     statusBar()->insertPermanentItem(i18n("Points: %1", 0), 1, 1);
     statusBar()->insertPermanentItem(i18np("Time left: 1 second", "Time left: %1 seconds", 0), 2, 1);
+    statusBar()->insertPermanentItem(i18n("Possible moves: %1", 0), 3, 1);
     setAutoSaveSettings();
     //init GUI - center area
     m_game = 0;
@@ -110,11 +117,14 @@ void MainWindow::startGame()
     }
     //start new game
     m_game = new Game(KGameDifficulty::level(), this);
+    connect(untimed, SIGNAL(triggered(bool)), m_game, SLOT(setUntimed(bool)));
     connect(this, SIGNAL(pause(bool)), m_game, SLOT(pause(bool)));
     connect(this, SIGNAL(pause(bool)), m_game->board(), SLOT(pause(bool)));
+    connect(this, SIGNAL(showHint()), m_game->board(), SLOT(showHint()));
     connect(m_game, SIGNAL(pointsChanged(int)), this, SLOT(updatePoints(int)));
     connect(m_game, SIGNAL(remainingTimeChanged(int)), this, SLOT(updateRemainingTime(int)));
     connect(m_game, SIGNAL(timeIsUp(int)), this, SLOT(timeIsUp()));
+    connect(m_game->board(), SIGNAL(numberMoves(int)), this, SLOT(updateMoves(int)));
     connect(m_game->board(), SIGNAL(gameOver()), this, SLOT(gameOver()));
     m_container->setWidget(m_game);
     //reset the Pause button's state
@@ -174,6 +184,11 @@ void MainWindow::updateTime()
 void MainWindow::updatePoints(int points)
 {
     statusBar()->changeItem(i18n("Points: %1", points), 1);
+}
+
+void MainWindow::updateMoves(int moves)
+{
+    statusBar()->changeItem(i18n("Possible moves: %1", moves), 3);
 }
 
 void MainWindow::updateRemainingTime(int remainingSeconds)
