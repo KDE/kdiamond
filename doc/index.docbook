@@ -165,7 +165,7 @@ Quits the program.
 </menuchoice></term>
 <listitem>
 <para>
-Toggles whether minutes should be shown separately on the timer (e.g. "3 minutes, 10 seconds" compared to "170 seconds").
+Toggles whether minutes should be shown separately on the timer (e.g. "3 minutes, 10 seconds" compared to "190 seconds").
 </para>
 </listitem>
 </varlistentry>
