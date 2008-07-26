@@ -19,17 +19,12 @@
 #ifndef KDIAMOND_BOARD_H
 #define KDIAMOND_BOARD_H
 
-#ifndef KDIAMOND_ANIMATOR_H
-    class Animator;
-#endif
-#ifndef KDIAMOND_DIAMOND_H
-    class Diamond;
-    class QGraphicsPixmapItem;
-#endif
-#ifndef KDIAMOND_GAME_H
-    class Game;
-#endif
+class Animator;
+class Diamond;
+class Game;
+#include "game-state.h"
 
+class QGraphicsPixmapItem;
 #include <QGraphicsScene>
 #include <QList>
 #include <QSet>
@@ -38,6 +33,7 @@ class KGamePopupItem;
 
 namespace KDiamond
 {
+
     //specification of the difficulties
     enum Size
     {
@@ -49,7 +45,7 @@ namespace KDiamond
     };
     enum ColorCount
     {
-        VeryEasyColors = 3,
+        VeryEasyColors = 5,
         EasyColors = 5,
         MediumColors = 5,
         HardColors = 6,
@@ -68,10 +64,9 @@ class Board : public QGraphicsScene
 {
     Q_OBJECT
     public:
-        Board(KGameDifficulty::standardLevel difficulty);
+        Board(Game *game, KGameDifficulty::standardLevel difficulty);
         ~Board();
         int diamondCountOnEdge() const;
-        bool isTimeUp() const;
         void getMoves();
 
         QPoint boardToScene(const QPointF &boardCoord) const;
@@ -82,18 +77,15 @@ class Board : public QGraphicsScene
     public slots:
         void animationFinished();
         void clearSelection();
-        void hideMessage();
-        void pause(bool paused);
-        void showMessage(const QString &message, int timeout = 0);
+        void message(const QString &message);
+        void stateChange(KDiamond::State state);
         void update();
-        void timeIsUp();
         void showHint();
     signals:
         void boardResized();
-        void diamondsRemoved(int count, int cascade);
         void numberMoves(int moves);
         void updateScheduled(int milliseconds);
-        void gameOver();
+        void pendingAnimationsFinished();
     private:
         QSet<QPoint *> findCompletedRows();
         void fillGaps();
@@ -108,6 +100,7 @@ class Board : public QGraphicsScene
         Diamond ***m_diamonds;
         Diamond *m_selection1, *m_selection2;
         QGraphicsPixmapItem *m_background;
+        Game *m_game;
 
         KGamePopupItem *m_messenger;
         Animator *m_animator;
@@ -115,8 +108,6 @@ class Board : public QGraphicsScene
         int m_leftOffset, m_topOffset, m_diamondEdgeLength; //necessary for conversion between board coordinates (i.e. (0,0) for the top left point, 1 unit = 1 diamond) and scene coordinates (as defined by Qt)
         int m_selected1x, m_selected1y, m_selected2x, m_selected2y; //coordinates of the selected items (or -1 if they are not selected)
         int m_swapping1x, m_swapping1y, m_swapping2x, m_swapping2y; //coordinates of the swapping/swapped items (stored to revoke the swapping if necessary)
-        bool m_paused, m_timeIsUp;
-        int m_cascade; //cascade count (necessary for score calculation in Game)
 };
 
 #endif //KDIAMOND_BOARD_H

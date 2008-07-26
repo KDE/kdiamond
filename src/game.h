@@ -19,22 +19,18 @@
 #ifndef KDIAMOND_GAME_H
 #define KDIAMOND_GAME_H
 
-#ifndef KDIAMOND_BOARD_H
-    class Board;
-#endif
-#ifndef KDIAMOND_MAINWINDOW_H
-    class MainWindow;
-#endif
-
-#include <QGraphicsView>
-class QTime;
-#include <KGameDifficulty>
+class Board;
+class MainWindow;
 
 namespace KDiamond
 {
-    //base duration of a game in seconds
-    const int GameDuration = 200;
+
+	class GameState;
+
 }
+
+#include <QGraphicsView>
+#include <KGameDifficulty>
 
 class Game : public QGraphicsView
 {
@@ -43,32 +39,18 @@ class Game : public QGraphicsView
         Game(KGameDifficulty::standardLevel difficulty, MainWindow *mainWindow);
         ~Game();
 
-        int points() const;
         Board *board() const;
+        KDiamond::GameState *state() const;
     public slots:
-        void pause(bool paused);
-        void update();
         void updateTheme();
-        void gameOver();
-        void setUntimed(bool untimed);
-    signals:
-        void pointsChanged(int points);
-        void remainingTimeChanged(int remainingTime);
-        void timeIsUp(int points);
     protected:
         virtual void mouseReleaseEvent(QMouseEvent *);
         virtual void resizeEvent(QResizeEvent *);
         virtual void wheelEvent(QWheelEvent *event);
-    protected slots:
-        void diamondsRemoved(int count, int cascade);
     private:
         Board *m_board;
         MainWindow *m_mainWindow;
-        QTime *m_gameTime, *m_pauseTime;
-
-        int m_points;
-        int m_secondsEarned, m_millisecondsPaused, m_secondsRemaining;
-        bool m_paused, m_finished, m_untimed;
+        KDiamond::GameState *m_state;
 };
 
 #endif //KDIAMOND_GAME_H

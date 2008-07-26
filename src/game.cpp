@@ -18,38 +18,24 @@
 
 #include "game.h"
 #include "board.h"
+#include "game-state.h"
 #include "mainwindow.h"
 #include "settings.h"
 
 #include <QMouseEvent>
-#include <QTime>
 #include <QWheelEvent>
 #include <KLocalizedString>
-#include <KNotification>
 
 Game::Game(KGameDifficulty::standardLevel difficulty, MainWindow *mainWindow = 0)
     : QGraphicsView(mainWindow)
-    , m_board(new Board(difficulty))
+    , m_board(new Board(this, difficulty))
     , m_mainWindow(mainWindow)
-    , m_gameTime(new QTime)
-    , m_pauseTime(new QTime)
-    , m_points(0)
-    , m_secondsEarned(0)
-    , m_millisecondsPaused(0)
-    , m_secondsRemaining(0)
-    , m_paused(false)
-    , m_finished(false)
-    , m_untimed(Settings::untimed())
+    , m_state(new KDiamond::GameState)
 {
-    //init timers
-    m_gameTime->start();
-    m_pauseTime->start(); //now we can always call restart()
-    connect(m_mainWindow, SIGNAL(updateScheduled(int)), this, SLOT(update()));
     //init board
     connect(m_mainWindow, SIGNAL(updateScheduled(int)), m_board, SLOT(update()));
-    connect(m_board, SIGNAL(diamondsRemoved(int, int)), this, SLOT(diamondsRemoved(int, int)));
-    connect(this, SIGNAL(timeIsUp(int)), m_board, SLOT(timeIsUp()));
-    connect(m_board, SIGNAL(gameOver()), this, SLOT(gameOver()));
+    connect(m_state, SIGNAL(stateChanged(KDiamond::State)), m_board, SLOT(stateChange(KDiamond::State)));
+    connect(m_state, SIGNAL(message(const QString&)), m_board, SLOT(message(const QString&)));
     //init view
     setScene(m_board);
     setFrameStyle(QFrame::NoFrame);
@@ -62,13 +48,7 @@ Game::Game(KGameDifficulty::standardLevel difficulty, MainWindow *mainWindow = 0
 Game::~Game()
 {
     delete m_board;
-    delete m_gameTime;
-    delete m_pauseTime;
-}
-
-int Game::points() const
-{
-    return m_points;
+    delete m_state;
 }
 
 Board *Game::board() const
@@ -76,55 +56,14 @@ Board *Game::board() const
     return m_board;
 }
 
-void Game::pause(bool paused)
+KDiamond::GameState *Game::state() const
 {
-    if (!m_paused && paused)
-        m_pauseTime->restart();
-    else if (m_paused && !paused)
-        m_millisecondsPaused += m_pauseTime->elapsed(); //add pause time to calculate time correctly
-    m_paused = paused;
-    if (paused)
-        m_board->showMessage(i18n("Click the pause button again to resume the game."), 0);
-    else
-        m_board->hideMessage();
-}
-
-void Game::update()
-{
-    if (m_paused || m_untimed)
-        return;
-    //calculate new time
-    int secondsRemaining = KDiamond::GameDuration + m_secondsEarned + (m_millisecondsPaused - m_gameTime->elapsed()) / 1000;
-    if (secondsRemaining <= 0)
-    {
-        emit timeIsUp(m_points);
-    }
-    else if (m_secondsRemaining != secondsRemaining)
-        emit remainingTimeChanged(secondsRemaining);
-    m_secondsRemaining = secondsRemaining;
-}
-
-void Game::gameOver()
-{
-    m_finished = true;
-    KNotification::event("gamefinished");
-    disconnect(m_mainWindow, SIGNAL(updateScheduled(int)), this, SLOT(update()));
-    disconnect(m_mainWindow, SIGNAL(updateScheduled(int)), m_board, SLOT(update()));
-}
-
-void Game::diamondsRemoved(int count, int cascade)
-{
-    m_points += cascade;
-    emit pointsChanged(m_points);
-    //If more than three diamonds were removed, give an extra second.
-    if (count > 3)
-        ++m_secondsEarned;
-    update(); //calculate new remaining time
+    return m_state;
 }
 
 void Game::mouseReleaseEvent(QMouseEvent *event)
 {
-    if (m_finished)
+    if (m_state->state() != KDiamond::Playing)
         event->ignore(); //block input after the end of the game
     else
         QGraphicsView::mouseReleaseEvent(event);
@@ -146,12 +85,6 @@ void Game::updateTheme()
 void Game::wheelEvent(QWheelEvent *event)
 {
     event->ignore(); //prevent user-triggered scrolling
-}
-
-void Game::setUntimed(bool untimed)
-{
-    m_untimed = untimed;
-    Settings::setUntimed(untimed);
 }
 
 #include "game.moc"

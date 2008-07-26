@@ -19,12 +19,9 @@
 #ifndef KDIAMOND_MAINWINDOW_H
 #define KDIAMOND_MAINWINDOW_H
 
-#ifndef KDIAMOND_CONTAINER_H
-    class Container;
-#endif
-#ifndef KDIAMOND_GAME_H
-    class Game;
-#endif
+class Container;
+class Game;
+#include "game-state.h"
 
 class KToggleAction;
 class QTime;
@@ -45,8 +42,8 @@ class MainWindow : public KXmlGuiWindow
         ~MainWindow();
     public slots:
         void startGame();
-        void timeIsUp();
-        void gameOver();
+        void stateChange(KDiamond::State state);
+        void gameIsOver();
         void showHighscores();
         void close();
 
@@ -61,12 +58,14 @@ class MainWindow : public KXmlGuiWindow
     protected:
         virtual void closeEvent(QCloseEvent *);
     protected slots:
+        void pausedAction(bool paused);
+        void untimedAction(bool untimed);
+
         void updateTime();
         void updatePoints(int points);
         void updateMoves(int moves);
         void updateRemainingTime(int remainingSeconds);
     private:
-        KToggleAction *untimed;
         Game *m_game;
         Container *m_container;
 

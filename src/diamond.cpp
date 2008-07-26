@@ -156,7 +156,7 @@ void Diamond::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 
 void Diamond::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
-    if (!m_board->isTimeUp() && m_mouseDown && boundingRect().contains(event->pos()))
+    if (m_mouseDown && boundingRect().contains(event->pos()))
     {
         m_board->mouseOnDiamond(m_xIndex, m_yIndex);
         m_mouseDown = false;

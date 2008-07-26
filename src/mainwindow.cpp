@@ -20,6 +20,7 @@
 #include "board.h"
 #include "container.h"
 #include "game.h"
+#include "game-state.h"
 #include "renderer.h"
 #include "settings.h"
 
@@ -42,10 +43,11 @@
 #include <KToggleAction>
 #include <KToolBar>
 
+//FIXME: react to state changes (former slots timeIsUp() and gameOver())
+
 MainWindow::MainWindow(QWidget *parent)
     : KXmlGuiWindow(parent)
 {
-    QAction *action;
     //init timers and randomizer (necessary for the board)
     m_updateTimer = new QTimer;
     connect(m_updateTimer, SIGNAL(timeout()), this, SLOT(updateTime()), Qt::DirectConnection);
@@ -56,7 +58,7 @@ MainWindow::MainWindow(QWidget *parent)
     //init GUI - actions
     KStandardGameAction::gameNew(this, SLOT(startGame()), actionCollection());
     KStandardGameAction::highscores(this, SLOT(showHighscores()), actionCollection());
-    KStandardGameAction::pause(this, SIGNAL(pause(bool)), actionCollection());
+    KStandardGameAction::pause(this, SLOT(pausedAction(bool)), actionCollection());
     KStandardGameAction::quit(kapp, SLOT(quit()), actionCollection());
     KStandardGameAction::hint(this, SIGNAL(showHint()), actionCollection());
     KStandardAction::preferences(this, SLOT(configureSettings()), actionCollection());
@@ -65,9 +67,10 @@ MainWindow::MainWindow(QWidget *parent)
     showMinutes->setText(i18n("Show minutes on timer"));
     showMinutes->setChecked(Settings::showMinutes());
     connect(showMinutes, SIGNAL(triggered(bool)), this, SLOT(showMinutesOnTimer(bool)));
-    untimed = actionCollection()->add<KToggleAction>("untimed");
+    KToggleAction *untimed = actionCollection()->add<KToggleAction>("untimed");
     untimed->setText(i18n("Untimed Game"));
     untimed->setChecked(Settings::untimed());
+    connect(untimed, SIGNAL(triggered(bool)), this, SLOT(untimedAction(bool)));
     //init GUI - statusbar etc.
     statusBar()->insertPermanentItem(i18n("Points: %1", 0), 1, 1);
     statusBar()->insertPermanentItem(i18np("Time left: 1 second", "Time left: %1 seconds", 0), 2, 1);
@@ -111,53 +114,51 @@ void MainWindow::startGame()
     Settings::setSkill((int) level);
     //delete old game
     if (m_game != 0)
-    {
         delete m_game;
-        m_game = 0;
-    }
     //start new game
     m_game = new Game(KGameDifficulty::level(), this);
-    connect(untimed, SIGNAL(triggered(bool)), m_game, SLOT(setUntimed(bool)));
-    connect(this, SIGNAL(pause(bool)), m_game, SLOT(pause(bool)));
-    connect(this, SIGNAL(pause(bool)), m_game->board(), SLOT(pause(bool)));
     connect(this, SIGNAL(showHint()), m_game->board(), SLOT(showHint()));
-    connect(m_game, SIGNAL(pointsChanged(int)), this, SLOT(updatePoints(int)));
-    connect(m_game, SIGNAL(remainingTimeChanged(int)), this, SLOT(updateRemainingTime(int)));
-    connect(m_game, SIGNAL(timeIsUp(int)), this, SLOT(timeIsUp()));
+    connect(m_game->state(), SIGNAL(stateChanged(KDiamond::State)), this, SLOT(stateChange(KDiamond::State)));
+    connect(m_game->state(), SIGNAL(pointsChanged(int)), this, SLOT(updatePoints(int)));
+    connect(m_game->state(), SIGNAL(leftTimeChanged(int)), this, SLOT(updateRemainingTime(int)));
     connect(m_game->board(), SIGNAL(numberMoves(int)), this, SLOT(updateMoves(int)));
-    connect(m_game->board(), SIGNAL(gameOver()), this, SLOT(gameOver()));
+    connect(m_game->board(), SIGNAL(pendingAnimationsFinished()), this, SLOT(gameIsOver()));
     m_container->setWidget(m_game);
     //reset the Pause button's state
-    QAction *pauseAction = actionCollection()->action("game_pause");
+    //TODO: move this to the general changeState slot once the architecture uses GameState::startNewGame()
+    QAction *pauseAction = actionCollection()->action(KStandardGameAction::name(KStandardGameAction::Pause));
     pauseAction->setChecked(false);
     pauseAction->setEnabled(true);
     //reset status bar
+    //TODO: is this necessary?
     updatePoints(0);
     updateRemainingTime(KDiamond::GameDuration);
 }
 
-void MainWindow::timeIsUp()
+void MainWindow::stateChange(KDiamond::State state)
 {
-    updateRemainingTime(0);
-    //reset the Pause button's state
-    QAction *pauseAction = actionCollection()->action("game_pause");
-    pauseAction->setChecked(false);
-    pauseAction->setEnabled(false);
+    if (state == KDiamond::Finished)
+    {
+        //reset the Pause button's state
+        QAction *pauseAction = actionCollection()->action(KStandardGameAction::name(KStandardGameAction::Pause));
+        pauseAction->setChecked(false);
+        pauseAction->setEnabled(false);
+    }
 }
 
-void MainWindow::gameOver()
+void MainWindow::gameIsOver()
 {
+    m_updateTimer->stop();
     //report score
     KScoreDialog dialog(KScoreDialog::Name | KScoreDialog::Score, this);
-    dialog.setConfigGroup(KGameDifficulty::levelString());
-    dialog.addScore(m_game->points());
+    dialog.setConfigGroup(KGameDifficulty::levelString()); //TODO: react to localization
+    dialog.addScore(m_game->state()->points());
     dialog.exec();
 }
 
 void MainWindow::showHighscores()
 {
-    m_game->pause(true);
-    m_game->board()->pause(true);
+    m_game->state()->setState(KDiamond::PausedUser);
     actionCollection()->action("game_pause")->setChecked(true);
     KScoreDialog dialog(KScoreDialog::Name | KScoreDialog::Score, this);
     dialog.exec();
@@ -174,11 +175,21 @@ void MainWindow::closeEvent(QCloseEvent *event)
     event->accept();
 }
 
+void MainWindow::pausedAction(bool paused)
+{
+    m_game->state()->setState(paused ? KDiamond::PausedUser : KDiamond::Playing);
+}
+
+void MainWindow::untimedAction(bool untimed)
+{
+    m_game->state()->setMode(untimed ? KDiamond::UntimedGame : KDiamond::NormalGame);
+}
+
 void MainWindow::updateTime()
 {
     int milliseconds = m_updateTime->elapsed();
     m_updateTime->restart();
-    emit updateScheduled(milliseconds);
+    emit updateScheduled(milliseconds); //TODO: are the milliseconds needed?
 }
 
 void MainWindow::updatePoints(int points)

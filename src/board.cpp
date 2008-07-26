@@ -26,11 +26,12 @@
 #include <KLocalizedString>
 #include <KNotification>
 
-Board::Board(KGameDifficulty::standardLevel difficulty)
+Board::Board(Game *game, KGameDifficulty::standardLevel difficulty)
     : QGraphicsScene()
     , m_selection1(new Diamond(0, 0, 0, 0, KDiamond::Selection, this))
     , m_selection2(new Diamond(0, 0, 0, 0, KDiamond::Selection, this))
     , m_background(new QGraphicsPixmapItem(0, this))
+    , m_game(game)
     , m_messenger(new KGamePopupItem)
     , m_animator(0)
     , m_leftOffset(0)
@@ -44,8 +45,6 @@ Board::Board(KGameDifficulty::standardLevel difficulty)
     , m_swapping1y(-1)
     , m_swapping2x(-1)
     , m_swapping2y(-1)
-    , m_paused(false)
-    , m_timeIsUp(false)
 {
     switch (difficulty)
     {
@@ -141,11 +140,6 @@ int Board::diamondCountOnEdge() const
     return m_size;
 }
 
-bool Board::isTimeUp() const
-{
-    return m_timeIsUp;
-}
-
 //Checks amount of possible moves remaining
 void Board::getMoves()
 {
@@ -207,8 +201,7 @@ void Board::getMoves()
     {
         m_selection1->hide();
         m_selection2->hide();
-        m_timeIsUp = true;
-        showMessage(i18nc("No moves remaining", "Game over."), 0);
+        m_game->state()->setState(KDiamond::Finished);
     }
 }
 
@@ -253,6 +246,8 @@ void Board::resizeScene(int newWidth, int newHeight, bool force)
 
 void Board::mouseOnDiamond(int xIndex, int yIndex)
 {
+    if (m_game->state()->state() != KDiamond::Playing)
+        return;
     if (m_selected1x == xIndex && m_selected1y == yIndex)
     {
         //clicked again on first selected diamond - remove selection
@@ -315,36 +310,16 @@ void Board::clearSelection()
     m_selected1x = m_selected1y = m_selected2x = m_selected2y = -1;
 }
 
-void Board::pause(bool paused)
-{
-    m_paused = paused;
-    for (int x = 0; x < m_size; ++x)
-    {
-        for (int y = 0; y < m_size; ++y)
-            m_diamonds[x][y]->setVisible(!paused);
-    }
-    if (paused)
-    {
-        m_selection1->hide();
-        m_selection2->hide();
-    }
-    else
-    {
-        m_selection1->setVisible(m_selected1x != -1 && m_selected1y != -1);
-        m_selection2->setVisible(m_selected2x != -1 && m_selected2y != -1);
-    }
-}
-
 void Board::update()
 {
     //see Diamond::move(const QPointF &) for explanation
-    if (m_paused || m_animator != 0)
+    if (m_game->state()->state() == KDiamond::PausedUser || m_animator != 0)
         return;
     if(m_jobQueue.count() == 0) //nothing to do in this update
     {
         //finish game if possible
-        if (m_timeIsUp)
-            emit gameOver();
+        if (m_game->state()->state() == KDiamond::Finished)
+            emit pendingAnimationsFinished();
         else
             getMoves();
         return;
@@ -369,7 +344,7 @@ void Board::update()
                 break;
             }
             //start a new cascade
-            m_cascade = 0;
+            m_game->state()->resetCascadeCounter();
             //copy selection info into another storage (to allow the user to select the next two diamonds while the cascade runs)
             m_swapping1x = m_selected1x;
             m_swapping1y = m_selected1y;
@@ -398,7 +373,6 @@ void Board::update()
             connect(m_animator, SIGNAL(finished()), this, SLOT(animationFinished()));
             break;
         case KDiamond::RemoveRowsJob:
-            m_cascade++;
             //find diamond rows and delete these diamonds
             m_diamondsToRemove = findCompletedRows();
             if (m_diamondsToRemove.count() == 0)
@@ -412,7 +386,7 @@ void Board::update()
                 //it is now safe to delete the position of the swapping diamonds
                 m_swapping1x = m_swapping1y = m_swapping2x = m_swapping2y = -1;
                 //report to Game
-                emit diamondsRemoved(m_diamondsToRemove.count(), m_cascade);
+                m_game->state()->addPoints(m_diamondsToRemove.count());
                 //prepare to fill gaps
                 m_jobQueue.prepend(KDiamond::FillGapsJob); //prepend this job as it has to be executed immediately after the animations (before handling any further user input)
                 //invoke remove animation
@@ -617,26 +591,41 @@ void Board::animationFinished()
     m_animator = 0;
 }
 
-void Board::timeIsUp()
+void Board::stateChange(KDiamond::State state)
 {
-    if (!m_timeIsUp)
+    switch (state)
     {
-        m_selection1->hide();
-        m_selection2->hide();
-        m_timeIsUp = true;
-        showMessage(i18nc("Not meant like 'You have lost', more like 'Time is up'.", "Game over."), 0);
+        case KDiamond::Finished:
+            m_selection1->hide();
+            m_selection2->hide();
+            break;
+        case KDiamond::PausedUser:
+            for (int x = 0; x < m_size; ++x)
+            {
+                for (int y = 0; y < m_size; ++y)
+                    m_diamonds[x][y]->hide();
+            }
+            m_selection1->hide();
+            m_selection2->hide();
+            break;
+        default: //not paused
+            for (int x = 0; x < m_size; ++x)
+            {
+                for (int y = 0; y < m_size; ++y)
+                    m_diamonds[x][y]->show();
+            }
+            m_selection1->setVisible(m_selected1x != -1 && m_selected1y != -1);
+            m_selection2->setVisible(m_selected2x != -1 && m_selected2y != -1);
+            break;
     }
 }
 
-void Board::showMessage(const QString &message, int timeout)
+void Board::message(const QString &message)
 {
-    m_messenger->setMessageTimeout(timeout);
-    m_messenger->showMessage(message, KGamePopupItem::TopLeft);
-}
-
-void Board::hideMessage()
-{
-    m_messenger->forceHide();
+    if (message.isEmpty())
+        m_messenger->forceHide();
+    else
+        m_messenger->showMessage(message, KGamePopupItem::TopLeft);
 }
 
 #include "board.moc"

@@ -23,7 +23,6 @@
 #include "renderer.h"
 
 #include <QTime>
-#include <KDebug>
 
 Animator::Animator()
     : m_duration(0)
@@ -95,7 +94,6 @@ void MoveAnimator::setMoveLength(int moveLength)
 void MoveAnimator::setFrame(int frame)
 {
     qreal x, y, difference = (qreal) frame / (qreal) KDiamond::MoveFrameCount;
-    kDebug() << "Calculating " << m_data.count() << " animations in frame " << frame << " of " << m_frameCount << " starts at " << m_time->elapsed() << " msecs with a scheduled total of " << m_duration << " msecs";
     foreach (const AnimationData &data, m_data)
     {
         //kDebug() << "Diamond moving from " << data.from << " to " << data.to << " at " << time.elapsed();
@@ -118,7 +116,6 @@ RemoveAnimator::RemoveAnimator()
 
 void RemoveAnimator::setFrame(int frame)
 {
-    kDebug() << "Calculating " << m_data.count() << " animations in frame " << frame << " of " << m_frameCount << " starts at " << m_time->elapsed() << " msecs with a scheduled total of " << m_duration << " msecs";
     foreach (const AnimationData &data, m_data)
         data.diamond->setPixmap(Renderer::self()->removeFrame(data.diamond->color(), frame - 1));
     if (frame == m_frameCount)
