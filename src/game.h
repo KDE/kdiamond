@@ -34,23 +34,23 @@ namespace KDiamond
 
 class Game : public QGraphicsView
 {
-    Q_OBJECT
-    public:
-        Game(KGameDifficulty::standardLevel difficulty, MainWindow *mainWindow);
-        ~Game();
+	Q_OBJECT
+	public:
+		Game(KGameDifficulty::standardLevel difficulty, MainWindow *mainWindow);
+		~Game();
 
-        Board *board() const;
-        KDiamond::GameState *state() const;
-    public slots:
-        void updateTheme();
-    protected:
-        virtual void mouseReleaseEvent(QMouseEvent *);
-        virtual void resizeEvent(QResizeEvent *);
-        virtual void wheelEvent(QWheelEvent *event);
-    private:
-        Board *m_board;
-        MainWindow *m_mainWindow;
-        KDiamond::GameState *m_state;
+		Board *board() const;
+		KDiamond::GameState *state() const;
+	public slots:
+		void updateTheme();
+	protected:
+		virtual void mouseReleaseEvent(QMouseEvent *);
+		virtual void resizeEvent(QResizeEvent *);
+		virtual void wheelEvent(QWheelEvent *event);
+	private:
+		Board *m_board;
+		MainWindow *m_mainWindow;
+		KDiamond::GameState *m_state;
 };
 
 #endif //KDIAMOND_GAME_H

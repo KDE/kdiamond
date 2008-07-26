@@ -46,228 +46,228 @@
 //FIXME: react to state changes (former slots timeIsUp() and gameOver())
 
 MainWindow::MainWindow(QWidget *parent)
-    : KXmlGuiWindow(parent)
+	: KXmlGuiWindow(parent)
 {
-    //init timers and randomizer (necessary for the board)
-    m_updateTimer = new QTimer;
-    connect(m_updateTimer, SIGNAL(timeout()), this, SLOT(updateTime()), Qt::DirectConnection);
-    m_updateTimer->start(KDiamond::UpdateInterval);
-    m_updateTime = new QTime;
-    m_updateTime->start();
-    qsrand(time(0));
-    //init GUI - actions
-    KStandardGameAction::gameNew(this, SLOT(startGame()), actionCollection());
-    KStandardGameAction::highscores(this, SLOT(showHighscores()), actionCollection());
-    KStandardGameAction::pause(this, SLOT(pausedAction(bool)), actionCollection());
-    KStandardGameAction::quit(kapp, SLOT(quit()), actionCollection());
-    KStandardGameAction::hint(this, SIGNAL(showHint()), actionCollection());
-    KStandardAction::preferences(this, SLOT(configureSettings()), actionCollection());
-    KStandardAction::configureNotifications(this, SLOT(configureNotifications()), actionCollection());
-    KToggleAction *showMinutes = actionCollection()->add<KToggleAction>("show_minutes");
-    showMinutes->setText(i18n("Show minutes on timer"));
-    showMinutes->setChecked(Settings::showMinutes());
-    connect(showMinutes, SIGNAL(triggered(bool)), this, SLOT(showMinutesOnTimer(bool)));
-    KToggleAction *untimed = actionCollection()->add<KToggleAction>("untimed");
-    untimed->setText(i18n("Untimed Game"));
-    untimed->setChecked(Settings::untimed());
-    connect(untimed, SIGNAL(triggered(bool)), this, SLOT(untimedAction(bool)));
-    //init GUI - statusbar etc.
-    statusBar()->insertPermanentItem(i18n("Points: %1", 0), 1, 1);
-    statusBar()->insertPermanentItem(i18np("Time left: 1 second", "Time left: %1 seconds", 0), 2, 1);
-    statusBar()->insertPermanentItem(i18n("Possible moves: %1", 0), 3, 1);
-    setAutoSaveSettings();
-    //init GUI - center area
-    m_game = 0;
-    m_container = new Container(this);
-    setCentralWidget(m_container);
-    //difficulty
-    KGameDifficulty::init(this, this, SLOT(startGame()));
-    KGameDifficulty::addStandardLevel(KGameDifficulty::VeryEasy);
-    KGameDifficulty::addStandardLevel(KGameDifficulty::Easy);
-    KGameDifficulty::addStandardLevel(KGameDifficulty::Medium);
-    KGameDifficulty::addStandardLevel(KGameDifficulty::Hard);
-    KGameDifficulty::addStandardLevel(KGameDifficulty::VeryHard);
-    //selected skill
-    int skill = Settings::skill();
-    if (skill < KGameDifficulty::VeryEasy) //includes default values like 0 or 1
-        KGameDifficulty::setLevel(KGameDifficulty::Easy);
-    else
-        KGameDifficulty::setLevel((KGameDifficulty::standardLevel) (skill));
-    //late GUI initiation
-    setupGUI(QSize(300, 400)); //TODO: find better solution for a minimum size
-    setCaption(i18nc("The application's name", "KDiamond"));
+	//init timers and randomizer (necessary for the board)
+	m_updateTimer = new QTimer;
+	connect(m_updateTimer, SIGNAL(timeout()), this, SLOT(updateTime()), Qt::DirectConnection);
+	m_updateTimer->start(KDiamond::UpdateInterval);
+	m_updateTime = new QTime;
+	m_updateTime->start();
+	qsrand(time(0));
+	//init GUI - actions
+	KStandardGameAction::gameNew(this, SLOT(startGame()), actionCollection());
+	KStandardGameAction::highscores(this, SLOT(showHighscores()), actionCollection());
+	KStandardGameAction::pause(this, SLOT(pausedAction(bool)), actionCollection());
+	KStandardGameAction::quit(kapp, SLOT(quit()), actionCollection());
+	KStandardGameAction::hint(this, SIGNAL(showHint()), actionCollection());
+	KStandardAction::preferences(this, SLOT(configureSettings()), actionCollection());
+	KStandardAction::configureNotifications(this, SLOT(configureNotifications()), actionCollection());
+	KToggleAction *showMinutes = actionCollection()->add<KToggleAction>("show_minutes");
+	showMinutes->setText(i18n("Show minutes on timer"));
+	showMinutes->setChecked(Settings::showMinutes());
+	connect(showMinutes, SIGNAL(triggered(bool)), this, SLOT(showMinutesOnTimer(bool)));
+	KToggleAction *untimed = actionCollection()->add<KToggleAction>("untimed");
+	untimed->setText(i18n("Untimed Game"));
+	untimed->setChecked(Settings::untimed());
+	connect(untimed, SIGNAL(triggered(bool)), this, SLOT(untimedAction(bool)));
+	//init GUI - statusbar etc.
+	statusBar()->insertPermanentItem(i18n("Points: %1", 0), 1, 1);
+	statusBar()->insertPermanentItem(i18np("Time left: 1 second", "Time left: %1 seconds", 0), 2, 1);
+	statusBar()->insertPermanentItem(i18n("Possible moves: %1", 0), 3, 1);
+	setAutoSaveSettings();
+	//init GUI - center area
+	m_game = 0;
+	m_container = new Container(this);
+	setCentralWidget(m_container);
+	//difficulty
+	KGameDifficulty::init(this, this, SLOT(startGame()));
+	KGameDifficulty::addStandardLevel(KGameDifficulty::VeryEasy);
+	KGameDifficulty::addStandardLevel(KGameDifficulty::Easy);
+	KGameDifficulty::addStandardLevel(KGameDifficulty::Medium);
+	KGameDifficulty::addStandardLevel(KGameDifficulty::Hard);
+	KGameDifficulty::addStandardLevel(KGameDifficulty::VeryHard);
+	//selected skill
+	int skill = Settings::skill();
+	if (skill < KGameDifficulty::VeryEasy) //includes default values like 0 or 1
+		KGameDifficulty::setLevel(KGameDifficulty::Easy);
+	else
+		KGameDifficulty::setLevel((KGameDifficulty::standardLevel) (skill));
+	//late GUI initiation
+	setupGUI(QSize(300, 400)); //TODO: find better solution for a minimum size
+	setCaption(i18nc("The application's name", "KDiamond"));
 }
 
 MainWindow::~MainWindow()
 {
-    m_updateTimer->stop();
-    delete m_updateTime;
-    delete m_updateTimer;
-    if (m_game != 0)
-        delete m_game;
+	m_updateTimer->stop();
+	delete m_updateTime;
+	delete m_updateTimer;
+	if (m_game != 0)
+		delete m_game;
 }
 
 void MainWindow::startGame()
 {
-    //save (eventually changed) difficulty level
-    KGameDifficulty::standardLevel level = KGameDifficulty::level();
-    Settings::setSkill((int) level);
-    //delete old game
-    if (m_game != 0)
-        delete m_game;
-    //start new game
-    m_game = new Game(KGameDifficulty::level(), this);
-    connect(this, SIGNAL(showHint()), m_game->board(), SLOT(showHint()));
-    connect(m_game->state(), SIGNAL(stateChanged(KDiamond::State)), this, SLOT(stateChange(KDiamond::State)));
-    connect(m_game->state(), SIGNAL(pointsChanged(int)), this, SLOT(updatePoints(int)));
-    connect(m_game->state(), SIGNAL(leftTimeChanged(int)), this, SLOT(updateRemainingTime(int)));
-    connect(m_game->board(), SIGNAL(numberMoves(int)), this, SLOT(updateMoves(int)));
-    connect(m_game->board(), SIGNAL(pendingAnimationsFinished()), this, SLOT(gameIsOver()));
-    m_container->setWidget(m_game);
-    //reset the Pause button's state
-    //TODO: move this to the general changeState slot once the architecture uses GameState::startNewGame()
-    QAction *pauseAction = actionCollection()->action(KStandardGameAction::name(KStandardGameAction::Pause));
-    pauseAction->setChecked(false);
-    pauseAction->setEnabled(true);
-    //reset status bar
-    //TODO: is this necessary?
-    updatePoints(0);
-    updateRemainingTime(KDiamond::GameDuration);
+	//save (eventually changed) difficulty level
+	KGameDifficulty::standardLevel level = KGameDifficulty::level();
+	Settings::setSkill((int) level);
+	//delete old game
+	if (m_game != 0)
+		delete m_game;
+	//start new game
+	m_game = new Game(KGameDifficulty::level(), this);
+	connect(this, SIGNAL(showHint()), m_game->board(), SLOT(showHint()));
+	connect(m_game->state(), SIGNAL(stateChanged(KDiamond::State)), this, SLOT(stateChange(KDiamond::State)));
+	connect(m_game->state(), SIGNAL(pointsChanged(int)), this, SLOT(updatePoints(int)));
+	connect(m_game->state(), SIGNAL(leftTimeChanged(int)), this, SLOT(updateRemainingTime(int)));
+	connect(m_game->board(), SIGNAL(numberMoves(int)), this, SLOT(updateMoves(int)));
+	connect(m_game->board(), SIGNAL(pendingAnimationsFinished()), this, SLOT(gameIsOver()));
+	m_container->setWidget(m_game);
+	//reset the Pause button's state
+	//TODO: move this to the general changeState slot once the architecture uses GameState::startNewGame()
+	QAction *pauseAction = actionCollection()->action(KStandardGameAction::name(KStandardGameAction::Pause));
+	pauseAction->setChecked(false);
+	pauseAction->setEnabled(true);
+	//reset status bar
+	//TODO: is this necessary?
+	updatePoints(0);
+	updateRemainingTime(KDiamond::GameDuration);
 }
 
 void MainWindow::stateChange(KDiamond::State state)
 {
-    if (state == KDiamond::Finished)
-    {
-        //reset the Pause button's state
-        QAction *pauseAction = actionCollection()->action(KStandardGameAction::name(KStandardGameAction::Pause));
-        pauseAction->setChecked(false);
-        pauseAction->setEnabled(false);
-    }
+	if (state == KDiamond::Finished)
+	{
+		//reset the Pause button's state
+		QAction *pauseAction = actionCollection()->action(KStandardGameAction::name(KStandardGameAction::Pause));
+		pauseAction->setChecked(false);
+		pauseAction->setEnabled(false);
+	}
 }
 
 void MainWindow::gameIsOver()
 {
-    m_updateTimer->stop();
-    //report score
-    KScoreDialog dialog(KScoreDialog::Name | KScoreDialog::Score, this);
-    dialog.setConfigGroup(KGameDifficulty::levelString()); //TODO: react to localization
-    dialog.addScore(m_game->state()->points());
-    dialog.exec();
+	m_updateTimer->stop();
+	//report score
+	KScoreDialog dialog(KScoreDialog::Name | KScoreDialog::Score, this);
+	dialog.setConfigGroup(KGameDifficulty::levelString()); //TODO: react to localization
+	dialog.addScore(m_game->state()->points());
+	dialog.exec();
 }
 
 void MainWindow::showHighscores()
 {
-    m_game->state()->setState(KDiamond::PausedUser);
-    actionCollection()->action("game_pause")->setChecked(true);
-    KScoreDialog dialog(KScoreDialog::Name | KScoreDialog::Score, this);
-    dialog.exec();
+	m_game->state()->setState(KDiamond::PausedUser);
+	actionCollection()->action("game_pause")->setChecked(true);
+	KScoreDialog dialog(KScoreDialog::Name | KScoreDialog::Score, this);
+	dialog.exec();
 }
 
 void MainWindow::close()
 {
-    Settings::self()->writeConfig();
+	Settings::self()->writeConfig();
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    close();
-    event->accept();
+	close();
+	event->accept();
 }
 
 void MainWindow::pausedAction(bool paused)
 {
-    m_game->state()->setState(paused ? KDiamond::PausedUser : KDiamond::Playing);
+	m_game->state()->setState(paused ? KDiamond::PausedUser : KDiamond::Playing);
 }
 
 void MainWindow::untimedAction(bool untimed)
 {
-    m_game->state()->setMode(untimed ? KDiamond::UntimedGame : KDiamond::NormalGame);
+	m_game->state()->setMode(untimed ? KDiamond::UntimedGame : KDiamond::NormalGame);
 }
 
 void MainWindow::updateTime()
 {
-    int milliseconds = m_updateTime->elapsed();
-    m_updateTime->restart();
-    emit updateScheduled(milliseconds); //TODO: are the milliseconds needed?
+	int milliseconds = m_updateTime->elapsed();
+	m_updateTime->restart();
+	emit updateScheduled(milliseconds); //TODO: are the milliseconds needed?
 }
 
 void MainWindow::updatePoints(int points)
 {
-    statusBar()->changeItem(i18n("Points: %1", points), 1);
+	statusBar()->changeItem(i18n("Points: %1", points), 1);
 }
 
 void MainWindow::updateMoves(int moves)
 {
-    statusBar()->changeItem(i18n("Possible moves: %1", moves), 3);
+	statusBar()->changeItem(i18n("Possible moves: %1", moves), 3);
 }
 
 void MainWindow::updateRemainingTime(int remainingSeconds)
 {
-    //store the time: if remainingSeconds == -1, the old time is just re-rendered (used by the configuration action MainWindow::showMinutesOnTimer)
-    static int storeRemainingSeconds = 0;
-    if (remainingSeconds == -1)
-        remainingSeconds = storeRemainingSeconds;
-    else
-        storeRemainingSeconds = remainingSeconds;
-    //split time in seconds and minutes if wanted
-    int seconds, minutes;
-    if (Settings::showMinutes())
-    {
-        seconds = remainingSeconds % 60;
-        minutes = remainingSeconds / 60;
-    }
-    else
-    {
-        seconds = remainingSeconds;
-        minutes = 0; //the minutes do not appear in the output when minutes == 0
-    }
-    //compose new string
-    QString sOutput;
-    if (minutes == 0)
-        sOutput = i18n("Time left: %1", i18np("1 second", "%1 seconds", seconds));
-    else if (seconds == 0)
-        sOutput = i18n("Time left: %1", i18np("1 minute", "%1 minutes", minutes));
-    else
-        sOutput = i18nc("The two parameters are strings like '2 minutes' or '1 second'.", "Time left: %1, %2", i18np("1 minute", "%1 minutes", minutes), i18np("1 second", "%1 seconds", seconds));
-    statusBar()->changeItem(sOutput, 2);
+	//store the time: if remainingSeconds == -1, the old time is just re-rendered (used by the configuration action MainWindow::showMinutesOnTimer)
+	static int storeRemainingSeconds = 0;
+	if (remainingSeconds == -1)
+		remainingSeconds = storeRemainingSeconds;
+	else
+		storeRemainingSeconds = remainingSeconds;
+	//split time in seconds and minutes if wanted
+	int seconds, minutes;
+	if (Settings::showMinutes())
+	{
+		seconds = remainingSeconds % 60;
+		minutes = remainingSeconds / 60;
+	}
+	else
+	{
+		seconds = remainingSeconds;
+		minutes = 0; //the minutes do not appear in the output when minutes == 0
+	}
+	//compose new string
+	QString sOutput;
+	if (minutes == 0)
+		sOutput = i18n("Time left: %1", i18np("1 second", "%1 seconds", seconds));
+	else if (seconds == 0)
+		sOutput = i18n("Time left: %1", i18np("1 minute", "%1 minutes", minutes));
+	else
+		sOutput = i18nc("The two parameters are strings like '2 minutes' or '1 second'.", "Time left: %1, %2", i18np("1 minute", "%1 minutes", minutes), i18np("1 second", "%1 seconds", seconds));
+	statusBar()->changeItem(sOutput, 2);
 }
 
 void MainWindow::showMinutesOnTimer(bool showMinutes)
 {
-    Settings::setShowMinutes(showMinutes);
-    updateRemainingTime(-1);
+	Settings::setShowMinutes(showMinutes);
+	updateRemainingTime(-1);
 }
 
 void MainWindow::configureNotifications()
 {
-    KNotifyConfigWidget::configure(this);
+	KNotifyConfigWidget::configure(this);
 }
 
 void MainWindow::configureSettings()
 {
-    if (KConfigDialog::showDialog("settings"))
-        return;
-    KConfigDialog *dialog = new KConfigDialog(this, "settings", Settings::self());
-    dialog->addPage(new KGameThemeSelector(dialog, Settings::self(), KGameThemeSelector::NewStuffEnableDownload), i18n("Theme"), "games-config-theme");
-    connect(dialog, SIGNAL(settingsChanged(const QString&)), this, SLOT(loadSettings()));
-    dialog->setHelp(QString(), "kdiamond");
-    dialog->show();
+	if (KConfigDialog::showDialog("settings"))
+		return;
+	KConfigDialog *dialog = new KConfigDialog(this, "settings", Settings::self());
+	dialog->addPage(new KGameThemeSelector(dialog, Settings::self(), KGameThemeSelector::NewStuffEnableDownload), i18n("Theme"), "games-config-theme");
+	connect(dialog, SIGNAL(settingsChanged(const QString&)), this, SLOT(loadSettings()));
+	dialog->setHelp(QString(), "kdiamond");
+	dialog->show();
 }
 
 void MainWindow::loadSettings()
 {
-    if (!Renderer::self()->loadTheme(Settings::theme()))
-    {
-        KMessageBox::error(this, i18n("Failed to load \"%1\" theme. Please check your installation.", Settings::theme()));
-        return;
-    }
-    //redraw game scene if necessary
-    if (m_game != 0)
-    {
-        m_game->updateTheme(); //resets all pixmaps
-        m_game->scene()->invalidate(m_game->scene()->sceneRect(), QGraphicsScene::BackgroundLayer);
-    }
+	if (!Renderer::self()->loadTheme(Settings::theme()))
+	{
+		KMessageBox::error(this, i18n("Failed to load \"%1\" theme. Please check your installation.", Settings::theme()));
+		return;
+	}
+	//redraw game scene if necessary
+	if (m_game != 0)
+	{
+		m_game->updateTheme(); //resets all pixmaps
+		m_game->scene()->invalidate(m_game->scene()->sceneRect(), QGraphicsScene::BackgroundLayer);
+	}
 }
 
 #include "mainwindow.moc"

@@ -25,24 +25,24 @@ class QPixmap;
 class RendererPrivate;
 
 class Renderer {
-    private:
-        Renderer();
-        Renderer(const Renderer &);
-        ~Renderer();
-    public:
-        static Renderer *self();
+	private:
+		Renderer();
+		Renderer(const Renderer &);
+		~Renderer();
+	public:
+		static Renderer *self();
 
-        bool loadTheme(const QString &name);
-        void boardResized(int width, int height, int leftOffset, int topOffset, int diamondEdgeLength, int diamondCountOnEdge);
+		bool loadTheme(const QString &name);
+		void boardResized(int width, int height, int leftOffset, int topOffset, int diamondEdgeLength, int diamondCountOnEdge);
 
-        int removeAnimFrameCount();
-        bool hasBorder();
+		int removeAnimFrameCount();
+		bool hasBorder();
 
-        QPixmap diamond(KDiamond::Color color);
-        QPixmap removeFrame(KDiamond::Color color, int frame);
-        QPixmap background();
-    private:
-        RendererPrivate *p;
+		QPixmap diamond(KDiamond::Color color);
+		QPixmap removeFrame(KDiamond::Color color, int frame);
+		QPixmap background();
+	private:
+		RendererPrivate *p;
 };
 
 #endif // KDIAMOND_RENDERER_H

@@ -20,7 +20,7 @@
 #define KDIAMOND_ANIMATOR_H
 
 #ifndef KDIAMOND_DIAMOND_H
-    class Diamond;
+	class Diamond;
 #endif
 
 #include <QList>
@@ -31,65 +31,65 @@ class QTimeLine;
 
 namespace KDiamond
 {
-    //duration of a move animation (per coordinate unit) in milliseconds
-    const int MoveDuration = 240;
-    //frame count during a move animation (KDiamond::MoveDuration should be divideable by KDiamond::MoveInterval) - 40 milliseconds per frame is a sane default as it equals 25 pictures per second which is the minimum speed required to get a flicker-free movement (in the ideal case)
-    const int MoveFrameCount = 6;
-    //duration of a move animation (frame count is determined by the theme)
-    const int RemoveDuration = 200;
+	//duration of a move animation (per coordinate unit) in milliseconds
+	const int MoveDuration = 240;
+	//frame count during a move animation (KDiamond::MoveDuration should be divideable by KDiamond::MoveInterval) - 40 milliseconds per frame is a sane default as it equals 25 pictures per second which is the minimum speed required to get a flicker-free movement (in the ideal case)
+	const int MoveFrameCount = 6;
+	//duration of a move animation (frame count is determined by the theme)
+	const int RemoveDuration = 200;
 }
 
 struct AnimationData
 {
-    Diamond *diamond;
-    QPointF from, to;
+	Diamond *diamond;
+	QPointF from, to;
 };
 
 class Animator : public QObject
 {
-    Q_OBJECT
-    public:
-        Animator();
-        ~Animator();
+	Q_OBJECT
+	public:
+		Animator();
+		~Animator();
 
-        int duration() const;
-        int frameCount() const;
+		int duration() const;
+		int frameCount() const;
 
-        void addItem(Diamond *item, const QPointF &from = QPointF(), const QPointF &to = QPointF());
-        void start();
-    protected slots:
-        virtual void setFrame(int) = 0;
-        void slotFinished();
-    signals:
-        void finished();
-    protected:
-        int m_duration;
-        int m_frameCount;
+		void addItem(Diamond *item, const QPointF &from = QPointF(), const QPointF &to = QPointF());
+		void start();
+	protected slots:
+		virtual void setFrame(int) = 0;
+		void slotFinished();
+	signals:
+		void finished();
+	protected:
+		int m_duration;
+		int m_frameCount;
 
-        bool m_started, m_playedLastFrame; //the latter prevents a race condition between the last setFrame and finished
-        QTime *m_time;
-        QTimeLine *m_timer;
+		bool m_started, m_playedLastFrame; //the latter prevents a race condition between the last setFrame and finished
+		QTime *m_time;
+		QTimeLine *m_timer;
 
-        QList<AnimationData> m_data;
+		QList<AnimationData> m_data;
 };
 
 class MoveAnimator : public Animator
 {
-    Q_OBJECT
-    public:
-        MoveAnimator();
-        void setMoveLength(int moveLength);
-    protected slots:
-        virtual void setFrame(int);
+	Q_OBJECT
+	public:
+		MoveAnimator();
+		void setMoveLength(int moveLength);
+	protected slots:
+		virtual void setFrame(int);
 };
 
 class RemoveAnimator : public Animator
 {
-    Q_OBJECT
-    public:
-        RemoveAnimator();
-    protected slots:
-        virtual void setFrame(int);
+	Q_OBJECT
+	public:
+		RemoveAnimator();
+	protected slots:
+		virtual void setFrame(int);
 };
 
 #endif

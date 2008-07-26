@@ -30,47 +30,47 @@ class QTimer;
 
 namespace KDiamond
 {
-    //maximum update interval in milliseconds
-    const int UpdateInterval = 40;
+	//maximum update interval in milliseconds
+	const int UpdateInterval = 40;
 }
 
 class MainWindow : public KXmlGuiWindow
 {
-    Q_OBJECT
-    public:
-        MainWindow(QWidget *parent = 0);
-        ~MainWindow();
-    public slots:
-        void startGame();
-        void stateChange(KDiamond::State state);
-        void gameIsOver();
-        void showHighscores();
-        void close();
+	Q_OBJECT
+	public:
+		MainWindow(QWidget *parent = 0);
+		~MainWindow();
+	public slots:
+		void startGame();
+		void stateChange(KDiamond::State state);
+		void gameIsOver();
+		void showHighscores();
+		void close();
 
-        void configureNotifications();
-        void configureSettings();
-        void loadSettings();
-        void showMinutesOnTimer(bool showMinutes);
-    signals:
-        void showHint();
-        void pause(bool paused);
-        void updateScheduled(int milliseconds);
-    protected:
-        virtual void closeEvent(QCloseEvent *);
-    protected slots:
-        void pausedAction(bool paused);
-        void untimedAction(bool untimed);
+		void configureNotifications();
+		void configureSettings();
+		void loadSettings();
+		void showMinutesOnTimer(bool showMinutes);
+	signals:
+		void showHint();
+		void pause(bool paused);
+		void updateScheduled(int milliseconds);
+	protected:
+		virtual void closeEvent(QCloseEvent *);
+	protected slots:
+		void pausedAction(bool paused);
+		void untimedAction(bool untimed);
 
-        void updateTime();
-        void updatePoints(int points);
-        void updateMoves(int moves);
-        void updateRemainingTime(int remainingSeconds);
-    private:
-        Game *m_game;
-        Container *m_container;
+		void updateTime();
+		void updatePoints(int points);
+		void updateMoves(int moves);
+		void updateRemainingTime(int remainingSeconds);
+	private:
+		Game *m_game;
+		Container *m_container;
 
-        QTime *m_updateTime;
-        QTimer *m_updateTimer;
+		QTime *m_updateTime;
+		QTimer *m_updateTimer;
 };
 
 #endif //KDIAMOND_MAINWINDOW_H

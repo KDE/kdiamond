@@ -27,64 +27,64 @@
 #include <KLocalizedString>
 
 Game::Game(KGameDifficulty::standardLevel difficulty, MainWindow *mainWindow = 0)
-    : QGraphicsView(mainWindow)
-    , m_board(new Board(this, difficulty))
-    , m_mainWindow(mainWindow)
-    , m_state(new KDiamond::GameState)
+	: QGraphicsView(mainWindow)
+	, m_board(new Board(this, difficulty))
+	, m_mainWindow(mainWindow)
+	, m_state(new KDiamond::GameState)
 {
-    //init board
-    connect(m_mainWindow, SIGNAL(updateScheduled(int)), m_board, SLOT(update()));
-    connect(m_state, SIGNAL(stateChanged(KDiamond::State)), m_board, SLOT(stateChange(KDiamond::State)));
-    connect(m_state, SIGNAL(message(const QString&)), m_board, SLOT(message(const QString&)));
-    //init view
-    setScene(m_board);
-    setFrameStyle(QFrame::NoFrame);
-    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    //"What's this?" context help
-    setWhatsThis(i18n("<h3>Rules of Game</h3><p>Your goal is to assemble lines of at least three similar diamonds. Click on two adjacent diamonds to swap them.</p><p>Earn extra points by building cascades, and extra seconds by assembling big lines or multiple lines at one time.</p>"));
+	//init board
+	connect(m_mainWindow, SIGNAL(updateScheduled(int)), m_board, SLOT(update()));
+	connect(m_state, SIGNAL(stateChanged(KDiamond::State)), m_board, SLOT(stateChange(KDiamond::State)));
+	connect(m_state, SIGNAL(message(const QString&)), m_board, SLOT(message(const QString&)));
+	//init view
+	setScene(m_board);
+	setFrameStyle(QFrame::NoFrame);
+	setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	//"What's this?" context help
+	setWhatsThis(i18n("<h3>Rules of Game</h3><p>Your goal is to assemble lines of at least three similar diamonds. Click on two adjacent diamonds to swap them.</p><p>Earn extra points by building cascades, and extra seconds by assembling big lines or multiple lines at one time.</p>"));
 }
 
 Game::~Game()
 {
-    delete m_board;
-    delete m_state;
+	delete m_board;
+	delete m_state;
 }
 
 Board *Game::board() const
 {
-    return m_board;
+	return m_board;
 }
 
 KDiamond::GameState *Game::state() const
 {
-    return m_state;
+	return m_state;
 }
 
 void Game::mouseReleaseEvent(QMouseEvent *event)
 {
-    if (m_state->state() != KDiamond::Playing)
-        event->ignore(); //block input after the end of the game
-    else
-        QGraphicsView::mouseReleaseEvent(event);
+	if (m_state->state() != KDiamond::Playing)
+		event->ignore(); //block input after the end of the game
+	else
+		QGraphicsView::mouseReleaseEvent(event);
 }
 
 void Game::resizeEvent(QResizeEvent *)
 {
-    int newWidth = width(), newHeight = height();
-    m_board->resizeScene(newWidth, newHeight);
-    fitInView(QRectF(0.0, 0.0, newWidth, newHeight));
+	int newWidth = width(), newHeight = height();
+	m_board->resizeScene(newWidth, newHeight);
+	fitInView(QRectF(0.0, 0.0, newWidth, newHeight));
 }
 
 void Game::updateTheme()
 {
-    //this makes the board reload all pixmaps
-    m_board->resizeScene(width(), height(), true);
+	//this makes the board reload all pixmaps
+	m_board->resizeScene(width(), height(), true);
 }
 
 void Game::wheelEvent(QWheelEvent *event)
 {
-    event->ignore(); //prevent user-triggered scrolling
+	event->ignore(); //prevent user-triggered scrolling
 }
 
 #include "game.moc"

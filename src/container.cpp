@@ -19,20 +19,20 @@
 #include "container.h"
 
 Container::Container(QWidget *parent)
-    : QWidget(parent)
-    , m_widget(0)
+	: QWidget(parent)
+	, m_widget(0)
 {
 }
 
 void Container::setWidget(QWidget *widget)
 {
-    m_widget = widget;
-    m_widget->setParent(this);
-    m_widget->setGeometry(0, 0, width(), height());
-    m_widget->show();
+	m_widget = widget;
+	m_widget->setParent(this);
+	m_widget->setGeometry(0, 0, width(), height());
+	m_widget->show();
 }
 
 void Container::resizeEvent(QResizeEvent *)
 {
-    m_widget->setGeometry(0, 0, width(), height());
+	m_widget->setGeometry(0, 0, width(), height());
 }

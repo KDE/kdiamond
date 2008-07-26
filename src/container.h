@@ -23,13 +23,13 @@
 
 class Container : public QWidget
 {
-    public:
-        Container(QWidget *parent = 0);
-        void setWidget(QWidget *widget);
-    protected:
-        virtual void resizeEvent(QResizeEvent *);
-    private:
-        QWidget *m_widget;
+	public:
+		Container(QWidget *parent = 0);
+		void setWidget(QWidget *widget);
+	protected:
+		virtual void resizeEvent(QResizeEvent *);
+	private:
+		QWidget *m_widget;
 };
 
 #endif //KDIAMOND_CONTAINER_H

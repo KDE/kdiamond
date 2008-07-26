@@ -20,56 +20,56 @@
 #define KDIAMOND_DIAMOND_H
 
 #ifndef KDIAMOND_BOARD_H
-    class Board;
+	class Board;
 #endif
 
 #include <QGraphicsPixmapItem>
 
 namespace KDiamond
 {
-    //registered colors of diamonds
-    enum Color
-    {
-        Selection = 0, //that is actually no diamond type, but gives the chance to reuse the Diamond class' code for the selection marker
-        RedDiamond = 1,
-        GreenDiamond,
-        BlueDiamond,
-        YellowDiamond,
-        WhiteDiamond,
-        BlackDiamond,
-        OrangeDiamond
-    };
-    //convert int into the KDiamond::Color that is represented by this int
-    KDiamond::Color colorFromNumber(int number);
+	//registered colors of diamonds
+	enum Color
+	{
+		Selection = 0, //that is actually no diamond type, but gives the chance to reuse the Diamond class' code for the selection marker
+		RedDiamond = 1,
+		GreenDiamond,
+		BlueDiamond,
+		YellowDiamond,
+		WhiteDiamond,
+		BlackDiamond,
+		OrangeDiamond
+	};
+	//convert int into the KDiamond::Color that is represented by this int
+	KDiamond::Color colorFromNumber(int number);
 }
 
 class Diamond : public QObject, public QGraphicsPixmapItem
 {
-    Q_OBJECT
-    public:
-        Diamond(int xIndex, int yIndex, int xPos, int yPos, KDiamond::Color color, Board *board);
+	Q_OBJECT
+	public:
+		Diamond(int xIndex, int yIndex, int xPos, int yPos, KDiamond::Color color, Board *board);
 
-        KDiamond::Color color() const;
-        int xIndex() const;
-        int yIndex() const;
+		KDiamond::Color color() const;
+		int xIndex() const;
+		int yIndex() const;
 
-        void setXIndex(int xIndex);
-        void setYIndex(int yIndex);
-        void setPosInBoardCoords(const QPointF &pos);
-    public slots:
-        void updateGeometry();
-    protected:
-        virtual void mousePressEvent(QGraphicsSceneMouseEvent *);
-        virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *);
-        virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *);
-    private:
-        Board *m_board;
+		void setXIndex(int xIndex);
+		void setYIndex(int yIndex);
+		void setPosInBoardCoords(const QPointF &pos);
+	public slots:
+		void updateGeometry();
+	protected:
+		virtual void mousePressEvent(QGraphicsSceneMouseEvent *);
+		virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *);
+		virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *);
+	private:
+		Board *m_board;
 
-        KDiamond::Color m_color;
-        int m_xIndex, m_yIndex; //the index of the diamond in the Board's internal array (used for communication with Board)
-        QPointF m_pos, m_target; //current position of diamond in board coordinates (see Board::boardToScene for details)
-        bool m_mouseDown;
-        QPointF m_mouseDownPos; //position of last mouse-down event in diamond coordinates
+		KDiamond::Color m_color;
+		int m_xIndex, m_yIndex; //the index of the diamond in the Board's internal array (used for communication with Board)
+		QPointF m_pos, m_target; //current position of diamond in board coordinates (see Board::boardToScene for details)
+		bool m_mouseDown;
+		QPointF m_mouseDownPos; //position of last mouse-down event in diamond coordinates
 };
 
 #endif //KDIAMOND_DIAMOND_H

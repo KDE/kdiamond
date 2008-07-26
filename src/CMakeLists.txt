@@ -2,15 +2,15 @@ add_subdirectory(pics)
 include_directories(${KDEGAMES_INCLUDE_DIR})
 
 set(kdiamond_SRCS
-    animator.cpp
-    board.cpp
-    container.cpp
-    diamond.cpp
-    game.cpp
-    game-state.cpp
-    main.cpp
-    mainwindow.cpp
-    renderer.cpp
+	animator.cpp
+	board.cpp
+	container.cpp
+	diamond.cpp
+	game.cpp
+	game-state.cpp
+	main.cpp
+	mainwindow.cpp
+	renderer.cpp
 )
 
 kde4_add_kcfg_files(kdiamond_SRCS settings.kcfgc)

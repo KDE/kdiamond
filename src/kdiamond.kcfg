@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
-      http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
-  <kcfgfile name="kdiamondrc"/>
-  <group name="General">
-    <entry name="Theme" type="String">
-      <label>The graphical theme to be used.</label>
-      <default>themes/default.desktop</default>
-    </entry>
-  </group>
-  <group name="Preferences">
-    <entry name="Skill" type="Int">
-      <label>The difficulty level.</label>
-      <default>0</default>
-    </entry>
-    <entry name="ShowMinutes" type="Bool">
-     <label>Show minutes separately on the timer.</label>
-     <default>false</default>
-    </entry>
-    <entry name="Untimed" type="Bool">
-     <label>Play an untimed game.</label>
-     <default>false</default>
-    </entry>
-  </group>
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+	http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
+<kcfgfile name="kdiamondrc"/>
+	<group name="General">
+		<entry name="Theme" type="String">
+			<label>The graphical theme to be used.</label>
+			<default>themes/default.desktop</default>
+		</entry>
+	</group>
+	<group name="Preferences">
+		<entry name="Skill" type="Int">
+			<label>The difficulty level.</label>
+			<default>0</default>
+		</entry>
+		<entry name="ShowMinutes" type="Bool">
+			<label>Show minutes separately on the timer.</label>
+			<default>false</default>
+		</entry>
+		<entry name="Untimed" type="Bool">
+			<label>Play an untimed game.</label>
+			<default>false</default>
+		</entry>
+	</group>
 </kcfg>
