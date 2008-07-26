@@ -41,7 +41,7 @@ namespace KDiamond
     //specification of the difficulties
     enum Size
     {
-        VeryEasySize = 50,
+        VeryEasySize = 12,
         EasySize = 10,
         MediumSize = 8,
         HardSize = 8,
