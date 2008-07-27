@@ -23,7 +23,6 @@ class Container;
 class Game;
 #include "game-state.h"
 
-class KToggleAction;
 class QTime;
 class QTimer;
 #include <KXmlGuiWindow>
