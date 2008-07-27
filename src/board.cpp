@@ -23,7 +23,6 @@
 #include "renderer.h"
 
 #include <KGamePopupItem>
-#include <KLocalizedString>
 #include <KNotification>
 
 Board::Board(Game *game, KGameDifficulty::standardLevel difficulty)

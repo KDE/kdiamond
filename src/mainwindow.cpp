@@ -41,7 +41,6 @@
 #include <KStandardGameAction>
 #include <KStatusBar>
 #include <KToggleAction>
-#include <KToolBar>
 
 //FIXME: react to state changes (former slots timeIsUp() and gameOver())
 
