@@ -41,3 +41,4 @@ Terminal=false
 Icon=kdiamond
 X-KDE-StartupNotify=true
 Categories=Qt;KDE;Game;LogicGame;
+X-DocPath=kdiamond/index.html
