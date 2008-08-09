@@ -50,7 +50,6 @@ MainWindow::MainWindow(QWidget *parent)
 	//init timers and randomizer (necessary for the board)
 	m_updateTimer = new QTimer;
 	connect(m_updateTimer, SIGNAL(timeout()), this, SLOT(updateTime()), Qt::DirectConnection);
-	m_updateTimer->start(KDiamond::UpdateInterval);
 	m_updateTime = new QTime;
 	m_updateTime->start();
 	qsrand(time(0));
@@ -72,7 +71,10 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(untimed, SIGNAL(triggered(bool)), this, SLOT(untimedAction(bool)));
 	//init GUI - statusbar etc.
 	statusBar()->insertPermanentItem(i18n("Points: %1", 0), 1, 1);
-	statusBar()->insertPermanentItem(i18np("Time left: 1 second", "Time left: %1 seconds", 0), 2, 1);
+	if (Settings::untimed())
+		statusBar()->insertPermanentItem(i18n("Untimed Game"), 2, 1);
+	else
+		statusBar()->insertPermanentItem(i18np("Time left: 1 second", "Time left: %1 seconds", 0), 2, 1);
 	statusBar()->insertPermanentItem(i18n("Possible moves: %1", 0), 3, 1);
 	setAutoSaveSettings();
 	//init GUI - center area
@@ -132,6 +134,9 @@ void MainWindow::startGame()
 	//TODO: is this necessary?
 	updatePoints(0);
 	updateRemainingTime(KDiamond::GameDuration);
+	//reset timers
+	m_updateTimer->start(KDiamond::UpdateInterval);
+	m_updateTime->restart();
 }
 
 void MainWindow::stateChange(KDiamond::State state)
@@ -182,6 +187,8 @@ void MainWindow::pausedAction(bool paused)
 void MainWindow::untimedAction(bool untimed)
 {
 	m_game->state()->setMode(untimed ? KDiamond::UntimedGame : KDiamond::NormalGame);
+	if (untimed)
+		statusBar()->changeItem(i18n("Untimed Game"), 2);
 }
 
 void MainWindow::updateTime()
@@ -203,6 +210,8 @@ void MainWindow::updateMoves(int moves)
 
 void MainWindow::updateRemainingTime(int remainingSeconds)
 {
+	if (m_game->state()->mode() == KDiamond::UntimedGame)
+		return;
 	//store the time: if remainingSeconds == -1, the old time is just re-rendered (used by the configuration action MainWindow::showMinutesOnTimer)
 	static int storeRemainingSeconds = 0;
 	if (remainingSeconds == -1)

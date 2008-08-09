@@ -164,7 +164,7 @@ void KDiamond::GameState::startNewGame()
 void KDiamond::GameState::update(bool forceRecalculation)
 {
 	//will not recalculate time when not playing a normal game (unless forced)
-	if ((p->m_state != KDiamond::Playing || p->m_mode == KDiamond::UntimedGame) && !forceRecalculation)
+	if (p->m_mode == KDiamond::UntimedGame || (p->m_state != KDiamond::Playing && !forceRecalculation))
 		return;
 	//calculate new time
 	const int leftMilliseconds = 1000 * KDiamond::GameDuration + p->m_earnedMilliseconds + p->m_pausedMilliseconds - p->m_gameTime.elapsed();
