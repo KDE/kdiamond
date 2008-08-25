@@ -147,7 +147,7 @@ void KDiamond::GameState::resetCascadeCounter()
 void KDiamond::GameState::startNewGame()
 {
 	p->m_gameTime.restart();
-	//p->m_mode does not need to be resetted as it is kept in sync with Settings::untimed()
+	//p->m_mode does not need to be reset as it is kept in sync with Settings::untimed()
 	//these should be the same values as in KDiamond::GameStatePrivate constructor
 	p->m_state = KDiamond::Playing;
 	p->m_earnedMilliseconds = 0;

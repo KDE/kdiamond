@@ -47,8 +47,6 @@ Diamond::Diamond(int xIndex, int yIndex, int xPos, int yPos, KDiamond::Color col
 {
 	//connect to board
 	connect(board, SIGNAL(boardResized()), this, SLOT(updateGeometry()));
-	//init QGraphicsPixmapItem (pixmap and geometry is initialized after the first resize event has occured)
-	setVisible(true);
 	//selection markers do not react to mouse events; they should also appear behind diamonds
 	if (color == KDiamond::Selection)
 	{
