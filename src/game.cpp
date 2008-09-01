@@ -74,6 +74,11 @@ Board *Game::board() const
     return m_board;
 }
 
+bool Game::finished() const
+{
+    return m_finished;
+}
+
 void Game::pause(bool paused)
 {
     if (!m_paused && paused)

@@ -146,9 +146,12 @@ void MainWindow::gameOver()
 
 void MainWindow::showHighscores()
 {
-    m_game->pause(true);
-    m_game->board()->pause(true);
-    actionCollection()->action("game_pause")->setChecked(true);
+    if (!m_game->finished())
+    {
+        m_game->pause(true);
+        m_game->board()->pause(true);
+        actionCollection()->action("game_pause")->setChecked(true);
+    }
     KScoreDialog dialog(KScoreDialog::Name | KScoreDialog::Score, this);
     dialog.exec();
 }

@@ -45,6 +45,8 @@ class Game : public QGraphicsView
 
         int points() const;
         Board *board() const;
+
+        bool finished() const;
     public slots:
         void pause(bool paused);
         void update();
