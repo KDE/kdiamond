@@ -163,7 +163,8 @@ void MainWindow::gameIsOver()
 void MainWindow::showHighscores()
 {
 	m_game->state()->setState(KDiamond::PausedUser);
-	actionCollection()->action("game_pause")->setChecked(true);
+	if (m_game->state()->state() != KDiamond::Finished)
+		actionCollection()->action("game_pause")->setChecked(true);
 	KScoreDialog dialog(KScoreDialog::Name | KScoreDialog::Score, this);
 	dialog.exec();
 }

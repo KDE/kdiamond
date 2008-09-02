@@ -33,7 +33,7 @@ class Renderer {
 		static Renderer *self();
 
 		bool loadTheme(const QString &name);
-		void boardResized(int width, int height, int leftOffset, int topOffset, int diamondEdgeLength, int diamondCountOnEdge);
+		void boardResized(int width, int height, int leftOffset, int diamondEdgeLength, int diamondCountOnEdge);
 
 		int removeAnimFrameCount();
 		bool hasBorder();

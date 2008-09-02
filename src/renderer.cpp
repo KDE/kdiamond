@@ -102,7 +102,7 @@ bool Renderer::loadTheme(const QString &name)
 	return true;
 }
 
-void Renderer::boardResized(int width, int height, int leftOffset, int topOffset, int diamondEdgeLength, int diamondCountOnEdge)
+void Renderer::boardResized(int width, int height, int leftOffset, int diamondEdgeLength, int diamondCountOnEdge)
 {
 	//new metrics
 	p->m_sceneSize = QSize(width, height);
@@ -122,7 +122,7 @@ void Renderer::boardResized(int width, int height, int leftOffset, int topOffset
 			const qreal innerBoardEdgeLength = diamondCountOnEdge * diamondEdgeLength;
 			const qreal padding = p->m_borderPercentage * innerBoardEdgeLength;
 			const int boardEdgeLength = 2.0 * padding + innerBoardEdgeLength;
-			p->m_renderer.render(&painter, boardSvgName, QRect(leftOffset - padding, topOffset - padding, boardEdgeLength, boardEdgeLength));
+			p->m_renderer.render(&painter, boardSvgName, QRect(leftOffset - padding, -padding, boardEdgeLength, boardEdgeLength));
 		}
 		painter.end();
 		p->m_cache.insert(pixName, pix);

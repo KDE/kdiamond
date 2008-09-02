@@ -34,7 +34,6 @@ Board::Board(Game *game, KGameDifficulty::standardLevel difficulty)
 	, m_messenger(new KGamePopupItem)
 	, m_animator(0)
 	, m_leftOffset(0)
-	, m_topOffset(0)
 	, m_diamondEdgeLength(1)
 	, m_selected1x(-1)
 	, m_selected1y(-1)
@@ -209,7 +208,7 @@ QPoint Board::boardToScene(const QPointF &boardCoords) const
 {
 	return QPoint(
 		boardCoords.x() * m_diamondEdgeLength + m_leftOffset,
-		boardCoords.y() * m_diamondEdgeLength + m_topOffset
+		boardCoords.y() * m_diamondEdgeLength
 	);
 }
 
@@ -226,12 +225,13 @@ void Board::resizeScene(int newWidth, int newHeight, bool force)
 		return;
 	setSceneRect(0.0, 0.0, newWidth, newHeight);
 	//calculate new metrics - A board margin of half a diamond's size is hard-coded.
-	m_diamondEdgeLength = qMin(newWidth, newHeight) / (m_size + 1);
+	const qreal diamondXConstraint = newWidth / (m_size + 1);
+	const qreal diamondYConstraint = newHeight / (qreal(m_size) + 0.5);
+	m_diamondEdgeLength = qMin(diamondXConstraint, diamondYConstraint);
 	int boardSize = m_size * m_diamondEdgeLength;
 	m_leftOffset = (newWidth - boardSize) / 2.0;
-	m_topOffset = (newHeight - boardSize) / 2.0;
 	//renderer
-	Renderer::self()->boardResized(newWidth, newHeight, m_leftOffset, m_topOffset, m_diamondEdgeLength, m_size);
+	Renderer::self()->boardResized(newWidth, newHeight, m_leftOffset, m_diamondEdgeLength, m_size);
 	//diamonds
 	emit boardResized(); //give diamonds the chance to change their metrics
 	//background
