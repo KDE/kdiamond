@@ -24,6 +24,8 @@
 #include <KGamePopupItem>
 #include <KNotification>
 
+const int UpdateInterval = 40;
+
 Board::Board(KDiamond::GameState* state, KGameDifficulty::standardLevel difficulty)
 	: QGraphicsScene()
 	, m_selection1(new Diamond(0, 0, 0, 0, KDiamond::Selection, this))
@@ -112,6 +114,8 @@ Board::Board(KDiamond::GameState* state, KGameDifficulty::standardLevel difficul
 	//init messengers
 	m_messenger->setMessageOpacity(0.8);
 	addItem(m_messenger);
+	//init time management
+	m_timerId = startTimer(UpdateInterval);
 }
 
 Board::~Board()
@@ -249,7 +253,7 @@ void Board::mouseOnDiamond(int xIndex, int yIndex)
 	if (m_selected1x == xIndex && m_selected1y == yIndex)
 	{
 		//clicked again on first selected diamond - remove selection
-		//Attention: This code is re-used in Board::update for the RemoveRowsJob. If you modify it here, please do also apply your changes over there.
+		//Attention: This code is re-used in Board::timerEvent for the RemoveRowsJob. If you modify it here, please do also apply your changes over there.
 		m_selected1x = m_selected2x;
 		m_selected1y = m_selected2y;
 		if (m_selected1x == -1 || m_selected1y == -1)
@@ -308,17 +312,16 @@ void Board::clearSelection()
 	m_selected1x = m_selected1y = m_selected2x = m_selected2y = -1;
 }
 
-void Board::update()
+void Board::timerEvent(QTimerEvent* event)
 {
+	Q_UNUSED(event)
 	//see Diamond::move(const QPointF &) for explanation
 	if (m_gameState->state() == KDiamond::Paused || m_animator != 0)
 		return;
 	if(m_jobQueue.count() == 0) //nothing to do in this update
 	{
 		//finish game if possible
-		if (m_gameState->state() == KDiamond::Finished)
-			emit pendingAnimationsFinished();
-		else
+		if (m_gameState->state() != KDiamond::Finished)
 			getMoves();
 		return;
 	}
@@ -433,6 +436,11 @@ void Board::update()
 			//fill gaps
 			fillGaps();
 			m_jobQueue.prepend(KDiamond::RemoveRowsJob); //allow cascades (i.e. clear rows that have been formed by falling diamonds)
+			break;
+		case KDiamond::EndGameJob:
+			emit pendingAnimationsFinished();
+			killTimer(m_timerId);
+			m_timerId = -1;
 			break;
 	}
 }
@@ -596,6 +604,7 @@ void Board::stateChange(KDiamond::State state)
 		case KDiamond::Finished:
 			m_selection1->hide();
 			m_selection2->hide();
+			m_jobQueue << KDiamond::EndGameJob;
 			break;
 		case KDiamond::Paused:
 			for (int x = 0; x < m_size; ++x)

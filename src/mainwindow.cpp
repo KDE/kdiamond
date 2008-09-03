@@ -25,7 +25,6 @@
 #include "settings.h"
 #include "view.h"
 
-#include <time.h>
 #include <QCloseEvent>
 #include <QTime>
 #include <QTimer>
@@ -42,19 +41,15 @@
 #include <KStandardGameAction>
 #include <KToggleAction>
 
+//TODO: separate untimed and timed games in the highscore list
+
 MainWindow::MainWindow(QWidget *parent)
 	: KXmlGuiWindow(parent)
 	, m_game(new KDiamond::GameState)
 	, m_board(0)
 	, m_view(new KDiamond::View)
 	, m_infoBar(new KDiamond::InfoBar(this))
-	, m_updateTime(new QTime)
-	, m_updateTimer(new QTimer)
 {
-	//init timers and randomizer (necessary for the board)
-	connect(m_updateTimer, SIGNAL(timeout()), this, SLOT(updateTime()), Qt::DirectConnection);
-	m_updateTime->start();
-	qsrand(time(0));
 	//init GUI - actions
 	KStandardGameAction::gameNew(this, SLOT(startGame()), actionCollection());
 	KStandardGameAction::highscores(this, SLOT(showHighscores()), actionCollection());
@@ -102,9 +97,6 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
 	Settings::self()->writeConfig();
-	m_updateTimer->stop();
-	delete m_updateTime;
-	delete m_updateTimer;
 	delete m_game;
 }
 
@@ -139,9 +131,6 @@ void MainWindow::startGame()
 	//TODO: is this necessary?
 	m_infoBar->updatePoints(0);
 	m_infoBar->updateRemainingTime(KDiamond::GameDuration);
-	//reset timers
-	m_updateTimer->start(KDiamond::UpdateInterval);
-	m_updateTime->restart();
 }
 
 void MainWindow::stateChange(KDiamond::State state)
@@ -160,20 +149,27 @@ void MainWindow::stateChange(KDiamond::State state)
 
 void MainWindow::gameIsOver()
 {
-	m_updateTimer->stop();
+	//create score info
+	KScoreDialog::FieldInfo scoreInfo;
+	scoreInfo[KScoreDialog::Score].setNum(m_game->points());
+	scoreInfo[KScoreDialog::Custom1] = m_game->mode() == KDiamond::UntimedGame ? i18n("Untimed") : i18n("Timed");
 	//report score
 	KScoreDialog dialog(KScoreDialog::Name | KScoreDialog::Score, this);
+	dialog.addField(KScoreDialog::Custom1, i18n("Mode"), "mode");
 	dialog.setConfigGroup(KGameDifficulty::levelString()); //TODO: react to localization
-	dialog.addScore(m_game->points());
+	dialog.addScore(scoreInfo);
 	dialog.exec();
 }
 
 void MainWindow::showHighscores()
 {
+	//pause game if necessary
 	m_game->setState(KDiamond::Paused);
 	if (m_game->state() != KDiamond::Finished)
 		actionCollection()->action("game_pause")->setChecked(true);
+	//show dialog
 	KScoreDialog dialog(KScoreDialog::Name | KScoreDialog::Score, this);
+	dialog.addField(KScoreDialog::Custom1, i18n("Mode"), "mode");
 	dialog.exec();
 }
 
@@ -185,13 +181,6 @@ void MainWindow::pausedAction(bool paused)
 void MainWindow::untimedAction(bool untimed)
 {
 	m_game->setMode(untimed ? KDiamond::UntimedGame : KDiamond::NormalGame);
-}
-
-void MainWindow::updateTime()
-{
-	int milliseconds = m_updateTime->elapsed();
-	m_updateTime->restart();
-	emit updateScheduled(milliseconds); //TODO: are the milliseconds needed?
 }
 
 void MainWindow::updateTheme(bool force)

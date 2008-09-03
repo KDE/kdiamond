@@ -20,6 +20,7 @@
 #include "renderer.h"
 #include "settings.h"
 
+#include <ctime>
 #include <KApplication>
 #include <KAboutData>
 #include <KCmdLineArgs>
@@ -71,6 +72,7 @@ int main(int argc, char ** argv)
 	Renderer::self(); //causes the static Renderer object to be created and initiated
 	MainWindow* window = new MainWindow;
 	window->show();
+	qsrand(time(0));
 
 	return app.exec();
 }

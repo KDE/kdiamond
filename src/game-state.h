@@ -65,6 +65,8 @@ namespace KDiamond
 			void stateChanged(KDiamond::State state); //warning: moc needs the full identifier of KDiamond::State
 			void pointsChanged(int points);
 			void leftTimeChanged(int seconds);
+		protected:
+			virtual void timerEvent(QTimerEvent* event);
 		private:
 			GameStatePrivate *p;
 	};

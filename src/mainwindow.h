@@ -31,8 +31,6 @@ namespace KDiamond
 {
 	class InfoBar;
 	class View;
-	//maximum update interval in milliseconds
-	const int UpdateInterval = 40;
 }
 
 class MainWindow : public KXmlGuiWindow
@@ -56,8 +54,6 @@ class MainWindow : public KXmlGuiWindow
 	protected slots:
 		void pausedAction(bool paused);
 		void untimedAction(bool untimed);
-
-		void updateTime();
 		void updateTheme(bool force = false);
 	private:
 		KDiamond::GameState* m_game;

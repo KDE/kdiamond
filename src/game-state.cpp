@@ -20,7 +20,6 @@
 #include "settings.h"
 
 #include <QTime>
-#include <QTimer>
 #include <KLocalizedString>
 #include <KNotification>
 
@@ -34,7 +33,6 @@ namespace KDiamond
 			~GameStatePrivate();
 
 			QTime m_gameTime, m_pauseTime;
-			QTimer m_updateTimer;
 
 			Mode m_mode;
 			State m_state;
@@ -65,8 +63,7 @@ KDiamond::GameStatePrivate::~GameStatePrivate()
 KDiamond::GameState::GameState()
 	: p(new KDiamond::GameStatePrivate)
 {
-	connect(&p->m_updateTimer, SIGNAL(timeout()), this, SLOT(update()));
-	p->m_updateTimer.start(500);
+	startTimer(500);
 }
 
 KDiamond::GameState::~GameState()
@@ -124,10 +121,15 @@ void KDiamond::GameState::setState(KDiamond::State state)
 	emit stateChanged(state);
 	if (state == KDiamond::Finished)
 	{
-		p->m_updateTimer.stop(); //no updates needed anymore
 		KNotification::event("gamefinished");
 		emit message(i18nc("Not meant like 'You have lost', more like 'Time is up'.", "Game over."));
 	}
+}
+
+void KDiamond::GameState::timerEvent(QTimerEvent* event)
+{
+	Q_UNUSED(event)
+	update();
 }
 
 void KDiamond::GameState::addPoints(int removedDiamonds)

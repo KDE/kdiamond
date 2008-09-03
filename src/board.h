@@ -55,7 +55,8 @@ namespace KDiamond
 		SwapDiamondsJob = 1, //swap selected diamonds
 		RemoveRowsJob, //remove complete rows of diamonds and add points
 		RevokeSwapDiamondsJob, //revoke swapping of diamonds (will be requested by the RemoveRowsJob if no rows have been formed)
-		FillGapsJob
+		FillGapsJob,
+		EndGameJob //announce end of game
 	};
 }
 
@@ -66,7 +67,6 @@ class Board : public QGraphicsScene
 		Board(KDiamond::GameState* state, KGameDifficulty::standardLevel difficulty);
 		~Board();
 		int diamondCountOnEdge() const;
-		void getMoves();
 
 		QPoint boardToScene(const QPointF &boardCoord) const;
 		void resizeScene(int width, int height, bool force = false);
@@ -78,16 +78,18 @@ class Board : public QGraphicsScene
 		void clearSelection();
 		void message(const QString &message);
 		void stateChange(KDiamond::State state);
-		void update();
 		void showHint();
 	signals:
 		void boardResized();
 		void numberMoves(int moves);
 		void updateScheduled(int milliseconds);
 		void pendingAnimationsFinished();
+	protected:
+		virtual void timerEvent(QTimerEvent* event);
 	private:
 		QSet<QPoint *> findCompletedRows();
 		void fillGaps();
+		void getMoves();
 		bool onBoard(int x, int y) const;
 	private:
 		KDiamond::Size m_size;
@@ -95,6 +97,7 @@ class Board : public QGraphicsScene
 		QList<KDiamond::Job> m_jobQueue;
 		QSet<QPoint *> m_diamondsToRemove;
 		QList<QPoint> m_availableMoves;
+		int m_timerId;
 
 		Diamond ***m_diamonds;
 		Diamond *m_selection1, *m_selection2;

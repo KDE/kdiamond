@@ -24,12 +24,12 @@
 #include <KStatusBar>
 
 KDiamond::InfoBar::InfoBar(KMainWindow* parent)
-	: m_untimed(false)
+	: m_untimed(Settings::untimed())
 {
 	//initialize items
 	insertPermanentItem(i18n("Points: %1", 0), 1, 1);
-	if (Settings::untimed())
-		insertPermanentItem(i18n("Untimed Game"), 2, 1);
+	if (m_untimed)
+		insertPermanentItem(i18n("Untimed game"), 2, 1);
 	else
 		insertPermanentItem(i18np("Time left: 1 second", "Time left: %1 seconds", 0), 2, 1);
 	insertPermanentItem(i18n("Possible moves: %1", 0), 3, 1);
@@ -47,7 +47,7 @@ void KDiamond::InfoBar::setShowMinutes(bool showMinutes)
 void KDiamond::InfoBar::setUntimed(bool untimed)
 {
 	if (untimed)
-		changeItem(i18n("Untimed Game"), 2);
+		changeItem(i18n("Untimed game"), 2);
 	m_untimed = untimed;
 }
 
