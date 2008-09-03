@@ -6,11 +6,11 @@ set(kdiamond_SRCS
 	board.cpp
 	container.cpp
 	diamond.cpp
-	game.cpp
 	game-state.cpp
 	main.cpp
 	mainwindow.cpp
 	renderer.cpp
+	view.cpp
 )
 
 kde4_add_kcfg_files(kdiamond_SRCS settings.kcfgc)

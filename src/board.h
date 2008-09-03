@@ -21,7 +21,6 @@
 
 class Animator;
 class Diamond;
-class Game;
 #include "game-state.h"
 
 class QGraphicsPixmapItem;
@@ -64,7 +63,7 @@ class Board : public QGraphicsScene
 {
 	Q_OBJECT
 	public:
-		Board(Game *game, KGameDifficulty::standardLevel difficulty);
+		Board(KDiamond::GameState* state, KGameDifficulty::standardLevel difficulty);
 		~Board();
 		int diamondCountOnEdge() const;
 		void getMoves();
@@ -100,7 +99,7 @@ class Board : public QGraphicsScene
 		Diamond ***m_diamonds;
 		Diamond *m_selection1, *m_selection2;
 		QGraphicsPixmapItem *m_background;
-		Game *m_game;
+		KDiamond::GameState *m_gameState;
 
 		KGamePopupItem *m_messenger;
 		Animator *m_animator;

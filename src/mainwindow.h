@@ -19,8 +19,8 @@
 #ifndef KDIAMOND_MAINWINDOW_H
 #define KDIAMOND_MAINWINDOW_H
 
+class Board;
 class Container;
-class Game;
 #include "game-state.h"
 
 class QTime;
@@ -29,6 +29,7 @@ class QTimer;
 
 namespace KDiamond
 {
+	class View;
 	//maximum update interval in milliseconds
 	const int UpdateInterval = 40;
 }
@@ -51,7 +52,6 @@ class MainWindow : public KXmlGuiWindow
 		void loadSettings();
 		void showMinutesOnTimer(bool showMinutes);
 	signals:
-		void showHint();
 		void pause(bool paused);
 		void updateScheduled(int milliseconds);
 	protected:
@@ -64,9 +64,11 @@ class MainWindow : public KXmlGuiWindow
 		void updatePoints(int points);
 		void updateMoves(int moves);
 		void updateRemainingTime(int remainingSeconds);
+		void updateTheme(bool force = false);
 	private:
-		Game *m_game;
-		Container *m_container;
+		KDiamond::GameState* m_game;
+		Board* m_board;
+		KDiamond::View* m_view;
 
 		QTime *m_updateTime;
 		QTimer *m_updateTimer;

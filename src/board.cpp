@@ -19,18 +19,17 @@
 #include "board.h"
 #include "animator.h"
 #include "diamond.h"
-#include "game.h"
 #include "renderer.h"
 
 #include <KGamePopupItem>
 #include <KNotification>
 
-Board::Board(Game *game, KGameDifficulty::standardLevel difficulty)
+Board::Board(KDiamond::GameState* state, KGameDifficulty::standardLevel difficulty)
 	: QGraphicsScene()
 	, m_selection1(new Diamond(0, 0, 0, 0, KDiamond::Selection, this))
 	, m_selection2(new Diamond(0, 0, 0, 0, KDiamond::Selection, this))
 	, m_background(new QGraphicsPixmapItem(0, this))
-	, m_game(game)
+	, m_gameState(state)
 	, m_messenger(new KGamePopupItem)
 	, m_animator(0)
 	, m_leftOffset(0)
@@ -199,7 +198,7 @@ void Board::getMoves()
 	{
 		m_selection1->hide();
 		m_selection2->hide();
-		m_game->state()->setState(KDiamond::Finished);
+		m_gameState->setState(KDiamond::Finished);
 	}
 }
 
@@ -245,7 +244,7 @@ void Board::resizeScene(int newWidth, int newHeight, bool force)
 
 void Board::mouseOnDiamond(int xIndex, int yIndex)
 {
-	if (m_game->state()->state() != KDiamond::Playing)
+	if (m_gameState->state() != KDiamond::Playing)
 		return;
 	if (m_selected1x == xIndex && m_selected1y == yIndex)
 	{
@@ -312,12 +311,12 @@ void Board::clearSelection()
 void Board::update()
 {
 	//see Diamond::move(const QPointF &) for explanation
-	if (m_game->state()->state() == KDiamond::Paused || m_animator != 0)
+	if (m_gameState->state() == KDiamond::Paused || m_animator != 0)
 		return;
 	if(m_jobQueue.count() == 0) //nothing to do in this update
 	{
 		//finish game if possible
-		if (m_game->state()->state() == KDiamond::Finished)
+		if (m_gameState->state() == KDiamond::Finished)
 			emit pendingAnimationsFinished();
 		else
 			getMoves();
@@ -343,7 +342,7 @@ void Board::update()
 				break;
 			}
 			//start a new cascade
-			m_game->state()->resetCascadeCounter();
+			m_gameState->resetCascadeCounter();
 			//copy selection info into another storage (to allow the user to select the next two diamonds while the cascade runs)
 			m_swapping1x = m_selected1x;
 			m_swapping1y = m_selected1y;
@@ -385,7 +384,7 @@ void Board::update()
 				//it is now safe to delete the position of the swapping diamonds
 				m_swapping1x = m_swapping1y = m_swapping2x = m_swapping2y = -1;
 				//report to Game
-				m_game->state()->addPoints(m_diamondsToRemove.count());
+				m_gameState->addPoints(m_diamondsToRemove.count());
 				//prepare to fill gaps
 				m_jobQueue.prepend(KDiamond::FillGapsJob); //prepend this job as it has to be executed immediately after the animations (before handling any further user input)
 				//invoke remove animation

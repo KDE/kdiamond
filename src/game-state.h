@@ -27,7 +27,7 @@ namespace KDiamond
 	class GameStatePrivate;
 
 	//base duration of a game in seconds
-	const int GameDuration = 200;
+	const int GameDuration = 10;
 
 	enum Mode
 	{

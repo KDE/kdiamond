@@ -16,41 +16,26 @@
  *   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  ***************************************************************************/
 
-#ifndef KDIAMOND_GAME_H
-#define KDIAMOND_GAME_H
+#ifndef KDIAMOND_VIEW_H
+#define KDIAMOND_VIEW_H
 
-class Board;
-class MainWindow;
+#include <QGraphicsView>
 
 namespace KDiamond
 {
 
-	class GameState;
+	class View : public QGraphicsView
+	{
+		Q_OBJECT
+		public:
+			View(QWidget* parent = 0);
+		protected:
+			virtual void resizeEvent(QResizeEvent* event);
+			virtual void wheelEvent(QWheelEvent* event);
+		Q_SIGNALS:
+			void resized();
+	};
 
 }
 
-#include <QGraphicsView>
-#include <KGameDifficulty>
-
-class Game : public QGraphicsView
-{
-	Q_OBJECT
-	public:
-		Game(KGameDifficulty::standardLevel difficulty, MainWindow *mainWindow);
-		~Game();
-
-		Board *board() const;
-		KDiamond::GameState *state() const;
-	public slots:
-		void updateTheme();
-	protected:
-		virtual void mouseReleaseEvent(QMouseEvent *);
-		virtual void resizeEvent(QResizeEvent *);
-		virtual void wheelEvent(QWheelEvent *event);
-	private:
-		Board *m_board;
-		MainWindow *m_mainWindow;
-		KDiamond::GameState *m_state;
-};
-
-#endif //KDIAMOND_GAME_H
+#endif // KDIAMOND_VIEW_H
