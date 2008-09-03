@@ -106,14 +106,14 @@ void KDiamond::GameState::setState(KDiamond::State state)
 	if (p->m_state == KDiamond::Finished) //cannot be changed (except with startNewGame slot)
 		return;
 	//check for important transitions
-	if ((p->m_state == KDiamond::PausedUser || p->m_state == KDiamond::PausedAnimation) && state == KDiamond::Playing)
+	if (p->m_state == KDiamond::Paused && state == KDiamond::Playing)
 	{
 		//resuming from paused state
 		p->m_pausedMilliseconds += p->m_pauseTime.elapsed();
 		update(true); //recalculate time
 		emit message(QString()); //flush message
 	}
-	else if (p->m_state == KDiamond::Playing && (state == KDiamond::PausedUser || state == KDiamond::PausedAnimation))
+	else if (p->m_state == KDiamond::Playing && state == KDiamond::Paused)
 	{
 		//going to paused state
 		p->m_pauseTime.restart();

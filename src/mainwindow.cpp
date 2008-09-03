@@ -130,6 +130,8 @@ void MainWindow::startGame()
 	QAction *pauseAction = actionCollection()->action(KStandardGameAction::name(KStandardGameAction::Pause));
 	pauseAction->setChecked(false);
 	pauseAction->setEnabled(true);
+	QAction *hintAction = actionCollection()->action(KStandardGameAction::name(KStandardGameAction::Hint));
+	hintAction->setEnabled(true);
 	//reset status bar
 	//TODO: is this necessary?
 	updatePoints(0);
@@ -141,13 +143,16 @@ void MainWindow::startGame()
 
 void MainWindow::stateChange(KDiamond::State state)
 {
+	//disable pause button once game is over
 	if (state == KDiamond::Finished)
 	{
-		//reset the Pause button's state
 		QAction *pauseAction = actionCollection()->action(KStandardGameAction::name(KStandardGameAction::Pause));
 		pauseAction->setChecked(false);
 		pauseAction->setEnabled(false);
 	}
+	//hint is only possible while playing
+	QAction *hintAction = actionCollection()->action(KStandardGameAction::name(KStandardGameAction::Hint));
+	hintAction->setEnabled(state == KDiamond::Playing);
 }
 
 void MainWindow::gameIsOver()
@@ -162,7 +167,7 @@ void MainWindow::gameIsOver()
 
 void MainWindow::showHighscores()
 {
-	m_game->state()->setState(KDiamond::PausedUser);
+	m_game->state()->setState(KDiamond::Paused);
 	if (m_game->state()->state() != KDiamond::Finished)
 		actionCollection()->action("game_pause")->setChecked(true);
 	KScoreDialog dialog(KScoreDialog::Name | KScoreDialog::Score, this);
@@ -182,7 +187,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 void MainWindow::pausedAction(bool paused)
 {
-	m_game->state()->setState(paused ? KDiamond::PausedUser : KDiamond::Playing);
+	m_game->state()->setState(paused ? KDiamond::Paused : KDiamond::Playing);
 }
 
 void MainWindow::untimedAction(bool untimed)

@@ -312,7 +312,7 @@ void Board::clearSelection()
 void Board::update()
 {
 	//see Diamond::move(const QPointF &) for explanation
-	if (m_game->state()->state() == KDiamond::PausedUser || m_animator != 0)
+	if (m_game->state()->state() == KDiamond::Paused || m_animator != 0)
 		return;
 	if(m_jobQueue.count() == 0) //nothing to do in this update
 	{
@@ -598,7 +598,7 @@ void Board::stateChange(KDiamond::State state)
 			m_selection1->hide();
 			m_selection2->hide();
 			break;
-		case KDiamond::PausedUser:
+		case KDiamond::Paused:
 			for (int x = 0; x < m_size; ++x)
 			{
 				for (int y = 0; y < m_size; ++y)

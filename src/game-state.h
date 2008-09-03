@@ -37,8 +37,7 @@ namespace KDiamond
 	enum State
 	{
 		Playing,
-		PausedUser,
-		PausedAnimation, //DESIGN: should I keep this?
+		Paused,
 		Finished
 	};
 

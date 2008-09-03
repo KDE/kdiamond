@@ -183,12 +183,13 @@ QPixmap pixmapFromCache(RendererPrivate *p, const QString &svgName, const QSize 
 QPixmap Renderer::diamond(KDiamond::Color color)
 {
 	QString svgName = colorToString(color);
-	//cache the move animation for this diamond
-	if (color != KDiamond::Selection)
+	//cache the remove animation for this diamond
+	/*if (color != KDiamond::Selection)
 	{
 		for (int i = 0; i < p->m_removeAnimFrameCount; ++i)
 			pixmapFromCache(p, svgName + frameSuffix.arg(i), p->m_diamondSize);
 	}
+	*/
 	//return the static pixmap
 	return pixmapFromCache(p, svgName, p->m_diamondSize);
 }
