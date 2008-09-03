@@ -20,6 +20,7 @@
 #include "board.h"
 #include "container.h"
 #include "game-state.h"
+#include "infobar.h"
 #include "renderer.h"
 #include "settings.h"
 #include "view.h"
@@ -39,7 +40,6 @@
 #include <KScoreDialog>
 #include <KStandardAction>
 #include <KStandardGameAction>
-#include <KStatusBar>
 #include <KToggleAction>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -47,11 +47,12 @@ MainWindow::MainWindow(QWidget *parent)
 	, m_game(new KDiamond::GameState)
 	, m_board(0)
 	, m_view(new KDiamond::View)
+	, m_infoBar(new KDiamond::InfoBar(this))
+	, m_updateTime(new QTime)
+	, m_updateTimer(new QTimer)
 {
 	//init timers and randomizer (necessary for the board)
-	m_updateTimer = new QTimer;
 	connect(m_updateTimer, SIGNAL(timeout()), this, SLOT(updateTime()), Qt::DirectConnection);
-	m_updateTime = new QTime;
 	m_updateTime->start();
 	qsrand(time(0));
 	//init GUI - actions
@@ -65,26 +66,21 @@ MainWindow::MainWindow(QWidget *parent)
 	KToggleAction *showMinutes = actionCollection()->add<KToggleAction>("show_minutes");
 	showMinutes->setText(i18n("Show minutes on timer"));
 	showMinutes->setChecked(Settings::showMinutes());
-	connect(showMinutes, SIGNAL(triggered(bool)), this, SLOT(showMinutesOnTimer(bool)));
+	connect(showMinutes, SIGNAL(triggered(bool)), m_infoBar, SLOT(setShowMinutes(bool)));
 	KToggleAction *untimed = actionCollection()->add<KToggleAction>("untimed");
 	untimed->setText(i18n("Untimed Game"));
 	untimed->setChecked(Settings::untimed());
 	connect(untimed, SIGNAL(triggered(bool)), this, SLOT(untimedAction(bool)));
+	connect(untimed, SIGNAL(triggered(bool)), m_infoBar, SLOT(setUntimed(bool)));
 	//init GUI - statusbar etc.
-	statusBar()->insertPermanentItem(i18n("Points: %1", 0), 1, 1);
-	if (Settings::untimed())
-		statusBar()->insertPermanentItem(i18n("Untimed Game"), 2, 1);
-	else
-		statusBar()->insertPermanentItem(i18np("Time left: 1 second", "Time left: %1 seconds", 0), 2, 1);
-	statusBar()->insertPermanentItem(i18n("Possible moves: %1", 0), 3, 1);
 	setAutoSaveSettings();
 	//init GUI - center area
 	setCentralWidget(m_view);
 	connect(m_view, SIGNAL(resized()), this, SLOT(updateTheme()));
 	//init game state
 	connect(m_game, SIGNAL(stateChanged(KDiamond::State)), this, SLOT(stateChange(KDiamond::State)));
-	connect(m_game, SIGNAL(pointsChanged(int)), this, SLOT(updatePoints(int)));
-	connect(m_game, SIGNAL(leftTimeChanged(int)), this, SLOT(updateRemainingTime(int)));
+	connect(m_game, SIGNAL(pointsChanged(int)), m_infoBar, SLOT(updatePoints(int)));
+	connect(m_game, SIGNAL(leftTimeChanged(int)), m_infoBar, SLOT(updateRemainingTime(int)));
 	//difficulty
 	KGameDifficulty::init(this, this, SLOT(startGame()));
 	KGameDifficulty::addStandardLevel(KGameDifficulty::VeryEasy);
@@ -105,11 +101,11 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+	Settings::self()->writeConfig();
 	m_updateTimer->stop();
 	delete m_updateTime;
 	delete m_updateTimer;
-	if (m_game != 0)
-		delete m_game;
+	delete m_game;
 }
 
 void MainWindow::startGame()
@@ -127,7 +123,7 @@ void MainWindow::startGame()
 	connect(this, SIGNAL(updateScheduled(int)), m_board, SLOT(update()));
 	connect(m_game, SIGNAL(stateChanged(KDiamond::State)), m_board, SLOT(stateChange(KDiamond::State)));
 	connect(m_game, SIGNAL(message(const QString&)), m_board, SLOT(message(const QString&)));
-	connect(m_board, SIGNAL(numberMoves(int)), this, SLOT(updateMoves(int)));
+	connect(m_board, SIGNAL(numberMoves(int)), m_infoBar, SLOT(updateMoves(int)));
 	connect(m_board, SIGNAL(pendingAnimationsFinished()), this, SLOT(gameIsOver()));
 	m_view->setScene(m_board);
 	m_view->fitInView(0, 0, m_view->width(), m_view->height());
@@ -141,8 +137,8 @@ void MainWindow::startGame()
 	connect(hintAction, SIGNAL(triggered()), m_board, SLOT(showHint()));
 	//reset status bar
 	//TODO: is this necessary?
-	updatePoints(0);
-	updateRemainingTime(KDiamond::GameDuration);
+	m_infoBar->updatePoints(0);
+	m_infoBar->updateRemainingTime(KDiamond::GameDuration);
 	//reset timers
 	m_updateTimer->start(KDiamond::UpdateInterval);
 	m_updateTime->restart();
@@ -181,17 +177,6 @@ void MainWindow::showHighscores()
 	dialog.exec();
 }
 
-void MainWindow::close()
-{
-	Settings::self()->writeConfig();
-}
-
-void MainWindow::closeEvent(QCloseEvent *event)
-{
-	close();
-	event->accept();
-}
-
 void MainWindow::pausedAction(bool paused)
 {
 	m_game->setState(paused ? KDiamond::Paused : KDiamond::Playing);
@@ -200,8 +185,6 @@ void MainWindow::pausedAction(bool paused)
 void MainWindow::untimedAction(bool untimed)
 {
 	m_game->setMode(untimed ? KDiamond::UntimedGame : KDiamond::NormalGame);
-	if (untimed)
-		statusBar()->changeItem(i18n("Untimed Game"), 2);
 }
 
 void MainWindow::updateTime()
@@ -211,59 +194,10 @@ void MainWindow::updateTime()
 	emit updateScheduled(milliseconds); //TODO: are the milliseconds needed?
 }
 
-void MainWindow::updatePoints(int points)
-{
-	statusBar()->changeItem(i18n("Points: %1", points), 1);
-}
-
-void MainWindow::updateMoves(int moves)
-{
-	statusBar()->changeItem(i18n("Possible moves: %1", moves), 3);
-}
-
-void MainWindow::updateRemainingTime(int remainingSeconds)
-{
-	if (m_game->mode() == KDiamond::UntimedGame)
-		return;
-	//store the time: if remainingSeconds == -1, the old time is just re-rendered (used by the configuration action MainWindow::showMinutesOnTimer)
-	static int storeRemainingSeconds = 0;
-	if (remainingSeconds == -1)
-		remainingSeconds = storeRemainingSeconds;
-	else
-		storeRemainingSeconds = remainingSeconds;
-	//split time in seconds and minutes if wanted
-	int seconds, minutes;
-	if (Settings::showMinutes())
-	{
-		seconds = remainingSeconds % 60;
-		minutes = remainingSeconds / 60;
-	}
-	else
-	{
-		seconds = remainingSeconds;
-		minutes = 0; //the minutes do not appear in the output when minutes == 0
-	}
-	//compose new string
-	QString sOutput;
-	if (minutes == 0)
-		sOutput = i18n("Time left: %1", i18np("1 second", "%1 seconds", seconds));
-	else if (seconds == 0)
-		sOutput = i18n("Time left: %1", i18np("1 minute", "%1 minutes", minutes));
-	else
-		sOutput = i18nc("The two parameters are strings like '2 minutes' or '1 second'.", "Time left: %1, %2", i18np("1 minute", "%1 minutes", minutes), i18np("1 second", "%1 seconds", seconds));
-	statusBar()->changeItem(sOutput, 2);
-}
-
 void MainWindow::updateTheme(bool force)
 {
 	if (m_board)
 		m_board->resizeScene(m_view->width(), m_view->height(), force);
-}
-
-void MainWindow::showMinutesOnTimer(bool showMinutes)
-{
-	Settings::setShowMinutes(showMinutes);
-	updateRemainingTime(-1);
 }
 
 void MainWindow::configureNotifications()

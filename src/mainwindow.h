@@ -29,6 +29,7 @@ class QTimer;
 
 namespace KDiamond
 {
+	class InfoBar;
 	class View;
 	//maximum update interval in milliseconds
 	const int UpdateInterval = 40;
@@ -45,31 +46,25 @@ class MainWindow : public KXmlGuiWindow
 		void stateChange(KDiamond::State state);
 		void gameIsOver();
 		void showHighscores();
-		void close();
 
 		void configureNotifications();
 		void configureSettings();
 		void loadSettings();
-		void showMinutesOnTimer(bool showMinutes);
 	signals:
 		void pause(bool paused);
 		void updateScheduled(int milliseconds);
-	protected:
-		virtual void closeEvent(QCloseEvent *);
 	protected slots:
 		void pausedAction(bool paused);
 		void untimedAction(bool untimed);
 
 		void updateTime();
-		void updatePoints(int points);
-		void updateMoves(int moves);
-		void updateRemainingTime(int remainingSeconds);
 		void updateTheme(bool force = false);
 	private:
 		KDiamond::GameState* m_game;
 		Board* m_board;
 		KDiamond::View* m_view;
 
+		KDiamond::InfoBar* m_infoBar;
 		QTime *m_updateTime;
 		QTimer *m_updateTimer;
 };

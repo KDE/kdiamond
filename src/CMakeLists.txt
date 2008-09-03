@@ -7,6 +7,7 @@ set(kdiamond_SRCS
 	container.cpp
 	diamond.cpp
 	game-state.cpp
+	infobar.cpp
 	main.cpp
 	mainwindow.cpp
 	renderer.cpp
