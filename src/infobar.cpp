@@ -58,7 +58,10 @@ void KDiamond::InfoBar::updatePoints(int points)
 
 void KDiamond::InfoBar::updateMoves(int moves)
 {
-	changeItem(i18n("Possible moves: %1", moves), 3);
+	if (moves == -1)
+		changeItem(i18n("Possible moves: %1").arg("..."), 3);
+	else
+		changeItem(i18n("Possible moves: %1", moves), 3);
 }
 
 void KDiamond::InfoBar::updateRemainingTime(int remainingSeconds)

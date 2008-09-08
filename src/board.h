@@ -56,6 +56,7 @@ namespace KDiamond
 		RemoveRowsJob, //remove complete rows of diamonds and add points
 		RevokeSwapDiamondsJob, //revoke swapping of diamonds (will be requested by the RemoveRowsJob if no rows have been formed)
 		FillGapsJob,
+		UpdateAvailableMovesJob, //find and count available moves after the board has been changed
 		EndGameJob //announce end of game
 	};
 }

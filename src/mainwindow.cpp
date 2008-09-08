@@ -132,7 +132,6 @@ void MainWindow::startGame(KDiamond::Mode mode)
 	m_game->setMode(mode);
 	m_board = new Board(m_game, KGameDifficulty::level());
 	updateTheme(false); //initalizes the theme
-	connect(this, SIGNAL(updateScheduled(int)), m_board, SLOT(update()));
 	connect(m_game, SIGNAL(stateChanged(KDiamond::State)), m_board, SLOT(stateChange(KDiamond::State)));
 	connect(m_game, SIGNAL(message(const QString&)), m_board, SLOT(message(const QString&)));
 	connect(m_board, SIGNAL(numberMoves(int)), m_infoBar, SLOT(updateMoves(int)));

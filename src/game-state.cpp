@@ -141,6 +141,12 @@ void KDiamond::GameState::addPoints(int removedDiamonds)
 	update(true); //recalculate time
 }
 
+void KDiamond::GameState::removePoints(int points)
+{
+	p->m_points = qMax(0, p->m_points - points);
+	emit pointsChanged(p->m_points);
+}
+
 void KDiamond::GameState::resetCascadeCounter()
 {
 	p->m_cascade = 0;

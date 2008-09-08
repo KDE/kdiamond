@@ -116,6 +116,8 @@ Board::Board(KDiamond::GameState* state, KGameDifficulty::standardLevel difficul
 	addItem(m_messenger);
 	//init time management
 	m_timerId = startTimer(UpdateInterval);
+	//schedule late initialisation
+	m_jobQueue << KDiamond::UpdateAvailableMovesJob;
 }
 
 Board::~Board()
@@ -319,12 +321,7 @@ void Board::timerEvent(QTimerEvent* event)
 	if (m_gameState->state() == KDiamond::Paused || m_animator != 0)
 		return;
 	if(m_jobQueue.count() == 0) //nothing to do in this update
-	{
-		//finish game if possible
-		if (m_gameState->state() != KDiamond::Finished)
-			getMoves();
 		return;
-	}
 	//execute first job in queue
 	KDiamond::Job job = m_jobQueue.takeFirst();
 	int dx, dy;
@@ -381,9 +378,17 @@ void Board::timerEvent(QTimerEvent* event)
 				//no diamond rows were formed by the last move -> revoke movement (unless we are in a cascade)
 				if (m_swapping1x != -1 && m_swapping1y != -1 && m_swapping2x != -1 && m_swapping2y != -1)
 					m_jobQueue << KDiamond::RevokeSwapDiamondsJob;
+				else
+					m_jobQueue << KDiamond::UpdateAvailableMovesJob;
 			}
 			else
 			{
+				//all moves may now be out-dated - flush the moves list
+				if (!m_availableMoves.isEmpty())
+				{
+					m_availableMoves.clear();
+					emit numberMoves(-1);
+				}
 				//it is now safe to delete the position of the swapping diamonds
 				m_swapping1x = m_swapping1y = m_swapping2x = m_swapping2y = -1;
 				//report to Game
@@ -436,6 +441,10 @@ void Board::timerEvent(QTimerEvent* event)
 			//fill gaps
 			fillGaps();
 			m_jobQueue.prepend(KDiamond::RemoveRowsJob); //allow cascades (i.e. clear rows that have been formed by falling diamonds)
+			break;
+		case KDiamond::UpdateAvailableMovesJob:
+			if (m_gameState->state() != KDiamond::Finished)
+				getMoves();
 			break;
 		case KDiamond::EndGameJob:
 			emit pendingAnimationsFinished();
@@ -576,10 +585,7 @@ void Board::fillGaps()
 
 bool Board::onBoard(int x, int y) const
 {
-	if ((0 <= x && x < m_size) && (0 <= y && y < m_size))
-		return true;
-	else
-		return false;
+	return 0 <= x && x < m_size && 0 <= y && y < m_size;
 }
 
 void Board::showHint()
@@ -589,6 +595,7 @@ void Board::showHint()
 	m_selected1y = location.y();
 	m_selection1->setPosInBoardCoords(location);
 	m_selection1->show();
+	m_gameState->removePoints(3);
 }
 
 void Board::animationFinished()

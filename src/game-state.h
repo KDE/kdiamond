@@ -57,6 +57,7 @@ namespace KDiamond
 			void setState(State state);
 		public Q_SLOTS:
 			void addPoints(int removedDiamonds);
+			void removePoints(int points);
 			void resetCascadeCounter();
 			void startNewGame();
 			void update(bool forceRecalculation = false);
