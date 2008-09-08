@@ -25,6 +25,8 @@ class Container;
 
 class QTime;
 class QTimer;
+class KAction;
+class KActionMenu;
 #include <KXmlGuiWindow>
 
 namespace KDiamond
@@ -40,7 +42,8 @@ class MainWindow : public KXmlGuiWindow
 		MainWindow(QWidget *parent = 0);
 		~MainWindow();
 	public slots:
-		void startGame();
+		void startGame(KDiamond::Mode mode);
+		void startGameDispatcher();
 		void stateChange(KDiamond::State state);
 		void gameIsOver();
 		void showHighscores();
@@ -53,7 +56,6 @@ class MainWindow : public KXmlGuiWindow
 		void updateScheduled(int milliseconds);
 	protected slots:
 		void pausedAction(bool paused);
-		void untimedAction(bool untimed);
 		void updateTheme(bool force = false);
 	private:
 		KDiamond::GameState* m_game;
@@ -63,6 +65,10 @@ class MainWindow : public KXmlGuiWindow
 		KDiamond::InfoBar* m_infoBar;
 		QTime *m_updateTime;
 		QTimer *m_updateTimer;
+
+		KActionMenu *m_newAct;
+		KAction *m_newTimedAct;
+		KAction *m_newUntimedAct;
 };
 
 #endif //KDIAMOND_MAINWINDOW_H

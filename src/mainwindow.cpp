@@ -28,6 +28,8 @@
 #include <QCloseEvent>
 #include <QTime>
 #include <QTimer>
+#include <KAction>
+#include <KActionMenu>
 #include <KActionCollection>
 #include <KApplication>
 #include <KConfigDialog>
@@ -49,9 +51,20 @@ MainWindow::MainWindow(QWidget *parent)
 	, m_board(0)
 	, m_view(new KDiamond::View)
 	, m_infoBar(new KDiamond::InfoBar(this))
+	, m_newAct(new KActionMenu(KIcon("document-new"), i18nc("new game", "&New"), this))
+	, m_newTimedAct(new KAction(i18n("Timed game"), this))
+	, m_newUntimedAct(new KAction(i18n("Untimed game"), this))
 {
-	//init GUI - actions
-	KStandardGameAction::gameNew(this, SLOT(startGame()), actionCollection());
+	//init GUI - "New Action"
+	m_newAct->setToolTip(i18n("Start a new game"));
+	m_newAct->setWhatsThis(i18n("Start a new game."));
+	actionCollection()->addAction("game_new", m_newAct);
+	connect(m_newAct, SIGNAL(triggered()), this, SLOT(startGameDispatcher()));
+	m_newAct->addAction(m_newTimedAct);
+	connect(m_newTimedAct, SIGNAL(triggered()), this, SLOT(startGameDispatcher()));
+	m_newAct->addAction(m_newUntimedAct);
+	connect(m_newUntimedAct, SIGNAL(triggered()), this, SLOT(startGameDispatcher()));
+	//init GUI - the other actions
 	KStandardGameAction::highscores(this, SLOT(showHighscores()), actionCollection());
 	KStandardGameAction::pause(this, SLOT(pausedAction(bool)), actionCollection());
 	KStandardGameAction::quit(kapp, SLOT(quit()), actionCollection());
@@ -62,22 +75,17 @@ MainWindow::MainWindow(QWidget *parent)
 	showMinutes->setText(i18n("Show minutes on timer"));
 	showMinutes->setChecked(Settings::showMinutes());
 	connect(showMinutes, SIGNAL(triggered(bool)), m_infoBar, SLOT(setShowMinutes(bool)));
-	KToggleAction *untimed = actionCollection()->add<KToggleAction>("untimed");
-	untimed->setText(i18n("Untimed Game"));
-	untimed->setChecked(Settings::untimed());
-	connect(untimed, SIGNAL(triggered(bool)), this, SLOT(untimedAction(bool)));
-	connect(untimed, SIGNAL(triggered(bool)), m_infoBar, SLOT(setUntimed(bool)));
 	//init GUI - statusbar etc.
 	setAutoSaveSettings();
 	//init GUI - center area
 	setCentralWidget(m_view);
 	connect(m_view, SIGNAL(resized()), this, SLOT(updateTheme()));
-	//init game state
+	//connect game
 	connect(m_game, SIGNAL(stateChanged(KDiamond::State)), this, SLOT(stateChange(KDiamond::State)));
 	connect(m_game, SIGNAL(pointsChanged(int)), m_infoBar, SLOT(updatePoints(int)));
 	connect(m_game, SIGNAL(leftTimeChanged(int)), m_infoBar, SLOT(updateRemainingTime(int)));
 	//difficulty
-	KGameDifficulty::init(this, this, SLOT(startGame()));
+	KGameDifficulty::init(this, this, SLOT(startGameDispatcher()));
 	KGameDifficulty::addStandardLevel(KGameDifficulty::VeryEasy);
 	KGameDifficulty::addStandardLevel(KGameDifficulty::Easy);
 	KGameDifficulty::addStandardLevel(KGameDifficulty::Medium);
@@ -100,7 +108,18 @@ MainWindow::~MainWindow()
 	delete m_game;
 }
 
-void MainWindow::startGame()
+void MainWindow::startGameDispatcher()
+{
+	if (sender() == m_newUntimedAct)
+		startGame(KDiamond::UntimedGame);
+	else if (sender() == m_newTimedAct)
+		startGame(KDiamond::NormalGame);
+	else
+		//attention: this may also be used by KGameDifficulty
+		startGame(Settings::untimed() ? KDiamond::UntimedGame : KDiamond::NormalGame);
+}
+
+void MainWindow::startGame(KDiamond::Mode mode)
 {
 	//save (eventually changed) difficulty level
 	KGameDifficulty::standardLevel level = KGameDifficulty::level();
@@ -110,6 +129,7 @@ void MainWindow::startGame()
 		delete m_board;
 	//start new game
 	m_game->startNewGame();
+	m_game->setMode(mode);
 	m_board = new Board(m_game, KGameDifficulty::level());
 	updateTheme(false); //initalizes the theme
 	connect(this, SIGNAL(updateScheduled(int)), m_board, SLOT(update()));
@@ -129,6 +149,7 @@ void MainWindow::startGame()
 	connect(hintAction, SIGNAL(triggered()), m_board, SLOT(showHint()));
 	//reset status bar
 	//TODO: is this necessary?
+	m_infoBar->setUntimed(mode == KDiamond::UntimedGame);
 	m_infoBar->updatePoints(0);
 	m_infoBar->updateRemainingTime(KDiamond::GameDuration);
 }
@@ -176,11 +197,6 @@ void MainWindow::showHighscores()
 void MainWindow::pausedAction(bool paused)
 {
 	m_game->setState(paused ? KDiamond::Paused : KDiamond::Playing);
-}
-
-void MainWindow::untimedAction(bool untimed)
-{
-	m_game->setMode(untimed ? KDiamond::UntimedGame : KDiamond::NormalGame);
 }
 
 void MainWindow::updateTheme(bool force)
