@@ -29,6 +29,10 @@
 #include <KLocale>
 #include <KStandardDirs>
 
+//TODO: make Board::getMoves() into a queueable job to lower CPU time consumption
+//TODO: pre-cache animation frames in the Board loop when idle
+//TODO: score penalty when hint function is used
+
 static const char description[] = I18N_NOOP("KDiamond, a three-in-a-row game.");
 static const char version[] = "1.0";
 

@@ -53,7 +53,6 @@ class MainWindow : public KXmlGuiWindow
 		void loadSettings();
 	signals:
 		void pause(bool paused);
-		void updateScheduled(int milliseconds);
 	protected slots:
 		void pausedAction(bool paused);
 		void updateTheme(bool force = false);
@@ -63,8 +62,6 @@ class MainWindow : public KXmlGuiWindow
 		KDiamond::View* m_view;
 
 		KDiamond::InfoBar* m_infoBar;
-		QTime *m_updateTime;
-		QTimer *m_updateTimer;
 
 		KActionMenu *m_newAct;
 		KAction *m_newTimedAct;
