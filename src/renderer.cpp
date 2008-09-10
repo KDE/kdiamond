@@ -27,11 +27,12 @@
 #include <KPixmapCache>
 #include <KSvgRenderer>
 
+typedef QPair<KDiamond::Color, int> RendererFrame;
+
 class RendererPrivate
 {
 	public:
 		RendererPrivate();
-		~RendererPrivate() {};
 
 		KSvgRenderer m_renderer;
 		KPixmapCache m_cache;
@@ -43,6 +44,8 @@ class RendererPrivate
 		int m_removeAnimFrameCount;
 		bool m_hasBorder;
 		qreal m_borderPercentage;
+
+		QList<RendererFrame> m_framesToRender;
 };
 
 const QString sizeSuffix("_%1-%2");
@@ -99,6 +102,13 @@ bool Renderer::loadTheme(const QString &name)
 	//flush cache
 	if (discardCache)
 		p->m_cache.discard();
+	//issue new frame render requests
+	for (int color = 1; color <= 7; ++color) //color == 0 is for selections, do not pre-render animation frames for this one
+	{
+		const KDiamond::Color color2 = KDiamond::colorFromNumber(color);
+		for (int frame = 0; frame < p->m_removeAnimFrameCount; ++frame)
+			p->m_framesToRender << RendererFrame(color2, frame);
+	}
 	return true;
 }
 
@@ -180,24 +190,24 @@ QPixmap pixmapFromCache(RendererPrivate *p, const QString &svgName, const QSize 
 	return pix;
 }
 
+void Renderer::prerenderNextAnimationFrame()
+{
+	if (p->m_framesToRender.isEmpty())
+		return;
+	RendererFrame frameRequest = p->m_framesToRender.takeFirst();
+	removeFrame(frameRequest.first, frameRequest.second);
+}
+
 QPixmap Renderer::diamond(KDiamond::Color color)
 {
-	QString svgName = colorToString(color);
-	//cache the remove animation for this diamond
-	/*if (color != KDiamond::Selection)
-	{
-		for (int i = 0; i < p->m_removeAnimFrameCount; ++i)
-			pixmapFromCache(p, svgName + frameSuffix.arg(i), p->m_diamondSize);
-	}
-	*/
-	//return the static pixmap
-	return pixmapFromCache(p, svgName, p->m_diamondSize);
+	return pixmapFromCache(p, colorToString(color), p->m_diamondSize);
 }
 
 QPixmap Renderer::removeFrame(KDiamond::Color color, int frame)
 {
-	if (frame >= p->m_removeAnimFrameCount || color == KDiamond::Selection)
+	if (frame < 0 || frame >= p->m_removeAnimFrameCount || color == KDiamond::Selection)
 		return QPixmap();
+	p->m_framesToRender.removeAll(RendererFrame(color, frame));
 	return pixmapFromCache(p, colorToString(color) + frameSuffix.arg(frame), p->m_diamondSize);
 }
 

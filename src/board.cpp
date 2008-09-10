@@ -321,7 +321,10 @@ void Board::timerEvent(QTimerEvent* event)
 	if (m_gameState->state() == KDiamond::Paused || m_animator != 0)
 		return;
 	if(m_jobQueue.count() == 0) //nothing to do in this update
+	{
+		Renderer::self()->prerenderNextAnimationFrame();
 		return;
+	}
 	//execute first job in queue
 	KDiamond::Job job = m_jobQueue.takeFirst();
 	int dx, dy;

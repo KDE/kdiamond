@@ -38,6 +38,7 @@ class Renderer {
 		int removeAnimFrameCount();
 		bool hasBorder();
 
+		void prerenderNextAnimationFrame();
 		QPixmap diamond(KDiamond::Color color);
 		QPixmap removeFrame(KDiamond::Color color, int frame);
 		QPixmap background();
