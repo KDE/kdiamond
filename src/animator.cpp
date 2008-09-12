@@ -16,13 +16,12 @@
  *   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  ***************************************************************************/
 
-#include <QTimeLine> //gives a compile error if included after my own headers
-
 #include "animator.h"
 #include "diamond.h"
 #include "renderer.h"
 
 #include <QTime>
+#include <QTimeLine>
 
 Animator::Animator()
 	: m_duration(0)
