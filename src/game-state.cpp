@@ -180,7 +180,7 @@ void KDiamond::GameState::update(bool forceRecalculation)
 	if (leftSeconds <= 0)
 		setState(KDiamond::Finished);
 	if (p->m_leftMilliseconds / 1000 != leftSeconds)
-		emit leftTimeChanged(leftSeconds);
+		emit leftTimeChanged(qMax(0, leftSeconds));
 	p->m_leftMilliseconds = leftMilliseconds;
 }
 

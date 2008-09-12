@@ -68,14 +68,14 @@ void KDiamond::InfoBar::updateRemainingTime(int remainingSeconds)
 {
 	if (m_untimed)
 		return;
-	//store the time: if remainingSeconds == -1, the old time is just re-rendered (used to apply configuration actions)
+	//store the time: if remainingSeconds == -1, the old time is just re-rendered (used to apply configuration options)
 	static int storeRemainingSeconds = 0;
 	if (remainingSeconds == -1)
 		remainingSeconds = storeRemainingSeconds;
 	else
 		storeRemainingSeconds = remainingSeconds;
 	//split time in seconds and minutes if wanted
-	int seconds, minutes;
+	int seconds, minutes = 0;
 	if (Settings::showMinutes())
 	{
 		seconds = remainingSeconds % 60;
@@ -84,7 +84,7 @@ void KDiamond::InfoBar::updateRemainingTime(int remainingSeconds)
 	else
 	{
 		seconds = remainingSeconds;
-		minutes = 0; //the minutes do not appear in the output when minutes == 0
+		//the minutes do not appear in the output because minutes == 0
 	}
 	//compose new string
 	QString sOutput;
@@ -95,6 +95,9 @@ void KDiamond::InfoBar::updateRemainingTime(int remainingSeconds)
 	else
 		sOutput = i18nc("The two parameters are strings like '2 minutes' or '1 second'.", "Time left: %1, %2", i18np("1 minute", "%1 minutes", minutes), i18np("1 second", "%1 seconds", seconds));
 	changeItem(sOutput, 2);
+	//special treatment if game is finished
+	if (remainingSeconds == 0)
+		updateMoves(0);
 }
 
 #include "infobar.moc"
