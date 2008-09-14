@@ -56,6 +56,7 @@ MainWindow::MainWindow(QWidget *parent)
 	, m_newUntimedAct(new KAction(i18n("Untimed game"), this))
 {
 	//init GUI - "New Action"
+	m_newAct->setShortcut(KStandardShortcut::openNew());
 	m_newAct->setToolTip(i18n("Start a new game"));
 	m_newAct->setWhatsThis(i18n("Start a new game."));
 	actionCollection()->addAction("game_new", m_newAct);
