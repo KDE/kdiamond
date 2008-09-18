@@ -135,8 +135,9 @@ void KDiamond::GameState::timerEvent(QTimerEvent* event)
 void KDiamond::GameState::addPoints(int removedDiamonds)
 {
 	p->m_points += ++p->m_cascade;
+	p->m_earnedMilliseconds += 500;
 	if (removedDiamonds > 3)
-		++p->m_earnedMilliseconds;
+		p->m_earnedMilliseconds += 1000 * (removedDiamonds - 3);
 	emit pointsChanged(p->m_points);
 	update(true); //recalculate time
 }
