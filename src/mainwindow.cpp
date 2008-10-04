@@ -43,14 +43,12 @@
 #include <KStandardGameAction>
 #include <KToggleAction>
 
-//TODO: separate untimed and timed games in the highscore list
-
 MainWindow::MainWindow(QWidget *parent)
 	: KXmlGuiWindow(parent)
 	, m_game(new KDiamond::GameState)
 	, m_board(0)
 	, m_view(new KDiamond::View)
-	, m_infoBar(new KDiamond::InfoBar(this))
+	, m_infoBar(0)
 	, m_newAct(new KActionMenu(KIcon("document-new"), i18nc("new game", "&New"), this))
 	, m_newTimedAct(new KAction(i18n("Timed game"), this))
 	, m_newUntimedAct(new KAction(i18n("Untimed game"), this))
@@ -74,14 +72,16 @@ MainWindow::MainWindow(QWidget *parent)
 	KStandardAction::configureNotifications(this, SLOT(configureNotifications()), actionCollection());
 	KToggleAction *showMinutes = actionCollection()->add<KToggleAction>("show_minutes");
 	showMinutes->setText(i18n("Show minutes on timer"));
-	showMinutes->setChecked(Settings::showMinutes());
-	connect(showMinutes, SIGNAL(triggered(bool)), m_infoBar, SLOT(setShowMinutes(bool)));
-	//init GUI - statusbar etc.
+	showMinutes->setChecked(Settings::showMinutes()); //the triggered() signal is connected once m_infoBar becomes available
+	//late GUI initialisation
 	setAutoSaveSettings();
-	//init GUI - center area
+	setupGUI(QSize(300, 400)); //TODO: find better solution for a minimum size
+	setCaption(i18nc("The application's name", "KDiamond"));
 	setCentralWidget(m_view);
 	connect(m_view, SIGNAL(resized()), this, SLOT(updateTheme()));
-	//connect game
+	//init statusbar
+	m_infoBar = new KDiamond::InfoBar(this);
+	connect(showMinutes, SIGNAL(triggered(bool)), m_infoBar, SLOT(setShowMinutes(bool)));
 	connect(m_game, SIGNAL(stateChanged(KDiamond::State)), this, SLOT(stateChange(KDiamond::State)));
 	connect(m_game, SIGNAL(pointsChanged(int)), m_infoBar, SLOT(updatePoints(int)));
 	connect(m_game, SIGNAL(leftTimeChanged(int)), m_infoBar, SLOT(updateRemainingTime(int)));
@@ -98,9 +98,6 @@ MainWindow::MainWindow(QWidget *parent)
 		KGameDifficulty::setLevel(KGameDifficulty::Easy);
 	else
 		KGameDifficulty::setLevel((KGameDifficulty::standardLevel) (skill));
-	//late GUI initiation
-	setupGUI(QSize(300, 400)); //TODO: find better solution for a minimum size
-	setCaption(i18nc("The application's name", "KDiamond"));
 }
 
 MainWindow::~MainWindow()
