@@ -27,8 +27,8 @@
     
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2008-03-17</date>
-<releaseinfo>0.3.0</releaseinfo>
+<date>2009-01-27</date>
+<releaseinfo>1.1.0</releaseinfo>
 
 <abstract>
 <para>
@@ -64,7 +64,7 @@ The player is presented with a rectangular grid containing several types of diam
 </para>
 
 <para>
-Click on one diamond, then on one of its neighbors. The diamonds will then be swapped. If no line of at least three diamonds is formed by the swap, it will be reverted. The status bar displays the game time left, and the number of points you have earned.
+Click on one diamond, then on one of its neighbors. The diamonds will then be swapped. If no line of at least three diamonds is formed by the swap, it will be reverted. The status bar displays the game time left, the number of points you have earned, and the number of possible moves.
 </para>
 
 </chapter>
@@ -76,7 +76,9 @@ Click on one diamond, then on one of its neighbors. The diamonds will then be sw
 <title>Rules</title>
 <itemizedlist>
 <listitem><para>When a line was removed and the diamonds fall down to fill gaps, it may be that then new lines are composed. Try to achieve such cascades when selecting a diamond pair as you will earn extra points: You get 1 point for the line you build, 2 points for the first cascade, 3 points for a possible next cascade, and so on.</para></listitem>
+<listitem><para>Try to build lines with more than 3 diamonds: You will earn an extra second for each two extra diamonds removed.</para></listitem>
 <listitem><para>The number of diamond types increases when choosing <guilabel>Hard</guilabel> difficulty levels, thus making it harder to build lines. In contrast, the board size will grow on the <guilabel>Easy</guilabel> difficulty levels to make it easier to find a move.</para></listitem>
+<listitem><para>The game will stop once there are no possible moves left. Especially on <guilabel>Hard</guilabel> difficulty levels, you should keep this in mind when choosing your next move.</para></listitem>
 </itemizedlist>
 </sect1>
 
@@ -150,8 +152,27 @@ Quits the program.
 
 </sect1>
 
+<sect1 id="move-menu">
+<title><guimenu>Move</guimenu> Menu</title>
 
+<variablelist>
+<varlistentry>
+<term><menuchoice>
+<shortcut>
+<keycombo action="simul"><keycap>H</keycap></keycombo>
+</shortcut>
+<guimenu>Move</guimenu>
+<guimenuitem>Hint</guimenuitem>
+</menuchoice></term>
+<listitem>
+<para>
+Highlight a diamond which can be moved. This will cost you three seconds of your game time.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
 
+</sect1>
 
 <sect1 id="settings-menu">
 <title><guimenu>Settings</guimenu> Menu</title>
@@ -243,7 +264,7 @@ dialog, where you can change the notifications (sounds, visible messages,
 <guimenu>Settings</guimenu>
 <guimenuitem>Configure KDiamond...</guimenuitem>
 </menuchoice></term>
-<listitem><para>Choose a graphical theme for the game. Which themes are available depends on the current installation.</para></listitem>
+<listitem><para>Choose a graphical theme for the game. Which themes are available depends on the current installation. You may also download new themes which have been created by third-party designers.</para></listitem>
 </varlistentry>
 
 </variablelist>
