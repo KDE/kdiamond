@@ -64,7 +64,7 @@ The player is presented with a rectangular grid containing several types of diam
 </para>
 
 <para>
-Click on one diamond, then on one of its neighbors. The diamonds will then be swapped. If no line of at least three diamonds is formed by the swap, it will be reverted. The status bar displays the game time left, the number of points you have earned, and the number of possible moves.
+Click on one diamond, then on one of its neighbors. The diamonds will then be swapped. (You may also click and drag a diamond upon one of its neighbors to invoke the swap.) If no line of at least three diamonds is formed by the swap, it will be reverted. The status bar displays the game time left, the number of points you have earned, and the number of possible moves.
 </para>
 
 </chapter>
