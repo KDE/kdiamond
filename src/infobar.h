@@ -19,17 +19,17 @@
 #ifndef KDIAMOND_INFOBAR_H
 #define KDIAMOND_INFOBAR_H
 
-class KMainWindow;
-#include <KStatusBar>
+#include <QObject>
+class KStatusBar;
 
 namespace KDiamond
 {
 
-	class InfoBar : public KStatusBar
+	class InfoBar : public QObject
 	{
 		Q_OBJECT
 		public:
-			InfoBar(KMainWindow* parent = 0);
+			InfoBar(KStatusBar* bar);
 		public Q_SLOTS:
 			void setShowMinutes(bool showMinutes);
 			void setUntimed(bool untimed);
@@ -38,6 +38,7 @@ namespace KDiamond
 			void updateRemainingTime(int remainingSeconds);
 		private:
 			bool m_untimed;
+			KStatusBar* m_bar;
 	};
 
 }

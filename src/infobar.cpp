@@ -20,22 +20,18 @@
 #include "settings.h"
 
 #include <KLocalizedString>
-#include <KMainWindow>
 #include <KStatusBar>
 
-KDiamond::InfoBar::InfoBar(KMainWindow* parent)
+KDiamond::InfoBar::InfoBar(KStatusBar* bar)
 	: m_untimed(Settings::untimed())
+	, m_bar(bar)
 {
-	//initialize items
-	insertPermanentItem(i18n("Points: %1", 0), 1, 1);
+	m_bar->insertPermanentItem(i18n("Points: %1", 0), 1, 1);
 	if (m_untimed)
-		insertPermanentItem(i18n("Untimed game"), 2, 1);
+		m_bar->insertPermanentItem(i18n("Untimed game"), 2, 1);
 	else
-		insertPermanentItem(i18np("Time left: 1 second", "Time left: %1 seconds", 0), 2, 1);
-	insertPermanentItem(i18n("Possible moves: %1", 0), 3, 1);
-	//insert into parent
-	if (parent != 0)
-		parent->setStatusBar(this);
+		m_bar->insertPermanentItem(i18np("Time left: 1 second", "Time left: %1 seconds", 0), 2, 1);
+	m_bar->insertPermanentItem(i18n("Possible moves: %1", 0), 3, 1);
 }
 
 void KDiamond::InfoBar::setShowMinutes(bool showMinutes)
@@ -47,21 +43,21 @@ void KDiamond::InfoBar::setShowMinutes(bool showMinutes)
 void KDiamond::InfoBar::setUntimed(bool untimed)
 {
 	if (untimed)
-		changeItem(i18n("Untimed game"), 2);
+		m_bar->changeItem(i18n("Untimed game"), 2);
 	m_untimed = untimed;
 }
 
 void KDiamond::InfoBar::updatePoints(int points)
 {
-	changeItem(i18n("Points: %1", points), 1);
+	m_bar->changeItem(i18n("Points: %1", points), 1);
 }
 
 void KDiamond::InfoBar::updateMoves(int moves)
 {
 	if (moves == -1)
-		changeItem(i18nc("Shown when the board is in motion.", "Possible moves: ..."), 3);
+		m_bar->changeItem(i18nc("Shown when the board is in motion.", "Possible moves: ..."), 3);
 	else
-		changeItem(i18n("Possible moves: %1", moves), 3);
+		m_bar->changeItem(i18n("Possible moves: %1", moves), 3);
 }
 
 void KDiamond::InfoBar::updateRemainingTime(int remainingSeconds)
@@ -94,7 +90,7 @@ void KDiamond::InfoBar::updateRemainingTime(int remainingSeconds)
 		sOutput = i18n("Time left: %1", i18np("1 minute", "%1 minutes", minutes));
 	else
 		sOutput = i18nc("The two parameters are strings like '2 minutes' or '1 second'.", "Time left: %1, %2", i18np("1 minute", "%1 minutes", minutes), i18np("1 second", "%1 seconds", seconds));
-	changeItem(sOutput, 2);
+	m_bar->changeItem(sOutput, 2);
 	//special treatment if game is finished
 	if (remainingSeconds == 0)
 		updateMoves(0);

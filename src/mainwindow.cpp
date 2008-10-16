@@ -80,7 +80,7 @@ MainWindow::MainWindow(QWidget *parent)
 	setCentralWidget(m_view);
 	connect(m_view, SIGNAL(resized()), this, SLOT(updateTheme()));
 	//init statusbar
-	m_infoBar = new KDiamond::InfoBar(this);
+	m_infoBar = new KDiamond::InfoBar(statusBar());
 	connect(showMinutes, SIGNAL(triggered(bool)), m_infoBar, SLOT(setShowMinutes(bool)));
 	connect(m_game, SIGNAL(stateChanged(KDiamond::State)), this, SLOT(stateChange(KDiamond::State)));
 	connect(m_game, SIGNAL(pointsChanged(int)), m_infoBar, SLOT(updatePoints(int)));
