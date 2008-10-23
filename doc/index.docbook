@@ -126,7 +126,7 @@ Pauses the game time. Click on the menu item again to make the game resume. Note
 <keycombo action="simul">&Ctrl;<keycap>H</keycap></keycombo>
 </shortcut>
 <guimenu>Game</guimenu>
-<guimenuitem>Show High Scores...</guimenuitem></menuchoice></term>
+<guimenuitem>Show High Scores</guimenuitem></menuchoice></term>
 <listitem>
 <para>
 Shows a dialog containing the High Scores for the various difficulty levels.
