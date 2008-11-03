@@ -108,9 +108,7 @@ Starts a new game. It creates a random board using the current difficulty level.
 
 <varlistentry>
 <term><menuchoice>
-<shortcut>
-<keycombo action="simul"><keysym>P</keysym></keycombo>
-</shortcut>
+<shortcut><keycap>P</keycap></shortcut>
 <guimenu>Game</guimenu>
 <guimenuitem>Pause</guimenuitem></menuchoice></term>
 <listitem>
@@ -158,9 +156,7 @@ Quits the program.
 <variablelist>
 <varlistentry>
 <term><menuchoice>
-<shortcut>
-<keycombo action="simul"><keycap>H</keycap></keycombo>
-</shortcut>
+<shortcut><keycap>H</keycap></shortcut>
 <guimenu>Move</guimenu>
 <guimenuitem>Hint</guimenuitem>
 </menuchoice></term>
