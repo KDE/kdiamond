@@ -111,8 +111,9 @@ Board::Board(KDiamond::GameState* state, KGameDifficulty::standardLevel difficul
 	//init background
 	m_background->setZValue(1);
 	m_background->setAcceptedMouseButtons(0);
-	//init messengers
+	//init messenger
 	m_messenger->setMessageOpacity(0.8);
+	m_messenger->setHideOnMouseClick(false);
 	addItem(m_messenger);
 	//init time management
 	m_timerId = startTimer(UpdateInterval);
