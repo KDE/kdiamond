@@ -199,6 +199,7 @@ Action=None
 [Event/gamefinished]
 Name=Game over
 Name[ca]=Fi de la partida
+Name[cs]=Konec hry
 Name[da]=Spillet er slut
 Name[de]=Spielende
 Name[el]=Τέλος παιχνιδιού
