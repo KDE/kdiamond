@@ -72,9 +72,19 @@ int main(int argc, char ** argv)
 	args->clear();
 
 	Renderer::self(); //causes the static Renderer object to be created and initiated
-	MainWindow* window = new MainWindow;
-	window->show();
-	qsrand(time(0));
+        // see if we are starting with session management
+        if (app.isSessionRestored())
+        {
+                RESTORE(MainWindow);
+        }
+        else
+        {
+                MainWindow* window = new MainWindow;
+                window->show();
+
+        }
+        qsrand(time(0));
+
 
 	return app.exec();
 }
