@@ -74,7 +74,6 @@ MainWindow::MainWindow(QWidget *parent)
 	showMinutes->setText(i18n("Show minutes on timer"));
 	showMinutes->setChecked(Settings::showMinutes()); //the triggered() signal is connected once m_infoBar becomes available
 	//late GUI initialisation
-	setAutoSaveSettings();
 	setupGUI(QSize(300, 400)); //TODO: find better solution for a minimum size
 	setCaption(i18nc("The application's name", "KDiamond"));
 	setCentralWidget(m_view);
