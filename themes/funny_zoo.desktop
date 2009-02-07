@@ -1,0 +1,17 @@
+[KGameTheme]
+VersionFormat=1
+Name=Jungle Fun
+Name[x-test]=xxJungle Funxx
+Description=It's a funt time in the jungle! Help animals find their families. And watch out for those hard to find frogs.
+Description[x-test]=xxIt's a funt time in the jungle! Help animals find their families. And watch out for those hard to find frogs.xx
+FileName=funny_zoo.svg
+Author=Eugene Trounev
+AuthorEmail=eugene.trounev@gmail.com
+Preview=funny_zoo.png
+
+# number of frames in the "remove" animation
+RemoveAnimFrames=0
+# this theme has a border to display around the board
+HasBorder=0
+# how many percent of each dimension of the board background contain the border graphics (0.05 means: the upper 5%, the lower 5%, the left 5%, and the right 5% of the board background are the border)
+BorderPercentage=0
