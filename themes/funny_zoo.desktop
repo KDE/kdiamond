@@ -1,9 +1,7 @@
 [KGameTheme]
 VersionFormat=1
 Name=Jungle Fun
-Name[x-test]=xxJungle Funxx
 Description=It's a funt time in the jungle! Help animals find their families. And watch out for those hard to find frogs.
-Description[x-test]=xxIt's a funt time in the jungle! Help animals find their families. And watch out for those hard to find frogs.xx
 FileName=funny_zoo.svg
 Author=Eugene Trounev
 AuthorEmail=eugene.trounev@gmail.com
