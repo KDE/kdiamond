@@ -1,11 +1,19 @@
 [KGameTheme]
 VersionFormat=1
 Name=Jungle Fun
+Name[et]=Džunglilõbu
 Name[pt]=Diversão na Selva
 Name[pt_BR]=Diversão na Selva
 Name[sv]=Djungelkul
 Name[uk]=Веселощі у джунглях
+Name[zh_TW]=叢林樂
 Description=It is a fun time in the jungle! Help animals find their families. And watch out for those hard to find frogs.
+Description[et]=Džunglis on lõbus! Aita loomadel oma pere üles leida. Ja pane tähele harva esinevaid konni.
+Description[pt]=Temos um tempo de diversão na selva! Ajude os animais a encontrar as suas famílias. E cuidado com os sapos difíceis de encontrar.
+Description[pt_BR]=Temos um tempo de diversão na selva! Ajude os animais a encontrar as suas famílias. E cuidado com os sapos difíceis de encontrar.
+Description[sv]=Det är en kul tid i djungeln! Hjälp djuren hitta sina familjer, och håll utkik efter de där svårfunna grodorna.
+Description[uk]=Розваги у джунглях! Допоможіть тваринам знайти свої сім’ї. І будьте обережними: там можуть бути жаби.
+Description[zh_TW]=有趣的叢林探險遊戲！幫忙動物們找到它們的家。要注意那些不易發現的青蛙。
 FileName=funny_zoo.svg
 Author=Eugene Trounev
 AuthorEmail=eugene.trounev@gmail.com
