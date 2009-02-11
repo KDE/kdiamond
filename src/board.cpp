@@ -30,7 +30,6 @@ Board::Board(KDiamond::GameState* state, KGameDifficulty::standardLevel difficul
 	: QGraphicsScene()
 	, m_selection1(new Diamond(0, 0, 0, 0, KDiamond::Selection, this))
 	, m_selection2(new Diamond(0, 0, 0, 0, KDiamond::Selection, this))
-	, m_background(new QGraphicsPixmapItem(0, this))
 	, m_gameState(state)
 	, m_messenger(new KGamePopupItem)
 	, m_animator(0)
@@ -108,9 +107,6 @@ Board::Board(KDiamond::GameState* state, KGameDifficulty::standardLevel difficul
 	//init selection markers
 	m_selection1->hide();
 	m_selection2->hide();
-	//init background
-	m_background->setZValue(1);
-	m_background->setAcceptedMouseButtons(0);
 	//init messenger
 	m_messenger->setMessageOpacity(0.8);
 	m_messenger->setHideOnMouseClick(false);
@@ -134,7 +130,6 @@ Board::~Board()
 	delete[] m_diamonds;
 	delete m_selection1;
 	delete m_selection2;
-	delete m_background;
 	delete m_messenger;
 	delete m_animator;
 }
@@ -241,12 +236,12 @@ void Board::resizeScene(int newWidth, int newHeight, bool force)
 	//diamonds
 	emit boardResized(); //give diamonds the chance to change their metrics
 	//background
-	m_background->setPixmap(Renderer::self()->background());
-	QRectF bgRect = m_background->sceneBoundingRect();
+	setBackgroundBrush(Renderer::self()->background());
+/*	QRectF bgRect = m_background->sceneBoundingRect();
 	//The 10.0 and -5.0 are part of a nasty hack to avoid white borders around the background.
 	m_background->scale((newWidth + 10.0) / bgRect.width(), (newHeight + 10.0) / bgRect.height());
 	m_background->setPos(-5.0, -5.0);
-	m_background->setVisible(true);
+	m_background->setVisible(true);*/
 }
 
 void Board::mouseOnDiamond(int xIndex, int yIndex)

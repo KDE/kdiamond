@@ -102,7 +102,6 @@ class Board : public QGraphicsScene
 
 		Diamond ***m_diamonds;
 		Diamond *m_selection1, *m_selection2;
-		QGraphicsPixmapItem *m_background;
 		KDiamond::GameState *m_gameState;
 
 		KGamePopupItem *m_messenger;

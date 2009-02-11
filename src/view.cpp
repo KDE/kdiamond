@@ -24,7 +24,6 @@
 KDiamond::View::View(QWidget* parent)
 	: QGraphicsView(parent)
 {
-	setFrameStyle(QFrame::NoFrame);
 	setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	//optimize rendering

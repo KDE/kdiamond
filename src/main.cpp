@@ -36,6 +36,7 @@ static const char version[] = "1.1";
 
 int main(int argc, char ** argv)
 {
+	qsrand(time(0));
 	KAboutData about("kdiamond", 0, ki18nc("The application's name", "KDiamond"), version, ki18n(description),
 		KAboutData::License_GPL, ki18n("(C) 2008 Stefan Majewsky and others"), KLocalizedString(), "http://games.kde.org/kdiamond" );
 	about.addAuthor(ki18n("Stefan Majewsky"), ki18n("Original author and current maintainer"), "majewsky@gmx.net");
@@ -72,19 +73,15 @@ int main(int argc, char ** argv)
 	args->clear();
 
 	Renderer::self(); //causes the static Renderer object to be created and initiated
-        // see if we are starting with session management
-        if (app.isSessionRestored())
-        {
-                RESTORE(MainWindow);
-        }
-        else
-        {
-                MainWindow* window = new MainWindow;
-                window->show();
-
-        }
-        qsrand(time(0));
-
-
+	// see if we are starting with session management
+	if (app.isSessionRestored())
+	{
+		RESTORE(MainWindow);
+	}
+	else
+	{
+		MainWindow* window = new MainWindow;
+		window->show();
+	}
 	return app.exec();
 }

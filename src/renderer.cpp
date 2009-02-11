@@ -121,7 +121,7 @@ void Renderer::boardResized(int width, int height, int leftOffset, int diamondEd
 	const QString svgName("kdiamond-background");
 	const QString boardSvgName("kdiamond-border");
 	QString pixName = svgName + sizeSuffix.arg(width).arg(height);
-	QPixmap pix(p->m_sceneSize);
+	QPixmap pix(QSize(width + 5, height + 5));//nasty hack to keep the background brush from repeating itself
 	if (!p->m_cache.find(pixName, pix))
 	{
 		pix.fill(Qt::transparent);
