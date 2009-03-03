@@ -1,6 +1,6 @@
 [KGameTheme]
 VersionFormat=1
-Name=Jungle Fun
+Name=Funny Zoo
 Name[el]=Ψυχαγωγία ζούγκλας
 Name[et]=Džunglilõbu
 Name[gl]=Diversión na xungla
@@ -20,7 +20,7 @@ Description[sv]=Det är en kul tid i djungeln! Hjälp djuren hitta sina familjer
 Description[uk]=Розваги у джунглях! Допоможіть тваринам знайти свої сім’ї. І будьте обережними: там можуть бути жаби.
 Description[zh_TW]=有趣的叢林探險遊戲！幫忙動物們找到它們的家。要注意那些不易發現的青蛙。
 FileName=funny_zoo.svg
-Author=Eugene Trounev
+Author=Eugene Trounev, Sean Wilson
 AuthorEmail=eugene.trounev@gmail.com
 Preview=funny_zoo.png
 
