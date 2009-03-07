@@ -1,12 +1,17 @@
 [KGameTheme]
 VersionFormat=1
 Name=Funny Zoo
+Name[ga]=Zú Greannmhar
+Name[nds]=Kandidel Zoo
+Name[pt]=Zoo Engraçado
+Name[pt_BR]=Zoo Engraçado
 Name[sv]=Rolig djurpark
 Name[uk]=Веселий зоопарк
 Name[zh_TW]=有趣動物園
 Description=It is a fun time in the jungle! Help animals find their families. And watch out for those hard to find frogs.
 Description[el]=Ένα διασκεδαστικό παιχνίδι στη ζούγκλα. Βοηθήστε τα ζώα να βρουν την οικογένειά τους. Βρείτε τα κρυμμένα βατραχάκια.
 Description[et]=Džunglis on lõbus! Aita loomadel oma pere üles leida. Ja pane tähele harva esinevaid konni.
+Description[ga]=Craic sa dufair! Cabhraigh leis na hainmhithe a muintir a aimsiú. Agus bí ag fairís ar na froganna seachantacha sin.
 Description[gl]=É hora de ser divertir na xungla! Axuda os animais a atoparen as súas familias. E coidado con estas rás difíciles de atopar.
 Description[nds]=In'n Dschungel geiht't orrig to kehr! Hölp Deerten dor bi, dat se ehr Familien finnen köönt. Un pass op de doren Poggen op, de laat sik swoor finnen.
 Description[pt]=Temos um tempo de diversão na selva! Ajude os animais a encontrar as suas famílias. E cuidado com os sapos difíceis de encontrar.
