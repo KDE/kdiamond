@@ -173,8 +173,10 @@ void MainWindow::gameIsOver()
 	scoreInfo[KScoreDialog::Custom1] = m_game->mode() == KDiamond::UntimedGame ? i18n("Untimed") : i18n("Timed");
 	//report score
 	KScoreDialog dialog(KScoreDialog::Name | KScoreDialog::Score, this);
+	dialog.addLocalizedConfigGroupNames(KGameDifficulty::localizedLevelStrings());
+	dialog.setConfigGroupWeights(KGameDifficulty::levelWeights());
 	dialog.addField(KScoreDialog::Custom1, i18n("Mode"), "mode");
-	dialog.setConfigGroup(KGameDifficulty::levelString()); //TODO: react to localization
+	dialog.setConfigGroup(KGameDifficulty::localizedLevelString());
 	dialog.addScore(scoreInfo);
 	dialog.exec();
 }
@@ -187,6 +189,8 @@ void MainWindow::showHighscores()
 		actionCollection()->action("game_pause")->setChecked(true);
 	//show dialog
 	KScoreDialog dialog(KScoreDialog::Name | KScoreDialog::Score, this);
+	dialog.addLocalizedConfigGroupNames(KGameDifficulty::localizedLevelStrings());
+	dialog.setConfigGroupWeights(KGameDifficulty::levelWeights());
 	dialog.addField(KScoreDialog::Custom1, i18n("Mode"), "mode");
 	dialog.exec();
 }
