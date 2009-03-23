@@ -15,6 +15,7 @@ Comment[zh_TW]=KDiamond 寶石方塊
 
 [Context/game]
 Name=Game
+Name[ca]=Joc
 Name[cs]=Hra
 Name[da]=Spil
 Name[de]=Spiel
@@ -79,6 +80,7 @@ Comment[zh_TW]=遊戲間的音效
 
 [Event/remove]
 Name=Diamonds removed
+Name[ca]=Diamants eliminats
 Name[da]=Diamanter fjernet
 Name[de]=Diamanten entfernt
 Name[el]=Αφαιρέθηκαν διαμάντια
@@ -110,6 +112,7 @@ Name[x-test]=xxDiamonds removedxx
 Name[zh_CN]=已消去钻石
 Name[zh_TW]=寶石已移除
 Comment=Diamonds were removed.
+Comment[ca]=S'han eliminat els diamants.
 Comment[da]=Diamanter blev fjernet
 Comment[de]=Diamanten wurden entfernt
 Comment[el]=Τα διαμάντια αφαιρέθηκαν.
