@@ -1,6 +1,7 @@
 [KGameTheme]
 VersionFormat=1
 Name=Funny Zoo
+Name[de]=Tiervergnügen
 Name[et]=Lõbus loomaaed
 Name[ga]=Zú Greannmhar
 Name[nds]=Kandidel Zoo
@@ -11,6 +12,7 @@ Name[uk]=Веселий зоопарк
 Name[x-test]=xxFunny Zooxx
 Name[zh_TW]=有趣動物園
 Description=It is a fun time in the jungle! Help animals find their families. And watch out for those hard to find frogs.
+Description[de]=Eine spaßreiche Zeit im Dschungel. Helfen Sie den Tieren ihre Familien zu finden und achten Sie auf die schwer zu findenden Frösche.
 Description[el]=Ένα διασκεδαστικό παιχνίδι στη ζούγκλα. Βοηθήστε τα ζώα να βρουν την οικογένειά τους. Βρείτε τα κρυμμένα βατραχάκια.
 Description[et]=Džunglis on lõbus! Aita loomadel oma pere üles leida. Ja pane tähele harva esinevaid konni.
 Description[ga]=Craic sa dufair! Cabhraigh leis na hainmhithe a muintir a aimsiú. Agus bí ag fairís ar na froganna seachantacha sin.

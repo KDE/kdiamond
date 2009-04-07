@@ -2,7 +2,7 @@
 VersionFormat=1
 Name=KDiamond Default Theme
 Name[da]=KDiamond standardtema
-Name[de]=Standard-Design für KDiamond
+Name[de]=Standard
 Name[el]=Προκαθορισμένο θέμα KDiamond
 Name[es]=Tema predeterminado para KDiamond
 Name[et]=KDiamondi vaiketeema
@@ -34,7 +34,7 @@ Description=Default theme for KDiamond.
 Description[ca]=Tema predeterminat de KDiamond
 Description[cs]=Výchozí motiv pro KDiamond.
 Description[da]=Standardtema for KDiamond.
-Description[de]=Standard-Design für KDiamond
+Description[de]=Das Standard-Design für KDiamond.
 Description[el]=Προκαθορισμένο θέμα για το KDiamond.
 Description[es]=Tema predeterminado para KDiamond
 Description[et]=KDiamondi vaiketeema
