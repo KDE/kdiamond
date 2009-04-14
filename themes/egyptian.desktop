@@ -1,0 +1,15 @@
+[KGameTheme]
+VersionFormat=1
+Name=Egyptian
+Description=Egyptian style theme.
+FileName=egyptian.svg
+Author=Sean Wilson
+AuthorEmail=suseux@gmail.com
+Preview=egyptian_preview.png
+
+# number of frames in the "remove" animation
+RemoveAnimFrames=0
+# this theme has a border to display around the board
+HasBorder=1
+# how many percent of each dimension of the board background contain the border graphics (0.05 means: the upper 5%, the lower 5%, the left 5%, and the right 5% of the board background are the border)
+BorderPercentage=0.02
