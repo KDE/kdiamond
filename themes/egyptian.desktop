@@ -1,6 +1,12 @@
 [KGameTheme]
 VersionFormat=1
 Name=Egyptian
+Name[et]=Egiptus
+Name[pt]=Egípcio
+Name[pt_BR]=Egípcio
+Name[sv]=Egyptisk
+Name[uk]=Єгиптянин
+Name[zh_TW]=埃及式
 Description=Egyptian style theme.
 FileName=egyptian.svgz
 Author=Sean Wilson
