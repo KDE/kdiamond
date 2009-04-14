@@ -6,7 +6,7 @@ set(kdiamond_THEME_SRCS
 	funny_zoo.svgz
 	funny_zoo.png
         egyptian.desktop
-        egyptian.svg
+        egyptian.svgz
         egyptian_preview.png
 )
 install(FILES ${kdiamond_THEME_SRCS} DESTINATION ${DATA_INSTALL_DIR}/kdiamond/themes)
