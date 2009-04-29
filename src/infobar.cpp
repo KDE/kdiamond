@@ -32,6 +32,7 @@ KDiamond::InfoBar::InfoBar(KStatusBar* bar)
 	else
 		m_bar->insertPermanentItem(i18np("Time left: 1 second", "Time left: %1 seconds", 0), 2, 1);
 	m_bar->insertPermanentItem(i18n("Possible moves: %1", 0), 3, 1);
+	m_bar->show();
 }
 
 void KDiamond::InfoBar::setShowMinutes(bool showMinutes)

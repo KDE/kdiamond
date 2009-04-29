@@ -55,8 +55,7 @@ RendererPrivate::RendererPrivate()
 	: m_renderer()
 	, m_cache("kdiamond-cache")
 {
-	m_cache.setCacheLimit(3 * 1024);
-	m_cache.discard();
+	m_cache.setCacheLimit(5 * 1024);
 }
 
 Renderer::Renderer()
@@ -120,8 +119,8 @@ void Renderer::boardResized(int width, int height, int leftOffset, int diamondEd
 	//pre-render the background (it is more complex than the other pixmaps because it may include the border)
 	const QString svgName("kdiamond-background");
 	const QString boardSvgName("kdiamond-border");
-	QString pixName = svgName + sizeSuffix.arg(width).arg(height);
-	QPixmap pix(QSize(width + 5, height + 5));//nasty hack to keep the background brush from repeating itself
+	QString pixName = p->m_currentTheme + svgName + sizeSuffix.arg(width).arg(height);
+	QPixmap pix(QSize(width + 5, height + 5)); //nasty hack to keep the background brush from repeating itself in the visible area
 	if (!p->m_cache.find(pixName, pix))
 	{
 		pix.fill(Qt::transparent);
@@ -177,7 +176,7 @@ QPixmap pixmapFromCache(RendererPrivate *p, const QString &svgName, const QSize 
 	if (size.isEmpty())
 		return QPixmap();
 	QPixmap pix(size);
-	QString pixName = svgName + sizeSuffix.arg(size.width()).arg(size.height());
+	QString pixName = p->m_currentTheme + svgName + sizeSuffix.arg(size.width()).arg(size.height());
 
 	if (!p->m_cache.find(pixName, pix))
 	{
