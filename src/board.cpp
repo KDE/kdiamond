@@ -101,7 +101,7 @@ Board::Board(KDiamond::GameState* state, KGameDifficulty::standardLevel difficul
 				break;
 			}
 			//set diamond
-			m_diamonds[x][y] = new Diamond(x, y, x, y, KDiamond::colorFromNumber(color), this);
+			m_diamonds[x][y] = new Diamond(x, y, x, y, (KDiamond::Color) color, this);
 		}
 	}
 	//init selection markers
@@ -237,11 +237,6 @@ void Board::resizeScene(int newWidth, int newHeight, bool force)
 	emit boardResized(); //give diamonds the chance to change their metrics
 	//background
 	setBackgroundBrush(Renderer::self()->background());
-/*	QRectF bgRect = m_background->sceneBoundingRect();
-	//The 10.0 and -5.0 are part of a nasty hack to avoid white borders around the background.
-	m_background->scale((newWidth + 10.0) / bgRect.width(), (newHeight + 10.0) / bgRect.height());
-	m_background->setPos(-5.0, -5.0);
-	m_background->setVisible(true);*/
 }
 
 void Board::mouseOnDiamond(int xIndex, int yIndex)
@@ -570,7 +565,7 @@ void Board::fillGaps()
 			if (m_diamonds[x][y] != 0)
 				continue; //inside of diamond stack - no gaps to fill
 			--yt;
-			m_diamonds[x][y] = new Diamond(x, y, x, yt, KDiamond::colorFromNumber(qrand() % m_colorCount + 1), this);
+			m_diamonds[x][y] = new Diamond(x, y, x, yt, (KDiamond::Color) (qrand() % m_colorCount + 1), this);
 			m_diamonds[x][y]->setPosInBoardCoords(QPointF(x, yt));
 			m_diamonds[x][y]->updateGeometry();
 			m_animator->addItem(m_diamonds[x][y], QPointF(x, yt), QPointF(x, y));

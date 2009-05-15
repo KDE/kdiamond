@@ -39,8 +39,6 @@ namespace KDiamond
 		BlackDiamond,
 		OrangeDiamond
 	};
-	//convert int into the KDiamond::Color that is represented by this int
-	KDiamond::Color colorFromNumber(int number);
 }
 
 class Diamond : public QObject, public QGraphicsPixmapItem

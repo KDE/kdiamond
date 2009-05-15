@@ -104,7 +104,7 @@ bool Renderer::loadTheme(const QString &name)
 	//issue new frame render requests
 	for (int color = 1; color <= 7; ++color) //color == 0 is for selections, do not pre-render animation frames for this one
 	{
-		const KDiamond::Color color2 = KDiamond::colorFromNumber(color);
+		const KDiamond::Color color2 = (KDiamond::Color) color;
 		for (int frame = 0; frame < p->m_removeAnimFrameCount; ++frame)
 			p->m_framesToRender << RendererFrame(color2, frame);
 	}
@@ -120,7 +120,7 @@ void Renderer::boardResized(int width, int height, int leftOffset, int diamondEd
 	const QString svgName("kdiamond-background");
 	const QString boardSvgName("kdiamond-border");
 	QString pixName = p->m_currentTheme + svgName + sizeSuffix.arg(width).arg(height);
-	QPixmap pix(QSize(width + 5, height + 5)); //nasty hack to keep the background brush from repeating itself in the visible area
+	QPixmap pix(QSize(width, height));
 	if (!p->m_cache.find(pixName, pix))
 	{
 		pix.fill(Qt::transparent);

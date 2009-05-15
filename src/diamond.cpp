@@ -22,21 +22,6 @@
 
 #include <QGraphicsSceneMouseEvent>
 
-KDiamond::Color KDiamond::colorFromNumber(int number)
-{
-	switch (number)
-	{
-		case 1: return KDiamond::RedDiamond;
-		case 2: return KDiamond::GreenDiamond;
-		case 3: return KDiamond::BlueDiamond;
-		case 4: return KDiamond::YellowDiamond;
-		case 5: return KDiamond::WhiteDiamond;
-		case 6: return KDiamond::BlackDiamond;
-		case 7: return KDiamond::OrangeDiamond;
-		default: return KDiamond::Selection;
-	}
-}
-
 Diamond::Diamond(int xIndex, int yIndex, int xPos, int yPos, KDiamond::Color color, Board *board)
 	: QGraphicsPixmapItem(0, board)
 	, m_board(board)

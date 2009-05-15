@@ -36,7 +36,7 @@ void KDiamond::View::resizeEvent(QResizeEvent* event)
 {
 	Q_UNUSED(event)
 	emit resized();
-	fitInView(0, 0, width(), height());
+	setTransform(QTransform());
 }
 
 void KDiamond::View::wheelEvent(QWheelEvent* event)
