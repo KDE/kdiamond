@@ -1,11 +1,11 @@
 set(kdiamond_THEME_SRCS
-	default.desktop
+	default_old.desktop
 	default.svgz
 	default.png
 	funny_zoo.desktop
 	funny_zoo.svgz
 	funny_zoo.png
-        egyptian.desktop
+        default.desktop
         egyptian.svgz
         egyptian_preview.png
 )
