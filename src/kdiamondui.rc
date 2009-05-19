@@ -19,5 +19,4 @@
 		<Action name="game_pause"/>
 		<Action name="move_hint"/>
 	</ToolBar>
-	<StatusBar/>
 </gui>

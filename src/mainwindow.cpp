@@ -26,6 +26,7 @@
 #include "view.h"
 
 #include <QCloseEvent>
+#include <QPointer>
 #include <QTime>
 #include <QTimer>
 #include <KAction>
@@ -128,7 +129,7 @@ void MainWindow::startGame(KDiamond::Mode mode)
 	m_game->startNewGame();
 	m_game->setMode(mode);
 	m_board = new Board(m_game, KGameDifficulty::level());
-	updateTheme(false); //initalizes the theme
+	updateTheme(false); //initializes the theme
 	connect(m_game, SIGNAL(stateChanged(KDiamond::State)), m_board, SLOT(stateChange(KDiamond::State)));
 	connect(m_game, SIGNAL(message(const QString&)), m_board, SLOT(message(const QString&)));
 	connect(m_board, SIGNAL(numberMoves(int)), m_infoBar, SLOT(updateMoves(int)));
@@ -171,13 +172,14 @@ void MainWindow::gameIsOver()
 	scoreInfo[KScoreDialog::Score].setNum(m_game->points());
 	scoreInfo[KScoreDialog::Custom1] = m_game->mode() == KDiamond::UntimedGame ? i18n("Untimed") : i18n("Timed");
 	//report score
-	KScoreDialog dialog(KScoreDialog::Name | KScoreDialog::Score, this);
-	dialog.addLocalizedConfigGroupNames(KGameDifficulty::localizedLevelStrings());
-	dialog.setConfigGroupWeights(KGameDifficulty::levelWeights());
-	dialog.addField(KScoreDialog::Custom1, i18n("Mode"), "mode");
-	dialog.setConfigGroup(KGameDifficulty::localizedLevelString());
-	dialog.addScore(scoreInfo);
-	dialog.exec();
+	QPointer<KScoreDialog> dialog = new KScoreDialog(KScoreDialog::Name | KScoreDialog::Score, this);
+	dialog->addLocalizedConfigGroupNames(KGameDifficulty::localizedLevelStrings());
+	dialog->setConfigGroupWeights(KGameDifficulty::levelWeights());
+	dialog->addField(KScoreDialog::Custom1, i18n("Mode"), "mode");
+	dialog->setConfigGroup(KGameDifficulty::localizedLevelString());
+	dialog->addScore(scoreInfo);
+	dialog->exec();
+	delete dialog;
 }
 
 void MainWindow::showHighscores()
@@ -187,11 +189,12 @@ void MainWindow::showHighscores()
 	if (m_game->state() != KDiamond::Finished)
 		actionCollection()->action("game_pause")->setChecked(true);
 	//show dialog
-	KScoreDialog dialog(KScoreDialog::Name | KScoreDialog::Score, this);
-	dialog.addLocalizedConfigGroupNames(KGameDifficulty::localizedLevelStrings());
-	dialog.setConfigGroupWeights(KGameDifficulty::levelWeights());
-	dialog.addField(KScoreDialog::Custom1, i18n("Mode"), "mode");
-	dialog.exec();
+	QPointer<KScoreDialog> dialog = new KScoreDialog(KScoreDialog::Name | KScoreDialog::Score, this);
+	dialog->addLocalizedConfigGroupNames(KGameDifficulty::localizedLevelStrings());
+	dialog->setConfigGroupWeights(KGameDifficulty::levelWeights());
+	dialog->addField(KScoreDialog::Custom1, i18n("Mode"), "mode");
+	dialog->exec();
+	delete dialog;
 }
 
 void MainWindow::pausedAction(bool paused)
