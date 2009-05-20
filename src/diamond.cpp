@@ -72,7 +72,8 @@ void Diamond::updateGeometry()
 	setPixmap(Renderer::self()->diamond(m_color));
 	//resize diamond (ensure at least 1 pixel edge length to avoid problems with zero size)
 	const qreal diamondEdgeLength = qMax(1, m_board->diamondEdgeLength());
-	const QRectF sceneBounds = sceneBoundingRect();
+	const QRectF itemBounds(offset(), pixmap().size());
+	const QRectF sceneBounds = mapToScene(itemBounds).boundingRect();
 	scale(diamondEdgeLength / sceneBounds.width(), diamondEdgeLength / sceneBounds.height());
 	//change position
 	setPos(m_board->boardToScene(m_pos));
