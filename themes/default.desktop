@@ -1,6 +1,7 @@
 [KGameTheme]
 VersionFormat=1
 Name=KDiamond Default Theme
+Name[ca]=Tema per omissió del KDiamond
 Name[da]=KDiamond standardtema
 Name[de]=Standard-Design für KDiamond
 Name[el]=Προκαθορισμένο θέμα KDiamond
@@ -25,6 +26,8 @@ Name[pt_BR]=Tema padrão do KDiamond
 Name[ro]=Tematică implicită KDiamant
 Name[ru]=Оформление по умолчанию для KDiamond
 Name[sl]=Privzeta KDiamond tema
+Name[sr]=Подразумевана тема К‑дијаманта
+Name[sr@latin]=Podrazumevana tema K‑dijamanta
 Name[sv]=Kdiamant standardtema
 Name[tr]=KDiamond Öntanımlı Teması
 Name[uk]=Типова тема КДіаманта
@@ -59,6 +62,8 @@ Description[pt_BR]=Tema padrão do KDiamond para o KDE4
 Description[ro]=Tematica implicită pentru KDiamant.
 Description[ru]=Оформление по умолчанию для KDiamond.
 Description[sl]=Privzeta tema za KDiamond.
+Description[sr]=Подразумевана тема за К‑дијамант
+Description[sr@latin]=Podrazumevana tema za K‑dijamant
 Description[sv]=Standardtema för Kdiamant.
 Description[tr]=KDiamond için öntanımlı tema.
 Description[uk]=Типова тема КДіамантів.
