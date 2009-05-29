@@ -1,6 +1,7 @@
 [KGameTheme]
 VersionFormat=1
 Name=Egyptian
+Name[da]=Egyptisk
 Name[el]=Αιγύπτιο
 Name[et]=Egiptus
 Name[nn]=Egyptisk
@@ -14,6 +15,7 @@ Name[x-test]=xxEgyptianxx
 Name[zh_CN]=埃及
 Name[zh_TW]=埃及式
 Description=Egyptian style theme.
+Description[da]=Tema i egyptisk stil.
 Description[el]=Αιγυπτιακό θέμα στυλ.
 Description[et]=Egiptuse stiilis teema.
 Description[nn]=Egyptisk tema.
