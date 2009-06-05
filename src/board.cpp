@@ -371,7 +371,7 @@ void Board::timerEvent(QTimerEvent* event)
 			{
 				//no diamond rows were formed by the last move -> revoke movement (unless we are in a cascade)
 				if (m_swapping1x != -1 && m_swapping1y != -1 && m_swapping2x != -1 && m_swapping2y != -1)
-					m_jobQueue << KDiamond::RevokeSwapDiamondsJob;
+					m_jobQueue.prepend(KDiamond::RevokeSwapDiamondsJob);
 				else
 					m_jobQueue << KDiamond::UpdateAvailableMovesJob;
 			}
