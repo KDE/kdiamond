@@ -1,6 +1,7 @@
 [KGameTheme]
 VersionFormat=1
 Name=KDiamond Default Theme
+Name[ca]=Tema per omissió del KDiamond
 Name[da]=KDiamond standardtema
 Name[de]=Standard
 Name[el]=Προκαθορισμένο θέμα KDiamond
@@ -33,7 +34,7 @@ Name[x-test]=xxKDiamond Default Themexx
 Name[zh_CN]=KDiamond 默认主题
 Name[zh_TW]=KDiamonds 預設主題
 Description=Default theme for KDiamond.
-Description[ca]=Tema predeterminat de KDiamond
+Description[ca]=Tema predeterminat de KDiamond.
 Description[cs]=Výchozí motiv pro KDiamond.
 Description[da]=Standardtema for KDiamond.
 Description[de]=Das Standard-Design für KDiamond.

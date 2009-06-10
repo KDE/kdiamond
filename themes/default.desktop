@@ -1,6 +1,7 @@
 [KGameTheme]
 VersionFormat=1
 Name=Egyptian
+Name[ca]=Egipci
 Name[da]=Egyptisk
 Name[de]=Ägyptisch
 Name[el]=Αιγύπτιο
@@ -16,6 +17,7 @@ Name[x-test]=xxEgyptianxx
 Name[zh_CN]=埃及
 Name[zh_TW]=埃及式
 Description=Egyptian style theme.
+Description[ca]=Tema d'estil egipci.
 Description[da]=Tema i egyptisk stil.
 Description[de]=Das ägyptische Design für KDiamonds.
 Description[el]=Αιγυπτιακό θέμα στυλ.
