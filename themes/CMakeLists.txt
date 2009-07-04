@@ -1,7 +1,7 @@
 set(kdiamond_THEME_SRCS
-	default_old.desktop
-	default.svgz
-	default.png
+	diamonds.desktop
+	diamonds.svgz
+	diamonds.png
 	funny_zoo.desktop
 	funny_zoo.svgz
 	funny_zoo.png
