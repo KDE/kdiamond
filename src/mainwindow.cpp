@@ -71,9 +71,6 @@ MainWindow::MainWindow(QWidget *parent)
 	KStandardGameAction::hint(0, 0, actionCollection());
 	KStandardAction::preferences(this, SLOT(configureSettings()), actionCollection());
 	KStandardAction::configureNotifications(this, SLOT(configureNotifications()), actionCollection());
-	KToggleAction *showMinutes = actionCollection()->add<KToggleAction>("show_minutes");
-	showMinutes->setText(i18n("Show minutes on timer"));
-	showMinutes->setChecked(Settings::showMinutes()); //the triggered() signal is connected once m_infoBar becomes available
 	//late GUI initialisation
 	setupGUI(QSize(300, 400)); //TODO: find better solution for a minimum size
 	setCaption(i18nc("The application's name", "KDiamond"));
@@ -81,7 +78,6 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(m_view, SIGNAL(resized()), this, SLOT(updateTheme()));
 	//init statusbar
 	m_infoBar = new KDiamond::InfoBar(statusBar());
-	connect(showMinutes, SIGNAL(triggered(bool)), m_infoBar, SLOT(setShowMinutes(bool)));
 	connect(m_game, SIGNAL(stateChanged(KDiamond::State)), this, SLOT(stateChange(KDiamond::State)));
 	connect(m_game, SIGNAL(pointsChanged(int)), m_infoBar, SLOT(updatePoints(int)));
 	connect(m_game, SIGNAL(leftTimeChanged(int)), m_infoBar, SLOT(updateRemainingTime(int)));

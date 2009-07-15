@@ -31,7 +31,6 @@ namespace KDiamond
 		public:
 			InfoBar(KStatusBar* bar);
 		public Q_SLOTS:
-			void setShowMinutes(bool showMinutes);
 			void setUntimed(bool untimed);
 			void updatePoints(int points);
 			void updateMoves(int moves);

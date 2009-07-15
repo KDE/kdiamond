@@ -30,15 +30,9 @@ KDiamond::InfoBar::InfoBar(KStatusBar* bar)
 	if (m_untimed)
 		m_bar->insertPermanentItem(i18n("Untimed game"), 2, 1);
 	else
-		m_bar->insertPermanentItem(i18np("Time left: 1 second", "Time left: %1 seconds", 0), 2, 1);
+		m_bar->insertPermanentItem(i18n("Time left: %1").arg("0:00"), 2, 1);
 	m_bar->insertPermanentItem(i18n("Possible moves: %1", 0), 3, 1);
 	m_bar->show();
-}
-
-void KDiamond::InfoBar::setShowMinutes(bool showMinutes)
-{
-	Settings::setShowMinutes(showMinutes);
-	updateRemainingTime(-1);
 }
 
 void KDiamond::InfoBar::setUntimed(bool untimed)
@@ -65,33 +59,15 @@ void KDiamond::InfoBar::updateRemainingTime(int remainingSeconds)
 {
 	if (m_untimed)
 		return;
-	//store the time: if remainingSeconds == -1, the old time is just re-rendered (used to apply configuration options)
-	static int storeRemainingSeconds = 0;
-	if (remainingSeconds == -1)
-		remainingSeconds = storeRemainingSeconds;
-	else
-		storeRemainingSeconds = remainingSeconds;
-	//split time in seconds and minutes if wanted
-	int seconds, minutes = 0;
-	if (Settings::showMinutes())
-	{
-		seconds = remainingSeconds % 60;
-		minutes = remainingSeconds / 60;
-	}
-	else
-	{
-		seconds = remainingSeconds;
-		//the minutes do not appear in the output because minutes == 0
-	}
+	//split time in seconds and minutes
+	int seconds = remainingSeconds % 60;
+	int minutes = remainingSeconds / 60;
 	//compose new string
-	QString sOutput;
-	if (minutes == 0)
-		sOutput = i18n("Time left: %1", i18np("1 second", "%1 seconds", seconds));
-	else if (seconds == 0)
-		sOutput = i18n("Time left: %1", i18np("1 minute", "%1 minutes", minutes));
-	else
-		sOutput = i18nc("The two parameters are strings like '2 minutes' or '1 second'.", "Time left: %1, %2", i18np("1 minute", "%1 minutes", minutes), i18np("1 second", "%1 seconds", seconds));
-	m_bar->changeItem(sOutput, 2);
+	QString secondString = QString::number(seconds);
+	QString minuteString = QString::number(minutes);
+	if (seconds < 10)
+		secondString.prepend(QChar('0'));
+	m_bar->changeItem(i18n("Time left: %1", QString("%1:%2").arg(minuteString).arg(secondString)), 2);
 	//special treatment if game is finished
 	if (remainingSeconds == 0)
 		updateMoves(0);

@@ -7,7 +7,6 @@
                          http://www.kde.org/standards/kxmlgui/1.0/kxmlgui.xsd">
 	<MenuBar>
 		<Menu name="settings">
-			<Action name="show_minutes"/>
 			<Action name="untimed"/>
 		</Menu>
 	</MenuBar>
