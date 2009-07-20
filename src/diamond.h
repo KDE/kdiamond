@@ -30,7 +30,8 @@ namespace KDiamond
 	//registered colors of diamonds
 	enum Color
 	{
-		Selection = 0, //that is actually no diamond type, but gives the chance to reuse the Diamond class' code for the selection marker
+		NoColor = -1,  //use this if no actual color can be named (e.g. for a null Diamond pointer)
+		Selection = 0, //actually no diamond type, but this allows to reuse the Diamond class' code for the selection marker
 		RedDiamond = 1,
 		GreenDiamond,
 		BlueDiamond,
