@@ -510,6 +510,7 @@ QSet<QPoint *> Board::findCompletedRows()
 				else
 					break;
 			}
+			y = yh - 1;
 		}
 	}
 	return diamonds.toSet();
