@@ -22,12 +22,10 @@
 
 #include <QGraphicsSceneMouseEvent>
 
-Diamond::Diamond(int xIndex, int yIndex, int xPos, int yPos, KDiamond::Color color, Board *board)
+Diamond::Diamond(int xPos, int yPos, KDiamond::Color color, Board *board)
 	: QGraphicsPixmapItem(0, board)
 	, m_board(board)
 	, m_color(color)
-	, m_xIndex(xIndex)
-	, m_yIndex(yIndex)
 	, m_pos(xPos, yPos)
 {
 	//connect to board
@@ -47,26 +45,6 @@ KDiamond::Color Diamond::color() const
 	return m_color;
 }
 
-int Diamond::xIndex() const
-{
-	return m_xIndex;
-}
-
-int Diamond::yIndex() const
-{
-	return m_yIndex;
-}
-
-void Diamond::setXIndex(int xIndex)
-{
-	m_xIndex = xIndex;
-}
-
-void Diamond::setYIndex(int yIndex)
-{
-	m_yIndex = yIndex;
-}
-
 void Diamond::updateGeometry()
 {
 	setPixmap(Renderer::self()->diamond(m_color));
@@ -76,7 +54,7 @@ void Diamond::updateGeometry()
 	const QRectF sceneBounds = mapToScene(itemBounds).boundingRect();
 	scale(diamondEdgeLength / sceneBounds.width(), diamondEdgeLength / sceneBounds.height());
 	//change position
-	setPos(m_board->boardToScene(m_pos));
+	setPosInBoardCoords(m_pos);
 }
 
 void Diamond::setPosInBoardCoords(const QPointF &pos)
@@ -100,29 +78,21 @@ void Diamond::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 		const qreal dx = pos.x() - m_mouseDownPos.x(), dy = pos.y() - m_mouseDownPos.y();
 		const QSizeF diamondSize = boundingRect().size();
 		static const qreal draggingFuzziness = 2.0 / 3.0;
-		if (qAbs(dx) >= diamondSize.width() * draggingFuzziness)
+		if (qAbs(dx) > qAbs(dy))
 		{
-			//do not proceed if the diamond where this one was dragged on does not exist (i.e. this diamond is on one of the board edges)
-			if (dx < 0 && m_xIndex == 0)
-				return;
-			if (dx > 0 && m_xIndex == m_board->diamondCountOnEdge() - 1)
-				return;
-			//dragged in X direction - simulate two clicks (on this one, then on the other one -> that is logically the same operation)
-			m_board->clearSelection();
-			m_board->mouseOnDiamond(m_xIndex, m_yIndex);
-			m_board->mouseOnDiamond(m_xIndex + (dx < 0 ? -1 : 1), m_yIndex);
-			m_mouseDown = false; //mouse action has been handled
+			if (qAbs(dx) >= diamondSize.width() * draggingFuzziness)
+			{
+				m_board->dragDiamond(this, dx < 0 ? -1 : 1, 0);
+				m_mouseDown = false; //mouse action has been handled
+			}
 		}
-		if (qAbs(dy) >= diamondSize.height() * draggingFuzziness)
+		else
 		{
-			if (dy < 0 && m_yIndex == 0)
-				return;
-			if (dy > 0 && m_yIndex == m_board->diamondCountOnEdge() - 1)
-				return;
-			m_board->clearSelection();
-			m_board->mouseOnDiamond(m_xIndex, m_yIndex);
-			m_board->mouseOnDiamond(m_xIndex, m_yIndex + (dy < 0 ? -1 : 1));
-			m_mouseDown = false;
+			if (qAbs(dy) >= diamondSize.height() * draggingFuzziness)
+			{
+				m_board->dragDiamond(this, 0, dy < 0 ? -1 : 1);
+				m_mouseDown = false;
+			}
 		}
 	}
 }
@@ -131,7 +101,7 @@ void Diamond::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
 	if (m_mouseDown && boundingRect().contains(event->pos()))
 	{
-		m_board->mouseOnDiamond(m_xIndex, m_yIndex);
+		m_board->clickDiamond(this);
 		m_mouseDown = false;
 	}
 }

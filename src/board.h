@@ -73,7 +73,10 @@ class Board : public QGraphicsScene
 		void resizeScene(int width, int height, bool force = false);
 		int diamondEdgeLength() const;
 
-		void mouseOnDiamond(int xIndex, int yIndex);
+		void clickDiamond(int xIndex, int yIndex);
+		void clickDiamond(Diamond *diamond);
+		void dragDiamond(int xIndex, int yIndex, int xDirection, int yDirection);
+		void dragDiamond(Diamond *diamond, int xDirection, int yDirection);
 	public slots:
 		void animationFinished();
 		void clearSelection();

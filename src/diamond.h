@@ -46,7 +46,7 @@ class Diamond : public QObject, public QGraphicsPixmapItem
 {
 	Q_OBJECT
 	public:
-		Diamond(int xIndex, int yIndex, int xPos, int yPos, KDiamond::Color color, Board *board);
+		Diamond(int xPos, int yPos, KDiamond::Color color, Board *board);
 
 		KDiamond::Color color() const;
 		int xIndex() const;
@@ -66,7 +66,7 @@ class Diamond : public QObject, public QGraphicsPixmapItem
 
 		KDiamond::Color m_color;
 		int m_xIndex, m_yIndex; //the index of the diamond in the Board's internal array (used for communication with Board)
-		QPointF m_pos, m_target; //current position of diamond in board coordinates (see Board::boardToScene for details)
+		QPointF m_pos;
 		bool m_mouseDown;
 		QPointF m_mouseDownPos; //position of last mouse-down event in diamond coordinates
 };

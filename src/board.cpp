@@ -28,8 +28,8 @@ const int UpdateInterval = 40;
 
 Board::Board(KDiamond::GameState* state, KGameDifficulty::standardLevel difficulty)
 	: QGraphicsScene()
-	, m_selection1(new Diamond(0, 0, 0, 0, KDiamond::Selection, this))
-	, m_selection2(new Diamond(0, 0, 0, 0, KDiamond::Selection, this))
+	, m_selection1(new Diamond(0, 0, KDiamond::Selection, this))
+	, m_selection2(new Diamond(0, 0, KDiamond::Selection, this))
 	, m_gameState(state)
 	, m_messenger(new KGamePopupItem)
 	, m_animator(0)
@@ -101,7 +101,7 @@ Board::Board(KDiamond::GameState* state, KGameDifficulty::standardLevel difficul
 				break;
 			}
 			//set diamond
-			m_diamonds[x][y] = new Diamond(x, y, x, y, (KDiamond::Color) color, this);
+			m_diamonds[x][y] = new Diamond(x, y, (KDiamond::Color) color, this);
 		}
 	}
 	//init selection markers
@@ -239,10 +239,11 @@ void Board::resizeScene(int newWidth, int newHeight, bool force)
 	setBackgroundBrush(Renderer::self()->background());
 }
 
-void Board::mouseOnDiamond(int xIndex, int yIndex)
+void Board::clickDiamond(int xIndex, int yIndex)
 {
 	if (m_gameState->state() != KDiamond::Playing)
 		return;
+	//handle click
 	if (m_selected1x == xIndex && m_selected1y == yIndex)
 	{
 		//clicked again on first selected diamond - remove selection
@@ -298,6 +299,67 @@ void Board::mouseOnDiamond(int xIndex, int yIndex)
 	}
 }
 
+void Board::clickDiamond(Diamond *diamond)
+{
+	//find diamond indices
+	int xIndex, yIndex; bool found = false;
+	for (xIndex = 0; xIndex < m_size; ++xIndex)
+	{
+		for (yIndex = 0; yIndex < m_size; ++yIndex)
+		{
+			if (m_diamonds[xIndex][yIndex] == diamond)
+			{
+				found = true;
+				break;
+			}
+		}
+		if (found)
+			break;
+	}
+	if (!found)
+		return;
+	clickDiamond(xIndex, yIndex);
+}
+
+void Board::dragDiamond(int xIndex, int yIndex, int xDirection, int yDirection)
+{
+	//direction must not be null, and must point along one axis
+	if ((xDirection == 0) ^ (yDirection == 0))
+	{
+		//find target indices
+		const int xIndex2 = xIndex + (xDirection > 0) ? 1 : -1;
+		const int yIndex2 = yIndex + (yDirection > 0) ? 1 : -1;
+		if (!onBoard(xIndex2, yIndex2))
+			return;
+		//simulate the clicks involved in this operation
+		clearSelection();
+		clickDiamond(xIndex, yIndex);
+		clickDiamond(xIndex2, yIndex2);
+	}
+}
+
+void Board::dragDiamond(Diamond *diamond, int xDirection, int yDirection)
+{
+	//find diamond indices
+	int xIndex, yIndex; bool found = false;
+	for (xIndex = 0; xIndex < m_size; ++xIndex)
+	{
+		for (yIndex = 0; yIndex < m_size; ++yIndex)
+		{
+			if (m_diamonds[xIndex][yIndex] == diamond)
+			{
+				found = true;
+				break;
+			}
+		}
+		if (found)
+			break;
+	}
+	if (!found)
+		return;
+	dragDiamond(xIndex, yIndex, xDirection, yDirection);
+}
+
 void Board::clearSelection()
 {
 	m_selection1->hide();
@@ -351,10 +413,6 @@ void Board::timerEvent(QTimerEvent* event)
 			temp = m_diamonds[m_swapping1x][m_swapping1y];
 			m_diamonds[m_swapping1x][m_swapping1y] = m_diamonds[m_swapping2x][m_swapping2y];
 			m_diamonds[m_swapping2x][m_swapping2y] = temp;
-			m_diamonds[m_swapping1x][m_swapping1y]->setXIndex(m_swapping1x);
-			m_diamonds[m_swapping1x][m_swapping1y]->setYIndex(m_swapping1y);
-			m_diamonds[m_swapping2x][m_swapping2y]->setXIndex(m_swapping2x);
-			m_diamonds[m_swapping2x][m_swapping2y]->setYIndex(m_swapping2y);
 			//invoke movement
 			KNotification::event("move");
 			m_animator = new MoveAnimator();
@@ -540,7 +598,6 @@ void Board::fillGaps()
 					break; //xt now holds the lowest possible position
 			}
 			m_diamonds[x][yt] = m_diamonds[x][y];
-			m_diamonds[x][yt]->setYIndex(yt);
 			m_diamonds[x][y] = 0;
 			m_animator->addItem(m_diamonds[x][yt], QPointF(x, y), QPointF(x, yt));
 			maxMoveLength = qMax(maxMoveLength, yt - y);
@@ -566,7 +623,7 @@ void Board::fillGaps()
 			if (m_diamonds[x][y] != 0)
 				continue; //inside of diamond stack - no gaps to fill
 			--yt;
-			m_diamonds[x][y] = new Diamond(x, y, x, yt, (KDiamond::Color) (qrand() % m_colorCount + 1), this);
+			m_diamonds[x][y] = new Diamond(x, yt, (KDiamond::Color) (qrand() % m_colorCount + 1), this);
 			m_diamonds[x][y]->setPosInBoardCoords(QPointF(x, yt));
 			m_diamonds[x][y]->updateGeometry();
 			m_animator->addItem(m_diamonds[x][y], QPointF(x, yt), QPointF(x, y));
