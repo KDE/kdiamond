@@ -66,9 +66,9 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(m_newUntimedAct, SIGNAL(triggered()), this, SLOT(startGameDispatcher()));
 	//init GUI - the other actions
 	KStandardGameAction::highscores(this, SLOT(showHighscores()), actionCollection());
-	KStandardGameAction::pause(this, SLOT(pausedAction(bool)), actionCollection());
+	m_pauseAct = KStandardGameAction::pause(this, SLOT(pausedAction(bool)), actionCollection());
 	KStandardGameAction::quit(kapp, SLOT(quit()), actionCollection());
-	KStandardGameAction::hint(0, 0, actionCollection());
+	m_hintAct = KStandardGameAction::hint(0, 0, actionCollection());
 	KStandardAction::preferences(this, SLOT(configureSettings()), actionCollection());
 	KStandardAction::configureNotifications(this, SLOT(configureNotifications()), actionCollection());
 	//late GUI initialisation
@@ -99,6 +99,7 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
 	Settings::self()->writeConfig();
+	delete m_board;
 	delete m_game;
 }
 
@@ -130,18 +131,10 @@ void MainWindow::startGame(KDiamond::Mode mode)
 	connect(m_game, SIGNAL(message(const QString&)), m_board, SLOT(message(const QString&)));
 	connect(m_board, SIGNAL(numberMoves(int)), m_infoBar, SLOT(updateMoves(int)));
 	connect(m_board, SIGNAL(pendingAnimationsFinished()), this, SLOT(gameIsOver()));
+	connect(m_hintAct, SIGNAL(triggered()), m_board, SLOT(showHint()));
 	m_view->setScene(m_board);
 	m_view->fitInView(0, 0, m_view->width(), m_view->height());
-	//reset the Pause button's state
-	//TODO: move this to the general changeState slot
-	QAction *pauseAction = actionCollection()->action(KStandardGameAction::name(KStandardGameAction::Pause));
-	pauseAction->setChecked(false);
-	pauseAction->setEnabled(true);
-	QAction *hintAction = actionCollection()->action(KStandardGameAction::name(KStandardGameAction::Hint));
-	hintAction->setEnabled(true);
-	connect(hintAction, SIGNAL(triggered()), m_board, SLOT(showHint()));
 	//reset status bar
-	//TODO: is this necessary?
 	m_infoBar->setUntimed(mode == KDiamond::UntimedGame);
 	m_infoBar->updatePoints(0);
 	m_infoBar->updateRemainingTime(KDiamond::GameDuration);
@@ -149,16 +142,9 @@ void MainWindow::startGame(KDiamond::Mode mode)
 
 void MainWindow::stateChange(KDiamond::State state)
 {
-	//disable pause button once game is over
-	if (state == KDiamond::Finished)
-	{
-		QAction *pauseAction = actionCollection()->action(KStandardGameAction::name(KStandardGameAction::Pause));
-		pauseAction->setChecked(false);
-		pauseAction->setEnabled(false);
-	}
-	//hint is only possible while playing
-	QAction *hintAction = actionCollection()->action(KStandardGameAction::name(KStandardGameAction::Hint));
-	hintAction->setEnabled(state == KDiamond::Playing);
+	m_pauseAct->setEnabled(state != KDiamond::Finished);
+	m_pauseAct->setChecked(state == KDiamond::Paused);
+	m_hintAct->setEnabled(state == KDiamond::Playing);
 }
 
 void MainWindow::gameIsOver()

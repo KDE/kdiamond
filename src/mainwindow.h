@@ -66,6 +66,8 @@ class MainWindow : public KXmlGuiWindow
 		KActionMenu *m_newAct;
 		KAction *m_newTimedAct;
 		KAction *m_newUntimedAct;
+		KAction *m_pauseAct;
+		KAction *m_hintAct;
 };
 
 #endif //KDIAMOND_MAINWINDOW_H

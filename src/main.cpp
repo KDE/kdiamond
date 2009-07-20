@@ -30,10 +30,9 @@
 #include <KStandardDirs>
 
 //TODO: pre-cache animation frames in the Board loop when idle
-//TODO: rewrite time display to not be that jumpy (it should just show "03:49" or similar)
 
 static const char description[] = I18N_NOOP("KDiamond, a three-in-a-row game.");
-static const char version[] = "1.2";
+static const char version[] = "1.3";
 
 int main(int argc, char ** argv)
 {
