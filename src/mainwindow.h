@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008 Stefan Majewsky <majewsky.stefan@ages-skripte.org>
+ *   Copyright 2008-2009 Stefan Majewsky <majewsky.stefan@ages-skripte.org>
  *
  *   This program is free software; you can redistribute it and/or
  *   modify it under the terms of the GNU General Public
@@ -20,7 +20,6 @@
 #define KDIAMOND_MAINWINDOW_H
 
 class Board;
-class Container;
 #include "game-state.h"
 
 class QTime;

@@ -4,7 +4,6 @@ include_directories(${KDEGAMES_INCLUDE_DIR})
 set(kdiamond_SRCS
 	animator.cpp
 	board.cpp
-	container.cpp
 	diamond.cpp
 	game-state.cpp
 	infobar.cpp
