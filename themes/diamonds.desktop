@@ -1,10 +1,12 @@
 [KGameTheme]
 VersionFormat=1
 Name=Diamonds
+Name[de]=Diamanten
 Name[es]=Diamantes
 Name[nn]=Diamantar
 Name[pt]=Diamantes
 Name[pt_BR]=Diamantes
+Name[ru]=Бриллианты
 Name[sr]=Дијаманти
 Name[sr@latin]=Dijamanti
 Name[sv]=Diamanter
@@ -12,10 +14,12 @@ Name[uk]=Діаманти
 Name[x-test]=xxDiamondsxx
 Name[zh_TW]=方塊
 Description=A theme based on real looking diamonds.
+Description[de]=Ein auf echten Diamanten basierendes Design.
 Description[es]=Un tema basado en diamantes de apariencia real.
 Description[nn]=Tema med realistiske diamantar.
 Description[pt]=Uma tema baseado em diamantes realistas.
 Description[pt_BR]=Um tema baseado em diamantes reais.
+Description[ru]=Так выглядят настоящие бриллианты.
 Description[sr]=Тема заснована на уверљивим дијамантима.
 Description[sr@latin]=Tema zasnovana na uverljivim dijamantima.
 Description[sv]=Ett tema baserat på diamanter som ser äkta ut.
