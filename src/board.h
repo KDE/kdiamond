@@ -23,7 +23,6 @@ class Animator;
 class Diamond;
 #include "game-state.h"
 
-class QGraphicsPixmapItem;
 #include <QGraphicsScene>
 #include <QList>
 #include <QSet>

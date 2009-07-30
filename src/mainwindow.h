@@ -23,7 +23,6 @@ class Board;
 #include "game-state.h"
 
 class QTime;
-class QTimer;
 class KAction;
 class KActionMenu;
 #include <KXmlGuiWindow>
