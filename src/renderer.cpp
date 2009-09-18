@@ -64,10 +64,6 @@ Renderer::Renderer()
 	loadTheme(Settings::theme());
 }
 
-Renderer::Renderer(const Renderer &)
-{
-}
-
 Renderer::~Renderer()
 {
 	delete p;

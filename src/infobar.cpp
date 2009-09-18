@@ -30,7 +30,7 @@ KDiamond::InfoBar::InfoBar(KStatusBar* bar)
 	if (m_untimed)
 		m_bar->insertPermanentItem(i18n("Untimed game"), 2, 1);
 	else
-		m_bar->insertPermanentItem(i18n("Time left: %1").arg("0:00"), 2, 1);
+		m_bar->insertPermanentItem(i18n("Time left: %1", "0:00"), 2, 1);
 	m_bar->insertPermanentItem(i18n("Possible moves: %1", 0), 3, 1);
 	m_bar->show();
 }
