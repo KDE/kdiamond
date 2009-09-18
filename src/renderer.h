@@ -27,8 +27,8 @@ class RendererPrivate;
 class Renderer {
 	private:
 		Renderer();
-		Renderer(const Renderer &);
 		~Renderer();
+		Q_DISABLE_COPY(Renderer)
 	public:
 		static Renderer *self();
 
