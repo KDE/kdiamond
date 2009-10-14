@@ -2,6 +2,7 @@
 VersionFormat=1
 Name=Diamonds
 Name[de]=Diamanten
+Name[en_GB]=Diamonds
 Name[es]=Diamantes
 Name[et]=Teemandid
 Name[gl]=Rombos
@@ -20,6 +21,7 @@ Name[x-test]=xxDiamondsxx
 Name[zh_TW]=方塊
 Description=A theme based on real looking diamonds.
 Description[de]=Ein auf echten Diamanten basierendes Design.
+Description[en_GB]=A theme based on real looking diamonds.
 Description[es]=Un tema basado en diamantes de apariencia real.
 Description[et]=Ehtsate teemantidega teema.
 Description[gl]=Un tema baseado en diamantes realistas.
