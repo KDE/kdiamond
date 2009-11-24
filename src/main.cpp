@@ -32,13 +32,13 @@
 //TODO: pre-cache animation frames in the Board loop when idle
 
 static const char description[] = I18N_NOOP("KDiamond, a three-in-a-row game.");
-static const char version[] = "1.3";
+static const char version[] = "1.3.1";
 
 int main(int argc, char ** argv)
 {
 	qsrand(time(0));
 	KAboutData about("kdiamond", 0, ki18nc("The application's name", "KDiamond"), version, ki18n(description),
-		KAboutData::License_GPL, ki18n("(C) 2008 Stefan Majewsky and others"), KLocalizedString(), "http://games.kde.org/kdiamond" );
+		KAboutData::License_GPL, ki18n("(C) 2008-2009 Stefan Majewsky and others"), KLocalizedString(), "http://games.kde.org/kdiamond" );
 	about.addAuthor(ki18n("Stefan Majewsky"), ki18n("Original author and current maintainer"), "majewsky@gmx.net");
 	about.addAuthor(ki18n("Paul Bunbury"), ki18n("Gameplay refinement"), "happysmileman@googlemail.com");
 	about.addCredit(ki18n("Eugene Trounev"), ki18n("Default theme"), "eugene.trounev@gmail.com");
