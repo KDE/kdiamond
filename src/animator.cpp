@@ -20,7 +20,6 @@
 #include "diamond.h"
 #include "renderer.h"
 
-#include <QTime>
 #include <QTimeLine>
 
 Animator::Animator()
@@ -28,7 +27,6 @@ Animator::Animator()
 	, m_frameCount(0)
 	, m_started(false)
 	, m_playedLastFrame(false)
-	, m_time(0)
 	, m_timer(0)
 {
 }
@@ -61,14 +59,14 @@ void Animator::addItem(Diamond *item, const QPointF &from, const QPointF &to)
 
 void Animator::start()
 {
+	if (m_started)
+		return;
 	m_started = true;
 	m_timer = new QTimeLine;
 	m_timer->setDuration(m_duration);
 	m_timer->setFrameRange(1, m_frameCount);
-	m_time = new QTime;
 	connect(m_timer, SIGNAL(frameChanged(int)), this, SLOT(setFrame(int)));
 	connect(m_timer, SIGNAL(finished()), this, SLOT(slotFinished()));
-	m_time->start();
 	m_timer->start();
 }
 
