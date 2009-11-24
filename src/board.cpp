@@ -21,6 +21,7 @@
 #include "diamond.h"
 #include "renderer.h"
 
+#include <QTimerEvent>
 #include <KGamePopupItem>
 #include <KNotification>
 
@@ -369,10 +370,19 @@ void Board::clearSelection()
 
 void Board::timerEvent(QTimerEvent* event)
 {
-	Q_UNUSED(event)
+	//propagate event to superclass if necessary
+	if (event->timerId() != m_timerId)
+	{
+		QGraphicsScene::timerEvent(event);
+		return;
+	}
 	//see Diamond::move(const QPointF &) for explanation
 	if (m_gameState->state() == KDiamond::Paused || m_animator != 0)
+	{
+		killTimer(m_timerId);
+		m_timerId = -1;
 		return;
+	}
 	if(m_jobQueue.count() == 0) //nothing to do in this update
 	{
 		Renderer::self()->prerenderNextAnimationFrame();
@@ -654,6 +664,8 @@ void Board::animationFinished()
 {
 	m_animator->deleteLater();
 	m_animator = 0;
+	if (m_timerId == -1)
+		m_timerId = startTimer(UpdateInterval);
 }
 
 void Board::stateChange(KDiamond::State state)
@@ -682,6 +694,8 @@ void Board::stateChange(KDiamond::State state)
 			}
 			m_selection1->setVisible(m_selected1x != -1 && m_selected1y != -1);
 			m_selection2->setVisible(m_selected2x != -1 && m_selected2y != -1);
+			if (m_timerId == -1)
+				m_timerId = startTimer(UpdateInterval);
 			break;
 	}
 }
