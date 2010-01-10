@@ -2,6 +2,7 @@
 VersionFormat=1
 Name=Diamonds
 Name[ca]=Diamants
+Name[ca@valencia]=Diamants
 Name[cs]=Diamanty
 Name[de]=Diamanten
 Name[en_GB]=Diamonds
@@ -26,6 +27,7 @@ Name[x-test]=xxDiamondsxx
 Name[zh_TW]=方塊
 Description=A theme based on real looking diamonds.
 Description[ca]=Un tema basat en diamants d'aspecte real.
+Description[ca@valencia]=Un tema basat en diamants d'aspecte real.
 Description[de]=Ein auf echten Diamanten basierendes Design.
 Description[en_GB]=A theme based on real looking diamonds.
 Description[es]=Un tema basado en diamantes de apariencia real.
