@@ -652,6 +652,8 @@ bool Board::onBoard(int x, int y) const
 
 void Board::showHint()
 {
+	if (m_availableMoves.isEmpty())
+		return;
 	QPoint location = m_availableMoves.at(qrand()%m_availableMoves.size());
 	m_selected1x = location.x();
 	m_selected1y = location.y();
