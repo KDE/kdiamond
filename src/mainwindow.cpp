@@ -70,6 +70,13 @@ MainWindow::MainWindow(QWidget *parent)
 	m_hintAct = KStandardGameAction::hint(0, 0, actionCollection());
 	KStandardAction::preferences(this, SLOT(configureSettings()), actionCollection());
 	KStandardAction::configureNotifications(this, SLOT(configureNotifications()), actionCollection());
+	//difficulty
+	KGameDifficulty::init(this, this, SLOT(startGameDispatcher()));
+	KGameDifficulty::addStandardLevel(KGameDifficulty::VeryEasy);
+	KGameDifficulty::addStandardLevel(KGameDifficulty::Easy);
+	KGameDifficulty::addStandardLevel(KGameDifficulty::Medium);
+	KGameDifficulty::addStandardLevel(KGameDifficulty::Hard);
+	KGameDifficulty::addStandardLevel(KGameDifficulty::VeryHard);
 	//late GUI initialisation
 	setupGUI(QSize(300, 400)); //TODO: find better solution for a minimum size
 	setCaption(i18nc("The application's name", "KDiamond"));
@@ -80,13 +87,6 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(m_game, SIGNAL(stateChanged(KDiamond::State)), this, SLOT(stateChange(KDiamond::State)));
 	connect(m_game, SIGNAL(pointsChanged(int)), m_infoBar, SLOT(updatePoints(int)));
 	connect(m_game, SIGNAL(leftTimeChanged(int)), m_infoBar, SLOT(updateRemainingTime(int)));
-	//difficulty
-	KGameDifficulty::init(this, this, SLOT(startGameDispatcher()));
-	KGameDifficulty::addStandardLevel(KGameDifficulty::VeryEasy);
-	KGameDifficulty::addStandardLevel(KGameDifficulty::Easy);
-	KGameDifficulty::addStandardLevel(KGameDifficulty::Medium);
-	KGameDifficulty::addStandardLevel(KGameDifficulty::Hard);
-	KGameDifficulty::addStandardLevel(KGameDifficulty::VeryHard);
 	//selected skill
 	int skill = Settings::skill();
 	if (skill < KGameDifficulty::VeryEasy) //includes default values like 0 or 1
