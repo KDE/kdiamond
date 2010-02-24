@@ -328,8 +328,8 @@ void Board::dragDiamond(int xIndex, int yIndex, int xDirection, int yDirection)
 	if ((xDirection == 0) ^ (yDirection == 0))
 	{
 		//find target indices
-		const int xIndex2 = xIndex + (xDirection > 0) ? 1 : -1;
-		const int yIndex2 = yIndex + (yDirection > 0) ? 1 : -1;
+		const int xIndex2 = xIndex + xDirection;
+		const int yIndex2 = yIndex + yDirection;
 		if (!onBoard(xIndex2, yIndex2))
 			return;
 		//simulate the clicks involved in this operation
