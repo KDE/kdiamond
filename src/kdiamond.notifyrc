@@ -1,6 +1,10 @@
 [Global]
 IconName=kdiamond
 Comment=KDiamond Game
+Comment[pt]=Jogo KDiamond
+Comment[pt_BR]=Jogo KDiamond
+Comment[uk]=Гра КДіамант
+Comment[x-test]=xxKDiamond Gamexx
 
 [Context/game]
 Name=Game
