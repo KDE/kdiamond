@@ -1,6 +1,8 @@
 [Global]
 IconName=kdiamond
 Comment=KDiamond Game
+Comment[ca]=Joc KDiamond
+Comment[nds]=KDiamant
 Comment[pt]=Jogo KDiamond
 Comment[pt_BR]=Jogo KDiamond
 Comment[uk]=Гра КДіамант
