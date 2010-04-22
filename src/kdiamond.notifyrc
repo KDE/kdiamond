@@ -14,6 +14,7 @@ Comment[pt_BR]=Jogo KDiamond
 Comment[sv]=Spelet Kdiamant
 Comment[uk]=Гра КДіамант
 Comment[x-test]=xxKDiamond Gamexx
+Comment[zh_TW]=KDiamond 寶石方塊
 
 [Context/game]
 Name=Game
