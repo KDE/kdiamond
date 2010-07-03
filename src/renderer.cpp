@@ -25,7 +25,7 @@
 #include <QPixmap>
 #include <KGameTheme>
 #include <KPixmapCache>
-#include <KSvgRenderer>
+#include <QSvgRenderer>
 
 typedef QPair<KDiamond::Color, int> RendererFrame;
 
@@ -34,7 +34,7 @@ class RendererPrivate
 	public:
 		RendererPrivate();
 
-		KSvgRenderer m_renderer;
+		QSvgRenderer m_renderer;
 		KPixmapCache m_cache;
 
 		QSize m_diamondSize;
