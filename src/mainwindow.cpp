@@ -119,8 +119,7 @@ void MainWindow::startGame(KDiamond::Mode mode)
 	KGameDifficulty::standardLevel level = KGameDifficulty::level();
 	Settings::setSkill((int) level);
 	//delete old board
-	if (m_board != 0)
-		delete m_board;
+	delete m_board;
 	//start new game
 	m_game->startNewGame();
 	m_game->setMode(mode);
