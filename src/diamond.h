@@ -42,14 +42,14 @@ namespace KDiamond
 class Diamond : public KGameRenderedItem
 {
 	Q_OBJECT
-	Q_PROPERTY(QPointF pos READ pos WRITE setPos)
+	Q_PROPERTY(QPointF gridPos READ gridPos WRITE setGridPos)
 	public:
 		Diamond(KDiamond::Color color, KGameRenderer* renderer, QGraphicsItem* parent = 0);
 
 		KDiamond::Color color() const;
 		///Returns the position in grid coordinates, i.e. 1 coordinate unit is the size of one diamond.
-		QPointF pos() const;
-		void setPos(const QPointF& pos);
+		QPointF gridPos() const;
+		void setGridPos(const QPointF& gridPos);
 		void setRenderSize(int renderSize);
 	Q_SIGNALS:
 		void clicked();

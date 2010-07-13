@@ -55,12 +55,12 @@ KDiamond::Color Diamond::color() const
 	return m_color;
 }
 
-QPointF Diamond::pos() const
+QPointF Diamond::gridPos() const
 {
 	return m_pos;
 }
 
-void Diamond::setPos(const QPointF& pos)
+void Diamond::setGridPos(const QPointF& pos)
 {
 	m_pos = pos;
 	QGraphicsItem::setPos(m_pos * m_renderSize);
