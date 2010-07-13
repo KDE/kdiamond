@@ -394,6 +394,7 @@ void Game::stateChange(KDiamond::State state)
 	{
 		case KDiamond::Finished:
 			m_board->clearSelection();
+			m_jobQueue << KDiamond::EndGameJob;
 			break;
 		case KDiamond::Playing:
 			if (m_timerId == -1)
