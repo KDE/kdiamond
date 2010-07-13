@@ -17,96 +17,29 @@
  ***************************************************************************/
 
 #include "game.h"
+#include "board.h"
 #include "diamond.h"
 #include "renderer.h"
 
-#include <QParallelAnimationGroup>
-#include <QPropertyAnimation>
 #include <QTimerEvent>
 #include <KGamePopupItem>
 #include <KNotification>
 
-const int MoveDuration = 240; //duration of a move animation (per coordinate unit) in milliseconds
 const int UpdateInterval = 40;
-const int RemoveDuration = 200; //duration of a move animation in milliseconds
 
 Game::Game(KDiamond::GameState* state, KGameDifficulty::standardLevel difficulty)
-	: QGraphicsScene()
-	, m_selection1(new Diamond(QPoint(), KDiamond::Selection, this))
-	, m_selection2(new Diamond(QPoint(), KDiamond::Selection, this))
+	: m_timerId(-1)
+	, m_board(new KDiamond::Board(difficulty))
 	, m_gameState(state)
 	, m_messenger(new KGamePopupItem)
-	, m_runningAnimation(0)
-	, m_leftOffset(0)
-	, m_diamondEdgeLength(1)
-	, m_selected1(QPoint(-1, -1))
-	, m_selected2(QPoint(-1, -1))
-	, m_swapping1(QPoint(-1, -1))
-	, m_swapping2(QPoint(-1, -1))
 {
-	switch (difficulty)
-	{
-		case KGameDifficulty::VeryEasy:
-			m_size = KDiamond::VeryEasySize;
-			m_colorCount = KDiamond::VeryEasyColors;
-			break;
-		case KGameDifficulty::Easy:
-			m_size = KDiamond::EasySize;
-			m_colorCount = KDiamond::EasyColors;
-			break;
-		case KGameDifficulty::Medium:
-			m_size = KDiamond::MediumSize;
-			m_colorCount = KDiamond::MediumColors;
-			break;
-		case KGameDifficulty::Hard:
-			m_size = KDiamond::HardSize;
-			m_colorCount = KDiamond::HardColors;
-			break;
-		case KGameDifficulty::VeryHard:
-		default: //punish bugs with "Very hard" mode ;-)
-			m_size = KDiamond::VeryHardSize;
-			m_colorCount = KDiamond::VeryHardColors;
-			break;
-	}
+	connect(m_board, SIGNAL(animationsFinished()), SLOT(animationFinished()));
+	connect(m_board, SIGNAL(clicked(QPoint)), SLOT(clickDiamond(QPoint)));
+	connect(m_board, SIGNAL(dragged(QPoint, QPoint)), SLOT(dragDiamond(QPoint, QPoint)));
 	//init scene (with some default scene size that makes board coordinates equal scene coordinates)
-	setSceneRect(0.0, 0.0, m_size, m_size);
-	//fill diamond field and scene
-	m_diamonds = new Diamond**[m_size];
-	for (int x = 0; x < m_size; ++x)
-	{
-		m_diamonds[x] = new Diamond*[m_size];
-		for (int y = 0; y < m_size; ++y)
-		{
-			//roll the dice to get a color, but ensure that there are not three of a color in a row from the start
-			int color, otherColor1, otherColor2;
-			while (true)
-			{
-				color = qrand() % m_colorCount + 1; // +1 because numbering of enum KDiamond::Color starts at 1
-				//condition: no triplet in y axis (attention: only the diamonds above us are defined already)
-				if (y >= 2) //no triplet possible for i = 0, 1
-				{
-					otherColor1 = m_diamonds[x][y - 1]->color();
-					otherColor2 = m_diamonds[x][y - 2]->color();
-					if (otherColor1 == color && otherColor2 == color)
-						continue; //roll the dice again
-				}
-				//same condition on x axis
-				if (x >= 2)
-				{
-					otherColor1 = m_diamonds[x - 1][y]->color();
-					otherColor2 = m_diamonds[x - 2][y]->color();
-					if (otherColor1 == color && otherColor2 == color)
-						continue;
-				}
-				break;
-			}
-			//set diamond
-			m_diamonds[x][y] = new Diamond(QPoint(x, y), (KDiamond::Color) color, this);
-		}
-	}
-	//init selection markers
-	m_selection1->hide();
-	m_selection2->hide();
+	const int minSize = m_board->gridSize();
+	setSceneRect(0.0, 0.0, minSize, minSize);
+	addItem(m_board);
 	//init messenger
 	m_messenger->setMessageOpacity(0.8);
 	m_messenger->setHideOnMouseClick(false);
@@ -117,104 +50,71 @@ Game::Game(KDiamond::GameState* state, KGameDifficulty::standardLevel difficulty
 	m_jobQueue << KDiamond::UpdateAvailableMovesJob;
 }
 
-Game::~Game()
-{
-	for (int i = 0; i < m_size; ++i)
-	{
-		for (int j = 0; j < m_size; ++j)
-		{
-			delete m_diamonds[i][j];
-		}
-		delete[] m_diamonds[i];
-	}
-	delete[] m_diamonds;
-	delete m_selection1;
-	delete m_selection2;
-	delete m_messenger;
-}
-
-int Game::diamondCountOnEdge() const
-{
-	return m_size;
-}
-
 //Checks amount of possible moves remaining
 void Game::getMoves()
 {
+#define C(X, Y) (m_board->hasDiamond(QPoint(X, Y)) ? m_board->diamond(QPoint(X, Y))->color() : KDiamond::Selection)
 	m_availableMoves.clear();
 	KDiamond::Color curColor;
-	for (int x = 0; x < m_size; ++x)
+	const int gridSize = m_board->gridSize();
+	for (int x = 0; x < gridSize; ++x)
 	{
-		for (int y = 0; y < m_size; ++y)
+		for (int y = 0; y < gridSize; ++y)
 		{
-			curColor = m_diamonds[x][y]->color();
-			if ((x < (m_size-1)) && (m_diamonds[x+1][y]->color() == curColor))
+			curColor = C(x, y);
+			if (curColor == C(x + 1, y))
 			{
-				if ((onBoard(x-2, y)) && (m_diamonds[x-2][y]->color() == curColor))
-					m_availableMoves.append(QPoint(x-2, y));
-				if ((onBoard(x-1, y-1)) && (m_diamonds[x-1][y-1]->color() == curColor))
-					m_availableMoves.append(QPoint(x-1, y-1));
-				if ((onBoard(x-1, y+1)) && (m_diamonds[x-1][y+1]->color() == curColor))
-					m_availableMoves.append(QPoint(x-1, y+1));
-				if ((onBoard(x+3, y)) && (m_diamonds[x+3][y]->color() == curColor))
-					m_availableMoves.append(QPoint(x+3, y));
-				if ((onBoard(x+2, y-1)) && (m_diamonds[x+2][y-1]->color() == curColor))
-					m_availableMoves.append(QPoint(x+2, y-1));
-				if ((onBoard(x+2, y+1)) && (m_diamonds[x+2][y+1]->color() == curColor))
-					m_availableMoves.append(QPoint(x+2, y+1));
+				if (curColor == C(x - 2, y))
+					m_availableMoves.append(QPoint(x - 2, y));
+				if (curColor == C(x - 1, y - 1))
+					m_availableMoves.append(QPoint(x - 1, y - 1));
+				if (curColor == C(x - 1, y + 1))
+					m_availableMoves.append(QPoint(x - 1, y + 1));
+				if (curColor == C(x + 3, y))
+					m_availableMoves.append(QPoint(x + 3, y));
+				if (curColor == C(x + 2, y - 1))
+					m_availableMoves.append(QPoint(x + 2, y - 1));
+				if (curColor == C(x + 2, y + 1))
+					m_availableMoves.append(QPoint(x + 2, y + 1));
 			}
-			if ((x < (m_size-2)) && (m_diamonds[x+2][y]->color() == curColor))
+			if (curColor == C(x + 2, y))
 			{
-				if ((onBoard(x+1, y-1)) && (m_diamonds[x+1][y-1]->color() == curColor))
-					m_availableMoves.append(QPoint(x+1, y-1));
-				if ((onBoard(x+1, y+1)) && (m_diamonds[x+1][y+1]->color() == curColor))
-					m_availableMoves.append(QPoint(x+1, y+1));
+				if (curColor == C(x + 1, y - 1))
+					m_availableMoves.append(QPoint(x + 1, y - 1));
+				if (curColor == C(x + 1, y + 1))
+					m_availableMoves.append(QPoint(x + 1, y + 1));
 			}
-			if ((y < (m_size-1)) && (m_diamonds[x][y+1]->color() == curColor))
+			if (curColor == C(x, y + 1))
 			{
-				if ((onBoard(x, y-2)) && (m_diamonds[x][y-2]->color() == curColor))
-					m_availableMoves.append(QPoint(x, y-2));
-				if ((onBoard(x-1, y-1)) && (m_diamonds[x-1][y-1]->color() == curColor))
-					m_availableMoves.append(QPoint(x-1, y-1));
-				if ((onBoard(x+1, y-1)) && (m_diamonds[x+1][y-1]->color() == curColor))
-					m_availableMoves.append(QPoint(x+1, y-1));
-				if ((onBoard(x, y+3)) && (m_diamonds[x][y+3]->color() == curColor))
-					m_availableMoves.append(QPoint(x, y+3));
-				if ((onBoard(x-1, y+2)) && (m_diamonds[x-1][y+2]->color() == curColor))
-					m_availableMoves.append(QPoint(x-1, y+2));
-				if ((onBoard(x+1, y+2)) && (m_diamonds[x+1][y+2]->color() == curColor))
-					m_availableMoves.append(QPoint(x+1, y+2));
+				if (curColor == C(x, y - 2))
+					m_availableMoves.append(QPoint(x, y - 2));
+				if (curColor == C(x - 1, y - 1))
+					m_availableMoves.append(QPoint(x - 1, y - 1));
+				if (curColor == C(x + 1, y - 1))
+					m_availableMoves.append(QPoint(x + 1, y - 1));
+				if (curColor == C(x, y + 3))
+					m_availableMoves.append(QPoint(x + 3, y));
+				if (curColor == C(x - 1, y + 2))
+					m_availableMoves.append(QPoint(x - 1, y + 2));
+				if (curColor == C(x + 1, y + 2))
+					m_availableMoves.append(QPoint(x + 1, y + 2));
 			}
-			if ((y < (m_size-2)) && (m_diamonds[x][y+2]->color() == curColor))
+			if (curColor == C(x, y + 2))
 			{
-				if ((onBoard(x-1, y+1)) && (m_diamonds[x-1][y+1]->color() == curColor))
-					m_availableMoves.append(QPoint(x-1, y+1));
-				if ((onBoard(x+1, y+1)) && (m_diamonds[x+1][y+1]->color() == curColor))
-					m_availableMoves.append(QPoint(x+1, y+1));
+				if (curColor == C(x - 1, y + 1))
+					m_availableMoves.append(QPoint(x - 1, y + 1));
+				if (curColor == C(x + 1, y + 1))
+					m_availableMoves.append(QPoint(x + 1, y + 1));
 			}
 		}
 	}
+#undef C
 	emit numberMoves(m_availableMoves.size());
 	if (m_availableMoves.isEmpty())
 	{
-		m_selection1->hide();
-		m_selection2->hide();
+		m_board->clearSelection();
 		m_gameState->setState(KDiamond::Finished);
 	}
-}
-
-//Converts board coordinates (i.e. (0,0) is the top left point of the board, 1 unit = 1 diamond) to scene coordinates.
-QPoint Game::boardToScene(const QPointF &boardCoords) const
-{
-	return QPoint(
-		boardCoords.x() * m_diamondEdgeLength + m_leftOffset,
-		boardCoords.y() * m_diamondEdgeLength
-	);
-}
-
-int Game::diamondEdgeLength() const
-{
-	return m_diamondEdgeLength;
 }
 
 //Adapt scene coordinates to size of view. (This congruence is required by KGamePopupItem.)
@@ -224,123 +124,44 @@ void Game::resizeScene(int newWidth, int newHeight, bool force)
 	if (!force && width() == newWidth && height() == newHeight)
 		return;
 	setSceneRect(0.0, 0.0, newWidth, newHeight);
-	//calculate new metrics - A board margin of half a diamond's size is hard-coded.
-	const qreal diamondXConstraint = newWidth / (m_size + 1);
-	const qreal diamondYConstraint = newHeight / (qreal(m_size) + 0.5);
-	m_diamondEdgeLength = qMin(diamondXConstraint, diamondYConstraint);
-	int boardSize = m_size * m_diamondEdgeLength;
-	m_leftOffset = (newWidth - boardSize) / 2.0;
-	//renderer
-	Renderer::self()->boardResized(newWidth, newHeight, m_leftOffset, m_diamondEdgeLength, m_size);
-	//diamonds
-	QSize diamondSize(m_diamondEdgeLength, m_diamondEdgeLength);
-	for (int x = 0; x < m_size; ++x)
-		for (int y = 0; y < m_size; ++y)
-			m_diamonds[x][y]->setRenderSize(diamondSize);
-	m_selection1->setRenderSize(diamondSize);
-	m_selection2->setRenderSize(diamondSize);
-	emit boardResized(); //give diamonds the chance to change their metrics
-	//background
-	setBackgroundBrush(Renderer::self()->background());
+	//calculate new metrics
+	const QSize sceneSize(newWidth, newHeight);
+	QSize boardSize(sceneSize);
+	m_board->determineRenderSize(boardSize);
+	const int leftOffset = (newWidth - boardSize.width()) / 2.0;
+	m_board->setPos(QPoint(leftOffset, 0));
+	setBackgroundBrush(Renderer::self()->background(sceneSize, leftOffset, boardSize.width()));
 }
 
-void Game::clickDiamond(const QPoint& index)
+void Game::clickDiamond(const QPoint& point)
 {
 	if (m_gameState->state() != KDiamond::Playing)
 		return;
-	//handle click
-	if (m_selected1 == index)
-	{
-		//clicked again on first selected diamond - remove selection
-		//Attention: This code is re-used in Game::timerEvent for the RemoveRowsJob. If you modify it here, please do also apply your changes over there.
-		m_selected1 = m_selected2;
-		if (m_selected1 == QPoint(-1, -1))
-			m_selection1->hide();
-		else
-		{
-			m_selection1->setPosInBoardCoords(m_selected1);
-			m_selection1->show();
-		}
-		m_selected2 = QPoint(-1, -1);
-		m_selection2->hide();
-	}
-	else if (m_selected2 == index)
-	{
-		//clicked again on second selected diamond - remove selection
-		m_selected2 = QPoint(-1, -1);
-		m_selection2->hide();
-	}
-	else if (m_selected1 == QPoint(-1, -1))
-	{
-		//nothing selected - this is the first selected diamond
-		m_selected1 = index;
-		m_selection1->setPosInBoardCoords(index);
-		m_selection1->show();
-	}
-	else if (m_selected2 == QPoint(-1, -1))
-	{
-		//this could be the second selected diamond - ensure that the second one is a neighbor of the other one
-		int dx = qAbs(m_selected1.x() - index.x()), dy = qAbs(m_selected1.y() - index.y());
-		if (dx + dy == 1)
-		{
-			m_selected2 = index;
-			m_selection2->setPosInBoardCoords(index);
-			m_selection2->show();
-			m_jobQueue << KDiamond::SwapDiamondsJob;
-		}
-		else
-		{
-			//selected a diamond that it is not a neighbor - move the first selection to this diamond
-			m_selected1 = index;
-			m_selection1->setPosInBoardCoords(index);
-			m_selection1->show();
-		}
-	}
+	//do not allow more than two selections
+	const bool isSelected = m_board->hasSelection(point);
+	if (!isSelected && m_board->selections().count() == 2)
+		return;
+	//toggle selection state
+	m_board->setSelection(point, !isSelected);
+	if (m_board->selections().count() == 2)
+		m_jobQueue << KDiamond::SwapDiamondsJob;
 }
 
-void Game::clickDiamond(Diamond *diamond)
-{
-	for (int x = 0; x < m_size; ++x)
-		for (int y = 0; y < m_size; ++y)
-			if (m_diamonds[x][y] == diamond)
-			{
-				clickDiamond(QPoint(x, y));
-				return;
-			}
-}
-
-void Game::dragDiamond(const QPoint& index, const QPoint& direction)
+void Game::dragDiamond(const QPoint& point, const QPoint& direction)
 {
 	//direction must not be null, and must point along one axis
 	if ((direction.x() == 0) ^ (direction.y() == 0))
 	{
 		//find target indices
-		const QPoint index2 = index + direction;
-		if (!onBoard(index2))
+		const QPoint point2 = point + direction;
+		if (!m_board->hasDiamond(point2))
 			return;
 		//simulate the clicks involved in this operation
-		clearSelection();
-		clickDiamond(index);
-		clickDiamond(index2);
+		m_board->clearSelection();
+		m_board->setSelection(point, true);
+		m_board->setSelection(point2, true);
+		m_jobQueue << KDiamond::SwapDiamondsJob;
 	}
-}
-
-void Game::dragDiamond(Diamond *diamond, const QPoint& direction)
-{
-	for (int x = 0; x < m_size; ++x)
-		for (int y = 0; y < m_size; ++y)
-			if (m_diamonds[x][y] == diamond)
-			{
-				dragDiamond(QPoint(x, y), direction);
-				return;
-			}
-}
-
-void Game::clearSelection()
-{
-	m_selection1->hide();
-	m_selection2->hide();
-	m_selected1 = m_selected2 = QPoint(-1, -1);
 }
 
 void Game::timerEvent(QTimerEvent* event)
@@ -351,74 +172,50 @@ void Game::timerEvent(QTimerEvent* event)
 		QGraphicsScene::timerEvent(event);
 		return;
 	}
-	//see Diamond::move(const QPointF &) for explanation
-	if (m_gameState->state() == KDiamond::Paused || m_runningAnimation)
+	//do not handle any jobs while animations are running
+	if (m_gameState->state() == KDiamond::Paused || m_board->hasRunningAnimations())
 	{
 		killTimer(m_timerId);
 		m_timerId = -1;
 		return;
 	}
-	if(m_jobQueue.count() == 0) //nothing to do in this update
+	//anything to do in this update?
+	if (m_jobQueue.isEmpty())
 	{
 		return;
 	}
-	//execute first job in queue
+	//execute next job in queue
 	const KDiamond::Job job = m_jobQueue.takeFirst();
 	switch (job)
 	{
 		case KDiamond::SwapDiamondsJob: {
-			if (m_selected1 == QPoint(-1, -1) || m_selected2 == QPoint(-1, -1))
+			if (m_board->selections().count() != 2)
 				break; //this can be the case if, during a cascade, two diamonds are selected (inserts SwapDiamondsJob) and then deselected
 			//ensure that the selected diamonds are neighbors (this is not necessarily the case as diamonds can move to fill gaps)
-			const int dx = qAbs(m_selected1.x() - m_selected2.x());
-			const int dy = qAbs(m_selected1.y() - m_selected2.y());
+			const QList<QPoint> points = m_board->selections();
+			m_board->clearSelection();
+			const int dx = qAbs(points[0].x() - points[1].x());
+			const int dy = qAbs(points[0].y() - points[1].y());
 			if (dx + dy != 1)
-			{
-				m_selected1 = m_selected2 = QPoint(-1, -1);
-				m_selection1->hide();
-				m_selection2->hide();
 				break;
-			}
 			//start a new cascade
 			m_gameState->resetCascadeCounter();
 			//copy selection info into another storage (to allow the user to select the next two diamonds while the cascade runs)
-			m_swapping1 = m_selected1;
-			m_swapping2 = m_selected2;
-			m_selected1 = m_selected2 = QPoint(-1, -1);
-			m_selection1->hide();
-			m_selection2->hide();
+			m_swappingDiamonds = points;
 			m_jobQueue << KDiamond::RemoveRowsJob; //We already insert this here to avoid another conditional statement.
-		} //fall through (The swapping code is essentially the same, but the swap job does some additional initializations.)
-		case KDiamond::RevokeSwapDiamondsJob: {
-			//swap diamonds
-			Diamond* temp = getDiamond(m_swapping1);
-			getDiamond(m_swapping1) = getDiamond(m_swapping2);
-			getDiamond(m_swapping2) = temp;
+		} //fall through
+		case KDiamond::RevokeSwapDiamondsJob:
 			//invoke movement
 			KNotification::event("move");
-			QParallelAnimationGroup* animGroup = new QParallelAnimationGroup(this);
-			QPropertyAnimation* animation1 = new QPropertyAnimation(getDiamond(m_swapping1), "boardPos", this);
-			animation1->setDuration(MoveDuration);
-			animation1->setStartValue(getDiamond(m_swapping1)->posInBoardCoords());
-			animation1->setEndValue(getDiamond(m_swapping2)->posInBoardCoords());
-			animGroup->addAnimation(animation1);
-			QPropertyAnimation* animation2 = new QPropertyAnimation(getDiamond(m_swapping2), "boardPos", this);
-			animation2->setDuration(MoveDuration);
-			animation2->setStartValue(getDiamond(m_swapping2)->posInBoardCoords());
-			animation2->setEndValue(getDiamond(m_swapping1)->posInBoardCoords());
-			animGroup->addAnimation(animation2);
-			m_runningAnimation = animGroup;
-			m_runningAnimation->start(QAbstractAnimation::DeleteWhenStopped);
-			connect(m_runningAnimation, SIGNAL(finished()), this, SLOT(animationFinished()));
+			m_board->swapDiamonds(m_swappingDiamonds[0], m_swappingDiamonds[1]);
 			break;
-		}
 		case KDiamond::RemoveRowsJob:
 			//find diamond rows and delete these diamonds
 			m_diamondsToRemove = findCompletedRows();
 			if (m_diamondsToRemove.count() == 0)
 			{
 				//no diamond rows were formed by the last move -> revoke movement (unless we are in a cascade)
-				if (m_swapping1 != QPoint(-1, -1) && m_swapping2 != QPoint(-1, -1))
+				if (!m_swappingDiamonds.isEmpty())
 					m_jobQueue.prepend(KDiamond::RevokeSwapDiamondsJob);
 				else
 					m_jobQueue << KDiamond::UpdateAvailableMovesJob;
@@ -432,14 +229,13 @@ void Game::timerEvent(QTimerEvent* event)
 					emit numberMoves(-1);
 				}
 				//it is now safe to delete the position of the swapping diamonds
-				m_swapping1 = m_swapping2 = QPoint(-1, -1);
+				m_swappingDiamonds.clear();
 				//report to Game
 				m_gameState->addPoints(m_diamondsToRemove.count());
 				//prepare to fill gaps
 				m_jobQueue.prepend(KDiamond::FillGapsJob); //prepend this job as it has to be executed immediately after the animations (before handling any further user input)
 				//invoke remove animation
 				KNotification::event("remove");
-				QParallelAnimationGroup* animGroup = new QParallelAnimationGroup(this);
 				QList<QPoint> handledDiamonds;
 				foreach (QPoint *diamondPosPtr, m_diamondsToRemove)
 				{
@@ -447,48 +243,15 @@ void Game::timerEvent(QTimerEvent* event)
 					if (handledDiamonds.contains(diamondPos))
 						continue;
 					handledDiamonds << diamondPos;
-					QPropertyAnimation* animation = new QPropertyAnimation(getDiamond(diamondPos), "frame", this);
-					animation->setStartValue(0);
-					animation->setEndValue(getDiamond(diamondPos)->frameCount() - 1);
-					animation->setDuration(RemoveDuration);
-					animGroup->addAnimation(animation);
-					//remove selection if necessary
-					if (m_selected1 == diamondPos)
-					{
-						m_selected1 = m_selected2;
-						if (m_selected1 == QPoint(-1, -1))
-							m_selection1->hide();
-						else
-						{
-							m_selection1->setPosInBoardCoords(m_selected1);
-							m_selection1->show();
-						}
-						m_selected2 = QPoint(-1, -1);
-						m_selection2->hide();
-					}
-					else if (m_selected2 == diamondPos)
-					{
-						m_selected2 = QPoint(-1, -1);
-						m_selection2->hide();
-					}
+					m_board->removeDiamond(diamondPos);
 				}
-				m_runningAnimation = animGroup;
-				m_runningAnimation->start(QAbstractAnimation::DeleteWhenStopped);
-				connect(m_runningAnimation, SIGNAL(finished()), this, SLOT(animationFinished()));
 			}
 			break;
 		case KDiamond::FillGapsJob:
-			//delete diamonds after their remove animation has played
-			foreach (QPoint *diamondPos, m_diamondsToRemove)
-			{
-				delete getDiamond(*diamondPos);
-				getDiamond(*diamondPos) = 0;
-				//cleanup pointer
-				delete diamondPos;
-			}
+			qDeleteAll(m_diamondsToRemove);
 			m_diamondsToRemove.clear();
 			//fill gaps
-			fillGaps();
+			m_board->fillGaps();
 			m_jobQueue.prepend(KDiamond::RemoveRowsJob); //allow cascades (i.e. clear rows that have been formed by falling diamonds)
 			break;
 		case KDiamond::UpdateAvailableMovesJob:
@@ -509,30 +272,32 @@ QSet<QPoint *> Game::findCompletedRows()
 	KDiamond::Color currentColor;
 	QList<QPoint *> diamonds; //use a QList as storage as it allows for faster insertion than a QSet
 	int x, y, xh, yh; //counters
+	const int gridSize = m_board->gridSize();
+#define C(X, Y) m_board->diamond(QPoint(X, Y))->color()
 	//searching in horizontal direction
-	for (y = 0; y < m_size; ++y)
+	for (y = 0; y < gridSize; ++y)
 	{
-		for (x = 0; x < m_size - 2; ++x) //counter stops at m_size - 2 to ensure availability of indices x + 1, x + 2
+		for (x = 0; x < gridSize - 2; ++x) //counter stops at gridSize - 2 to ensure availability of indices x + 1, x + 2
 		{
-			currentColor = m_diamonds[x][y]->color();
-			if (currentColor != m_diamonds[x + 1][y]->color())
+			currentColor = C(x, y);
+			if (currentColor != C(x + 1, y))
 				continue;
-			if (currentColor != m_diamonds[x + 2][y]->color())
+			if (currentColor != C(x + 2, y))
 				continue;
 			//If the execution is here, we have found a row of three diamonds starting at (x,y).
 			diamonds << new QPoint(x, y);
 			diamonds << new QPoint(x + 1, y);
 			diamonds << new QPoint(x + 2, y);
 			//Does the row have even more elements?
-			if (x + 3 >= m_size)
+			if (x + 3 >= gridSize)
 			{
 				//impossible to locate more diamonds - do not go through the following loop
 				x += 2;
 				continue;
 			}
-			for (xh = x + 3; xh <= m_size - 1; ++xh)
+			for (xh = x + 3; xh <= gridSize - 1; ++xh)
 			{
-				if (currentColor == m_diamonds[xh][y]->color())
+				if (currentColor == C(xh, y))
 					diamonds << new QPoint(xh, y);
 				else
 					break; //row has stopped before this diamond - no need to continue searching
@@ -541,26 +306,26 @@ QSet<QPoint *> Game::findCompletedRows()
 		}
 	}
 	//searching in vertical direction (essentially the same algorithm, just with swapped indices -> no comments here, read the comments above)
-	for (x = 0; x < m_size; ++x)
+	for (x = 0; x < gridSize; ++x)
 	{
-		for (y = 0; y < m_size - 2; ++y)
+		for (y = 0; y < gridSize - 2; ++y)
 		{
-			currentColor = m_diamonds[x][y]->color();
-			if (currentColor != m_diamonds[x][y + 1]->color())
+			currentColor = C(x, y);
+			if (currentColor != C(x, y + 1))
 				continue;
-			if (currentColor != m_diamonds[x][y + 2]->color())
+			if (currentColor != C(x, y + 2))
 				continue;
 			diamonds << new QPoint(x, y);
 			diamonds << new QPoint(x, y + 1);
 			diamonds << new QPoint(x, y + 2);
-			if (y + 3 >= m_size)
+			if (y + 3 >= gridSize)
 			{
 				y += 2;
 				continue;
 			}
-			for (yh = y + 3; yh <= m_size - 1; ++yh)
+			for (yh = y + 3; yh <= gridSize - 1; ++yh)
 			{
-				if (currentColor == m_diamonds[x][yh]->color())
+				if (currentColor == C(x, yh))
 					diamonds << new QPoint(x, yh);
 				else
 					break;
@@ -571,105 +336,17 @@ QSet<QPoint *> Game::findCompletedRows()
 	return diamonds.toSet();
 }
 
-void Game::fillGaps()
-{
-	QParallelAnimationGroup* animGroup = new QParallelAnimationGroup(this);
-	//fill gaps
-	int x, y, yt; //counters - (x, yt) is the target position of diamond (x,y)
-	for (x = 0; x < m_size; ++x)
-	{
-		//We have to search from the bottom of the column. Exclude the lowest element (x = m_size - 1) because it cannot move down.
-		for (y = m_size - 2; y >= 0; --y)
-		{
-			if (m_diamonds[x][y] == 0)
-				//no need to move gaps -> these are moved later
-				continue;
-			if (m_diamonds[x][y + 1] != 0)
-				//there is something right below this diamond -> Do not move.
-				continue;
-			//search for the lowest possible position
-			for (yt = y; yt < m_size - 1; ++yt)
-			{
-				if (m_diamonds[x][yt + 1] != 0)
-					break; //xt now holds the lowest possible position
-			}
-			m_diamonds[x][yt] = m_diamonds[x][y];
-			m_diamonds[x][y] = 0;
-			QPropertyAnimation* animation = new QPropertyAnimation(m_diamonds[x][yt], "boardPos", this);
-			animation->setStartValue(QPointF(x, y));
-			animation->setEndValue(QPointF(x, yt));
-			animation->setDuration(qAbs(yt - y) * MoveDuration);
-			animGroup->addAnimation(animation);
-			//if this element is selected, move the selection, too
-			if (m_selected1 == QPoint(x, y))
-			{
-				m_selected1.ry() = yt;
-				QPropertyAnimation* animation = new QPropertyAnimation(m_selection1, "boardPos", this);
-				animation->setStartValue(QPointF(x, y));
-				animation->setEndValue(QPointF(x, yt));
-				animation->setDuration(qAbs(yt - y) * MoveDuration);
-				animGroup->addAnimation(animation);
-			}
-			if (m_selected2 == QPoint(x, y))
-			{
-				m_selected2.ry() = yt;
-				QPropertyAnimation* animation = new QPropertyAnimation(m_selection2, "boardPos", this);
-				animation->setStartValue(QPointF(x, y));
-				animation->setEndValue(QPointF(x, yt));
-				animation->setDuration(qAbs(yt - y) * MoveDuration);
-				animGroup->addAnimation(animation);
-			}
-		}
-	}
-	//fill top rows with new elements
-	for (x = 0; x < m_size; ++x)
-	{
-		yt = 0; //now: holds the position from where the diamond comes (-1 for the lowest new diamond)
-		for (y = m_size - 1; y >= 0; --y)
-		{
-			if (m_diamonds[x][y] != 0)
-				continue; //inside of diamond stack - no gaps to fill
-			--yt;
-			m_diamonds[x][y] = new Diamond(QPoint(x, yt), (KDiamond::Color) (qrand() % m_colorCount + 1), this);
-			m_diamonds[x][y]->setPosInBoardCoords(QPointF(x, yt));
-			m_diamonds[x][y]->setRenderSize(QSize(m_diamondEdgeLength, m_diamondEdgeLength));
-			m_diamonds[x][y]->updateGeometry();
-			QPropertyAnimation* animation = new QPropertyAnimation(m_diamonds[x][y], "boardPos", this);
-			animation->setStartValue(QPointF(x, yt));
-			animation->setEndValue(QPointF(x, y));
-			animation->setDuration(qAbs(yt - y) * MoveDuration);
-			animGroup->addAnimation(animation);
-		}
-	}
-	m_runningAnimation = animGroup;
-	m_runningAnimation->start(QAbstractAnimation::DeleteWhenStopped);
-	connect(m_runningAnimation, SIGNAL(finished()), this, SLOT(animationFinished()));
-}
-
-bool Game::onBoard(const QPoint& point) const
-{
-	return 0 <= point.x() && point.x() < m_size && 0 <= point.y() && point.y() < m_size;
-}
-
-bool Game::onBoard(int x, int y) const
-{
-	return 0 <= x && x < m_size && 0 <= y && y < m_size;
-}
-
 void Game::showHint()
 {
-	if (m_availableMoves.isEmpty())
+	if (m_availableMoves.isEmpty() || !m_board->selections().isEmpty())
 		return;
-	const QPoint location = m_availableMoves.at(qrand()%m_availableMoves.size());
-	m_selected1 = location;
-	m_selection1->setPosInBoardCoords(location);
-	m_selection1->show();
+	const QPoint location = m_availableMoves.value(qrand() % m_availableMoves.size());
+	m_board->setSelection(location, true);
 	m_gameState->removePoints(3);
 }
 
 void Game::animationFinished()
 {
-	m_runningAnimation = 0;
 	if (m_timerId == -1)
 		m_timerId = startTimer(UpdateInterval);
 }
@@ -679,27 +356,14 @@ void Game::stateChange(KDiamond::State state)
 	switch (state)
 	{
 		case KDiamond::Finished:
-			m_selection1->hide();
-			m_selection2->hide();
+			m_board->clearSelection();
 			m_jobQueue << KDiamond::EndGameJob;
 			break;
 		case KDiamond::Paused:
-			for (int x = 0; x < m_size; ++x)
-			{
-				for (int y = 0; y < m_size; ++y)
-					m_diamonds[x][y]->hide();
-			}
-			m_selection1->hide();
-			m_selection2->hide();
+			m_board->hide();
 			break;
 		default: //not paused
-			for (int x = 0; x < m_size; ++x)
-			{
-				for (int y = 0; y < m_size; ++y)
-					m_diamonds[x][y]->show();
-			}
-			m_selection1->setVisible(m_selected1 != QPoint(-1, -1));
-			m_selection2->setVisible(m_selected2 != QPoint(-1, -1));
+			m_board->show();
 			if (m_timerId == -1)
 				m_timerId = startTimer(UpdateInterval);
 			break;

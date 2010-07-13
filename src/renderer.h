@@ -35,12 +35,7 @@ class Renderer {
 		KGameRenderer* renderer();
 
 		void loadTheme(const QString &name);
-		void boardResized(int width, int height, int leftOffset, int diamondEdgeLength, int diamondCountOnEdge);
-
-		int removeAnimFrameCount();
-		bool hasBorder();
-
-		QPixmap background();
+		QPixmap background(const QSize& sceneSize, int leftOffset, int boardSize);
 	private:
 		RendererPrivate *p;
 };

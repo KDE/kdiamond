@@ -19,7 +19,6 @@
 #ifndef KDIAMOND_DIAMOND_H
 #define KDIAMOND_DIAMOND_H
 
-class Game;
 #include <KGameRenderedItem>
 
 namespace KDiamond
@@ -43,26 +42,28 @@ namespace KDiamond
 class Diamond : public KGameRenderedItem
 {
 	Q_OBJECT
-	Q_PROPERTY(QPointF boardPos READ posInBoardCoords WRITE setPosInBoardCoords)
+	Q_PROPERTY(QPointF pos READ pos WRITE setPos)
 	public:
-		Diamond(const QPointF& pos, KDiamond::Color color, Game *game);
+		Diamond(KDiamond::Color color, QGraphicsItem* parent = 0);
 
 		KDiamond::Color color() const;
-		QPointF posInBoardCoords() const;
-		void setPosInBoardCoords(const QPointF &pos);
-	public slots:
-		void updateGeometry();
+		///Returns the position in grid coordinates, i.e. 1 coordinate unit is the size of one diamond.
+		QPointF pos() const;
+		void setPos(const QPointF& pos);
+		void setRenderSize(int renderSize);
+	Q_SIGNALS:
+		void clicked();
+		void dragged(const QPoint& direction);
 	protected:
 		virtual void mousePressEvent(QGraphicsSceneMouseEvent *);
 		virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *);
 		virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *);
 	private:
-		Game *m_game;
-
 		KDiamond::Color m_color;
 		QPointF m_pos;
+		int m_renderSize;
 		bool m_mouseDown;
-		QPointF m_mouseDownPos; //position of last mouse-down event in diamond coordinates
+		QPointF m_mouseDownPos; //position of last mouse-down event in local coordinates
 };
 
 #endif //KDIAMOND_DIAMOND_H

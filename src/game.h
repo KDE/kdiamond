@@ -31,24 +31,6 @@ class KGamePopupItem;
 
 namespace KDiamond
 {
-
-	//specification of the difficulties
-	enum Size
-	{
-		VeryEasySize = 12,
-		EasySize = 10,
-		MediumSize = 8,
-		HardSize = 8,
-		VeryHardSize = 8
-	};
-	enum ColorCount
-	{
-		VeryEasyColors = 5,
-		EasyColors = 5,
-		MediumColors = 5,
-		HardColors = 6,
-		VeryHardColors = 7
-	};
 	//jobs to be done during the board update
 	enum Job {
 		SwapDiamondsJob = 1, //swap selected diamonds
@@ -58,6 +40,8 @@ namespace KDiamond
 		UpdateAvailableMovesJob, //find and count available moves after the board has been changed
 		EndGameJob //announce end of game
 	};
+
+	class Board;
 }
 
 class Game : public QGraphicsScene
@@ -65,20 +49,13 @@ class Game : public QGraphicsScene
 	Q_OBJECT
 	public:
 		Game(KDiamond::GameState* state, KGameDifficulty::standardLevel difficulty);
-		~Game();
-		int diamondCountOnEdge() const;
 
-		QPoint boardToScene(const QPointF &boardCoord) const;
 		void resizeScene(int width, int height, bool force = false);
-		int diamondEdgeLength() const;
-
-		void clickDiamond(const QPoint& index);
-		void clickDiamond(Diamond *diamond);
-		void dragDiamond(const QPoint& index, const QPoint& direction);
-		void dragDiamond(Diamond *diamond, const QPoint& direction);
 	public slots:
+		void clickDiamond(const QPoint& point);
+		void dragDiamond(const QPoint& point, const QPoint& direction);
+
 		void animationFinished();
-		void clearSelection();
 		void message(const QString &message);
 		void stateChange(KDiamond::State state);
 		void showHint();
@@ -91,29 +68,17 @@ class Game : public QGraphicsScene
 		virtual void timerEvent(QTimerEvent* event);
 	private:
 		QSet<QPoint *> findCompletedRows();
-		void fillGaps();
 		void getMoves();
-		Diamond*& getDiamond(const QPoint& point) const { return m_diamonds[point.x()][point.y()]; }
-		bool onBoard(int x, int y) const;
-		bool onBoard(const QPoint& point) const;
 	private:
-		KDiamond::Size m_size;
-		KDiamond::ColorCount m_colorCount;
 		QList<KDiamond::Job> m_jobQueue;
 		QSet<QPoint *> m_diamondsToRemove;
-		QList<QPoint> m_availableMoves;
+		QList<QPoint> m_availableMoves, m_swappingDiamonds;
 		int m_timerId;
 
-		Diamond ***m_diamonds;
-		Diamond *m_selection1, *m_selection2;
+		KDiamond::Board* m_board;
 		KDiamond::GameState *m_gameState;
 
 		KGamePopupItem *m_messenger;
-		QAbstractAnimation* m_runningAnimation;
-
-		int m_leftOffset, m_diamondEdgeLength; //necessary for conversion between board coordinates (i.e. (0,0) for the top left point, 1 unit = 1 diamond) and scene coordinates (as defined by Qt)
-		QPoint m_selected1, m_selected2; //coordinates of the selected items (or QPoint(-1,-1) if they are not selected)
-		QPoint m_swapping1, m_swapping2; //coordinates of the swapping/swapped items (stored to revoke the swapping if necessary)
 };
 
 #endif //KDIAMOND_GAME_H

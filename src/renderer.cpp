@@ -34,9 +34,6 @@ class RendererPrivate
 
 		KGameRenderer m_renderer;
 
-		QSize m_sceneSize;
-		int m_leftOffset, m_diamondEdgeLength, m_diamondCountOnEdge;
-
 		bool m_hasBorder;
 		qreal m_borderPercentage;
 };
@@ -77,59 +74,17 @@ void Renderer::loadTheme(const QString &name)
 	p->m_borderPercentage = gameTheme->property("BorderPercentage").toFloat();
 }
 
-void Renderer::boardResized(int width, int height, int leftOffset, int diamondEdgeLength, int diamondCountOnEdge)
+QPixmap Renderer::background(const QSize& sceneSize, int leftOffset, int boardSize)
 {
-	p->m_sceneSize = QSize(width, height);
-	p->m_diamondEdgeLength = diamondEdgeLength;
-	p->m_leftOffset = leftOffset;
-	p->m_diamondCountOnEdge = diamondCountOnEdge;
-}
-
-QPixmap Renderer::background()
-{
-	QPixmap pix = p->m_renderer.spritePixmap("kdiamond-background", p->m_sceneSize);
+	QPixmap pix = p->m_renderer.spritePixmap("kdiamond-background", sceneSize);
 	if (p->m_hasBorder)
 	{
-		const qreal innerBoardEdgeLength = p->m_diamondCountOnEdge * p->m_diamondEdgeLength;
-		const qreal padding = p->m_borderPercentage * innerBoardEdgeLength;
-		const int boardEdgeLength = 2.0 * padding + innerBoardEdgeLength;
-		QRect boardGeometry(p->m_leftOffset - padding, -padding, boardEdgeLength, boardEdgeLength);
+		const int padding = p->m_borderPercentage * boardSize;
+		const int boardEdgeLength = 2 * padding + boardSize;
+		QRect boardGeometry(leftOffset - padding, -padding, boardEdgeLength, boardEdgeLength);
 		const QPixmap boardPix = p->m_renderer.spritePixmap("kdiamond-border", boardGeometry.size());
 		QPainter painter(&pix);
 		painter.drawPixmap(boardGeometry, boardPix);
 	}
 	return pix;
-}
-
-int Renderer::removeAnimFrameCount()
-{
-	return p->m_renderer.frameCount("kdiamond-red");
-}
-
-bool Renderer::hasBorder()
-{
-	return p->m_hasBorder;
-}
-
-QString colorToString(KDiamond::Color color)
-{
-	switch (color)
-	{
-		case KDiamond::RedDiamond:
-			return "kdiamond-red";
-		case KDiamond::GreenDiamond:
-			return "kdiamond-green";
-		case KDiamond::BlueDiamond:
-			return "kdiamond-blue";
-		case KDiamond::YellowDiamond:
-			return "kdiamond-yellow";
-		case KDiamond::WhiteDiamond:
-			return "kdiamond-white";
-		case KDiamond::BlackDiamond:
-			return "kdiamond-black";
-		case KDiamond::OrangeDiamond:
-			return "kdiamond-orange";
-		default:
-			return "kdiamond-selection";
-	}
 }
