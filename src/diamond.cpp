@@ -72,6 +72,11 @@ void Diamond::updateGeometry()
 	setPosInBoardCoords(m_pos);
 }
 
+QPointF Diamond::posInBoardCoords() const
+{
+	return m_pos;
+}
+
 void Diamond::setPosInBoardCoords(const QPointF &pos)
 {
 	m_pos = pos;

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright 2008-2009 Stefan Majewsky <majewsky.stefan@ages-skripte.org>
+ *   Copyright 2008-2010 Stefan Majewsky <majewsky.stefan@ages-skripte.org>
  *
  *   This program is free software; you can redistribute it and/or
  *   modify it under the terms of the GNU General Public
@@ -17,15 +17,18 @@
  ***************************************************************************/
 
 #include "board.h"
-#include "animator.h"
 #include "diamond.h"
 #include "renderer.h"
 
+#include <QParallelAnimationGroup>
+#include <QPropertyAnimation>
 #include <QTimerEvent>
 #include <KGamePopupItem>
 #include <KNotification>
 
+const int MoveDuration = 240; //duration of a move animation (per coordinate unit) in milliseconds
 const int UpdateInterval = 40;
+const int RemoveDuration = 200; //duration of a move animation in milliseconds
 
 Board::Board(KDiamond::GameState* state, KGameDifficulty::standardLevel difficulty)
 	: QGraphicsScene()
@@ -33,7 +36,7 @@ Board::Board(KDiamond::GameState* state, KGameDifficulty::standardLevel difficul
 	, m_selection2(new Diamond(0, 0, KDiamond::Selection, this))
 	, m_gameState(state)
 	, m_messenger(new KGamePopupItem)
-	, m_animator(0)
+	, m_runningAnimation(0)
 	, m_leftOffset(0)
 	, m_diamondEdgeLength(1)
 	, m_selected1x(-1)
@@ -132,7 +135,6 @@ Board::~Board()
 	delete m_selection1;
 	delete m_selection2;
 	delete m_messenger;
-	delete m_animator;
 }
 
 int Board::diamondCountOnEdge() const
@@ -383,7 +385,7 @@ void Board::timerEvent(QTimerEvent* event)
 		return;
 	}
 	//see Diamond::move(const QPointF &) for explanation
-	if (m_gameState->state() == KDiamond::Paused || m_animator != 0)
+	if (m_gameState->state() == KDiamond::Paused || m_runningAnimation)
 	{
 		killTimer(m_timerId);
 		m_timerId = -1;
@@ -423,20 +425,29 @@ void Board::timerEvent(QTimerEvent* event)
 			m_selection1->hide();
 			m_selection2->hide();
 			m_jobQueue << KDiamond::RemoveRowsJob; //We already insert this here to avoid another conditional statement.
-		case KDiamond::RevokeSwapDiamondsJob: //It is not an error that there is no break statement before this case: The swapping code is essentially the same, but the swap job has to do the above variable initializations etc.
+		case KDiamond::RevokeSwapDiamondsJob: { //It is not an error that there is no break statement before this case: The swapping code is essentially the same, but the swap job has to do the above variable initializations etc.
 			//swap diamonds
 			temp = m_diamonds[m_swapping1x][m_swapping1y];
 			m_diamonds[m_swapping1x][m_swapping1y] = m_diamonds[m_swapping2x][m_swapping2y];
 			m_diamonds[m_swapping2x][m_swapping2y] = temp;
 			//invoke movement
 			KNotification::event("move");
-			m_animator = new MoveAnimator();
-			((MoveAnimator*) m_animator)->setMoveLength(1);
-			m_animator->addItem(m_diamonds[m_swapping1x][m_swapping1y], QPointF(m_swapping2x, m_swapping2y), QPointF(m_swapping1x, m_swapping1y));
-			m_animator->addItem(m_diamonds[m_swapping2x][m_swapping2y], QPointF(m_swapping1x, m_swapping1y), QPointF(m_swapping2x, m_swapping2y));
-			m_animator->start();
-			connect(m_animator, SIGNAL(finished()), this, SLOT(animationFinished()));
+			QParallelAnimationGroup* animGroup = new QParallelAnimationGroup(this);
+			QPropertyAnimation* animation1 = new QPropertyAnimation(m_diamonds[m_swapping1x][m_swapping1y], "boardPos", this);
+			animation1->setDuration(MoveDuration);
+			animation1->setStartValue(m_diamonds[m_swapping1x][m_swapping1y]->posInBoardCoords());
+			animation1->setEndValue(m_diamonds[m_swapping2x][m_swapping2y]->posInBoardCoords());
+			animGroup->addAnimation(animation1);
+			QPropertyAnimation* animation2 = new QPropertyAnimation(m_diamonds[m_swapping2x][m_swapping2y], "boardPos", this);
+			animation2->setDuration(MoveDuration);
+			animation2->setStartValue(m_diamonds[m_swapping2x][m_swapping2y]->posInBoardCoords());
+			animation2->setEndValue(m_diamonds[m_swapping1x][m_swapping1y]->posInBoardCoords());
+			animGroup->addAnimation(animation2);
+			m_runningAnimation = animGroup;
+			m_runningAnimation->start(QAbstractAnimation::DeleteWhenStopped);
+			connect(m_runningAnimation, SIGNAL(finished()), this, SLOT(animationFinished()));
 			break;
+		}
 		case KDiamond::RemoveRowsJob:
 			//find diamond rows and delete these diamonds
 			m_diamondsToRemove = findCompletedRows();
@@ -464,10 +475,18 @@ void Board::timerEvent(QTimerEvent* event)
 				m_jobQueue.prepend(KDiamond::FillGapsJob); //prepend this job as it has to be executed immediately after the animations (before handling any further user input)
 				//invoke remove animation
 				KNotification::event("remove");
-				m_animator = new RemoveAnimator();
+				QParallelAnimationGroup* animGroup = new QParallelAnimationGroup(this);
+				QList<QPoint> handledDiamonds;
 				foreach (QPoint *diamondPos, m_diamondsToRemove)
 				{
-					m_animator->addItem(m_diamonds[diamondPos->x()][diamondPos->y()]);
+					if (handledDiamonds.contains(*diamondPos))
+						continue;
+					handledDiamonds << *diamondPos;
+					QPropertyAnimation* animation = new QPropertyAnimation(m_diamonds[diamondPos->x()][diamondPos->y()], "frame", this);
+					animation->setStartValue(0);
+					animation->setEndValue(m_diamonds[diamondPos->x()][diamondPos->y()]->frameCount() - 1);
+					animation->setDuration(RemoveDuration);
+					animGroup->addAnimation(animation);
 					//remove selection if necessary
 					if (m_selected1x == diamondPos->x() && m_selected1y == diamondPos->y())
 					{
@@ -491,8 +510,9 @@ void Board::timerEvent(QTimerEvent* event)
 						m_selection2->hide();
 					}
 				}
-				m_animator->start();
-				connect(m_animator, SIGNAL(finished()), this, SLOT(animationFinished()));
+				m_runningAnimation = animGroup;
+				m_runningAnimation->start(QAbstractAnimation::DeleteWhenStopped);
+				connect(m_runningAnimation, SIGNAL(finished()), this, SLOT(animationFinished()));
 			}
 			break;
 		case KDiamond::FillGapsJob:
@@ -591,8 +611,7 @@ QSet<QPoint *> Board::findCompletedRows()
 
 void Board::fillGaps()
 {
-	m_animator = new MoveAnimator();
-	int maxMoveLength = 0; //necessary to determine the animation duration
+	QParallelAnimationGroup* animGroup = new QParallelAnimationGroup(this);
 	//fill gaps
 	int x, y, yt; //counters - (x, yt) is the target position of diamond (x,y)
 	for (x = 0; x < m_size; ++x)
@@ -614,18 +633,29 @@ void Board::fillGaps()
 			}
 			m_diamonds[x][yt] = m_diamonds[x][y];
 			m_diamonds[x][y] = 0;
-			m_animator->addItem(m_diamonds[x][yt], QPointF(x, y), QPointF(x, yt));
-			maxMoveLength = qMax(maxMoveLength, yt - y);
+			QPropertyAnimation* animation = new QPropertyAnimation(m_diamonds[x][yt], "boardPos", this);
+			animation->setStartValue(QPointF(x, y));
+			animation->setEndValue(QPointF(x, yt));
+			animation->setDuration(qAbs(yt - y) * MoveDuration);
+			animGroup->addAnimation(animation);
 			//if this element is selected, move the selection, too
 			if (m_selected1x == x && m_selected1y == y)
 			{
 				m_selected1y = yt;
-				m_animator->addItem(m_selection1, QPointF(x, y), QPointF(x, yt));
+				QPropertyAnimation* animation = new QPropertyAnimation(m_selection1, "boardPos", this);
+				animation->setStartValue(QPointF(x, y));
+				animation->setEndValue(QPointF(x, yt));
+				animation->setDuration(qAbs(yt - y) * MoveDuration);
+				animGroup->addAnimation(animation);
 			}
 			if (m_selected2x == x && m_selected2y == y)
 			{
 				m_selected2y = yt;
-				m_animator->addItem(m_selection2, QPointF(x, y), QPointF(x, yt));
+				QPropertyAnimation* animation = new QPropertyAnimation(m_selection2, "boardPos", this);
+				animation->setStartValue(QPointF(x, y));
+				animation->setEndValue(QPointF(x, yt));
+				animation->setDuration(qAbs(yt - y) * MoveDuration);
+				animGroup->addAnimation(animation);
 			}
 		}
 	}
@@ -642,13 +672,16 @@ void Board::fillGaps()
 			m_diamonds[x][y]->setPosInBoardCoords(QPointF(x, yt));
 			m_diamonds[x][y]->setRenderSize(QSize(m_diamondEdgeLength, m_diamondEdgeLength));
 			m_diamonds[x][y]->updateGeometry();
-			m_animator->addItem(m_diamonds[x][y], QPointF(x, yt), QPointF(x, y));
-			maxMoveLength = qMax(maxMoveLength, y - yt);
+			QPropertyAnimation* animation = new QPropertyAnimation(m_diamonds[x][y], "boardPos", this);
+			animation->setStartValue(QPointF(x, yt));
+			animation->setEndValue(QPointF(x, y));
+			animation->setDuration(qAbs(yt - y) * MoveDuration);
+			animGroup->addAnimation(animation);
 		}
 	}
-	((MoveAnimator*) m_animator)->setMoveLength(maxMoveLength);
-	m_animator->start();
-	connect(m_animator, SIGNAL(finished()), this, SLOT(animationFinished()));
+	m_runningAnimation = animGroup;
+	m_runningAnimation->start(QAbstractAnimation::DeleteWhenStopped);
+	connect(m_runningAnimation, SIGNAL(finished()), this, SLOT(animationFinished()));
 }
 
 bool Board::onBoard(int x, int y) const
@@ -670,8 +703,7 @@ void Board::showHint()
 
 void Board::animationFinished()
 {
-	m_animator->deleteLater();
-	m_animator = 0;
+	m_runningAnimation = 0;
 	if (m_timerId == -1)
 		m_timerId = startTimer(UpdateInterval);
 }

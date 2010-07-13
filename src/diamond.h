@@ -43,6 +43,7 @@ namespace KDiamond
 class Diamond : public KGameRenderedItem
 {
 	Q_OBJECT
+	Q_PROPERTY(QPointF boardPos READ posInBoardCoords WRITE setPosInBoardCoords)
 	public:
 		Diamond(int xPos, int yPos, KDiamond::Color color, Board *board);
 
@@ -52,6 +53,8 @@ class Diamond : public KGameRenderedItem
 
 		void setXIndex(int xIndex);
 		void setYIndex(int yIndex);
+
+		QPointF posInBoardCoords() const;
 		void setPosInBoardCoords(const QPointF &pos);
 	public slots:
 		void updateGeometry();

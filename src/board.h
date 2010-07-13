@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright 2008-2009 Stefan Majewsky <majewsky.stefan@ages-skripte.org>
+ *   Copyright 2008-2010 Stefan Majewsky <majewsky.stefan@ages-skripte.org>
  *
  *   This program is free software; you can redistribute it and/or
  *   modify it under the terms of the GNU General Public
@@ -19,10 +19,10 @@
 #ifndef KDIAMOND_BOARD_H
 #define KDIAMOND_BOARD_H
 
-class Animator;
 class Diamond;
 #include "game-state.h"
 
+class QAbstractAnimation;
 #include <QGraphicsScene>
 #include <QList>
 #include <QSet>
@@ -107,7 +107,7 @@ class Board : public QGraphicsScene
 		KDiamond::GameState *m_gameState;
 
 		KGamePopupItem *m_messenger;
-		Animator *m_animator;
+		QAbstractAnimation* m_runningAnimation;
 
 		int m_leftOffset, m_diamondEdgeLength; //necessary for conversion between board coordinates (i.e. (0,0) for the top left point, 1 unit = 1 diamond) and scene coordinates (as defined by Qt)
 		int m_selected1x, m_selected1y, m_selected2x, m_selected2y; //coordinates of the selected items (or -1 if they are not selected)
