@@ -38,7 +38,6 @@ QString colorKey(KDiamond::Color color)
 Diamond::Diamond(KDiamond::Color color, KGameRenderer* renderer, QGraphicsItem* parent)
 	: KGameRenderedItem(renderer, colorKey(color), parent)
 	, m_color(color)
-	, m_renderSize(0)
 {
 	//selection markers do not react to mouse events; they should also appear behind diamonds
 	if (color == KDiamond::Selection)
@@ -53,27 +52,6 @@ Diamond::Diamond(KDiamond::Color color, KGameRenderer* renderer, QGraphicsItem* 
 KDiamond::Color Diamond::color() const
 {
 	return m_color;
-}
-
-QPointF Diamond::gridPos() const
-{
-	return m_pos;
-}
-
-void Diamond::setGridPos(const QPointF& pos)
-{
-	m_pos = pos;
-	QGraphicsItem::setPos(m_pos * m_renderSize);
-}
-
-void Diamond::setRenderSize(int renderSize)
-{
-	if (m_renderSize == renderSize)
-		return;
-	m_renderSize = renderSize;
-	KGameRenderedItem::setRenderSize(QSize(renderSize, renderSize));
-	//adjust position to changed grid coordinates
-	QGraphicsItem::setPos(m_pos * m_renderSize);
 }
 
 void Diamond::mousePressEvent(QGraphicsSceneMouseEvent *event)

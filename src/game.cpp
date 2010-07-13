@@ -20,11 +20,12 @@
 #include "board.h"
 #include "diamond.h"
 #include "settings.h"
-#include <KGameRenderer>
 
+#include <cmath>
 #include <QPainter>
 #include <QTimerEvent>
 #include <KGamePopupItem>
+#include <KGameRenderer>
 #include <KGameTheme>
 #include <KGlobal>
 #include <KNotification>
@@ -151,10 +152,16 @@ void Game::updateGraphics()
 {
 	//calculate new metrics
 	const QSize sceneSize = sceneRect().size().toSize();
-	QSize boardSize(sceneSize);
-	m_board->determineRenderSize(boardSize);
-	const int leftOffset = (sceneSize.width() - boardSize.width()) / 2.0;
-	m_board->setPos(QPoint(leftOffset, 0));
+	const int gridSize = m_board->gridSize();
+	const int diamondSize = (int) floor(qMin(
+		sceneSize.width() / (gridSize + 1.0), //the "+1" and "+0.5" make sure that some space is left on the window for the board border
+		sceneSize.height() / (gridSize + 0.5)
+	));
+	const int boardSize = gridSize * diamondSize;
+	const int leftOffset = (sceneSize.width() - boardSize) / 2.0;
+	QTransform t;
+	t.translate(leftOffset, 0).scale(diamondSize, diamondSize);
+	m_board->setTransform(t);
 	//render background
 	QPixmap pix = g_renderer->spritePixmap("kdiamond-background", sceneSize);
 	const KGameTheme* gameTheme = g_renderer->gameTheme();
@@ -162,9 +169,9 @@ void Game::updateGraphics()
 	if (hasBorder)
 	{
 		const qreal borderPercentage = gameTheme->property("BorderPercentage").toFloat();
-		const int padding = borderPercentage * boardSize.width();
-		const QSize boardBorderSize = QSize(2 * padding, 2 * padding) + boardSize;
-		const QPixmap boardPix = g_renderer->spritePixmap("kdiamond-border", boardBorderSize);
+		const int padding = borderPercentage * boardSize;
+		const int boardBorderSize = 2 * padding + boardSize;
+		const QPixmap boardPix = g_renderer->spritePixmap("kdiamond-border", QSize(boardBorderSize, boardBorderSize));
 		QPainter painter(&pix);
 		painter.drawPixmap(QPoint(leftOffset - padding, -padding), boardPix);
 	}

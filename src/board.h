@@ -36,7 +36,6 @@ namespace KDiamond
 
 			int gridSize() const;
 			Diamond* diamond(const QPoint& point) const;
-			void determineRenderSize(QSize& size);
 
 			bool hasDiamond(const QPoint& point) const;
 			bool hasRunningAnimations() const;
@@ -74,7 +73,7 @@ namespace KDiamond
 			static const int MoveDuration;
 			static const int RemoveDuration;
 
-			int m_size, m_diamondRenderSize, m_colorCount;
+			int m_size, m_colorCount;
 			QList<QPoint> m_selections;
 			bool m_paused;
 

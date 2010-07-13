@@ -42,15 +42,10 @@ namespace KDiamond
 class Diamond : public KGameRenderedItem
 {
 	Q_OBJECT
-	Q_PROPERTY(QPointF gridPos READ gridPos WRITE setGridPos)
 	public:
 		Diamond(KDiamond::Color color, KGameRenderer* renderer, QGraphicsItem* parent = 0);
 
 		KDiamond::Color color() const;
-		///Returns the position in grid coordinates, i.e. 1 coordinate unit is the size of one diamond.
-		QPointF gridPos() const;
-		void setGridPos(const QPointF& gridPos);
-		void setRenderSize(int renderSize);
 	Q_SIGNALS:
 		void clicked();
 		void dragged(const QPoint& direction);
@@ -60,8 +55,6 @@ class Diamond : public KGameRenderedItem
 		virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *);
 	private:
 		KDiamond::Color m_color;
-		QPointF m_pos;
-		int m_renderSize;
 		bool m_mouseDown;
 		QPointF m_mouseDownPos; //position of last mouse-down event in local coordinates
 };

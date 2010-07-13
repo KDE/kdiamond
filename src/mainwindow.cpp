@@ -53,6 +53,7 @@ MainWindow::MainWindow(QWidget *parent)
 	, m_newTimedAct(new KAction(i18n("Timed game"), this))
 	, m_newUntimedAct(new KAction(i18n("Untimed game"), this))
 {
+	KDiamond::renderer()->setDefaultPrimaryView(m_view);
 	//init GUI - "New Action"
 	m_newAct->setShortcut(KStandardShortcut::openNew());
 	m_newAct->setToolTip(i18n("Start a new game"));

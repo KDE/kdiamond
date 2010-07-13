@@ -20,7 +20,6 @@
 #include "diamond.h"
 
 #include <QPropertyAnimation>
-#include <cmath>
 
 const int KDiamond::Board::MoveDuration = 240; //duration of a move animation (per coordinate unit) in milliseconds
 const int KDiamond::Board::RemoveDuration = 200; //duration of a move animation in milliseconds
@@ -31,7 +30,6 @@ static int boardColorCounts[] = { 5, 5, 5, 6, 7 };
 
 KDiamond::Board::Board(KGameRenderer* renderer, KGameDifficulty::standardLevel difficulty)
 	: m_size(boardSizes[difficulty / 10 - 2])
-	, m_diamondRenderSize(0)
 	, m_colorCount(boardColorCounts[difficulty / 10 - 2])
 	, m_paused(false)
 	, m_renderer(renderer)
@@ -67,14 +65,13 @@ KDiamond::Board::Board(KGameRenderer* renderer, KGameDifficulty::standardLevel d
 				break;
 			}
 			rDiamond(point) = spawnDiamond(color);
-			diamond(point)->setGridPos(point);
+			diamond(point)->setPos(point);
 		}
 }
 
 Diamond* KDiamond::Board::spawnDiamond(int color)
 {
 	Diamond* diamond = new Diamond((KDiamond::Color) color, m_renderer, this);
-	diamond->setRenderSize(m_diamondRenderSize);
 	connect(diamond, SIGNAL(clicked()), SLOT(slotClicked()));
 	connect(diamond, SIGNAL(dragged(QPoint)), SLOT(slotDragged(QPoint)));
 	return diamond;
@@ -102,22 +99,6 @@ Diamond* KDiamond::Board::diamond(const QPoint& point) const
 int KDiamond::Board::gridSize() const
 {
 	return m_size;
-}
-
-void KDiamond::Board::determineRenderSize(QSize& renderSize)
-{
-	//reduce own render size to square shape and round to integer diamond size for efficient rendering
-	m_diamondRenderSize = (int) floor(qMin(
-		renderSize.width() / (m_size + 1.0), //the "+1" and "+0.5" make sure that some space is left on the window for the board border
-		renderSize.height() / (m_size + 0.5)
-	));
-	renderSize = QSize(m_size, m_size) * m_diamondRenderSize;
-	//apply render size
-	foreach (Diamond* item, m_diamonds)
-		if (item)
-			item->setRenderSize(m_diamondRenderSize);
-	foreach (Diamond* item, m_activeSelectors + m_inactiveSelectors)
-		item->setRenderSize(m_diamondRenderSize);
 }
 
 bool KDiamond::Board::hasDiamond(const QPoint& point) const
@@ -162,13 +143,10 @@ void KDiamond::Board::setSelection(const QPoint& point, bool selected)
 		if (!m_inactiveSelectors.isEmpty())
 			selector = m_inactiveSelectors.takeLast();
 		else
-		{
 			selector = new Diamond(KDiamond::Selection, m_renderer, this);
-			selector->setRenderSize(m_diamondRenderSize);
-		}
 		m_activeSelectors << selector;
 		m_selections << point;
-		selector->setGridPos(point);
+		selector->setPos(point);
 		selector->show();
 	}
 	else
@@ -226,7 +204,7 @@ void KDiamond::Board::spawnMoveAnimations(const QList<MoveAnimSpec>& specs)
 	foreach (const MoveAnimSpec& spec, specs)
 	{
 		const int duration = KDiamond::Board::MoveDuration * (spec.to - spec.from).manhattanLength();
-		QPropertyAnimation* animation = new QPropertyAnimation(spec.diamond, "gridPos", this);
+		QPropertyAnimation* animation = new QPropertyAnimation(spec.diamond, "pos", this);
 		animation->setStartValue(spec.from);
 		animation->setEndValue(spec.to);
 		animation->setDuration(duration);
@@ -296,7 +274,7 @@ void KDiamond::Board::fillGaps()
 				continue; //inside of diamond stack - no gaps to fill
 			--yt;
 			diamond = spawnDiamond(qrand() % m_colorCount + 1);
-			diamond->setGridPos(QPoint(x, yt));
+			diamond->setPos(QPoint(x, yt));
 			const MoveAnimSpec spec = { diamond, QPoint(x, yt), QPoint(x, y) };
 			specs << spec;
 		}
