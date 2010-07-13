@@ -36,9 +36,10 @@ namespace KDiamond
 	class Renderer : public KGameRenderer
 	{
 		public:
-			Renderer() : KGameRenderer(Settings::theme(), "themes/default.desktop")
+			Renderer() : KGameRenderer("themes/default.desktop")
 			{
 				setFrameSuffix(QString::fromLatin1("-%1"));
+				setTheme(Settings::theme());
 			}
 	};
 }
