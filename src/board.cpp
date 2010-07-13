@@ -193,8 +193,10 @@ void KDiamond::Board::clearSelection()
 void KDiamond::Board::removeDiamond(const QPoint& point)
 {
 	Diamond* diamond = this->diamond(point);
+	if (!diamond)
+		return; //diamond has already been removed
 	rDiamond(point) = 0;
-	//TODO: For non-animated sprites, play an opacity animation instead.
+	//play remove animation (TODO: For non-animated sprites, play an opacity animation instead.)
 	QPropertyAnimation* animation = new QPropertyAnimation(diamond, "frame", this);
 	animation->setStartValue(0);
 	animation->setEndValue(diamond->frameCount() - 1);

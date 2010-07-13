@@ -216,10 +216,10 @@ void Game::timerEvent(QTimerEvent* event)
 			KNotification::event("move");
 			m_board->swapDiamonds(m_swappingDiamonds[0], m_swappingDiamonds[1]);
 			break;
-		case KDiamond::RemoveRowsJob:
+		case KDiamond::RemoveRowsJob: {
 			//find diamond rows and delete these diamonds
-			m_diamondsToRemove = findCompletedRows();
-			if (m_diamondsToRemove.count() == 0)
+			const QList<QPoint> diamondsToRemove = findCompletedRows();
+			if (diamondsToRemove.isEmpty())
 			{
 				//no diamond rows were formed by the last move -> revoke movement (unless we are in a cascade)
 				if (!m_swappingDiamonds.isEmpty())
@@ -238,25 +238,16 @@ void Game::timerEvent(QTimerEvent* event)
 				//it is now safe to delete the position of the swapping diamonds
 				m_swappingDiamonds.clear();
 				//report to Game
-				m_gameState->addPoints(m_diamondsToRemove.count());
-				//prepare to fill gaps
-				m_jobQueue.prepend(KDiamond::FillGapsJob); //prepend this job as it has to be executed immediately after the animations (before handling any further user input)
-				//invoke remove animation
+				m_gameState->addPoints(diamondsToRemove.count());
+				//invoke remove animation, then fill gaps immediately after the animation
 				KNotification::event("remove");
-				QList<QPoint> handledDiamonds;
-				foreach (QPoint *diamondPosPtr, m_diamondsToRemove)
-				{
-					const QPoint& diamondPos = *diamondPosPtr;
-					if (handledDiamonds.contains(diamondPos))
-						continue;
-					handledDiamonds << diamondPos;
+				foreach (const QPoint& diamondPos, diamondsToRemove)
 					m_board->removeDiamond(diamondPos);
-				}
+				m_jobQueue.prepend(KDiamond::FillGapsJob);
 			}
 			break;
+		}
 		case KDiamond::FillGapsJob:
-			qDeleteAll(m_diamondsToRemove);
-			m_diamondsToRemove.clear();
 			//fill gaps
 			m_board->fillGaps();
 			m_jobQueue.prepend(KDiamond::RemoveRowsJob); //allow cascades (i.e. clear rows that have been formed by falling diamonds)
@@ -273,11 +264,11 @@ void Game::timerEvent(QTimerEvent* event)
 	}
 }
 
-QSet<QPoint *> Game::findCompletedRows()
+QList<QPoint> Game::findCompletedRows()
 {
-	//The tactic of this function is brute-force. For now, I do not have a better idea: A friend of mine advised me to look in the environment of moved diamonds, but this is not easy since the re-filling after a deletion can lead to rows that are far away from the original movement. Therefore, we simply search through all diamonds looking for combinations in the horizonal and vertical direction. The created QList is returned as a QSet to remove duplicates. (It is not necessary where the rows exactly are. Only the number of diamonds and their position is relevant for scoring and removing these diamonds.) (We do not directly build a QSet as QList allows for faster insertions. At the end, the QSet can easily be created with the right capacity.)
+	//The tactic of this function is brute-force. For now, I do not have a better idea: A friend of mine advised me to look in the environment of moved diamonds, but this is not easy since the re-filling after a deletion can lead to rows that are far away from the original movement. Therefore, we simply search through all diamonds looking for combinations in the horizonal and vertical direction.
 	KDiamond::Color currentColor;
-	QList<QPoint *> diamonds; //use a QList as storage as it allows for faster insertion than a QSet
+	QList<QPoint> diamonds;
 	int x, y, xh, yh; //counters
 	const int gridSize = m_board->gridSize();
 #define C(X, Y) m_board->diamond(QPoint(X, Y))->color()
@@ -292,9 +283,9 @@ QSet<QPoint *> Game::findCompletedRows()
 			if (currentColor != C(x + 2, y))
 				continue;
 			//If the execution is here, we have found a row of three diamonds starting at (x,y).
-			diamonds << new QPoint(x, y);
-			diamonds << new QPoint(x + 1, y);
-			diamonds << new QPoint(x + 2, y);
+			diamonds << QPoint(x, y);
+			diamonds << QPoint(x + 1, y);
+			diamonds << QPoint(x + 2, y);
 			//Does the row have even more elements?
 			if (x + 3 >= gridSize)
 			{
@@ -305,7 +296,7 @@ QSet<QPoint *> Game::findCompletedRows()
 			for (xh = x + 3; xh <= gridSize - 1; ++xh)
 			{
 				if (currentColor == C(xh, y))
-					diamonds << new QPoint(xh, y);
+					diamonds << QPoint(xh, y);
 				else
 					break; //row has stopped before this diamond - no need to continue searching
 			}
@@ -322,9 +313,9 @@ QSet<QPoint *> Game::findCompletedRows()
 				continue;
 			if (currentColor != C(x, y + 2))
 				continue;
-			diamonds << new QPoint(x, y);
-			diamonds << new QPoint(x, y + 1);
-			diamonds << new QPoint(x, y + 2);
+			diamonds << QPoint(x, y);
+			diamonds << QPoint(x, y + 1);
+			diamonds << QPoint(x, y + 2);
 			if (y + 3 >= gridSize)
 			{
 				y += 2;
@@ -333,14 +324,14 @@ QSet<QPoint *> Game::findCompletedRows()
 			for (yh = y + 3; yh <= gridSize - 1; ++yh)
 			{
 				if (currentColor == C(x, yh))
-					diamonds << new QPoint(x, yh);
+					diamonds << QPoint(x, yh);
 				else
 					break;
 			}
 			y = yh - 1;
 		}
 	}
-	return diamonds.toSet();
+	return diamonds;
 }
 
 void Game::showHint()

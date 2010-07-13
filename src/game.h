@@ -24,8 +24,6 @@ class Diamond;
 
 class QAbstractAnimation;
 #include <QGraphicsScene>
-#include <QList>
-#include <QSet>
 #include <KGameDifficulty>
 class KGamePopupItem;
 
@@ -67,11 +65,10 @@ class Game : public QGraphicsScene
 	protected:
 		virtual void timerEvent(QTimerEvent* event);
 	private:
-		QSet<QPoint *> findCompletedRows();
+		QList<QPoint> findCompletedRows();
 		void getMoves();
 	private:
 		QList<KDiamond::Job> m_jobQueue;
-		QSet<QPoint *> m_diamondsToRemove;
 		QList<QPoint> m_availableMoves, m_swappingDiamonds;
 		int m_timerId;
 
