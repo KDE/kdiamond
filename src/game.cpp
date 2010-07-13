@@ -16,7 +16,7 @@
  *   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  ***************************************************************************/
 
-#include "board.h"
+#include "game.h"
 #include "diamond.h"
 #include "renderer.h"
 
@@ -30,7 +30,7 @@ const int MoveDuration = 240; //duration of a move animation (per coordinate uni
 const int UpdateInterval = 40;
 const int RemoveDuration = 200; //duration of a move animation in milliseconds
 
-Board::Board(KDiamond::GameState* state, KGameDifficulty::standardLevel difficulty)
+Game::Game(KDiamond::GameState* state, KGameDifficulty::standardLevel difficulty)
 	: QGraphicsScene()
 	, m_selection1(new Diamond(0, 0, KDiamond::Selection, this))
 	, m_selection2(new Diamond(0, 0, KDiamond::Selection, this))
@@ -117,7 +117,7 @@ Board::Board(KDiamond::GameState* state, KGameDifficulty::standardLevel difficul
 	m_jobQueue << KDiamond::UpdateAvailableMovesJob;
 }
 
-Board::~Board()
+Game::~Game()
 {
 	for (int i = 0; i < m_size; ++i)
 	{
@@ -133,13 +133,13 @@ Board::~Board()
 	delete m_messenger;
 }
 
-int Board::diamondCountOnEdge() const
+int Game::diamondCountOnEdge() const
 {
 	return m_size;
 }
 
 //Checks amount of possible moves remaining
-void Board::getMoves()
+void Game::getMoves()
 {
 	m_availableMoves.clear();
 	KDiamond::Color curColor;
@@ -204,7 +204,7 @@ void Board::getMoves()
 }
 
 //Converts board coordinates (i.e. (0,0) is the top left point of the board, 1 unit = 1 diamond) to scene coordinates.
-QPoint Board::boardToScene(const QPointF &boardCoords) const
+QPoint Game::boardToScene(const QPointF &boardCoords) const
 {
 	return QPoint(
 		boardCoords.x() * m_diamondEdgeLength + m_leftOffset,
@@ -212,13 +212,13 @@ QPoint Board::boardToScene(const QPointF &boardCoords) const
 	);
 }
 
-int Board::diamondEdgeLength() const
+int Game::diamondEdgeLength() const
 {
 	return m_diamondEdgeLength;
 }
 
 //Adapt scene coordinates to size of view. (This congruence is required by KGamePopupItem.)
-void Board::resizeScene(int newWidth, int newHeight, bool force)
+void Game::resizeScene(int newWidth, int newHeight, bool force)
 {
 	//do not resize if nothing would change
 	if (!force && width() == newWidth && height() == newHeight)
@@ -244,7 +244,7 @@ void Board::resizeScene(int newWidth, int newHeight, bool force)
 	setBackgroundBrush(Renderer::self()->background());
 }
 
-void Board::clickDiamond(const QPoint& index)
+void Game::clickDiamond(const QPoint& index)
 {
 	if (m_gameState->state() != KDiamond::Playing)
 		return;
@@ -252,7 +252,7 @@ void Board::clickDiamond(const QPoint& index)
 	if (m_selected1 == index)
 	{
 		//clicked again on first selected diamond - remove selection
-		//Attention: This code is re-used in Board::timerEvent for the RemoveRowsJob. If you modify it here, please do also apply your changes over there.
+		//Attention: This code is re-used in Game::timerEvent for the RemoveRowsJob. If you modify it here, please do also apply your changes over there.
 		m_selected1 = m_selected2;
 		if (m_selected1 == QPoint(-1, -1))
 			m_selection1->hide();
@@ -298,7 +298,7 @@ void Board::clickDiamond(const QPoint& index)
 	}
 }
 
-void Board::clickDiamond(Diamond *diamond)
+void Game::clickDiamond(Diamond *diamond)
 {
 	for (int x = 0; x < m_size; ++x)
 		for (int y = 0; y < m_size; ++y)
@@ -309,7 +309,7 @@ void Board::clickDiamond(Diamond *diamond)
 			}
 }
 
-void Board::dragDiamond(const QPoint& index, const QPoint& direction)
+void Game::dragDiamond(const QPoint& index, const QPoint& direction)
 {
 	//direction must not be null, and must point along one axis
 	if ((direction.x() == 0) ^ (direction.y() == 0))
@@ -325,7 +325,7 @@ void Board::dragDiamond(const QPoint& index, const QPoint& direction)
 	}
 }
 
-void Board::dragDiamond(Diamond *diamond, const QPoint& direction)
+void Game::dragDiamond(Diamond *diamond, const QPoint& direction)
 {
 	for (int x = 0; x < m_size; ++x)
 		for (int y = 0; y < m_size; ++y)
@@ -336,14 +336,14 @@ void Board::dragDiamond(Diamond *diamond, const QPoint& direction)
 			}
 }
 
-void Board::clearSelection()
+void Game::clearSelection()
 {
 	m_selection1->hide();
 	m_selection2->hide();
 	m_selected1 = m_selected2 = QPoint(-1, -1);
 }
 
-void Board::timerEvent(QTimerEvent* event)
+void Game::timerEvent(QTimerEvent* event)
 {
 	//propagate event to superclass if necessary
 	if (event->timerId() != m_timerId)
@@ -503,7 +503,7 @@ void Board::timerEvent(QTimerEvent* event)
 	}
 }
 
-QSet<QPoint *> Board::findCompletedRows()
+QSet<QPoint *> Game::findCompletedRows()
 {
 	//The tactic of this function is brute-force. For now, I do not have a better idea: A friend of mine advised me to look in the environment of moved diamonds, but this is not easy since the re-filling after a deletion can lead to rows that are far away from the original movement. Therefore, we simply search through all diamonds looking for combinations in the horizonal and vertical direction. The created QList is returned as a QSet to remove duplicates. (It is not necessary where the rows exactly are. Only the number of diamonds and their position is relevant for scoring and removing these diamonds.) (We do not directly build a QSet as QList allows for faster insertions. At the end, the QSet can easily be created with the right capacity.)
 	KDiamond::Color currentColor;
@@ -571,7 +571,7 @@ QSet<QPoint *> Board::findCompletedRows()
 	return diamonds.toSet();
 }
 
-void Board::fillGaps()
+void Game::fillGaps()
 {
 	QParallelAnimationGroup* animGroup = new QParallelAnimationGroup(this);
 	//fill gaps
@@ -646,17 +646,17 @@ void Board::fillGaps()
 	connect(m_runningAnimation, SIGNAL(finished()), this, SLOT(animationFinished()));
 }
 
-bool Board::onBoard(const QPoint& point) const
+bool Game::onBoard(const QPoint& point) const
 {
 	return 0 <= point.x() && point.x() < m_size && 0 <= point.y() && point.y() < m_size;
 }
 
-bool Board::onBoard(int x, int y) const
+bool Game::onBoard(int x, int y) const
 {
 	return 0 <= x && x < m_size && 0 <= y && y < m_size;
 }
 
-void Board::showHint()
+void Game::showHint()
 {
 	if (m_availableMoves.isEmpty())
 		return;
@@ -667,14 +667,14 @@ void Board::showHint()
 	m_gameState->removePoints(3);
 }
 
-void Board::animationFinished()
+void Game::animationFinished()
 {
 	m_runningAnimation = 0;
 	if (m_timerId == -1)
 		m_timerId = startTimer(UpdateInterval);
 }
 
-void Board::stateChange(KDiamond::State state)
+void Game::stateChange(KDiamond::State state)
 {
 	switch (state)
 	{
@@ -706,7 +706,7 @@ void Board::stateChange(KDiamond::State state)
 	}
 }
 
-void Board::message(const QString &message)
+void Game::message(const QString &message)
 {
 	if (message.isEmpty())
 		m_messenger->forceHide();
@@ -714,4 +714,4 @@ void Board::message(const QString &message)
 		m_messenger->showMessage(message, KGamePopupItem::TopLeft);
 }
 
-#include "board.moc"
+#include "game.moc"

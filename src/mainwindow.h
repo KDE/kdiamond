@@ -19,7 +19,7 @@
 #ifndef KDIAMOND_MAINWINDOW_H
 #define KDIAMOND_MAINWINDOW_H
 
-class Board;
+class Game;
 #include "game-state.h"
 
 class QTime;
@@ -55,8 +55,8 @@ class MainWindow : public KXmlGuiWindow
 		void pausedAction(bool paused);
 		void updateTheme(bool force = false);
 	private:
-		KDiamond::GameState* m_game;
-		Board* m_board;
+		KDiamond::GameState* m_gameState;
+		Game* m_game;
 		KDiamond::View* m_view;
 
 		KDiamond::InfoBar* m_infoBar;

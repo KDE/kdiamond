@@ -16,8 +16,8 @@
  *   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  ***************************************************************************/
 
-#ifndef KDIAMOND_BOARD_H
-#define KDIAMOND_BOARD_H
+#ifndef KDIAMOND_GAME_H
+#define KDIAMOND_GAME_H
 
 class Diamond;
 #include "game-state.h"
@@ -60,12 +60,12 @@ namespace KDiamond
 	};
 }
 
-class Board : public QGraphicsScene
+class Game : public QGraphicsScene
 {
 	Q_OBJECT
 	public:
-		Board(KDiamond::GameState* state, KGameDifficulty::standardLevel difficulty);
-		~Board();
+		Game(KDiamond::GameState* state, KGameDifficulty::standardLevel difficulty);
+		~Game();
 		int diamondCountOnEdge() const;
 
 		QPoint boardToScene(const QPointF &boardCoord) const;
@@ -116,4 +116,4 @@ class Board : public QGraphicsScene
 		QPoint m_swapping1, m_swapping2; //coordinates of the swapping/swapped items (stored to revoke the swapping if necessary)
 };
 
-#endif //KDIAMOND_BOARD_H
+#endif //KDIAMOND_GAME_H

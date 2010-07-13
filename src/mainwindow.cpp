@@ -17,7 +17,7 @@
  ***************************************************************************/
 
 #include "mainwindow.h"
-#include "board.h"
+#include "game.h"
 #include "game-state.h"
 #include "infobar.h"
 #include "renderer.h"
@@ -45,8 +45,8 @@
 
 MainWindow::MainWindow(QWidget *parent)
 	: KXmlGuiWindow(parent)
-	, m_game(new KDiamond::GameState)
-	, m_board(0)
+	, m_gameState(new KDiamond::GameState)
+	, m_game(0)
 	, m_view(new KDiamond::View)
 	, m_infoBar(0)
 	, m_newAct(new KActionMenu(KIcon("document-new"), i18nc("new game", "&New"), this))
@@ -84,9 +84,9 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(m_view, SIGNAL(resized()), this, SLOT(updateTheme()));
 	//init statusbar
 	m_infoBar = new KDiamond::InfoBar(statusBar());
-	connect(m_game, SIGNAL(stateChanged(KDiamond::State)), this, SLOT(stateChange(KDiamond::State)));
-	connect(m_game, SIGNAL(pointsChanged(int)), m_infoBar, SLOT(updatePoints(int)));
-	connect(m_game, SIGNAL(leftTimeChanged(int)), m_infoBar, SLOT(updateRemainingTime(int)));
+	connect(m_gameState, SIGNAL(stateChanged(KDiamond::State)), this, SLOT(stateChange(KDiamond::State)));
+	connect(m_gameState, SIGNAL(pointsChanged(int)), m_infoBar, SLOT(updatePoints(int)));
+	connect(m_gameState, SIGNAL(leftTimeChanged(int)), m_infoBar, SLOT(updateRemainingTime(int)));
 	//selected skill
 	int skill = Settings::skill();
 	if (skill < KGameDifficulty::VeryEasy) //includes default values like 0 or 1
@@ -98,8 +98,8 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
 	Settings::self()->writeConfig();
-	delete m_board;
 	delete m_game;
+	delete m_gameState;
 }
 
 void MainWindow::startGameDispatcher()
@@ -119,18 +119,18 @@ void MainWindow::startGame(KDiamond::Mode mode)
 	KGameDifficulty::standardLevel level = KGameDifficulty::level();
 	Settings::setSkill((int) level);
 	//delete old board
-	delete m_board;
+	delete m_game;
 	//start new game
-	m_game->startNewGame();
-	m_game->setMode(mode);
-	m_board = new Board(m_game, KGameDifficulty::level());
+	m_gameState->startNewGame();
+	m_gameState->setMode(mode);
+	m_game = new Game(m_gameState, KGameDifficulty::level());
 	updateTheme(false); //initializes the theme
-	connect(m_game, SIGNAL(stateChanged(KDiamond::State)), m_board, SLOT(stateChange(KDiamond::State)));
-	connect(m_game, SIGNAL(message(const QString&)), m_board, SLOT(message(const QString&)));
-	connect(m_board, SIGNAL(numberMoves(int)), m_infoBar, SLOT(updateMoves(int)));
-	connect(m_board, SIGNAL(pendingAnimationsFinished()), this, SLOT(gameIsOver()));
-	connect(m_hintAct, SIGNAL(triggered()), m_board, SLOT(showHint()));
-	m_view->setScene(m_board);
+	connect(m_gameState, SIGNAL(stateChanged(KDiamond::State)), m_game, SLOT(stateChange(KDiamond::State)));
+	connect(m_gameState, SIGNAL(message(const QString&)), m_game, SLOT(message(const QString&)));
+	connect(m_game, SIGNAL(numberMoves(int)), m_infoBar, SLOT(updateMoves(int)));
+	connect(m_game, SIGNAL(pendingAnimationsFinished()), this, SLOT(gameIsOver()));
+	connect(m_hintAct, SIGNAL(triggered()), m_game, SLOT(showHint()));
+	m_view->setScene(m_game);
 	m_view->fitInView(0, 0, m_view->width(), m_view->height());
 	//reset status bar
 	m_infoBar->setUntimed(mode == KDiamond::UntimedGame);
@@ -149,8 +149,8 @@ void MainWindow::gameIsOver()
 {
 	//create score info
 	KScoreDialog::FieldInfo scoreInfo;
-	scoreInfo[KScoreDialog::Score].setNum(m_game->points());
-	scoreInfo[KScoreDialog::Custom1] = m_game->mode() == KDiamond::UntimedGame ? i18n("Untimed") : i18n("Timed");
+	scoreInfo[KScoreDialog::Score].setNum(m_gameState->points());
+	scoreInfo[KScoreDialog::Custom1] = m_gameState->mode() == KDiamond::UntimedGame ? i18n("Untimed") : i18n("Timed");
 	//report score
 	QPointer<KScoreDialog> dialog = new KScoreDialog(KScoreDialog::Name | KScoreDialog::Score, this);
 	dialog->addLocalizedConfigGroupNames(KGameDifficulty::localizedLevelStrings());
@@ -165,8 +165,8 @@ void MainWindow::gameIsOver()
 void MainWindow::showHighscores()
 {
 	//pause game if necessary
-	m_game->setState(KDiamond::Paused);
-	if (m_game->state() != KDiamond::Finished)
+	m_gameState->setState(KDiamond::Paused);
+	if (m_gameState->state() != KDiamond::Finished)
 		actionCollection()->action("game_pause")->setChecked(true);
 	//show dialog
 	QPointer<KScoreDialog> dialog = new KScoreDialog(KScoreDialog::Name | KScoreDialog::Score, this);
@@ -179,13 +179,13 @@ void MainWindow::showHighscores()
 
 void MainWindow::pausedAction(bool paused)
 {
-	m_game->setState(paused ? KDiamond::Paused : KDiamond::Playing);
+	m_gameState->setState(paused ? KDiamond::Paused : KDiamond::Playing);
 }
 
 void MainWindow::updateTheme(bool force)
 {
-	if (m_board)
-		m_board->resizeScene(m_view->width(), m_view->height(), force);
+	if (m_game)
+		m_game->resizeScene(m_view->width(), m_view->height(), force);
 }
 
 void MainWindow::configureNotifications()
@@ -208,10 +208,10 @@ void MainWindow::loadSettings()
 {
 	Renderer::self()->loadTheme(Settings::theme());
 	//redraw game scene if necessary
-	if (m_game != 0)
+	if (m_gameState)
 	{
 		updateTheme(true);
-		m_board->invalidate(m_board->sceneRect(), QGraphicsScene::BackgroundLayer);
+		m_game->invalidate(m_game->sceneRect(), QGraphicsScene::BackgroundLayer);
 	}
 }
 

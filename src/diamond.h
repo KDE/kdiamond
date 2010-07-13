@@ -19,7 +19,7 @@
 #ifndef KDIAMOND_DIAMOND_H
 #define KDIAMOND_DIAMOND_H
 
-class Board;
+class Game;
 #include <KGameRenderedItem>
 
 namespace KDiamond
@@ -45,7 +45,7 @@ class Diamond : public KGameRenderedItem
 	Q_OBJECT
 	Q_PROPERTY(QPointF boardPos READ posInBoardCoords WRITE setPosInBoardCoords)
 	public:
-		Diamond(int xPos, int yPos, KDiamond::Color color, Board *board);
+		Diamond(int xPos, int yPos, KDiamond::Color color, Game *game);
 
 		KDiamond::Color color() const;
 		QPointF posInBoardCoords() const;
@@ -57,7 +57,7 @@ class Diamond : public KGameRenderedItem
 		virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *);
 		virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *);
 	private:
-		Board *m_board;
+		Game *m_game;
 
 		KDiamond::Color m_color;
 		QPointF m_pos;

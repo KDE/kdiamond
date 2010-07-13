@@ -17,7 +17,6 @@
  ***************************************************************************/
 
 #include "renderer.h"
-#include "board.h"
 #include "diamond.h"
 #include "settings.h"
 #include <KGameRenderer>
