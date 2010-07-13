@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright 2008-2009 Stefan Majewsky <majewsky@gmx.net>
+ *   Copyright 2008-2010 Stefan Majewsky <majewsky@gmx.net>
  *
  *   This program is free software; you can redistribute it and/or
  *   modify it under the terms of the GNU General Public
@@ -20,8 +20,8 @@
 #include "game.h"
 #include "game-state.h"
 #include "infobar.h"
-#include "renderer.h"
 #include "settings.h"
+#include <KGameRenderer>
 #include "view.h"
 
 #include <QCloseEvent>
@@ -81,7 +81,6 @@ MainWindow::MainWindow(QWidget *parent)
 	setupGUI(QSize(300, 400)); //TODO: find better solution for a minimum size
 	setCaption(i18nc("The application's name", "KDiamond"));
 	setCentralWidget(m_view);
-	connect(m_view, SIGNAL(resized()), this, SLOT(updateTheme()));
 	//init statusbar
 	m_infoBar = new KDiamond::InfoBar(statusBar());
 	connect(m_gameState, SIGNAL(stateChanged(KDiamond::State)), this, SLOT(stateChange(KDiamond::State)));
@@ -124,14 +123,12 @@ void MainWindow::startGame(KDiamond::Mode mode)
 	m_gameState->startNewGame();
 	m_gameState->setMode(mode);
 	m_game = new Game(m_gameState, KGameDifficulty::level());
-	updateTheme(false); //initializes the theme
 	connect(m_gameState, SIGNAL(stateChanged(KDiamond::State)), m_game, SLOT(stateChange(KDiamond::State)));
 	connect(m_gameState, SIGNAL(message(const QString&)), m_game, SLOT(message(const QString&)));
 	connect(m_game, SIGNAL(numberMoves(int)), m_infoBar, SLOT(updateMoves(int)));
 	connect(m_game, SIGNAL(pendingAnimationsFinished()), this, SLOT(gameIsOver()));
 	connect(m_hintAct, SIGNAL(triggered()), m_game, SLOT(showHint()));
 	m_view->setScene(m_game);
-	m_view->fitInView(0, 0, m_view->width(), m_view->height());
 	//reset status bar
 	m_infoBar->setUntimed(mode == KDiamond::UntimedGame);
 	m_infoBar->updatePoints(0);
@@ -182,12 +179,6 @@ void MainWindow::pausedAction(bool paused)
 	m_gameState->setState(paused ? KDiamond::Paused : KDiamond::Playing);
 }
 
-void MainWindow::updateTheme(bool force)
-{
-	if (m_game)
-		m_game->resizeScene(m_view->width(), m_view->height(), force);
-}
-
 void MainWindow::configureNotifications()
 {
 	KNotifyConfigWidget::configure(this);
@@ -206,13 +197,7 @@ void MainWindow::configureSettings()
 
 void MainWindow::loadSettings()
 {
-	Renderer::self()->loadTheme(Settings::theme());
-	//redraw game scene if necessary
-	if (m_gameState)
-	{
-		updateTheme(true);
-		m_game->invalidate(m_game->sceneRect(), QGraphicsScene::BackgroundLayer);
-	}
+	KDiamond::renderer()->setTheme(Settings::theme());
 }
 
 #include "mainwindow.moc"

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright 2008-2009 Stefan Majewsky <majewsky@gmx.net>
+ *   Copyright 2008-2010 Stefan Majewsky <majewsky@gmx.net>
  *
  *   This program is free software; you can redistribute it and/or
  *   modify it under the terms of the GNU General Public
@@ -39,7 +39,7 @@ class MainWindow : public KXmlGuiWindow
 	public:
 		MainWindow(QWidget *parent = 0);
 		~MainWindow();
-	public slots:
+	public Q_SLOTS:
 		void startGame(KDiamond::Mode mode);
 		void startGameDispatcher();
 		void stateChange(KDiamond::State state);
@@ -49,11 +49,10 @@ class MainWindow : public KXmlGuiWindow
 		void configureNotifications();
 		void configureSettings();
 		void loadSettings();
-	signals:
+	Q_SIGNALS:
 		void pause(bool paused);
-	protected slots:
+	protected Q_SLOTS:
 		void pausedAction(bool paused);
-		void updateTheme(bool force = false);
 	private:
 		KDiamond::GameState* m_gameState;
 		Game* m_game;

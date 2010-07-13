@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright 2008 Stefan Majewsky <majewsky@gmx.net>
+ *   Copyright 2008-2010 Stefan Majewsky <majewsky@gmx.net>
  *
  *   This program is free software; you can redistribute it and/or
  *   modify it under the terms of the GNU General Public
@@ -26,14 +26,13 @@ namespace KDiamond
 
 	class View : public QGraphicsView
 	{
-		Q_OBJECT
 		public:
 			View(QWidget* parent = 0);
+
+			void setScene(QGraphicsScene* scene);
 		protected:
 			virtual void resizeEvent(QResizeEvent* event);
 			virtual void wheelEvent(QWheelEvent* event);
-		Q_SIGNALS:
-			void resized();
 	};
 
 }

@@ -26,6 +26,7 @@ class QAbstractAnimation;
 #include <QGraphicsScene>
 #include <KGameDifficulty>
 class KGamePopupItem;
+class KGameRenderer;
 
 namespace KDiamond
 {
@@ -40,6 +41,8 @@ namespace KDiamond
 	};
 
 	class Board;
+
+	KGameRenderer* renderer();
 }
 
 class Game : public QGraphicsScene
@@ -47,9 +50,9 @@ class Game : public QGraphicsScene
 	Q_OBJECT
 	public:
 		Game(KDiamond::GameState* state, KGameDifficulty::standardLevel difficulty);
+	public Q_SLOTS:
+		void updateGraphics();
 
-		void resizeScene(int width, int height, bool force = false);
-	public slots:
 		void clickDiamond(const QPoint& point);
 		void dragDiamond(const QPoint& point, const QPoint& direction);
 
@@ -57,7 +60,7 @@ class Game : public QGraphicsScene
 		void message(const QString &message);
 		void stateChange(KDiamond::State state);
 		void showHint();
-	signals:
+	Q_SIGNALS:
 		void boardResized();
 		void numberMoves(int moves);
 		void pendingAnimationsFinished();

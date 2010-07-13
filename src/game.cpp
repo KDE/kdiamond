@@ -19,17 +19,44 @@
 #include "game.h"
 #include "board.h"
 #include "diamond.h"
-#include "renderer.h"
+#include "settings.h"
+#include <KGameRenderer>
 
+#include <QPainter>
 #include <QTimerEvent>
 #include <KGamePopupItem>
+#include <KGameTheme>
+#include <KGlobal>
 #include <KNotification>
+
+//BEGIN global KGameRenderer instance
+
+namespace KDiamond
+{
+	class Renderer : public KGameRenderer
+	{
+		public:
+			Renderer() : KGameRenderer(Settings::theme(), "themes/default.desktop")
+			{
+				setFrameSuffix(QString::fromLatin1("-%1"));
+			}
+	};
+}
+
+K_GLOBAL_STATIC(KDiamond::Renderer, g_renderer)
+
+KGameRenderer* KDiamond::renderer()
+{
+	return g_renderer;
+}
+
+//END global KGameRenderer instance
 
 const int UpdateInterval = 40;
 
 Game::Game(KDiamond::GameState* state, KGameDifficulty::standardLevel difficulty)
 	: m_timerId(-1)
-	, m_board(new KDiamond::Board(Renderer::self()->renderer(), difficulty))
+	, m_board(new KDiamond::Board(g_renderer, difficulty))
 	, m_gameState(state)
 	, m_messenger(new KGamePopupItem)
 {
@@ -39,6 +66,8 @@ Game::Game(KDiamond::GameState* state, KGameDifficulty::standardLevel difficulty
 	//init scene (with some default scene size that makes board coordinates equal scene coordinates)
 	const int minSize = m_board->gridSize();
 	setSceneRect(0.0, 0.0, minSize, minSize);
+	connect(this, SIGNAL(sceneRectChanged(QRectF)), SLOT(updateGraphics()));
+	connect(g_renderer, SIGNAL(themeChanged(QString)), SLOT(updateGraphics()));
 	addItem(m_board);
 	//init messenger
 	m_messenger->setMessageOpacity(0.8);
@@ -117,20 +146,28 @@ void Game::getMoves()
 	}
 }
 
-//Adapt scene coordinates to size of view. (This congruence is required by KGamePopupItem.)
-void Game::resizeScene(int newWidth, int newHeight, bool force)
+void Game::updateGraphics()
 {
-	//do not resize if nothing would change
-	if (!force && width() == newWidth && height() == newHeight)
-		return;
-	setSceneRect(0.0, 0.0, newWidth, newHeight);
 	//calculate new metrics
-	const QSize sceneSize(newWidth, newHeight);
+	const QSize sceneSize = sceneRect().size().toSize();
 	QSize boardSize(sceneSize);
 	m_board->determineRenderSize(boardSize);
-	const int leftOffset = (newWidth - boardSize.width()) / 2.0;
+	const int leftOffset = (sceneSize.width() - boardSize.width()) / 2.0;
 	m_board->setPos(QPoint(leftOffset, 0));
-	setBackgroundBrush(Renderer::self()->background(sceneSize, leftOffset, boardSize.width()));
+	//render background
+	QPixmap pix = g_renderer->spritePixmap("kdiamond-background", sceneSize);
+	const KGameTheme* gameTheme = g_renderer->gameTheme();
+	const bool hasBorder = gameTheme->property("HasBorder").toInt() > 0;
+	if (hasBorder)
+	{
+		const qreal borderPercentage = gameTheme->property("BorderPercentage").toFloat();
+		const int padding = borderPercentage * boardSize.width();
+		const QSize boardBorderSize = QSize(2 * padding, 2 * padding) + boardSize;
+		const QPixmap boardPix = g_renderer->spritePixmap("kdiamond-border", boardBorderSize);
+		QPainter painter(&pix);
+		painter.drawPixmap(QPoint(leftOffset - padding, -padding), boardPix);
+	}
+	setBackgroundBrush(pix);
 }
 
 void Game::clickDiamond(const QPoint& point)

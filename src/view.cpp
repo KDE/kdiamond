@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright 2008-2009 Stefan Majewsky <majewsky@gmx.net>
+ *   Copyright 2008-2010 Stefan Majewsky <majewsky@gmx.net>
  *
  *   This program is free software; you can redistribute it and/or
  *   modify it under the terms of the GNU General Public
@@ -32,10 +32,17 @@ KDiamond::View::View(QWidget* parent)
 	setWhatsThis(i18n("<h3>Rules of Game</h3><p>Your goal is to assemble lines of at least three similar diamonds. Click on two adjacent diamonds to swap them.</p><p>Earn extra points by building cascades, and extra seconds by assembling big lines or multiple lines at one time.</p>"));
 }
 
+void KDiamond::View::setScene(QGraphicsScene* scene)
+{
+	QGraphicsView::setScene(scene);
+	resizeEvent(0);
+}
+
 void KDiamond::View::resizeEvent(QResizeEvent* event)
 {
 	Q_UNUSED(event)
-	emit resized();
+	//make widget coordinates equal scene coordinates
+	scene()->setSceneRect(rect());
 	setTransform(QTransform());
 }
 
@@ -44,5 +51,3 @@ void KDiamond::View::wheelEvent(QWheelEvent* event)
 	//do not allow wheel events
 	event->ignore();
 }
-
-#include "view.moc"

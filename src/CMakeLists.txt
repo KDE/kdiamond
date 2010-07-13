@@ -9,7 +9,6 @@ set(kdiamond_SRCS
 	infobar.cpp
 	main.cpp
 	mainwindow.cpp
-	renderer.cpp
 	view.cpp
 )
 

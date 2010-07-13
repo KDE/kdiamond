@@ -17,7 +17,6 @@
  ***************************************************************************/
 
 #include "mainwindow.h"
-#include "renderer.h"
 #include "settings.h"
 
 #include <ctime>
@@ -70,7 +69,6 @@ int main(int argc, char ** argv)
 		Settings::setSkill(KGameDifficulty::VeryHard);
 	args->clear();
 
-	Renderer::self(); //causes the static Renderer object to be created and initiated
 	// see if we are starting with session management
 	if (app.isSessionRestored())
 	{
