@@ -239,6 +239,8 @@ void Board::resizeScene(int newWidth, int newHeight, bool force)
 	for (int x = 0; x < m_size; ++x)
 		for (int y = 0; y < m_size; ++y)
 			m_diamonds[x][y]->setRenderSize(diamondSize);
+	m_selection1->setRenderSize(diamondSize);
+	m_selection2->setRenderSize(diamondSize);
 	emit boardResized(); //give diamonds the chance to change their metrics
 	//background
 	setBackgroundBrush(Renderer::self()->background());

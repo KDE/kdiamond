@@ -34,9 +34,8 @@ QString colorKey(KDiamond::Color color)
 		QString::fromLatin1("kdiamond-black"),
 		QString::fromLatin1("kdiamond-orange")
 	};
-	return colors[(color < 0 || color > KDiamond::ColorsCount) ? 0 : color];
+	return colors[(color < 0 || color >= KDiamond::ColorsCount) ? 0 : color];
 }
-
 
 Diamond::Diamond(int xPos, int yPos, KDiamond::Color color, Board *board)
 	: KGameRenderedItem(Renderer::self()->renderer(), colorKey(color))
