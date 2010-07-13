@@ -331,6 +331,7 @@ QList<QPoint> Game::findCompletedRows()
 			y = yh - 1;
 		}
 	}
+#undef C
 	return diamonds;
 }
 
@@ -351,17 +352,13 @@ void Game::animationFinished()
 
 void Game::stateChange(KDiamond::State state)
 {
-	switch (state)
+	m_board->setPaused(state == KDiamond::Paused);
+	switch ((int) state)
 	{
 		case KDiamond::Finished:
 			m_board->clearSelection();
-			m_jobQueue << KDiamond::EndGameJob;
 			break;
-		case KDiamond::Paused:
-			m_board->hide();
-			break;
-		default: //not paused
-			m_board->show();
+		case KDiamond::Playing:
 			if (m_timerId == -1)
 				m_timerId = startTimer(UpdateInterval);
 			break;

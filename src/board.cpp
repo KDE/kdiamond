@@ -33,6 +33,7 @@ KDiamond::Board::Board(KGameRenderer* renderer, KGameDifficulty::standardLevel d
 	: m_size(boardSizes[difficulty / 10 - 2])
 	, m_diamondRenderSize(0)
 	, m_colorCount(boardColorCounts[difficulty / 10 - 2])
+	, m_paused(false)
 	, m_renderer(renderer)
 	, m_diamonds(m_size * m_size, 0)
 {
@@ -188,6 +189,18 @@ void KDiamond::Board::clearSelection()
 	}
 	m_selections.clear();
 	m_activeSelectors.clear();
+}
+
+void KDiamond::Board::setPaused(bool paused)
+{
+	//During pauses, the board is hidden and any animations are suspended.
+	const bool visible = !paused;
+	if (isVisible() == visible)
+		return;
+	setVisible(visible);
+	QList<QAbstractAnimation*>::const_iterator it1 = m_runningAnimations.begin(), it2 = m_runningAnimations.end();
+	for (; it1 != it2; ++it1)
+		(*it1)->setPaused(paused);
 }
 
 void KDiamond::Board::removeDiamond(const QPoint& point)

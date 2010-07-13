@@ -60,7 +60,6 @@ class Game : public QGraphicsScene
 	signals:
 		void boardResized();
 		void numberMoves(int moves);
-		void updateScheduled(int milliseconds);
 		void pendingAnimationsFinished();
 	protected:
 		virtual void timerEvent(QTimerEvent* event);

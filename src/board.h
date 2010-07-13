@@ -51,6 +51,8 @@ namespace KDiamond
 
 			virtual QRectF boundingRect() const;
 			virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0);
+		public Q_SLOTS:
+			void setPaused(bool paused);
 		Q_SIGNALS:
 			void animationsFinished();
 			void clicked(const QPoint& point);
@@ -74,6 +76,7 @@ namespace KDiamond
 
 			int m_size, m_diamondRenderSize, m_colorCount;
 			QList<QPoint> m_selections;
+			bool m_paused;
 
 			KGameRenderer* m_renderer;
 			QVector<Diamond*> m_diamonds;
