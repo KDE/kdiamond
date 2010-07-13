@@ -141,6 +141,13 @@ void Game::clickDiamond(const QPoint& point)
 	const bool isSelected = m_board->hasSelection(point);
 	if (!isSelected && m_board->selections().count() == 2)
 		return;
+	//select only adjacent diamonds (i.e. if a distant diamond is selected, deselect the first one)
+	foreach (const QPoint& point2, m_board->selections())
+	{
+		const int diff = qAbs(point2.x() - point.x()) + qAbs(point2.y() - point.y());
+		if (diff > 1)
+			m_board->setSelection(point2, false);
+	}
 	//toggle selection state
 	m_board->setSelection(point, !isSelected);
 	if (m_board->selections().count() == 2)

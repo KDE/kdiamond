@@ -159,7 +159,10 @@ void KDiamond::Board::setSelection(const QPoint& point, bool selected)
 		if (!m_inactiveSelectors.isEmpty())
 			selector = m_inactiveSelectors.takeLast();
 		else
+		{
 			selector = new Diamond(KDiamond::Selection, this);
+			selector->setRenderSize(m_diamondRenderSize);
+		}
 		m_activeSelectors << selector;
 		m_selections << point;
 		selector->setPos(point);
