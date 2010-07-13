@@ -45,7 +45,7 @@ class Diamond : public KGameRenderedItem
 	Q_OBJECT
 	Q_PROPERTY(QPointF boardPos READ posInBoardCoords WRITE setPosInBoardCoords)
 	public:
-		Diamond(int xPos, int yPos, KDiamond::Color color, Game *game);
+		Diamond(const QPointF& pos, KDiamond::Color color, Game *game);
 
 		KDiamond::Color color() const;
 		QPointF posInBoardCoords() const;

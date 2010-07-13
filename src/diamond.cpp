@@ -37,11 +37,11 @@ QString colorKey(KDiamond::Color color)
 	return colors[(color < 0 || color >= KDiamond::ColorsCount) ? 0 : color];
 }
 
-Diamond::Diamond(int xPos, int yPos, KDiamond::Color color, Game *game)
+Diamond::Diamond(const QPointF& pos, KDiamond::Color color, Game *game)
 	: KGameRenderedItem(Renderer::self()->renderer(), colorKey(color))
 	, m_game(game)
 	, m_color(color)
-	, m_pos(xPos, yPos)
+	, m_pos(pos)
 {
 	game->addItem(this);
 	//connect to game

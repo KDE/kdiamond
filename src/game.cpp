@@ -32,8 +32,8 @@ const int RemoveDuration = 200; //duration of a move animation in milliseconds
 
 Game::Game(KDiamond::GameState* state, KGameDifficulty::standardLevel difficulty)
 	: QGraphicsScene()
-	, m_selection1(new Diamond(0, 0, KDiamond::Selection, this))
-	, m_selection2(new Diamond(0, 0, KDiamond::Selection, this))
+	, m_selection1(new Diamond(QPoint(), KDiamond::Selection, this))
+	, m_selection2(new Diamond(QPoint(), KDiamond::Selection, this))
 	, m_gameState(state)
 	, m_messenger(new KGamePopupItem)
 	, m_runningAnimation(0)
@@ -101,7 +101,7 @@ Game::Game(KDiamond::GameState* state, KGameDifficulty::standardLevel difficulty
 				break;
 			}
 			//set diamond
-			m_diamonds[x][y] = new Diamond(x, y, (KDiamond::Color) color, this);
+			m_diamonds[x][y] = new Diamond(QPoint(x, y), (KDiamond::Color) color, this);
 		}
 	}
 	//init selection markers
@@ -630,7 +630,7 @@ void Game::fillGaps()
 			if (m_diamonds[x][y] != 0)
 				continue; //inside of diamond stack - no gaps to fill
 			--yt;
-			m_diamonds[x][y] = new Diamond(x, yt, (KDiamond::Color) (qrand() % m_colorCount + 1), this);
+			m_diamonds[x][y] = new Diamond(QPoint(x, yt), (KDiamond::Color) (qrand() % m_colorCount + 1), this);
 			m_diamonds[x][y]->setPosInBoardCoords(QPointF(x, yt));
 			m_diamonds[x][y]->setRenderSize(QSize(m_diamondEdgeLength, m_diamondEdgeLength));
 			m_diamonds[x][y]->updateGeometry();
