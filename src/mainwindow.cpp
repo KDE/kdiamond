@@ -206,11 +206,7 @@ void MainWindow::configureSettings()
 
 void MainWindow::loadSettings()
 {
-	if (!Renderer::self()->loadTheme(Settings::theme()))
-	{
-		KMessageBox::error(this, i18n("Failed to load \"%1\" theme. Please check your installation.", Settings::theme()));
-		return;
-	}
+	Renderer::self()->loadTheme(Settings::theme());
 	//redraw game scene if necessary
 	if (m_game != 0)
 	{

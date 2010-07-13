@@ -32,13 +32,12 @@ class Renderer {
 	public:
 		static Renderer *self();
 
-		bool loadTheme(const QString &name);
+		void loadTheme(const QString &name);
 		void boardResized(int width, int height, int leftOffset, int diamondEdgeLength, int diamondCountOnEdge);
 
 		int removeAnimFrameCount();
 		bool hasBorder();
 
-		void prerenderNextAnimationFrame();
 		QPixmap diamond(KDiamond::Color color);
 		QPixmap removeFrame(KDiamond::Color color, int frame);
 		QPixmap background();

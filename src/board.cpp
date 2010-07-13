@@ -385,7 +385,6 @@ void Board::timerEvent(QTimerEvent* event)
 	}
 	if(m_jobQueue.count() == 0) //nothing to do in this update
 	{
-		Renderer::self()->prerenderNextAnimationFrame();
 		return;
 	}
 	//execute first job in queue

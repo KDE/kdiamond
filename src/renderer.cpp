@@ -20,48 +20,39 @@
 #include "board.h"
 #include "diamond.h"
 #include "settings.h"
+#include <KGameRenderer>
 
 #include <QPainter>
 #include <QPixmap>
 #include <KGameTheme>
-#include <KPixmapCache>
-#include <QSvgRenderer>
 
-typedef QPair<KDiamond::Color, int> RendererFrame;
+//TODO: port to KGameRenderer temporarily sacrificed prerendering of animation frames
 
 class RendererPrivate
 {
 	public:
 		RendererPrivate();
 
-		QSvgRenderer m_renderer;
-		KPixmapCache m_cache;
+		KGameRenderer m_renderer;
 
 		QSize m_diamondSize;
 		QSize m_sceneSize;
+		int m_leftOffset, m_diamondCountOnEdge;
 
-		QString m_currentTheme;
-		int m_removeAnimFrameCount;
 		bool m_hasBorder;
 		qreal m_borderPercentage;
-
-		QList<RendererFrame> m_framesToRender;
 };
 
-const QString sizeSuffix("_%1-%2");
-const QString frameSuffix("-%1");
-
 RendererPrivate::RendererPrivate()
-	: m_renderer()
-	, m_cache("kdiamond-cache")
+	: m_renderer(Settings::theme(), "themes/default.desktop")
 {
-	m_cache.setCacheLimit(5 * 1024);
+	m_renderer.setFrameSuffix(QString::fromLatin1("-%1"));
 }
 
 Renderer::Renderer()
 	: p(new RendererPrivate)
 {
-	loadTheme(Settings::theme());
+	loadTheme(p->m_renderer.theme()); //HACK: This is not needed, but this call sets m_hasBorder and m_borderPercentage.
 }
 
 Renderer::~Renderer()
@@ -75,68 +66,41 @@ Renderer *Renderer::self()
 	return &r;
 }
 
-bool Renderer::loadTheme(const QString &name)
+void Renderer::loadTheme(const QString &name)
 {
-	bool discardCache = !p->m_currentTheme.isEmpty();
-	if (!p->m_currentTheme.isEmpty() && p->m_currentTheme == name)
-		return true; //requested to load the theme that is already loaded
-	KGameTheme theme;
-	//try to load theme
-	if (!theme.load(name))
-	{
-		if (!theme.loadDefault())
-			return false;
-	}
-	p->m_currentTheme = name;
-	p->m_removeAnimFrameCount = theme.property("RemoveAnimFrames").toInt();
-	p->m_hasBorder = theme.property("HasBorder").toInt() > 0;
-	p->m_borderPercentage = theme.property("BorderPercentage").toFloat();
-	//load graphics
-	if (!p->m_renderer.load(theme.graphics()))
-		return false;
-	//flush cache
-	if (discardCache)
-		p->m_cache.discard();
-	//issue new frame render requests
-	for (int color = 1; color <= 7; ++color) //color == 0 is for selections, do not pre-render animation frames for this one
-	{
-		const KDiamond::Color color2 = (KDiamond::Color) color;
-		for (int frame = 0; frame < p->m_removeAnimFrameCount; ++frame)
-			p->m_framesToRender << RendererFrame(color2, frame);
-	}
-	return true;
+	p->m_renderer.setTheme(name);
+	const KGameTheme* gameTheme = p->m_renderer.gameTheme();
+	p->m_hasBorder = gameTheme->property("HasBorder").toInt() > 0;
+	p->m_borderPercentage = gameTheme->property("BorderPercentage").toFloat();
 }
 
 void Renderer::boardResized(int width, int height, int leftOffset, int diamondEdgeLength, int diamondCountOnEdge)
 {
-	//new metrics
 	p->m_sceneSize = QSize(width, height);
 	p->m_diamondSize = QSize(diamondEdgeLength, diamondEdgeLength);
-	//pre-render the background (it is more complex than the other pixmaps because it may include the border)
-	const QString svgName("kdiamond-background");
-	const QString boardSvgName("kdiamond-border");
-	QString pixName = p->m_currentTheme + svgName + sizeSuffix.arg(width).arg(height);
-	QPixmap pix(QSize(width, height));
-	if (!p->m_cache.find(pixName, pix))
+	p->m_leftOffset = leftOffset;
+	p->m_diamondCountOnEdge = diamondCountOnEdge;
+}
+
+QPixmap Renderer::background()
+{
+	QPixmap pix = p->m_renderer.spritePixmap("kdiamond-background", p->m_sceneSize);
+	if (p->m_hasBorder)
 	{
-		pix.fill(Qt::transparent);
+		const qreal innerBoardEdgeLength = p->m_diamondCountOnEdge * p->m_diamondSize.width();
+		const qreal padding = p->m_borderPercentage * innerBoardEdgeLength;
+		const int boardEdgeLength = 2.0 * padding + innerBoardEdgeLength;
+		QRect boardGeometry(p->m_leftOffset - padding, -padding, boardEdgeLength, boardEdgeLength);
+		const QPixmap boardPix = p->m_renderer.spritePixmap("kdiamond-border", boardGeometry.size());
 		QPainter painter(&pix);
-		p->m_renderer.render(&painter, svgName);
-		if (p->m_hasBorder)
-		{
-			const qreal innerBoardEdgeLength = diamondCountOnEdge * diamondEdgeLength;
-			const qreal padding = p->m_borderPercentage * innerBoardEdgeLength;
-			const int boardEdgeLength = 2.0 * padding + innerBoardEdgeLength;
-			p->m_renderer.render(&painter, boardSvgName, QRect(leftOffset - padding, -padding, boardEdgeLength, boardEdgeLength));
-		}
-		painter.end();
-		p->m_cache.insert(pixName, pix);
+		painter.drawPixmap(boardGeometry, boardPix);
 	}
+	return pix;
 }
 
 int Renderer::removeAnimFrameCount()
 {
-	return p->m_removeAnimFrameCount;
+	return p->m_renderer.frameCount("kdiamond-red");
 }
 
 bool Renderer::hasBorder()
@@ -167,46 +131,12 @@ QString colorToString(KDiamond::Color color)
 	}
 }
 
-QPixmap pixmapFromCache(RendererPrivate *p, const QString &svgName, const QSize &size)
-{
-	if (size.isEmpty())
-		return QPixmap();
-	QPixmap pix(size);
-	QString pixName = p->m_currentTheme + svgName + sizeSuffix.arg(size.width()).arg(size.height());
-
-	if (!p->m_cache.find(pixName, pix))
-	{
-		pix.fill(Qt::transparent);
-		QPainter painter(&pix);
-		p->m_renderer.render(&painter, svgName);
-		painter.end();
-		p->m_cache.insert(pixName, pix);
-	}
-	return pix;
-}
-
-void Renderer::prerenderNextAnimationFrame()
-{
-	if (p->m_framesToRender.isEmpty())
-		return;
-	RendererFrame frameRequest = p->m_framesToRender.takeFirst();
-	removeFrame(frameRequest.first, frameRequest.second);
-}
-
 QPixmap Renderer::diamond(KDiamond::Color color)
 {
-	return pixmapFromCache(p, colorToString(color), p->m_diamondSize);
+	return p->m_renderer.spritePixmap(colorToString(color), p->m_diamondSize);
 }
 
 QPixmap Renderer::removeFrame(KDiamond::Color color, int frame)
 {
-	if (frame < 0 || frame >= p->m_removeAnimFrameCount || color == KDiamond::Selection)
-		return QPixmap();
-	p->m_framesToRender.removeAll(RendererFrame(color, frame));
-	return pixmapFromCache(p, colorToString(color) + frameSuffix.arg(frame), p->m_diamondSize);
-}
-
-QPixmap Renderer::background()
-{
-	return pixmapFromCache(p, "kdiamond-background", p->m_sceneSize);
+	return p->m_renderer.spritePixmap(colorToString(color), p->m_diamondSize, frame);
 }
