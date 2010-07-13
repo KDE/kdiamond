@@ -114,7 +114,8 @@ void KDiamond::Board::determineRenderSize(QSize& renderSize)
 	renderSize = QSize(m_size, m_size) * m_diamondRenderSize;
 	//apply render size
 	foreach (Diamond* item, m_diamonds)
-		item->setRenderSize(m_diamondRenderSize);
+		if (item)
+			item->setRenderSize(m_diamondRenderSize);
 	foreach (Diamond* item, m_activeSelectors + m_inactiveSelectors)
 		item->setRenderSize(m_diamondRenderSize);
 }
