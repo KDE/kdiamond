@@ -24,6 +24,7 @@ class Diamond;
 class QAbstractAnimation;
 #include <QGraphicsItem>
 #include <KGameDifficulty>
+class KGameRenderer;
 
 namespace KDiamond
 {
@@ -31,7 +32,7 @@ namespace KDiamond
 	{
 		Q_OBJECT
 		public:
-			Board(KGameDifficulty::standardLevel difficulty);
+			Board(KGameRenderer* renderer, KGameDifficulty::standardLevel difficulty);
 
 			int gridSize() const;
 			Diamond* diamond(const QPoint& point) const;
@@ -74,6 +75,7 @@ namespace KDiamond
 			int m_size, m_diamondRenderSize, m_colorCount;
 			QList<QPoint> m_selections;
 
+			KGameRenderer* m_renderer;
 			QVector<Diamond*> m_diamonds;
 			QList<Diamond*> m_activeSelectors, m_inactiveSelectors;
 			QList<QAbstractAnimation*> m_runningAnimations;

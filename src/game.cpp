@@ -29,7 +29,7 @@ const int UpdateInterval = 40;
 
 Game::Game(KDiamond::GameState* state, KGameDifficulty::standardLevel difficulty)
 	: m_timerId(-1)
-	, m_board(new KDiamond::Board(difficulty))
+	, m_board(new KDiamond::Board(Renderer::self()->renderer(), difficulty))
 	, m_gameState(state)
 	, m_messenger(new KGamePopupItem)
 {

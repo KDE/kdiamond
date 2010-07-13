@@ -29,10 +29,11 @@ const int KDiamond::Board::RemoveDuration = 200; //duration of a move animation 
 static int boardSizes[] = { 12, 10, 8, 8, 8 };
 static int boardColorCounts[] = { 5, 5, 5, 6, 7 };
 
-KDiamond::Board::Board(KGameDifficulty::standardLevel difficulty)
+KDiamond::Board::Board(KGameRenderer* renderer, KGameDifficulty::standardLevel difficulty)
 	: m_size(boardSizes[difficulty / 10 - 2])
 	, m_diamondRenderSize(0)
 	, m_colorCount(boardColorCounts[difficulty / 10 - 2])
+	, m_renderer(renderer)
 	, m_diamonds(m_size * m_size, 0)
 {
 	for (QPoint point; point.x() < m_size; ++point.rx())
@@ -71,7 +72,7 @@ KDiamond::Board::Board(KGameDifficulty::standardLevel difficulty)
 
 Diamond* KDiamond::Board::spawnDiamond(int color)
 {
-	Diamond* diamond = new Diamond((KDiamond::Color) color, this);
+	Diamond* diamond = new Diamond((KDiamond::Color) color, m_renderer, this);
 	diamond->setRenderSize(m_diamondRenderSize);
 	connect(diamond, SIGNAL(clicked()), SLOT(slotClicked()));
 	connect(diamond, SIGNAL(dragged(QPoint)), SLOT(slotDragged(QPoint)));
@@ -160,7 +161,7 @@ void KDiamond::Board::setSelection(const QPoint& point, bool selected)
 			selector = m_inactiveSelectors.takeLast();
 		else
 		{
-			selector = new Diamond(KDiamond::Selection, this);
+			selector = new Diamond(KDiamond::Selection, m_renderer, this);
 			selector->setRenderSize(m_diamondRenderSize);
 		}
 		m_activeSelectors << selector;

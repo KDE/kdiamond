@@ -17,7 +17,6 @@
  ***************************************************************************/
 
 #include "diamond.h"
-#include "renderer.h"
 
 #include <QGraphicsSceneMouseEvent>
 
@@ -36,8 +35,8 @@ QString colorKey(KDiamond::Color color)
 	return colors[(color < 0 || color >= KDiamond::ColorsCount) ? 0 : color];
 }
 
-Diamond::Diamond(KDiamond::Color color, QGraphicsItem* parent)
-	: KGameRenderedItem(Renderer::self()->renderer(), colorKey(color), parent)
+Diamond::Diamond(KDiamond::Color color, KGameRenderer* renderer, QGraphicsItem* parent)
+	: KGameRenderedItem(renderer, colorKey(color), parent)
 	, m_color(color)
 	, m_renderSize(0)
 {

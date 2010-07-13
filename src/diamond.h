@@ -44,7 +44,7 @@ class Diamond : public KGameRenderedItem
 	Q_OBJECT
 	Q_PROPERTY(QPointF pos READ pos WRITE setPos)
 	public:
-		Diamond(KDiamond::Color color, QGraphicsItem* parent = 0);
+		Diamond(KDiamond::Color color, KGameRenderer* renderer, QGraphicsItem* parent = 0);
 
 		KDiamond::Color color() const;
 		///Returns the position in grid coordinates, i.e. 1 coordinate unit is the size of one diamond.
