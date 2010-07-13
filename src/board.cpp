@@ -39,14 +39,10 @@ Board::Board(KDiamond::GameState* state, KGameDifficulty::standardLevel difficul
 	, m_runningAnimation(0)
 	, m_leftOffset(0)
 	, m_diamondEdgeLength(1)
-	, m_selected1x(-1)
-	, m_selected1y(-1)
-	, m_selected2x(-1)
-	, m_selected2y(-1)
-	, m_swapping1x(-1)
-	, m_swapping1y(-1)
-	, m_swapping2x(-1)
-	, m_swapping2y(-1)
+	, m_selected1(QPoint(-1, -1))
+	, m_selected2(QPoint(-1, -1))
+	, m_swapping1(QPoint(-1, -1))
+	, m_swapping2(QPoint(-1, -1))
 {
 	switch (difficulty)
 	{
@@ -248,61 +244,55 @@ void Board::resizeScene(int newWidth, int newHeight, bool force)
 	setBackgroundBrush(Renderer::self()->background());
 }
 
-void Board::clickDiamond(int xIndex, int yIndex)
+void Board::clickDiamond(const QPoint& index)
 {
 	if (m_gameState->state() != KDiamond::Playing)
 		return;
 	//handle click
-	if (m_selected1x == xIndex && m_selected1y == yIndex)
+	if (m_selected1 == index)
 	{
 		//clicked again on first selected diamond - remove selection
 		//Attention: This code is re-used in Board::timerEvent for the RemoveRowsJob. If you modify it here, please do also apply your changes over there.
-		m_selected1x = m_selected2x;
-		m_selected1y = m_selected2y;
-		if (m_selected1x == -1 || m_selected1y == -1)
+		m_selected1 = m_selected2;
+		if (m_selected1 == QPoint(-1, -1))
 			m_selection1->hide();
 		else
 		{
-			m_selection1->setPosInBoardCoords(QPointF(m_selected1x, m_selected1y));
+			m_selection1->setPosInBoardCoords(m_selected1);
 			m_selection1->show();
 		}
-		m_selected2x = -1;
-		m_selected2y = -1;
+		m_selected2 = QPoint(-1, -1);
 		m_selection2->hide();
 	}
-	else if (m_selected2x == xIndex && m_selected2y == yIndex)
+	else if (m_selected2 == index)
 	{
 		//clicked again on second selected diamond - remove selection
-		m_selected2x = -1;
-		m_selected2y = -1;
+		m_selected2 = QPoint(-1, -1);
 		m_selection2->hide();
 	}
-	else if (m_selected1x == -1 || m_selected1y == -1)
+	else if (m_selected1 == QPoint(-1, -1))
 	{
 		//nothing selected - this is the first selected diamond
-		m_selected1x = xIndex;
-		m_selected1y = yIndex;
-		m_selection1->setPosInBoardCoords(QPointF(xIndex, yIndex));
+		m_selected1 = index;
+		m_selection1->setPosInBoardCoords(index);
 		m_selection1->show();
 	}
-	else if (m_selected2x == -1 || m_selected2y == -1)
+	else if (m_selected2 == QPoint(-1, -1))
 	{
 		//this could be the second selected diamond - ensure that the second one is a neighbor of the other one
-		int dx = qAbs(m_selected1x - xIndex), dy = qAbs(m_selected1y - yIndex);
+		int dx = qAbs(m_selected1.x() - index.x()), dy = qAbs(m_selected1.y() - index.y());
 		if (dx + dy == 1)
 		{
-			m_selected2x = xIndex;
-			m_selected2y = yIndex;
-			m_selection2->setPosInBoardCoords(QPointF(xIndex, yIndex));
+			m_selected2 = index;
+			m_selection2->setPosInBoardCoords(index);
 			m_selection2->show();
 			m_jobQueue << KDiamond::SwapDiamondsJob;
 		}
 		else
 		{
 			//selected a diamond that it is not a neighbor - move the first selection to this diamond
-			m_selected1x = xIndex;
-			m_selected1y = yIndex;
-			m_selection1->setPosInBoardCoords(QPointF(xIndex, yIndex));
+			m_selected1 = index;
+			m_selection1->setPosInBoardCoords(index);
 			m_selection1->show();
 		}
 	}
@@ -310,70 +300,47 @@ void Board::clickDiamond(int xIndex, int yIndex)
 
 void Board::clickDiamond(Diamond *diamond)
 {
-	//find diamond indices
-	int xIndex, yIndex; bool found = false;
-	for (xIndex = 0; xIndex < m_size; ++xIndex)
-	{
-		for (yIndex = 0; yIndex < m_size; ++yIndex)
-		{
-			if (m_diamonds[xIndex][yIndex] == diamond)
+	for (int x = 0; x < m_size; ++x)
+		for (int y = 0; y < m_size; ++y)
+			if (m_diamonds[x][y] == diamond)
 			{
-				found = true;
-				break;
+				clickDiamond(QPoint(x, y));
+				return;
 			}
-		}
-		if (found)
-			break;
-	}
-	if (!found)
-		return;
-	clickDiamond(xIndex, yIndex);
 }
 
-void Board::dragDiamond(int xIndex, int yIndex, int xDirection, int yDirection)
+void Board::dragDiamond(const QPoint& index, const QPoint& direction)
 {
 	//direction must not be null, and must point along one axis
-	if ((xDirection == 0) ^ (yDirection == 0))
+	if ((direction.x() == 0) ^ (direction.y() == 0))
 	{
 		//find target indices
-		const int xIndex2 = xIndex + xDirection;
-		const int yIndex2 = yIndex + yDirection;
-		if (!onBoard(xIndex2, yIndex2))
+		const QPoint index2 = index + direction;
+		if (!onBoard(index2))
 			return;
 		//simulate the clicks involved in this operation
 		clearSelection();
-		clickDiamond(xIndex, yIndex);
-		clickDiamond(xIndex2, yIndex2);
+		clickDiamond(index);
+		clickDiamond(index2);
 	}
 }
 
-void Board::dragDiamond(Diamond *diamond, int xDirection, int yDirection)
+void Board::dragDiamond(Diamond *diamond, const QPoint& direction)
 {
-	//find diamond indices
-	int xIndex, yIndex; bool found = false;
-	for (xIndex = 0; xIndex < m_size; ++xIndex)
-	{
-		for (yIndex = 0; yIndex < m_size; ++yIndex)
-		{
-			if (m_diamonds[xIndex][yIndex] == diamond)
+	for (int x = 0; x < m_size; ++x)
+		for (int y = 0; y < m_size; ++y)
+			if (m_diamonds[x][y] == diamond)
 			{
-				found = true;
-				break;
+				dragDiamond(QPoint(x, y), direction);
+				return;
 			}
-		}
-		if (found)
-			break;
-	}
-	if (!found)
-		return;
-	dragDiamond(xIndex, yIndex, xDirection, yDirection);
 }
 
 void Board::clearSelection()
 {
 	m_selection1->hide();
 	m_selection2->hide();
-	m_selected1x = m_selected1y = m_selected2x = m_selected2y = -1;
+	m_selected1 = m_selected2 = QPoint(-1, -1);
 }
 
 void Board::timerEvent(QTimerEvent* event)
@@ -396,20 +363,18 @@ void Board::timerEvent(QTimerEvent* event)
 		return;
 	}
 	//execute first job in queue
-	KDiamond::Job job = m_jobQueue.takeFirst();
-	int dx, dy;
-	Diamond *temp;
+	const KDiamond::Job job = m_jobQueue.takeFirst();
 	switch (job)
 	{
-		case KDiamond::SwapDiamondsJob:
-			if (m_selected1x == -1 || m_selected1y == -1 || m_selected2x == -1 || m_selected2y == -1)
+		case KDiamond::SwapDiamondsJob: {
+			if (m_selected1 == QPoint(-1, -1) || m_selected2 == QPoint(-1, -1))
 				break; //this can be the case if, during a cascade, two diamonds are selected (inserts SwapDiamondsJob) and then deselected
 			//ensure that the selected diamonds are neighbors (this is not necessarily the case as diamonds can move to fill gaps)
-			dx = qAbs(m_selected1x - m_selected2x);
-			dy = qAbs(m_selected1y - m_selected2y);
+			const int dx = qAbs(m_selected1.x() - m_selected2.x());
+			const int dy = qAbs(m_selected1.y() - m_selected2.y());
 			if (dx + dy != 1)
 			{
-				m_selected1x = m_selected1y = m_selected2x = m_selected2y = -1;
+				m_selected1 = m_selected2 = QPoint(-1, -1);
 				m_selection1->hide();
 				m_selection2->hide();
 				break;
@@ -417,31 +382,30 @@ void Board::timerEvent(QTimerEvent* event)
 			//start a new cascade
 			m_gameState->resetCascadeCounter();
 			//copy selection info into another storage (to allow the user to select the next two diamonds while the cascade runs)
-			m_swapping1x = m_selected1x;
-			m_swapping1y = m_selected1y;
-			m_swapping2x = m_selected2x;
-			m_swapping2y = m_selected2y;
-			m_selected1x = m_selected1y = m_selected2x = m_selected2y = -1;
+			m_swapping1 = m_selected1;
+			m_swapping2 = m_selected2;
+			m_selected1 = m_selected2 = QPoint(-1, -1);
 			m_selection1->hide();
 			m_selection2->hide();
 			m_jobQueue << KDiamond::RemoveRowsJob; //We already insert this here to avoid another conditional statement.
-		case KDiamond::RevokeSwapDiamondsJob: { //It is not an error that there is no break statement before this case: The swapping code is essentially the same, but the swap job has to do the above variable initializations etc.
+		} //fall through (The swapping code is essentially the same, but the swap job does some additional initializations.)
+		case KDiamond::RevokeSwapDiamondsJob: {
 			//swap diamonds
-			temp = m_diamonds[m_swapping1x][m_swapping1y];
-			m_diamonds[m_swapping1x][m_swapping1y] = m_diamonds[m_swapping2x][m_swapping2y];
-			m_diamonds[m_swapping2x][m_swapping2y] = temp;
+			Diamond* temp = getDiamond(m_swapping1);
+			getDiamond(m_swapping1) = getDiamond(m_swapping2);
+			getDiamond(m_swapping2) = temp;
 			//invoke movement
 			KNotification::event("move");
 			QParallelAnimationGroup* animGroup = new QParallelAnimationGroup(this);
-			QPropertyAnimation* animation1 = new QPropertyAnimation(m_diamonds[m_swapping1x][m_swapping1y], "boardPos", this);
+			QPropertyAnimation* animation1 = new QPropertyAnimation(getDiamond(m_swapping1), "boardPos", this);
 			animation1->setDuration(MoveDuration);
-			animation1->setStartValue(m_diamonds[m_swapping1x][m_swapping1y]->posInBoardCoords());
-			animation1->setEndValue(m_diamonds[m_swapping2x][m_swapping2y]->posInBoardCoords());
+			animation1->setStartValue(getDiamond(m_swapping1)->posInBoardCoords());
+			animation1->setEndValue(getDiamond(m_swapping2)->posInBoardCoords());
 			animGroup->addAnimation(animation1);
-			QPropertyAnimation* animation2 = new QPropertyAnimation(m_diamonds[m_swapping2x][m_swapping2y], "boardPos", this);
+			QPropertyAnimation* animation2 = new QPropertyAnimation(getDiamond(m_swapping2), "boardPos", this);
 			animation2->setDuration(MoveDuration);
-			animation2->setStartValue(m_diamonds[m_swapping2x][m_swapping2y]->posInBoardCoords());
-			animation2->setEndValue(m_diamonds[m_swapping1x][m_swapping1y]->posInBoardCoords());
+			animation2->setStartValue(getDiamond(m_swapping2)->posInBoardCoords());
+			animation2->setEndValue(getDiamond(m_swapping1)->posInBoardCoords());
 			animGroup->addAnimation(animation2);
 			m_runningAnimation = animGroup;
 			m_runningAnimation->start(QAbstractAnimation::DeleteWhenStopped);
@@ -454,7 +418,7 @@ void Board::timerEvent(QTimerEvent* event)
 			if (m_diamondsToRemove.count() == 0)
 			{
 				//no diamond rows were formed by the last move -> revoke movement (unless we are in a cascade)
-				if (m_swapping1x != -1 && m_swapping1y != -1 && m_swapping2x != -1 && m_swapping2y != -1)
+				if (m_swapping1 != QPoint(-1, -1) && m_swapping2 != QPoint(-1, -1))
 					m_jobQueue.prepend(KDiamond::RevokeSwapDiamondsJob);
 				else
 					m_jobQueue << KDiamond::UpdateAvailableMovesJob;
@@ -468,7 +432,7 @@ void Board::timerEvent(QTimerEvent* event)
 					emit numberMoves(-1);
 				}
 				//it is now safe to delete the position of the swapping diamonds
-				m_swapping1x = m_swapping1y = m_swapping2x = m_swapping2y = -1;
+				m_swapping1 = m_swapping2 = QPoint(-1, -1);
 				//report to Game
 				m_gameState->addPoints(m_diamondsToRemove.count());
 				//prepare to fill gaps
@@ -477,36 +441,34 @@ void Board::timerEvent(QTimerEvent* event)
 				KNotification::event("remove");
 				QParallelAnimationGroup* animGroup = new QParallelAnimationGroup(this);
 				QList<QPoint> handledDiamonds;
-				foreach (QPoint *diamondPos, m_diamondsToRemove)
+				foreach (QPoint *diamondPosPtr, m_diamondsToRemove)
 				{
-					if (handledDiamonds.contains(*diamondPos))
+					const QPoint& diamondPos = *diamondPosPtr;
+					if (handledDiamonds.contains(diamondPos))
 						continue;
-					handledDiamonds << *diamondPos;
-					QPropertyAnimation* animation = new QPropertyAnimation(m_diamonds[diamondPos->x()][diamondPos->y()], "frame", this);
+					handledDiamonds << diamondPos;
+					QPropertyAnimation* animation = new QPropertyAnimation(getDiamond(diamondPos), "frame", this);
 					animation->setStartValue(0);
-					animation->setEndValue(m_diamonds[diamondPos->x()][diamondPos->y()]->frameCount() - 1);
+					animation->setEndValue(getDiamond(diamondPos)->frameCount() - 1);
 					animation->setDuration(RemoveDuration);
 					animGroup->addAnimation(animation);
 					//remove selection if necessary
-					if (m_selected1x == diamondPos->x() && m_selected1y == diamondPos->y())
+					if (m_selected1 == diamondPos)
 					{
-						m_selected1x = m_selected2x;
-						m_selected1y = m_selected2y;
-						if (m_selected1x == -1 || m_selected1y == -1)
+						m_selected1 = m_selected2;
+						if (m_selected1 == QPoint(-1, -1))
 							m_selection1->hide();
 						else
 						{
-							m_selection1->setPosInBoardCoords(QPointF(m_selected1x, m_selected1y));
+							m_selection1->setPosInBoardCoords(m_selected1);
 							m_selection1->show();
 						}
-						m_selected2x = -1;
-						m_selected2y = -1;
+						m_selected2 = QPoint(-1, -1);
 						m_selection2->hide();
 					}
-					else if (m_selected2x == diamondPos->x() && m_selected2y == diamondPos->y())
+					else if (m_selected2 == diamondPos)
 					{
-						m_selected2x = -1;
-						m_selected2y = -1;
+						m_selected2 = QPoint(-1, -1);
 						m_selection2->hide();
 					}
 				}
@@ -519,8 +481,8 @@ void Board::timerEvent(QTimerEvent* event)
 			//delete diamonds after their remove animation has played
 			foreach (QPoint *diamondPos, m_diamondsToRemove)
 			{
-				delete m_diamonds[diamondPos->x()][diamondPos->y()];
-				m_diamonds[diamondPos->x()][diamondPos->y()] = 0;
+				delete getDiamond(*diamondPos);
+				getDiamond(*diamondPos) = 0;
 				//cleanup pointer
 				delete diamondPos;
 			}
@@ -639,18 +601,18 @@ void Board::fillGaps()
 			animation->setDuration(qAbs(yt - y) * MoveDuration);
 			animGroup->addAnimation(animation);
 			//if this element is selected, move the selection, too
-			if (m_selected1x == x && m_selected1y == y)
+			if (m_selected1 == QPoint(x, y))
 			{
-				m_selected1y = yt;
+				m_selected1.ry() = yt;
 				QPropertyAnimation* animation = new QPropertyAnimation(m_selection1, "boardPos", this);
 				animation->setStartValue(QPointF(x, y));
 				animation->setEndValue(QPointF(x, yt));
 				animation->setDuration(qAbs(yt - y) * MoveDuration);
 				animGroup->addAnimation(animation);
 			}
-			if (m_selected2x == x && m_selected2y == y)
+			if (m_selected2 == QPoint(x, y))
 			{
-				m_selected2y = yt;
+				m_selected2.ry() = yt;
 				QPropertyAnimation* animation = new QPropertyAnimation(m_selection2, "boardPos", this);
 				animation->setStartValue(QPointF(x, y));
 				animation->setEndValue(QPointF(x, yt));
@@ -684,6 +646,11 @@ void Board::fillGaps()
 	connect(m_runningAnimation, SIGNAL(finished()), this, SLOT(animationFinished()));
 }
 
+bool Board::onBoard(const QPoint& point) const
+{
+	return 0 <= point.x() && point.x() < m_size && 0 <= point.y() && point.y() < m_size;
+}
+
 bool Board::onBoard(int x, int y) const
 {
 	return 0 <= x && x < m_size && 0 <= y && y < m_size;
@@ -693,9 +660,8 @@ void Board::showHint()
 {
 	if (m_availableMoves.isEmpty())
 		return;
-	QPoint location = m_availableMoves.at(qrand()%m_availableMoves.size());
-	m_selected1x = location.x();
-	m_selected1y = location.y();
+	const QPoint location = m_availableMoves.at(qrand()%m_availableMoves.size());
+	m_selected1 = location;
 	m_selection1->setPosInBoardCoords(location);
 	m_selection1->show();
 	m_gameState->removePoints(3);
@@ -732,8 +698,8 @@ void Board::stateChange(KDiamond::State state)
 				for (int y = 0; y < m_size; ++y)
 					m_diamonds[x][y]->show();
 			}
-			m_selection1->setVisible(m_selected1x != -1 && m_selected1y != -1);
-			m_selection2->setVisible(m_selected2x != -1 && m_selected2y != -1);
+			m_selection1->setVisible(m_selected1 != QPoint(-1, -1));
+			m_selection2->setVisible(m_selected2 != QPoint(-1, -1));
 			if (m_timerId == -1)
 				m_timerId = startTimer(UpdateInterval);
 			break;

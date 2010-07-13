@@ -102,7 +102,7 @@ void Diamond::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 		{
 			if (qAbs(dx) >= diamondSize.width() * draggingFuzziness)
 			{
-				m_board->dragDiamond(this, dx < 0 ? -1 : 1, 0);
+				m_board->dragDiamond(this, QPoint(dx < 0 ? -1 : 1, 0));
 				m_mouseDown = false; //mouse action has been handled
 			}
 		}
@@ -110,7 +110,7 @@ void Diamond::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 		{
 			if (qAbs(dy) >= diamondSize.height() * draggingFuzziness)
 			{
-				m_board->dragDiamond(this, 0, dy < 0 ? -1 : 1);
+				m_board->dragDiamond(this, QPoint(0, dy < 0 ? -1 : 1));
 				m_mouseDown = false;
 			}
 		}

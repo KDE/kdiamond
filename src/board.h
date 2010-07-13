@@ -72,10 +72,10 @@ class Board : public QGraphicsScene
 		void resizeScene(int width, int height, bool force = false);
 		int diamondEdgeLength() const;
 
-		void clickDiamond(int xIndex, int yIndex);
+		void clickDiamond(const QPoint& index);
 		void clickDiamond(Diamond *diamond);
-		void dragDiamond(int xIndex, int yIndex, int xDirection, int yDirection);
-		void dragDiamond(Diamond *diamond, int xDirection, int yDirection);
+		void dragDiamond(const QPoint& index, const QPoint& direction);
+		void dragDiamond(Diamond *diamond, const QPoint& direction);
 	public slots:
 		void animationFinished();
 		void clearSelection();
@@ -93,7 +93,9 @@ class Board : public QGraphicsScene
 		QSet<QPoint *> findCompletedRows();
 		void fillGaps();
 		void getMoves();
+		Diamond*& getDiamond(const QPoint& point) const { return m_diamonds[point.x()][point.y()]; }
 		bool onBoard(int x, int y) const;
+		bool onBoard(const QPoint& point) const;
 	private:
 		KDiamond::Size m_size;
 		KDiamond::ColorCount m_colorCount;
@@ -110,8 +112,8 @@ class Board : public QGraphicsScene
 		QAbstractAnimation* m_runningAnimation;
 
 		int m_leftOffset, m_diamondEdgeLength; //necessary for conversion between board coordinates (i.e. (0,0) for the top left point, 1 unit = 1 diamond) and scene coordinates (as defined by Qt)
-		int m_selected1x, m_selected1y, m_selected2x, m_selected2y; //coordinates of the selected items (or -1 if they are not selected)
-		int m_swapping1x, m_swapping1y, m_swapping2x, m_swapping2y; //coordinates of the swapping/swapped items (stored to revoke the swapping if necessary)
+		QPoint m_selected1, m_selected2; //coordinates of the selected items (or QPoint(-1,-1) if they are not selected)
+		QPoint m_swapping1, m_swapping2; //coordinates of the swapping/swapped items (stored to revoke the swapping if necessary)
 };
 
 #endif //KDIAMOND_BOARD_H

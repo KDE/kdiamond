@@ -48,12 +48,6 @@ class Diamond : public KGameRenderedItem
 		Diamond(int xPos, int yPos, KDiamond::Color color, Board *board);
 
 		KDiamond::Color color() const;
-		int xIndex() const;
-		int yIndex() const;
-
-		void setXIndex(int xIndex);
-		void setYIndex(int yIndex);
-
 		QPointF posInBoardCoords() const;
 		void setPosInBoardCoords(const QPointF &pos);
 	public slots:
@@ -66,7 +60,6 @@ class Diamond : public KGameRenderedItem
 		Board *m_board;
 
 		KDiamond::Color m_color;
-		int m_xIndex, m_yIndex; //the index of the diamond in the Board's internal array (used for communication with Board)
 		QPointF m_pos;
 		bool m_mouseDown;
 		QPointF m_mouseDownPos; //position of last mouse-down event in diamond coordinates
