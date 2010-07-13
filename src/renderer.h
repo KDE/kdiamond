@@ -21,6 +21,7 @@
 
 #include "diamond.h"
 
+class KGameRenderer;
 class QPixmap;
 class RendererPrivate;
 
@@ -31,6 +32,7 @@ class Renderer {
 		Q_DISABLE_COPY(Renderer)
 	public:
 		static Renderer *self();
+		KGameRenderer* renderer();
 
 		void loadTheme(const QString &name);
 		void boardResized(int width, int height, int leftOffset, int diamondEdgeLength, int diamondCountOnEdge);
@@ -38,8 +40,6 @@ class Renderer {
 		int removeAnimFrameCount();
 		bool hasBorder();
 
-		QPixmap diamond(KDiamond::Color color);
-		QPixmap removeFrame(KDiamond::Color color, int frame);
 		QPixmap background();
 	private:
 		RendererPrivate *p;

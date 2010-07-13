@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright 2008-2009 Stefan Majewsky <majewsky.stefan@ages-skripte.org>
+ *   Copyright 2008-2010 Stefan Majewsky <majewsky.stefan@ages-skripte.org>
  *
  *   This program is free software; you can redistribute it and/or
  *   modify it under the terms of the GNU General Public
@@ -22,12 +22,29 @@
 
 #include <QGraphicsSceneMouseEvent>
 
+QString colorKey(KDiamond::Color color)
+{
+	QString colors[] = {
+		QString::fromLatin1("kdiamond-selection"),
+		QString::fromLatin1("kdiamond-red"),
+		QString::fromLatin1("kdiamond-green"),
+		QString::fromLatin1("kdiamond-blue"),
+		QString::fromLatin1("kdiamond-yellow"),
+		QString::fromLatin1("kdiamond-white"),
+		QString::fromLatin1("kdiamond-black"),
+		QString::fromLatin1("kdiamond-orange")
+	};
+	return colors[(color < 0 || color > KDiamond::ColorsCount) ? 0 : color];
+}
+
+
 Diamond::Diamond(int xPos, int yPos, KDiamond::Color color, Board *board)
-	: QGraphicsPixmapItem(0, board)
+	: KGameRenderedItem(Renderer::self()->renderer(), colorKey(color))
 	, m_board(board)
 	, m_color(color)
 	, m_pos(xPos, yPos)
 {
+	board->addItem(this);
 	//connect to board
 	connect(board, SIGNAL(boardResized()), this, SLOT(updateGeometry()));
 	//selection markers do not react to mouse events; they should also appear behind diamonds
@@ -47,10 +64,9 @@ KDiamond::Color Diamond::color() const
 
 void Diamond::updateGeometry()
 {
-	setPixmap(Renderer::self()->diamond(m_color));
 	//resize diamond (ensure at least 1 pixel edge length to avoid problems with zero size)
 	const qreal diamondEdgeLength = qMax(1, m_board->diamondEdgeLength());
-	const QRectF itemBounds(offset(), pixmap().size());
+	const QRectF itemBounds(QPointF(), renderSize());
 	const QRectF sceneBounds = mapToScene(itemBounds).boundingRect();
 	scale(diamondEdgeLength / sceneBounds.width(), diamondEdgeLength / sceneBounds.height());
 	//change position

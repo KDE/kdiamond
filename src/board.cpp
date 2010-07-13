@@ -235,6 +235,10 @@ void Board::resizeScene(int newWidth, int newHeight, bool force)
 	//renderer
 	Renderer::self()->boardResized(newWidth, newHeight, m_leftOffset, m_diamondEdgeLength, m_size);
 	//diamonds
+	QSize diamondSize(m_diamondEdgeLength, m_diamondEdgeLength);
+	for (int x = 0; x < m_size; ++x)
+		for (int y = 0; y < m_size; ++y)
+			m_diamonds[x][y]->setRenderSize(diamondSize);
 	emit boardResized(); //give diamonds the chance to change their metrics
 	//background
 	setBackgroundBrush(Renderer::self()->background());
@@ -634,6 +638,7 @@ void Board::fillGaps()
 			--yt;
 			m_diamonds[x][y] = new Diamond(x, yt, (KDiamond::Color) (qrand() % m_colorCount + 1), this);
 			m_diamonds[x][y]->setPosInBoardCoords(QPointF(x, yt));
+			m_diamonds[x][y]->setRenderSize(QSize(m_diamondEdgeLength, m_diamondEdgeLength));
 			m_diamonds[x][y]->updateGeometry();
 			m_animator->addItem(m_diamonds[x][y], QPointF(x, yt), QPointF(x, y));
 			maxMoveLength = qMax(maxMoveLength, y - yt);

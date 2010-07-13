@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright 2008-2009 Stefan Majewsky <majewsky.stefan@ages-skripte.org>
+ *   Copyright 2008-2010 Stefan Majewsky <majewsky.stefan@ages-skripte.org>
  *
  *   This program is free software; you can redistribute it and/or
  *   modify it under the terms of the GNU General Public
@@ -19,11 +19,8 @@
 #ifndef KDIAMOND_DIAMOND_H
 #define KDIAMOND_DIAMOND_H
 
-#ifndef KDIAMOND_BOARD_H
-	class Board;
-#endif
-
-#include <QGraphicsPixmapItem>
+class Board;
+#include <KGameRenderedItem>
 
 namespace KDiamond
 {
@@ -38,11 +35,12 @@ namespace KDiamond
 		YellowDiamond,
 		WhiteDiamond,
 		BlackDiamond,
-		OrangeDiamond
+		OrangeDiamond,
+		ColorsCount
 	};
 }
 
-class Diamond : public QObject, public QGraphicsPixmapItem
+class Diamond : public KGameRenderedItem
 {
 	Q_OBJECT
 	public:

@@ -114,7 +114,7 @@ RemoveAnimator::RemoveAnimator()
 void RemoveAnimator::setFrame(int frame)
 {
 	foreach (const AnimationData &data, m_data)
-		data.diamond->setPixmap(Renderer::self()->removeFrame(data.diamond->color(), frame - 1));
+		data.diamond->setFrame(frame - 1);
 	if (frame == m_frameCount)
 		m_playedLastFrame = true;
 }

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright 2008-2009 Stefan Majewsky <majewsky.stefan@ages-skripte.org>
+ *   Copyright 2008-2010 Stefan Majewsky <majewsky.stefan@ages-skripte.org>
  *
  *   This program is free software; you can redistribute it and/or
  *   modify it under the terms of the GNU General Public
@@ -35,9 +35,8 @@ class RendererPrivate
 
 		KGameRenderer m_renderer;
 
-		QSize m_diamondSize;
 		QSize m_sceneSize;
-		int m_leftOffset, m_diamondCountOnEdge;
+		int m_leftOffset, m_diamondEdgeLength, m_diamondCountOnEdge;
 
 		bool m_hasBorder;
 		qreal m_borderPercentage;
@@ -66,6 +65,11 @@ Renderer *Renderer::self()
 	return &r;
 }
 
+KGameRenderer* Renderer::renderer()
+{
+	return &p->m_renderer;
+}
+
 void Renderer::loadTheme(const QString &name)
 {
 	p->m_renderer.setTheme(name);
@@ -77,7 +81,7 @@ void Renderer::loadTheme(const QString &name)
 void Renderer::boardResized(int width, int height, int leftOffset, int diamondEdgeLength, int diamondCountOnEdge)
 {
 	p->m_sceneSize = QSize(width, height);
-	p->m_diamondSize = QSize(diamondEdgeLength, diamondEdgeLength);
+	p->m_diamondEdgeLength = diamondEdgeLength;
 	p->m_leftOffset = leftOffset;
 	p->m_diamondCountOnEdge = diamondCountOnEdge;
 }
@@ -87,7 +91,7 @@ QPixmap Renderer::background()
 	QPixmap pix = p->m_renderer.spritePixmap("kdiamond-background", p->m_sceneSize);
 	if (p->m_hasBorder)
 	{
-		const qreal innerBoardEdgeLength = p->m_diamondCountOnEdge * p->m_diamondSize.width();
+		const qreal innerBoardEdgeLength = p->m_diamondCountOnEdge * p->m_diamondEdgeLength;
 		const qreal padding = p->m_borderPercentage * innerBoardEdgeLength;
 		const int boardEdgeLength = 2.0 * padding + innerBoardEdgeLength;
 		QRect boardGeometry(p->m_leftOffset - padding, -padding, boardEdgeLength, boardEdgeLength);
@@ -129,14 +133,4 @@ QString colorToString(KDiamond::Color color)
 		default:
 			return "kdiamond-selection";
 	}
-}
-
-QPixmap Renderer::diamond(KDiamond::Color color)
-{
-	return p->m_renderer.spritePixmap(colorToString(color), p->m_diamondSize);
-}
-
-QPixmap Renderer::removeFrame(KDiamond::Color color, int frame)
-{
-	return p->m_renderer.spritePixmap(colorToString(color), p->m_diamondSize, frame);
 }
