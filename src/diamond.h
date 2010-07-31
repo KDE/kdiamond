@@ -19,7 +19,7 @@
 #ifndef KDIAMOND_DIAMOND_H
 #define KDIAMOND_DIAMOND_H
 
-#include <KGameRenderedItem>
+#include <KGameRenderedObjectItem>
 
 namespace KDiamond
 {
@@ -39,7 +39,7 @@ namespace KDiamond
 	};
 }
 
-class Diamond : public KGameRenderedItem
+class Diamond : public KGameRenderedObjectItem
 {
 	Q_OBJECT
 	public:
