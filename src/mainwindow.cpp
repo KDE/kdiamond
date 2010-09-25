@@ -49,7 +49,7 @@ MainWindow::MainWindow(QWidget *parent)
 	, m_game(0)
 	, m_view(new KDiamond::View)
 	, m_infoBar(0)
-	, m_newAct(new KActionMenu(KIcon("document-new"), i18nc("new game", "&New"), this))
+	, m_newAct(new KActionMenu(KIcon( QLatin1String( "document-new") ), i18nc("new game", "&New" ), this))
 	, m_newTimedAct(new KAction(i18n("Timed game"), this))
 	, m_newUntimedAct(new KAction(i18n("Untimed game"), this))
 {
@@ -58,7 +58,7 @@ MainWindow::MainWindow(QWidget *parent)
 	m_newAct->setShortcut(KStandardShortcut::openNew());
 	m_newAct->setToolTip(i18n("Start a new game"));
 	m_newAct->setWhatsThis(i18n("Start a new game."));
-	actionCollection()->addAction("game_new", m_newAct);
+	actionCollection()->addAction( QLatin1String( "game_new" ), m_newAct);
 	connect(m_newAct, SIGNAL(triggered()), this, SLOT(startGameDispatcher()));
 	m_newAct->addAction(m_newTimedAct);
 	connect(m_newTimedAct, SIGNAL(triggered()), this, SLOT(startGameDispatcher()));
