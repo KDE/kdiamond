@@ -22,4 +22,4 @@ target_link_libraries(kdiamond ${KDE4_KDEUI_LIBS} kdegames ${KDE4_KNOTIFYCONFIG_
 install(TARGETS kdiamond  ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES kdiamond.kcfg kdiamond.notifyrc kdiamondui.rc  DESTINATION ${DATA_INSTALL_DIR}/kdiamond)
 install(FILES kdiamond.knsrc  DESTINATION ${CONFIG_INSTALL_DIR})
-install(FILES kdiamond.desktop  DESTINATION ${XDG_APPS_INSTALL_DIR})
+install(PROGRAMS kdiamond.desktop  DESTINATION ${XDG_APPS_INSTALL_DIR})
