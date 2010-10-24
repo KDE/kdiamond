@@ -29,6 +29,7 @@ Comment[zh_TW]=KDiamond 寶石方塊
 
 [Context/game]
 Name=Game
+Name[ast]=Xuegu
 Name[ca]=Joc
 Name[ca@valencia]=Joc
 Name[cs]=Hra
@@ -77,6 +78,7 @@ Name[x-test]=xxGamexx
 Name[zh_CN]=游戏
 Name[zh_TW]=遊戲
 Comment=Sounds that appear during a game
+Comment[ast]=Soníos qu'apaecen durante el xuegu
 Comment[ca]=Sons que apareixen durant la partida
 Comment[ca@valencia]=Sons que apareixen durant la partida
 Comment[da]=Lyde der fremkommer under et spil
@@ -119,6 +121,7 @@ Comment[zh_TW]=遊戲間的音效
 
 [Event/remove]
 Name=Diamonds removed
+Name[ast]=Diamantes desaniciaos
 Name[ca]=Diamants eliminats
 Name[ca@valencia]=Diamants eliminats
 Name[cs]=Odebrány diamanty
@@ -162,6 +165,7 @@ Name[x-test]=xxDiamonds removedxx
 Name[zh_CN]=已消去钻石
 Name[zh_TW]=寶石已移除
 Comment=Diamonds were removed.
+Comment[ast]=Desaniciáronse los diamantes
 Comment[ca]=S'han eliminat els diamants.
 Comment[ca@valencia]=S'han eliminat els diamants.
 Comment[cs]=Diamanty byly odebrány.
@@ -210,6 +214,7 @@ Action=Sound
 
 [Event/move]
 Name=Diamonds moving
+Name[ast]=Moviendo los diamantes
 Name[ca]=Movent els diamants
 Name[ca@valencia]=Movent els diamants
 Name[cs]=Pohybující se diamanty
@@ -253,6 +258,7 @@ Name[x-test]=xxDiamonds movingxx
 Name[zh_CN]=移动中的钻石
 Name[zh_TW]=寶石移動中
 Comment=Diamonds are moving.
+Comment[ast]=Moviéronse los diamantes
 Comment[ca]=Els diamants s'estan movent.
 Comment[ca@valencia]=Els diamants s'estan movent.
 Comment[cs]=Diamanty se pohybují.
@@ -301,6 +307,7 @@ Action=None
 
 [Event/gamefinished]
 Name=Game over
+Name[ast]=Partida finada
 Name[ca]=Fi de la partida
 Name[ca@valencia]=Fi de la partida
 Name[cs]=Konec hry
@@ -348,6 +355,7 @@ Name[x-test]=xxGame overxx
 Name[zh_CN]=游戏结束
 Name[zh_TW]=遊戲結束
 Comment=Time is up.
+Comment[ast]=El tiempu aumentó.
 Comment[ca]=S'ha esgotat el temps.
 Comment[ca@valencia]=S'ha esgotat el temps.
 Comment[da]=Tiden er gået.
