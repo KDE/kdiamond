@@ -21,7 +21,7 @@
 
 #include <QPropertyAnimation>
 
-const int KDiamond::Board::MoveDuration = 240; //duration of a move animation (per coordinate unit) in milliseconds
+const int KDiamond::Board::MoveDuration = 100; //duration of a move animation (per coordinate unit) in milliseconds
 const int KDiamond::Board::RemoveDuration = 200; //duration of a move animation in milliseconds
 
 //NOTE: The corresponding difficulty values are {20, 30, 40, 50, 60} (see KGameDifficulty::standardLevel).
@@ -285,14 +285,14 @@ void KDiamond::Board::fillGaps()
 void KDiamond::Board::slotClicked()
 {
 	const QPoint point = findDiamond(qobject_cast<Diamond*>(sender()));
-	if (point.x() + point.y() > 0)
+	if (point.x() >= 0 && point.y() >= 0)
 		emit clicked(point);
 }
 
 void KDiamond::Board::slotDragged(const QPoint& direction)
 {
 	const QPoint point = findDiamond(qobject_cast<Diamond*>(sender()));
-	if (point.x() + point.y() > 0)
+	if (point.x() >= 0 && point.y() >= 0)
 		emit dragged(point, direction);
 }
 
