@@ -17,7 +17,7 @@ kde4_add_kcfg_files(kdiamond_SRCS settings.kcfgc)
 kde4_add_app_icon(kdiamond_SRCS "pics/hi*-app-kdiamond.png")
 
 kde4_add_executable(kdiamond ${kdiamond_SRCS})
-target_link_libraries(kdiamond ${KDE4_KDEUI_LIBS} kdegames ${KDE4_KNOTIFYCONFIG_LIBS} ${KDE4_KNEWSTUFF2_LIBS})
+target_link_libraries(kdiamond ${KDE4_KDEUI_LIBS} kdegames ${KDE4_KNOTIFYCONFIG_LIBS})
 
 install(TARGETS kdiamond  ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES kdiamond.kcfg kdiamond.notifyrc kdiamondui.rc  DESTINATION ${DATA_INSTALL_DIR}/kdiamond)
