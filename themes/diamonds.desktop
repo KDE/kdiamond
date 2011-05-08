@@ -1,6 +1,7 @@
 [KGameTheme]
 VersionFormat=1
 Name=Diamonds
+Name[bs]=Dijamanti
 Name[ca]=Diamants
 Name[ca@valencia]=Diamants
 Name[cs]=Diamanty
@@ -38,6 +39,7 @@ Name[x-test]=xxDiamondsxx
 Name[zh_CN]=钻石
 Name[zh_TW]=方塊
 Description=A theme based on real looking diamonds.
+Description[bs]=Tema bazirana na stvarnom izgledu dijamanata.
 Description[ca]=Un tema basat en diamants d'aspecte real.
 Description[ca@valencia]=Un tema basat en diamants d'aspecte real.
 Description[da]=Et tema baseret på vellignende diamanter.
