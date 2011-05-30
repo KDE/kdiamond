@@ -191,6 +191,7 @@ void MainWindow::configureSettings()
 		return;
 	KConfigDialog *dialog = new KConfigDialog(this, "settings", Settings::self());
 	dialog->addPage(new KGameThemeSelector(dialog, Settings::self(), KGameThemeSelector::NewStuffEnableDownload), i18n("Theme"), "games-config-theme");
+	dialog->setFaceType(KConfigDialog::Plain); //only one page -> no page selection necessary
 	connect(dialog, SIGNAL(settingsChanged(const QString&)), this, SLOT(loadSettings()));
 	dialog->setHelp(QString(), "kdiamond");
 	dialog->show();
