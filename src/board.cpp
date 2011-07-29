@@ -115,7 +115,9 @@ void KDiamond::Board::slotAnimationFinished()
 {
 	if (m_runningAnimations.isEmpty())
 		return;
-	m_runningAnimations.removeAll(reinterpret_cast<QAbstractAnimation*>(sender()));
+	//static_cast is enough, no need for a qobject_cast
+	//because result pointer is never dereferenced here
+	m_runningAnimations.removeAll(static_cast<QAbstractAnimation*>(sender()));
 	if (m_runningAnimations.isEmpty())
 		emit animationsFinished();
 }
