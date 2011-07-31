@@ -125,7 +125,7 @@ void MainWindow::startGame(KDiamond::Mode mode)
 	m_gameState->setMode(mode);
 	m_game = new Game(m_gameState, KGameDifficulty::level());
 	connect(m_gameState, SIGNAL(stateChanged(KDiamond::State)), m_game, SLOT(stateChange(KDiamond::State)));
-	connect(m_gameState, SIGNAL(message(const QString&)), m_game, SLOT(message(const QString&)));
+	connect(m_gameState, SIGNAL(message(QString)), m_game, SLOT(message(QString)));
 	connect(m_game, SIGNAL(numberMoves(int)), m_infoBar, SLOT(updateMoves(int)));
 	connect(m_game, SIGNAL(pendingAnimationsFinished()), this, SLOT(gameIsOver()));
 	connect(m_hintAct, SIGNAL(triggered()), m_game, SLOT(showHint()));
@@ -192,7 +192,7 @@ void MainWindow::configureSettings()
 	KConfigDialog *dialog = new KConfigDialog(this, "settings", Settings::self());
 	dialog->addPage(new KGameThemeSelector(dialog, Settings::self(), KGameThemeSelector::NewStuffEnableDownload), i18n("Theme"), "games-config-theme");
 	dialog->setFaceType(KConfigDialog::Plain); //only one page -> no page selection necessary
-	connect(dialog, SIGNAL(settingsChanged(const QString&)), this, SLOT(loadSettings()));
+	connect(dialog, SIGNAL(settingsChanged(QString)), this, SLOT(loadSettings()));
 	dialog->setHelp(QString(), "kdiamond");
 	dialog->show();
 }

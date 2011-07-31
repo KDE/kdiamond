@@ -64,7 +64,7 @@ Game::Game(KDiamond::GameState* state, KGameDifficulty::standardLevel difficulty
 {
 	connect(m_board, SIGNAL(animationsFinished()), SLOT(animationFinished()));
 	connect(m_board, SIGNAL(clicked(QPoint)), SLOT(clickDiamond(QPoint)));
-	connect(m_board, SIGNAL(dragged(QPoint, QPoint)), SLOT(dragDiamond(QPoint, QPoint)));
+	connect(m_board, SIGNAL(dragged(QPoint,QPoint)), SLOT(dragDiamond(QPoint,QPoint)));
 	//init scene (with some default scene size that makes board coordinates equal scene coordinates)
 	const int minSize = m_board->gridSize();
 	setSceneRect(0.0, 0.0, minSize, minSize);
