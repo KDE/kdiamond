@@ -24,7 +24,7 @@ class Diamond;
 
 class QAbstractAnimation;
 #include <QGraphicsScene>
-#include <KGameDifficulty>
+#include <KgDifficulty>
 class KGamePopupItem;
 class KGameRenderer;
 
@@ -49,7 +49,7 @@ class Game : public QGraphicsScene
 {
 	Q_OBJECT
 	public:
-		Game(KDiamond::GameState* state, KGameDifficulty::standardLevel difficulty);
+		Game(KDiamond::GameState* state, KgDifficultyLevel::StandardLevel difficulty);
 	public Q_SLOTS:
 		void updateGraphics();
 

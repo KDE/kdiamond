@@ -33,7 +33,7 @@
 #include <KActionCollection>
 #include <KApplication>
 #include <KConfigDialog>
-#include <KGameDifficulty>
+#include <KgDifficulty>
 #include <KGameThemeSelector>
 #include <KLocalizedString>
 #include <KMessageBox>
@@ -72,12 +72,10 @@ MainWindow::MainWindow(QWidget *parent)
 	KStandardAction::preferences(this, SLOT(configureSettings()), actionCollection());
 	KStandardAction::configureNotifications(this, SLOT(configureNotifications()), actionCollection());
 	//difficulty
-	KGameDifficulty::init(this, this, SLOT(startGameDispatcher()));
-	KGameDifficulty::addStandardLevel(KGameDifficulty::VeryEasy);
-	KGameDifficulty::addStandardLevel(KGameDifficulty::Easy);
-	KGameDifficulty::addStandardLevel(KGameDifficulty::Medium);
-	KGameDifficulty::addStandardLevel(KGameDifficulty::Hard);
-	KGameDifficulty::addStandardLevel(KGameDifficulty::VeryHard);
+	m_difficulty = new KgDifficulty(this);
+	m_difficulty->addStandardLevelRange(KgDifficultyLevel::VeryEasy, KgDifficultyLevel::VeryHard);
+	KgDifficultyGUI::init(m_difficulty, this);
+	connect(m_difficulty, SIGNAL(changed(const KgDifficultyLevel*)), SLOT(startGameDispatcher()));
 	//late GUI initialisation
 	setupGUI(QSize(300, 400)); //TODO: find better solution for a minimum size
 	setCaption(i18nc("The application's name", "KDiamond"));
@@ -87,12 +85,8 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(m_gameState, SIGNAL(stateChanged(KDiamond::State)), this, SLOT(stateChange(KDiamond::State)));
 	connect(m_gameState, SIGNAL(pointsChanged(int)), m_infoBar, SLOT(updatePoints(int)));
 	connect(m_gameState, SIGNAL(leftTimeChanged(int)), m_infoBar, SLOT(updateRemainingTime(int)));
-	//selected skill
-	int skill = Settings::skill();
-	if (skill < KGameDifficulty::VeryEasy) //includes default values like 0 or 1
-		KGameDifficulty::setLevel(KGameDifficulty::Easy);
-	else
-		KGameDifficulty::setLevel((KGameDifficulty::standardLevel) (skill));
+	//init game
+	startGameDispatcher();
 }
 
 MainWindow::~MainWindow()
@@ -109,21 +103,18 @@ void MainWindow::startGameDispatcher()
 	else if (sender() == m_newTimedAct)
 		startGame(KDiamond::NormalGame);
 	else
-		//attention: this may also be used by KGameDifficulty
+		//attention: this may also be used by KgDifficulty and the ctor
 		startGame(Settings::untimed() ? KDiamond::UntimedGame : KDiamond::NormalGame);
 }
 
 void MainWindow::startGame(KDiamond::Mode mode)
 {
-	//save (eventually changed) difficulty level
-	KGameDifficulty::standardLevel level = KGameDifficulty::level();
-	Settings::setSkill((int) level);
 	//delete old board
 	delete m_game;
 	//start new game
 	m_gameState->startNewGame();
 	m_gameState->setMode(mode);
-	m_game = new Game(m_gameState, KGameDifficulty::level());
+	m_game = new Game(m_gameState, m_difficulty->currentLevel()->standardLevel());
 	connect(m_gameState, SIGNAL(stateChanged(KDiamond::State)), m_game, SLOT(stateChange(KDiamond::State)));
 	connect(m_gameState, SIGNAL(message(QString)), m_game, SLOT(message(QString)));
 	connect(m_game, SIGNAL(numberMoves(int)), m_infoBar, SLOT(updateMoves(int)));
@@ -151,10 +142,18 @@ void MainWindow::gameIsOver()
 	scoreInfo[KScoreDialog::Custom1] = m_gameState->mode() == KDiamond::UntimedGame ? i18n("Untimed") : i18n("Timed");
 	//report score
 	QPointer<KScoreDialog> dialog = new KScoreDialog(KScoreDialog::Name | KScoreDialog::Score, this);
-	dialog->addLocalizedConfigGroupNames(KGameDifficulty::localizedLevelStrings());
-	dialog->setConfigGroupWeights(KGameDifficulty::levelWeights());
+
+	QMap<QByteArray, QString> localizedLevelStrings;
+	QMap<int, QByteArray> levelWeights;
+	foreach (const KgDifficultyLevel* level, m_difficulty->levels())
+	{
+		localizedLevelStrings.insert(level->key(), level->title());
+		levelWeights.insert(level->hardness(), level->key());
+	}
+	dialog->addLocalizedConfigGroupNames(localizedLevelStrings);
+	dialog->setConfigGroupWeights(levelWeights);
 	dialog->addField(KScoreDialog::Custom1, i18n("Mode"), "mode");
-	dialog->setConfigGroup(KGameDifficulty::localizedLevelString());
+	dialog->setConfigGroup(m_difficulty->currentLevel()->title());
 	dialog->addScore(scoreInfo);
 	dialog->exec();
 	delete dialog;
@@ -168,9 +167,18 @@ void MainWindow::showHighscores()
 		actionCollection()->action("game_pause")->setChecked(true);
 	//show dialog
 	QPointer<KScoreDialog> dialog = new KScoreDialog(KScoreDialog::Name | KScoreDialog::Score, this);
-	dialog->addLocalizedConfigGroupNames(KGameDifficulty::localizedLevelStrings());
-	dialog->setConfigGroupWeights(KGameDifficulty::levelWeights());
+
+	QMap<QByteArray, QString> localizedLevelStrings;
+	QMap<int, QByteArray> levelWeights;
+	foreach (const KgDifficultyLevel* level, m_difficulty->levels())
+	{
+		localizedLevelStrings.insert(level->key(), level->title());
+		levelWeights.insert(level->hardness(), level->key());
+	}
+	dialog->addLocalizedConfigGroupNames(localizedLevelStrings);
+	dialog->setConfigGroupWeights(levelWeights);
 	dialog->addField(KScoreDialog::Custom1, i18n("Mode"), "mode");
+	dialog->setConfigGroup(m_difficulty->currentLevel()->title());
 	dialog->exec();
 	delete dialog;
 }

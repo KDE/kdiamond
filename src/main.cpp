@@ -23,7 +23,6 @@
 #include <KApplication>
 #include <KAboutData>
 #include <KCmdLineArgs>
-#include <KGameDifficulty>
 #include <KGlobal>
 #include <KLocale>
 #include <KStandardDirs>
@@ -43,31 +42,10 @@ int main(int argc, char ** argv)
 	about.addCredit(ki18n("Jeffrey Kelling"), ki18n("Technical consultant"), "kelling.jeffrey@ages-skripte.org");
 	KCmdLineArgs::init(argc, argv, &about);
 
-	KCmdLineOptions options;
-	options.add("VeryEasy", ki18n("Start with Very Easy difficulty level"));
-	options.add("Easy", ki18n("Start with Easy difficulty level"));
-	options.add("Medium", ki18n("Start with Medium difficulty level"));
-	options.add("Hard", ki18n("Start with Hard difficulty level"));
-	options.add("VeryHard", ki18n("Start with Very Hard difficulty level"));
-	KCmdLineArgs::addCmdLineOptions(options);
-
 	KApplication app;
 	KGlobal::locale()->insertCatalog( QLatin1String( "libkdegames" ));
 	//resource directory for KNewStuff2 (this call causes the directory to be created; its existence is necessary for the downloader)
 	KStandardDirs::locateLocal("appdata", "themes/");
-
-	KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
-	if (args->isSet("VeryEasy"))
-		Settings::setSkill(KGameDifficulty::VeryEasy);
-	if (args->isSet("Easy"))
-		Settings::setSkill(KGameDifficulty::Easy);
-	if (args->isSet("Medium"))
-		Settings::setSkill(KGameDifficulty::Medium);
-	if (args->isSet("Hard"))
-		Settings::setSkill(KGameDifficulty::Hard);
-	if (args->isSet("VeryHard"))
-		Settings::setSkill(KGameDifficulty::VeryHard);
-	args->clear();
 
 	// see if we are starting with session management
 	if (app.isSessionRestored())

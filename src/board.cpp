@@ -24,11 +24,11 @@
 const int KDiamond::Board::MoveDuration = 100; //duration of a move animation (per coordinate unit) in milliseconds
 const int KDiamond::Board::RemoveDuration = 200; //duration of a move animation in milliseconds
 
-//NOTE: The corresponding difficulty values are {20, 30, 40, 50, 60} (see KGameDifficulty::standardLevel).
+//NOTE: The corresponding difficulty values are {20, 30, 40, 50, 60} (see KgDifficultyLevel::StandardLevel).
 static int boardSizes[] = { 12, 10, 8, 8, 8 };
 static int boardColorCounts[] = { 5, 5, 5, 6, 7 };
 
-KDiamond::Board::Board(KGameRenderer* renderer, KGameDifficulty::standardLevel difficulty)
+KDiamond::Board::Board(KGameRenderer* renderer, KgDifficultyLevel::StandardLevel difficulty)
 	: m_size(boardSizes[difficulty / 10 - 2])
 	, m_colorCount(boardColorCounts[difficulty / 10 - 2])
 	, m_paused(false)

@@ -25,6 +25,7 @@ class Game;
 class QTime;
 class KAction;
 class KActionMenu;
+class KgDifficulty;
 #include <KXmlGuiWindow>
 
 namespace KDiamond
@@ -54,6 +55,7 @@ class MainWindow : public KXmlGuiWindow
 	protected Q_SLOTS:
 		void pausedAction(bool paused);
 	private:
+		KgDifficulty* m_difficulty;
 		KDiamond::GameState* m_gameState;
 		Game* m_game;
 		KDiamond::View* m_view;
