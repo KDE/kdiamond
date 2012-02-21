@@ -142,20 +142,9 @@ void MainWindow::gameIsOver()
 	scoreInfo[KScoreDialog::Custom1] = m_gameState->mode() == KDiamond::UntimedGame ? i18n("Untimed") : i18n("Timed");
 	//report score
 	QPointer<KScoreDialog> dialog = new KScoreDialog(KScoreDialog::Name | KScoreDialog::Score, this);
-
-	QMap<QByteArray, QString> localizedLevelStrings;
-	QMap<int, QByteArray> levelWeights;
-	foreach (const KgDifficultyLevel* level, m_difficulty->levels())
-	{
-		localizedLevelStrings.insert(level->key(), level->title());
-		levelWeights.insert(level->hardness(), level->key());
-	}
-	dialog->addLocalizedConfigGroupNames(localizedLevelStrings);
-	dialog->setConfigGroupWeights(levelWeights);
 	dialog->addField(KScoreDialog::Custom1, i18n("Mode"), "mode");
-	dialog->setConfigGroup(m_difficulty->currentLevel()->title());
+	dialog->initFromDifficulty(m_difficulty);
 	dialog->addScore(scoreInfo);
-	dialog->exec();
 	delete dialog;
 }
 
@@ -167,18 +156,8 @@ void MainWindow::showHighscores()
 		actionCollection()->action("game_pause")->setChecked(true);
 	//show dialog
 	QPointer<KScoreDialog> dialog = new KScoreDialog(KScoreDialog::Name | KScoreDialog::Score, this);
-
-	QMap<QByteArray, QString> localizedLevelStrings;
-	QMap<int, QByteArray> levelWeights;
-	foreach (const KgDifficultyLevel* level, m_difficulty->levels())
-	{
-		localizedLevelStrings.insert(level->key(), level->title());
-		levelWeights.insert(level->hardness(), level->key());
-	}
-	dialog->addLocalizedConfigGroupNames(localizedLevelStrings);
-	dialog->setConfigGroupWeights(levelWeights);
 	dialog->addField(KScoreDialog::Custom1, i18n("Mode"), "mode");
-	dialog->setConfigGroup(m_difficulty->currentLevel()->title());
+	dialog->initFromDifficulty(m_difficulty);
 	dialog->exec();
 	delete dialog;
 }
