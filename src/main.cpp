@@ -26,6 +26,7 @@
 #include <KGlobal>
 #include <KLocale>
 #include <KStandardDirs>
+#include <KgDifficulty>
 
 static const char description[] = I18N_NOOP("KDiamond, a three-in-a-row game.");
 static const char version[] = "1.4";
@@ -46,6 +47,11 @@ int main(int argc, char ** argv)
 	KGlobal::locale()->insertCatalog( QLatin1String( "libkdegames" ));
 	//resource directory for KNewStuff2 (this call causes the directory to be created; its existence is necessary for the downloader)
 	KStandardDirs::locateLocal("appdata", "themes/");
+
+	Kg::difficulty()->addStandardLevelRange(
+		KgDifficultyLevel::VeryEasy,
+		KgDifficultyLevel::VeryHard
+	);
 
 	// see if we are starting with session management
 	if (app.isSessionRestored())

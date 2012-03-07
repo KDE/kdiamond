@@ -72,10 +72,8 @@ MainWindow::MainWindow(QWidget *parent)
 	KStandardAction::preferences(this, SLOT(configureSettings()), actionCollection());
 	KStandardAction::configureNotifications(this, SLOT(configureNotifications()), actionCollection());
 	//difficulty
-	m_difficulty = new KgDifficulty(this);
-	m_difficulty->addStandardLevelRange(KgDifficultyLevel::VeryEasy, KgDifficultyLevel::VeryHard);
-	KgDifficultyGUI::init(m_difficulty, this);
-	connect(m_difficulty, SIGNAL(currentLevelChanged(const KgDifficultyLevel*)), SLOT(startGameDispatcher()));
+	KgDifficultyGUI::init(this);
+	connect(Kg::difficulty(), SIGNAL(currentLevelChanged(const KgDifficultyLevel*)), SLOT(startGameDispatcher()));
 	//late GUI initialisation
 	setupGUI(QSize(300, 400)); //TODO: find better solution for a minimum size
 	setCaption(i18nc("The application's name", "KDiamond"));
@@ -114,7 +112,7 @@ void MainWindow::startGame(KDiamond::Mode mode)
 	//start new game
 	m_gameState->startNewGame();
 	m_gameState->setMode(mode);
-	m_game = new Game(m_gameState, m_difficulty->currentLevel()->standardLevel());
+	m_game = new Game(m_gameState);
 	connect(m_gameState, SIGNAL(stateChanged(KDiamond::State)), m_game, SLOT(stateChange(KDiamond::State)));
 	connect(m_gameState, SIGNAL(message(QString)), m_game, SLOT(message(QString)));
 	connect(m_game, SIGNAL(numberMoves(int)), m_infoBar, SLOT(updateMoves(int)));
@@ -143,7 +141,7 @@ void MainWindow::gameIsOver()
 	//report score
 	QPointer<KScoreDialog> dialog = new KScoreDialog(KScoreDialog::Name | KScoreDialog::Score, this);
 	dialog->addField(KScoreDialog::Custom1, i18n("Mode"), "mode");
-	dialog->initFromDifficulty(m_difficulty);
+	dialog->initFromDifficulty(Kg::difficulty());
 	dialog->addScore(scoreInfo);
 	delete dialog;
 }
@@ -157,7 +155,7 @@ void MainWindow::showHighscores()
 	//show dialog
 	QPointer<KScoreDialog> dialog = new KScoreDialog(KScoreDialog::Name | KScoreDialog::Score, this);
 	dialog->addField(KScoreDialog::Custom1, i18n("Mode"), "mode");
-	dialog->initFromDifficulty(m_difficulty);
+	dialog->initFromDifficulty(Kg::difficulty());
 	dialog->exec();
 	delete dialog;
 }

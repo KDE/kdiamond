@@ -20,6 +20,7 @@
 #include "diamond.h"
 
 #include <QPropertyAnimation>
+#include <KgDifficulty>
 
 const int KDiamond::Board::MoveDuration = 100; //duration of a move animation (per coordinate unit) in milliseconds
 const int KDiamond::Board::RemoveDuration = 200; //duration of a move animation in milliseconds
@@ -28,9 +29,10 @@ const int KDiamond::Board::RemoveDuration = 200; //duration of a move animation 
 static int boardSizes[] = { 12, 10, 8, 8, 8 };
 static int boardColorCounts[] = { 5, 5, 5, 6, 7 };
 
-KDiamond::Board::Board(KGameRenderer* renderer, KgDifficultyLevel::StandardLevel difficulty)
-	: m_size(boardSizes[difficulty / 10 - 2])
-	, m_colorCount(boardColorCounts[difficulty / 10 - 2])
+KDiamond::Board::Board(KGameRenderer* renderer)
+	: m_difficultyIndex(Kg::difficultyLevel() / 10 - 2)
+	, m_size(boardSizes[m_difficultyIndex])
+	, m_colorCount(boardColorCounts[m_difficultyIndex])
 	, m_paused(false)
 	, m_renderer(renderer)
 	, m_diamonds(m_size * m_size, 0)
