@@ -21,7 +21,6 @@
 #include "game-state.h"
 #include "infobar.h"
 #include "settings.h"
-#include <KGameRenderer>
 #include "view.h"
 
 #include <QCloseEvent>
@@ -32,9 +31,9 @@
 #include <KActionMenu>
 #include <KActionCollection>
 #include <KApplication>
-#include <KConfigDialog>
+#include <kglobal.h>
 #include <KgDifficulty>
-#include <KGameThemeSelector>
+#include <KGameRenderer>
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KNotifyConfigWidget>
@@ -52,6 +51,7 @@ MainWindow::MainWindow(QWidget *parent)
 	, m_newAct(new KActionMenu(KIcon( QLatin1String( "document-new") ), i18nc("new game", "&New" ), this))
 	, m_newTimedAct(new KAction(i18n("Timed game"), this))
 	, m_newUntimedAct(new KAction(i18n("Untimed game"), this))
+	, m_selector(KDiamond::renderer()->themeProvider(), KgThemeSelector::EnableNewStuffDownload)
 {
 	KDiamond::renderer()->setDefaultPrimaryView(m_view);
 	//init GUI - "New Action"
@@ -69,7 +69,7 @@ MainWindow::MainWindow(QWidget *parent)
 	m_pauseAct = KStandardGameAction::pause(this, SLOT(pausedAction(bool)), actionCollection());
 	KStandardGameAction::quit(kapp, SLOT(quit()), actionCollection());
 	m_hintAct = KStandardGameAction::hint(0, 0, actionCollection());
-	KStandardAction::preferences(this, SLOT(configureSettings()), actionCollection());
+	KStandardAction::preferences(&m_selector, SLOT(showAsDialog()), actionCollection());
 	KStandardAction::configureNotifications(this, SLOT(configureNotifications()), actionCollection());
 	//difficulty
 	KgDifficultyGUI::init(this);
@@ -168,23 +168,6 @@ void MainWindow::pausedAction(bool paused)
 void MainWindow::configureNotifications()
 {
 	KNotifyConfigWidget::configure(this);
-}
-
-void MainWindow::configureSettings()
-{
-	if (KConfigDialog::showDialog("settings"))
-		return;
-	KConfigDialog *dialog = new KConfigDialog(this, "settings", Settings::self());
-	dialog->addPage(new KGameThemeSelector(dialog, Settings::self(), KGameThemeSelector::NewStuffEnableDownload), i18n("Theme"), "games-config-theme");
-	dialog->setFaceType(KConfigDialog::Plain); //only one page -> no page selection necessary
-	connect(dialog, SIGNAL(settingsChanged(QString)), this, SLOT(loadSettings()));
-	dialog->setHelp(QString(), "kdiamond");
-	dialog->show();
-}
-
-void MainWindow::loadSettings()
-{
-	KDiamond::renderer()->setTheme(Settings::theme());
 }
 
 #include "mainwindow.moc"

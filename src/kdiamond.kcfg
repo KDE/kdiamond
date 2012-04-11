@@ -4,12 +4,6 @@
 	xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
 	http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
 <kcfgfile name="kdiamondrc"/>
-	<group name="General">
-		<entry name="Theme" type="String">
-			<label>The graphical theme to be used.</label>
-			<default>themes/default.desktop</default>
-		</entry>
-	</group>
 	<group name="Preferences">
 		<entry name="Untimed" type="Bool">
 			<label>Play an untimed game.</label>

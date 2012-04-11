@@ -26,6 +26,7 @@ class QTime;
 class KAction;
 class KActionMenu;
 #include <KXmlGuiWindow>
+#include <KgThemeSelector>
 
 namespace KDiamond
 {
@@ -47,8 +48,6 @@ class MainWindow : public KXmlGuiWindow
 		void showHighscores();
 
 		void configureNotifications();
-		void configureSettings();
-		void loadSettings();
 	Q_SIGNALS:
 		void pause(bool paused);
 	protected Q_SLOTS:
@@ -65,6 +64,7 @@ class MainWindow : public KXmlGuiWindow
 		KAction *m_newUntimedAct;
 		KAction *m_pauseAct;
 		KAction *m_hintAct;
+		KgThemeSelector m_selector;
 };
 
 #endif //KDIAMOND_MAINWINDOW_H

@@ -26,7 +26,8 @@
 #include <QTimerEvent>
 #include <KGamePopupItem>
 #include <KGameRenderer>
-#include <KGameTheme>
+#include <KgTheme>
+#include <KgThemeProvider>
 #include <KGlobal>
 #include <KNotification>
 
@@ -34,13 +35,22 @@
 
 namespace KDiamond
 {
+	class ThemeProvider : public KgThemeProvider
+	{
+		public:
+			ThemeProvider(QObject* parent = 0)
+				: KgThemeProvider("Theme", parent)
+			{
+				discoverThemes("appdata", QLatin1String("themes"));
+			}
+	};
+
 	class Renderer : public KGameRenderer
 	{
 		public:
-			Renderer() : KGameRenderer(Settings::defaultThemeValue(), 10)
+			Renderer() : KGameRenderer(new ThemeProvider, 10)
 			{
 				setFrameSuffix(QString::fromLatin1("-%1"));
-				setTheme(Settings::theme());
 			}
 	};
 }
@@ -69,7 +79,7 @@ Game::Game(KDiamond::GameState* state)
 	const int minSize = m_board->gridSize();
 	setSceneRect(0.0, 0.0, minSize, minSize);
 	connect(this, SIGNAL(sceneRectChanged(QRectF)), SLOT(updateGraphics()));
-	connect(g_renderer, SIGNAL(themeChanged(QString)), SLOT(updateGraphics()));
+	connect(g_renderer->themeProvider(), SIGNAL(currentThemeChanged(const KgTheme*)), SLOT(updateGraphics()));
 	addItem(m_board);
 	//init messenger
 	m_messenger->setMessageOpacity(0.8);
@@ -164,11 +174,11 @@ void Game::updateGraphics()
 	m_board->setTransform(t);
 	//render background
 	QPixmap pix = g_renderer->spritePixmap("kdiamond-background", sceneSize);
-	const KGameTheme* gameTheme = g_renderer->gameTheme();
-	const bool hasBorder = gameTheme->property("HasBorder").toInt() > 0;
+	const KgTheme* theme = g_renderer->theme();
+	const bool hasBorder = theme->customData("HasBorder").toInt() > 0;
 	if (hasBorder)
 	{
-		const qreal borderPercentage = gameTheme->property("BorderPercentage").toFloat();
+		const qreal borderPercentage = theme->customData("BorderPercentage").toFloat();
 		const int padding = borderPercentage * boardSize;
 		const int boardBorderSize = 2 * padding + boardSize;
 		const QPixmap boardPix = g_renderer->spritePixmap("kdiamond-border", QSize(boardBorderSize, boardBorderSize));
