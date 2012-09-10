@@ -1,7 +1,11 @@
 [KGameTheme]
 VersionFormat=1
 Name=Funny Zoo
+Name[uk]=Веселий зоопарк
+Name[x-test]=xxFunny Zooxx
 Description=It is a fun time in the jungle! Help animals find their families. And watch out for those hard to find frogs.
+Description[uk]=Розваги у джунглях! Допоможіть тваринам знайти свої сім’ї. І будьте обережними: там можуть бути жаби.
+Description[x-test]=xxIt is a fun time in the jungle! Help animals find their families. And watch out for those hard to find frogs.xx
 FileName=funny_zoo.svgz
 Author=Eugene Trounev, Sean Wilson
 AuthorEmail=eugene.trounev@gmail.com

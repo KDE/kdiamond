@@ -1,7 +1,11 @@
 [KGameTheme]
 VersionFormat=1
 Name=Diamonds
+Name[uk]=Діаманти
+Name[x-test]=xxDiamondsxx
 Description=A theme based on real looking diamonds.
+Description[uk]=Тема, заснована на реалістичному вигляді діамантів.
+Description[x-test]=xxA theme based on real looking diamonds.xx
 FileName=diamonds.svgz
 Author=Eugene Trounev
 AuthorEmail=eugene.trounev@gmail.com

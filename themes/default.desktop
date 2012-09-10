@@ -1,7 +1,11 @@
 [KGameTheme]
 VersionFormat=1
 Name=Egyptian
+Name[uk]=Єгиптянин
+Name[x-test]=xxEgyptianxx
 Description=Egyptian style theme.
+Description[uk]=Тема у єгипетському стилі.
+Description[x-test]=xxEgyptian style theme.xx
 FileName=egyptian.svgz
 Author=Sean Wilson
 AuthorEmail=suseux@gmail.com

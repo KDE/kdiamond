@@ -1,28 +1,46 @@
 [Global]
 IconName=kdiamond
 Comment=KDiamond Game
+Comment[uk]=Гра КДіамант
+Comment[x-test]=xxKDiamond Gamexx
 
 [Context/game]
 Name=Game
+Name[uk]=Гра
+Name[x-test]=xxGamexx
 Comment=Sounds that appear during a game
+Comment[uk]=Звуки, що відтворюватимуться під час гри
+Comment[x-test]=xxSounds that appear during a gamexx
 
 [Event/remove]
 Name=Diamonds removed
+Name[uk]=Вилучення діамантів
+Name[x-test]=xxDiamonds removedxx
 Comment=Diamonds were removed.
+Comment[uk]=Діаманти було вилучено.
+Comment[x-test]=xxDiamonds were removed.xx
 Contexts=game
 Sound=KDE-Window-Shade-Down.ogg
 Action=Sound
 
 [Event/move]
 Name=Diamonds moving
+Name[uk]=Пересування діамантів
+Name[x-test]=xxDiamonds movingxx
 Comment=Diamonds are moving.
+Comment[uk]=Діаманти пересуваються.
+Comment[x-test]=xxDiamonds are moving.xx
 Contexts=game
 Sound=
 Action=None
 
 [Event/gamefinished]
 Name=Game over
+Name[uk]=Гру завершено
+Name[x-test]=xxGame overxx
 Comment=Time is up.
+Comment[uk]=Час сплив.
+Comment[x-test]=xxTime is up.xx
 Contexts=game
 Sound=KDE-Im-User-Auth.ogg
 Action=Sound
