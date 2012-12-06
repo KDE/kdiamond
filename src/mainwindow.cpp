@@ -67,7 +67,7 @@ MainWindow::MainWindow(QWidget *parent)
 	//init GUI - the other actions
 	KStandardGameAction::highscores(this, SLOT(showHighscores()), actionCollection());
 	m_pauseAct = KStandardGameAction::pause(this, SLOT(pausedAction(bool)), actionCollection());
-	KStandardGameAction::quit(kapp, SLOT(quit()), actionCollection());
+	KStandardGameAction::quit(this, SLOT(close()), actionCollection());
 	m_hintAct = KStandardGameAction::hint(0, 0, actionCollection());
 	KStandardAction::preferences(&m_selector, SLOT(showAsDialog()), actionCollection());
 	KStandardAction::configureNotifications(this, SLOT(configureNotifications()), actionCollection());
