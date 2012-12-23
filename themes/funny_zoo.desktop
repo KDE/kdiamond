@@ -2,7 +2,6 @@
 VersionFormat=1
 Name=Funny Zoo
 Name[ast]=Zoo prestosu
-Name[bs]=Smiješni zološki vrt
 Name[ca]=Zoo divertit
 Name[ca@valencia]=Zoo divertit
 Name[cs]=Zábavné ZOO
@@ -46,7 +45,6 @@ Name[zh_CN]=快乐动物园
 Name[zh_TW]=有趣動物園
 Description=It is a fun time in the jungle! Help animals find their families. And watch out for those hard to find frogs.
 Description[ast]=¡Diversión na selva! Ayuda a los animales a atopar a les sos families. Y curiáu con eses xaronques tan difíciles d'atopar.
-Description[bs]=To je zabavno vrijeme u džungli! Pomoć životinjama da nađu svoje obitelji. I gledaj pažljivo ne bi li našao žabe.
 Description[ca]=És hora de divertir-se a la jungla! Ajuda als animals a trobar les seves famílies. I vigila amb aquestes granotes tan difícils de trobar.
 Description[ca@valencia]=És hora de divertir-s'a la jungla! Ajuda als animals a trobar les seues famílies. I vigila amb estes granotes tan difícils de trobar.
 Description[da]=Det er glade dage i junglen. Hjælp dyrene med at finde deres familier. Hold udkig efter de gemte frøer.
