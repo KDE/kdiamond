@@ -143,6 +143,7 @@ void MainWindow::gameIsOver()
 	dialog->addField(KScoreDialog::Custom1, i18n("Mode"), "mode");
 	dialog->initFromDifficulty(Kg::difficulty());
 	dialog->addScore(scoreInfo);
+	dialog->exec();
 	delete dialog;
 }
 
