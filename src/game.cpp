@@ -134,7 +134,7 @@ void Game::getMoves()
 				if (curColor == C(x + 1, y - 1))
 					m_availableMoves.append(QPoint(x + 1, y - 1));
 				if (curColor == C(x, y + 3))
-					m_availableMoves.append(QPoint(x + 3, y));
+					m_availableMoves.append(QPoint(x, y + 3));
 				if (curColor == C(x - 1, y + 2))
 					m_availableMoves.append(QPoint(x - 1, y + 2));
 				if (curColor == C(x + 1, y + 2))
