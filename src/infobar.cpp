@@ -20,12 +20,14 @@
 #include "settings.h"
 
 #include <KLocalizedString>
-#include <KStatusBar>
+#include <QStatusBar>
 
-KDiamond::InfoBar::InfoBar(KStatusBar* bar)
+KDiamond::InfoBar::InfoBar(QStatusBar* bar)
 	: m_untimed(Settings::untimed())
 	, m_bar(bar)
 {
+//PORT TO QT5
+#if 0
 	m_bar->insertPermanentItem(i18n("Points: %1", 0), 1, 1);
 	if (m_untimed)
 		m_bar->insertPermanentItem(i18n("Untimed game"), 2, 1);
@@ -33,30 +35,38 @@ KDiamond::InfoBar::InfoBar(KStatusBar* bar)
 		m_bar->insertPermanentItem(i18n("Time left: %1", QLatin1String("0:00")), 2, 1);
 	m_bar->insertPermanentItem(i18n("Possible moves: %1", 0), 3, 1);
 	m_bar->show();
+#endif
 }
 
 void KDiamond::InfoBar::setUntimed(bool untimed)
 {
+#if 0 //PORT QT5
 	if (untimed)
 		m_bar->changeItem(i18n("Untimed game"), 2);
 	m_untimed = untimed;
+#endif
 }
 
 void KDiamond::InfoBar::updatePoints(int points)
 {
+#if 0 //PORT QT5
 	m_bar->changeItem(i18n("Points: %1", points), 1);
+#endif
 }
 
 void KDiamond::InfoBar::updateMoves(int moves)
 {
+#if 0 //PORT QT5
 	if (moves == -1)
 		m_bar->changeItem(i18nc("Shown when the board is in motion.", "Possible moves: ..."), 3);
 	else
 		m_bar->changeItem(i18n("Possible moves: %1", moves), 3);
+#endif
 }
 
 void KDiamond::InfoBar::updateRemainingTime(int remainingSeconds)
 {
+#if 0 //PORT QT5
 	if (m_untimed)
 		return;
 	//split time in seconds and minutes
@@ -71,6 +81,7 @@ void KDiamond::InfoBar::updateRemainingTime(int remainingSeconds)
 	//special treatment if game is finished
 	if (remainingSeconds == 0)
 		updateMoves(0);
+#endif
 }
 
 #include "infobar.moc"

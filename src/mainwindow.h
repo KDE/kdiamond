@@ -23,7 +23,7 @@ class Game;
 #include "game-state.h"
 
 class QTime;
-class KAction;
+class QAction;
 class KActionMenu;
 #include <KXmlGuiWindow>
 #include <KgThemeSelector>
@@ -60,10 +60,10 @@ class MainWindow : public KXmlGuiWindow
 		KDiamond::InfoBar* m_infoBar;
 
 		KActionMenu *m_newAct;
-		KAction *m_newTimedAct;
-		KAction *m_newUntimedAct;
-		KAction *m_pauseAct;
-		KAction *m_hintAct;
+		QAction *m_newTimedAct;
+		QAction *m_newUntimedAct;
+		QAction *m_pauseAct;
+		QAction *m_hintAct;
 		KgThemeSelector m_selector;
 };
 

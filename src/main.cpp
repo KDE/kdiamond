@@ -21,7 +21,7 @@
 
 #include <ctime>
 #include <KApplication>
-#include <KAboutData>
+#include <K4AboutData>
 #include <KCmdLineArgs>
 #include <KGlobal>
 #include <KLocale>
@@ -34,8 +34,8 @@ static const char version[] = "1.4";
 int main(int argc, char ** argv)
 {
 	qsrand(time(0));
-	KAboutData about("kdiamond", 0, ki18nc("The application's name", "KDiamond"), version, ki18n(description),
-		KAboutData::License_GPL, ki18n("(C) 2008-2010 Stefan Majewsky and others"), KLocalizedString(), "http://games.kde.org/kdiamond" );
+	K4AboutData about("kdiamond", 0, ki18nc("The application's name", "KDiamond"), version, ki18n(description),
+		K4AboutData::License_GPL, ki18n("(C) 2008-2010 Stefan Majewsky and others"), KLocalizedString(), "http://games.kde.org/kdiamond" );
 	about.addAuthor(ki18n("Stefan Majewsky"), ki18n("Original author and current maintainer"), "majewsky@gmx.net");
 	about.addAuthor(ki18n("Paul Bunbury"), ki18n("Gameplay refinement"), "happysmileman@googlemail.com");
 	about.addCredit(ki18n("Eugene Trounev"), ki18n("Default theme"), "eugene.trounev@gmail.com");

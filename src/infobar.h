@@ -20,7 +20,7 @@
 #define KDIAMOND_INFOBAR_H
 
 #include <QObject>
-class KStatusBar;
+class QStatusBar;
 
 namespace KDiamond
 {
@@ -29,7 +29,7 @@ namespace KDiamond
 	{
 		Q_OBJECT
 		public:
-			InfoBar(KStatusBar* bar);
+			InfoBar(QStatusBar* bar);
 		public Q_SLOTS:
 			void setUntimed(bool untimed);
 			void updatePoints(int points);
@@ -37,7 +37,7 @@ namespace KDiamond
 			void updateRemainingTime(int remainingSeconds);
 		private:
 			bool m_untimed;
-			KStatusBar* m_bar;
+			QStatusBar* m_bar;
 	};
 
 }

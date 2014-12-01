@@ -27,7 +27,7 @@
 #include <QPointer>
 #include <QTime>
 #include <QTimer>
-#include <KAction>
+#include <QAction>
 #include <KActionMenu>
 #include <KActionCollection>
 #include <KApplication>
@@ -48,14 +48,14 @@ MainWindow::MainWindow(QWidget *parent)
 	, m_game(0)
 	, m_view(new KDiamond::View)
 	, m_infoBar(0)
-	, m_newAct(new KActionMenu(KIcon( QLatin1String( "document-new") ), i18nc("new game", "&New" ), this))
-	, m_newTimedAct(new KAction(i18n("Timed game"), this))
-	, m_newUntimedAct(new KAction(i18n("Untimed game"), this))
+	, m_newAct(new KActionMenu(QIcon::fromTheme( QLatin1String( "document-new") ), i18nc("new game", "&New" ), this))
+	, m_newTimedAct(new QAction(i18n("Timed game"), this))
+	, m_newUntimedAct(new QAction(i18n("Untimed game"), this))
 	, m_selector(KDiamond::renderer()->themeProvider(), KgThemeSelector::EnableNewStuffDownload)
 {
 	KDiamond::renderer()->setDefaultPrimaryView(m_view);
 	//init GUI - "New Action"
-	m_newAct->setShortcut(KStandardShortcut::openNew());
+	//PORT QT5 m_newAct->setShortcut(KStandardShortcut::openNew());
 	m_newAct->setToolTip(i18n("Start a new game"));
 	m_newAct->setWhatsThis(i18n("Start a new game."));
 	actionCollection()->addAction( QLatin1String( "game_new" ), m_newAct);
