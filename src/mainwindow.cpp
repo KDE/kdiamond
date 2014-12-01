@@ -31,7 +31,6 @@
 #include <KActionMenu>
 #include <KActionCollection>
 #include <KApplication>
-#include <kglobal.h>
 #include <KgDifficulty>
 #include <KGameRenderer>
 #include <KLocalizedString>

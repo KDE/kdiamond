@@ -28,7 +28,6 @@
 #include <KGameRenderer>
 #include <KgTheme>
 #include <KgThemeProvider>
-#include <KGlobal>
 #include <KNotification>
 
 //BEGIN global KGameRenderer instance
@@ -55,7 +54,7 @@ namespace KDiamond
 	};
 }
 
-K_GLOBAL_STATIC(KDiamond::Renderer, g_renderer)
+Q_GLOBAL_STATIC(KDiamond::Renderer, g_renderer)
 
 KGameRenderer* KDiamond::renderer()
 {
