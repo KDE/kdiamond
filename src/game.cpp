@@ -429,4 +429,4 @@ void Game::message(const QString &message)
 		m_messenger->showMessage(message, KGamePopupItem::TopLeft);
 }
 
-#include "game.moc"
+

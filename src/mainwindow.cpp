@@ -89,7 +89,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-	Settings::self()->writeConfig();
+	Settings::self()->save();
 	delete m_game;
 	delete m_gameState;
 }
@@ -171,4 +171,4 @@ void MainWindow::configureNotifications()
 	KNotifyConfigWidget::configure(this);
 }
 
-#include "mainwindow.moc"
+

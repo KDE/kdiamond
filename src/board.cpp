@@ -310,4 +310,4 @@ void KDiamond::Board::paint(QPainter* painter, const QStyleOptionGraphicsItem* o
 	Q_UNUSED(painter) Q_UNUSED(option) Q_UNUSED(widget)
 }
 
-#include "board.moc"
+

@@ -1,5 +1,4 @@
 add_subdirectory(pics)
-include_directories(${KDEGAMES_INCLUDE_DIR})
 
 set(kdiamond_SRCS
 	board.cpp
@@ -22,4 +21,4 @@ target_link_libraries(kdiamond  KF5KDEGames KF5::NotifyConfig KF5::KDELibs4Suppo
 install(TARGETS kdiamond  ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES kdiamond.kcfg kdiamond.notifyrc kdiamondui.rc  DESTINATION ${DATA_INSTALL_DIR}/kdiamond)
 install(FILES kdiamond.knsrc  DESTINATION ${CONFIG_INSTALL_DIR})
-install(PROGRAMS kdiamond.desktop  DESTINATION ${XDG_APPS_INSTALL_DIR})
+install(PROGRAMS org.kde.kdiamond.desktop  DESTINATION ${XDG_APPS_INSTALL_DIR})

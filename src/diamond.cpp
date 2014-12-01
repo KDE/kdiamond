@@ -97,4 +97,4 @@ void Diamond::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 	}
 }
 
-#include "diamond.moc"
+

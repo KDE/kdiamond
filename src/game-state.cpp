@@ -186,4 +186,4 @@ void KDiamond::GameState::update(bool forceRecalculation)
 	p->m_leftMilliseconds = leftMilliseconds;
 }
 
-#include "game-state.moc"
+

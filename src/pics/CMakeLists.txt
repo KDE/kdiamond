@@ -1,1 +1,1 @@
-ecm_install_icons(${ICON_INSTALL_DIR})
+ecm_install_icons(ICONS hi128-apps-kdiamond.png  hi16-apps-kdiamond.png  hi22-apps-kdiamond.png  hi32-apps-kdiamond.png  hi48-apps-kdiamond.png  hi64-apps-kdiamond.png DESTINATION ${ICON_INSTALL_DIR})
