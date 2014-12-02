@@ -74,8 +74,8 @@ KDiamond::Board::Board(KGameRenderer* renderer)
 Diamond* KDiamond::Board::spawnDiamond(int color)
 {
 	Diamond* diamond = new Diamond((KDiamond::Color) color, m_renderer, this);
-	connect(diamond, SIGNAL(clicked()), SLOT(slotClicked()));
-	connect(diamond, SIGNAL(dragged(QPoint)), SLOT(slotDragged(QPoint)));
+	connect(diamond, &Diamond::clicked, this, &Board::slotClicked);
+	connect(diamond, &Diamond::dragged, this, &Board::slotDragged);
 	return diamond;
 }
 
@@ -198,8 +198,8 @@ void KDiamond::Board::removeDiamond(const QPoint& point)
 	animation->setEndValue(diamond->frameCount() - 1);
 	animation->setDuration(KDiamond::Board::RemoveDuration);
 	animation->start(QAbstractAnimation::DeleteWhenStopped);
-	connect(animation, SIGNAL(finished()), this, SLOT(slotAnimationFinished()));
-	connect(animation, SIGNAL(finished()), diamond, SLOT(deleteLater()));
+	connect(animation, &QPropertyAnimation::finished, this, &Board::slotAnimationFinished);
+	connect(animation, &QPropertyAnimation::finished, diamond, &Diamond::deleteLater);
 	m_runningAnimations << animation;
 }
 
@@ -213,7 +213,7 @@ void KDiamond::Board::spawnMoveAnimations(const QList<MoveAnimSpec>& specs)
 		animation->setEndValue(spec.to);
 		animation->setDuration(duration);
 		animation->start(QAbstractAnimation::DeleteWhenStopped);
-		connect(animation, SIGNAL(finished()), this, SLOT(slotAnimationFinished()));
+		connect(animation, &QPropertyAnimation::finished, this, &Board::slotAnimationFinished);
 		m_runningAnimations << animation;
 	}
 }

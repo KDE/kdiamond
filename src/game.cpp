@@ -71,13 +71,13 @@ Game::Game(KDiamond::GameState* state)
 	, m_gameState(state)
 	, m_messenger(new KGamePopupItem)
 {
-	connect(m_board, SIGNAL(animationsFinished()), SLOT(animationFinished()));
-	connect(m_board, SIGNAL(clicked(QPoint)), SLOT(clickDiamond(QPoint)));
-	connect(m_board, SIGNAL(dragged(QPoint,QPoint)), SLOT(dragDiamond(QPoint,QPoint)));
+	connect(m_board, &KDiamond::Board::animationsFinished, this, &Game::animationFinished);
+	connect(m_board, &KDiamond::Board::clicked, this, &Game::clickDiamond);
+	connect(m_board, &KDiamond::Board::dragged, this, &Game::dragDiamond);
 	//init scene (with some default scene size that makes board coordinates equal scene coordinates)
 	const int minSize = m_board->gridSize();
 	setSceneRect(0.0, 0.0, minSize, minSize);
-	connect(this, SIGNAL(sceneRectChanged(QRectF)), SLOT(updateGraphics()));
+	connect(this, &Game::sceneRectChanged, this, &Game::updateGraphics);
 	connect(g_renderer->themeProvider(), SIGNAL(currentThemeChanged(const KgTheme*)), SLOT(updateGraphics()));
 	addItem(m_board);
 	//init messenger

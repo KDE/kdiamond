@@ -58,11 +58,11 @@ MainWindow::MainWindow(QWidget *parent)
 	m_newAct->setToolTip(i18n("Start a new game"));
 	m_newAct->setWhatsThis(i18n("Start a new game."));
 	actionCollection()->addAction( QLatin1String( "game_new" ), m_newAct);
-	connect(m_newAct, SIGNAL(triggered()), this, SLOT(startGameDispatcher()));
+	connect(m_newAct, &KActionMenu::triggered, this, &MainWindow::startGameDispatcher);
 	m_newAct->addAction(m_newTimedAct);
-	connect(m_newTimedAct, SIGNAL(triggered()), this, SLOT(startGameDispatcher()));
+	connect(m_newTimedAct, &QAction::triggered, this, &MainWindow::startGameDispatcher);
 	m_newAct->addAction(m_newUntimedAct);
-	connect(m_newUntimedAct, SIGNAL(triggered()), this, SLOT(startGameDispatcher()));
+	connect(m_newUntimedAct, &QAction::triggered, this, &MainWindow::startGameDispatcher);
 	//init GUI - the other actions
 	KStandardGameAction::highscores(this, SLOT(showHighscores()), actionCollection());
 	m_pauseAct = KStandardGameAction::pause(this, SLOT(pausedAction(bool)), actionCollection());
@@ -79,9 +79,9 @@ MainWindow::MainWindow(QWidget *parent)
 	setCentralWidget(m_view);
 	//init statusbar
 	m_infoBar = new KDiamond::InfoBar(statusBar());
-	connect(m_gameState, SIGNAL(stateChanged(KDiamond::State)), this, SLOT(stateChange(KDiamond::State)));
-	connect(m_gameState, SIGNAL(pointsChanged(int)), m_infoBar, SLOT(updatePoints(int)));
-	connect(m_gameState, SIGNAL(leftTimeChanged(int)), m_infoBar, SLOT(updateRemainingTime(int)));
+	connect(m_gameState, &KDiamond::GameState::stateChanged, this, &MainWindow::stateChange);
+	connect(m_gameState, &KDiamond::GameState::pointsChanged, m_infoBar, &KDiamond::InfoBar::updatePoints);
+	connect(m_gameState, &KDiamond::GameState::leftTimeChanged, m_infoBar, &KDiamond::InfoBar::updateRemainingTime);
 	//init game
 	startGameDispatcher();
 }
@@ -112,11 +112,11 @@ void MainWindow::startGame(KDiamond::Mode mode)
 	m_gameState->startNewGame();
 	m_gameState->setMode(mode);
 	m_game = new Game(m_gameState);
-	connect(m_gameState, SIGNAL(stateChanged(KDiamond::State)), m_game, SLOT(stateChange(KDiamond::State)));
-	connect(m_gameState, SIGNAL(message(QString)), m_game, SLOT(message(QString)));
-	connect(m_game, SIGNAL(numberMoves(int)), m_infoBar, SLOT(updateMoves(int)));
-	connect(m_game, SIGNAL(pendingAnimationsFinished()), this, SLOT(gameIsOver()));
-	connect(m_hintAct, SIGNAL(triggered()), m_game, SLOT(showHint()));
+	connect(m_gameState, &KDiamond::GameState::stateChanged, m_game, &Game::stateChange);
+	connect(m_gameState, &KDiamond::GameState::message, m_game, &Game::message);
+	connect(m_game, &Game::numberMoves, m_infoBar, &KDiamond::InfoBar::updateMoves);
+	connect(m_game, &Game::pendingAnimationsFinished, this, &MainWindow::gameIsOver);
+	connect(m_hintAct, &QAction::triggered, m_game, &Game::showHint);
 	m_view->setScene(m_game);
 	//reset status bar
 	m_infoBar->setUntimed(mode == KDiamond::UntimedGame);
