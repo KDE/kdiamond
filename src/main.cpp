@@ -27,6 +27,7 @@
 #include <KLocale>
 #include <KStandardDirs>
 #include <KgDifficulty>
+#include <kdelibs4configmigrator.h>
 
 static const char description[] = I18N_NOOP("KDiamond, a three-in-a-row game.");
 static const char version[] = "1.4";
@@ -34,6 +35,12 @@ static const char version[] = "1.4";
 int main(int argc, char ** argv)
 {
 	qsrand(time(0));
+
+    Kdelibs4ConfigMigrator migrate(QLatin1String("kdiamond"));
+    migrate.setConfigFiles(QStringList() << QLatin1String("kdiamondrc") << QLatin1String("kdiamond.notifyrc"));
+    migrate.setUiFiles(QStringList() << QLatin1String("kdiamondui.rc"));
+    migrate.migrate();
+
 	K4AboutData about("kdiamond", 0, ki18nc("The application's name", "KDiamond"), version, ki18n(description),
 		K4AboutData::License_GPL, ki18n("(C) 2008-2010 Stefan Majewsky and others"), KLocalizedString(), "http://games.kde.org/kdiamond" );
 	about.addAuthor(ki18n("Stefan Majewsky"), ki18n("Original author and current maintainer"), "majewsky@gmx.net");
