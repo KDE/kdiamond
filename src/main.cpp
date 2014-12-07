@@ -20,14 +20,16 @@
 #include "settings.h"
 
 #include <ctime>
-#include <KApplication>
-#include <K4AboutData>
-#include <KCmdLineArgs>
+
+#include <KAboutData>
+
 #include <KGlobal>
-#include <KLocale>
+#include <KLocalizedString>
 #include <KStandardDirs>
 #include <KgDifficulty>
 #include <kdelibs4configmigrator.h>
+#include <QApplication>
+#include <QCommandLineParser>
 
 static const char description[] = I18N_NOOP("KDiamond, a three-in-a-row game.");
 static const char version[] = "1.4";
@@ -41,16 +43,22 @@ int main(int argc, char ** argv)
     migrate.setUiFiles(QStringList() << QLatin1String("kdiamondui.rc"));
     migrate.migrate();
 
-	K4AboutData about("kdiamond", 0, ki18nc("The application's name", "KDiamond"), version, ki18n(description),
-		K4AboutData::License_GPL, ki18n("(C) 2008-2010 Stefan Majewsky and others"), KLocalizedString(), "http://games.kde.org/kdiamond" );
-	about.addAuthor(ki18n("Stefan Majewsky"), ki18n("Original author and current maintainer"), "majewsky@gmx.net");
-	about.addAuthor(ki18n("Paul Bunbury"), ki18n("Gameplay refinement"), "happysmileman@googlemail.com");
-	about.addCredit(ki18n("Eugene Trounev"), ki18n("Default theme"), "eugene.trounev@gmail.com");
-	about.addCredit(ki18n("Felix Lemke"), ki18n("Classic theme"), "lemke.felix@ages-skripte.org");
-	about.addCredit(ki18n("Jeffrey Kelling"), ki18n("Technical consultant"), "kelling.jeffrey@ages-skripte.org");
-	KCmdLineArgs::init(argc, argv, &about);
+	KAboutData about("kdiamond", i18nc("The application's name", "KDiamond"), version, i18n(description),
+		KAboutLicense::GPL, i18n("(C) 2008-2010 Stefan Majewsky and others"), "http://games.kde.org/kdiamond" );
+	about.addAuthor(i18n("Stefan Majewsky"), i18n("Original author and current maintainer"), "majewsky@gmx.net");
+	about.addAuthor(i18n("Paul Bunbury"), i18n("Gameplay refinement"), "happysmileman@googlemail.com");
+	about.addCredit(i18n("Eugene Trounev"), i18n("Default theme"), "eugene.trounev@gmail.com");
+	about.addCredit(i18n("Felix Lemke"), i18n("Classic theme"), "lemke.felix@ages-skripte.org");
+	about.addCredit(i18n("Jeffrey Kelling"), i18n("Technical consultant"), "kelling.jeffrey@ages-skripte.org");
+    QApplication app(argc, argv);
+    QCommandLineParser parser;
+    KAboutData::setApplicationData(about);
+    parser.addVersionOption();
+    parser.addHelpOption();
+    about.setupCommandLine(&parser);
+    parser.process(app);
+    about.processCommandLine(&parser);
 
-	KApplication app;
 	//resource directory for KNewStuff2 (this call causes the directory to be created; its existence is necessary for the downloader)
 	KStandardDirs::locateLocal("appdata", "themes/");
 
