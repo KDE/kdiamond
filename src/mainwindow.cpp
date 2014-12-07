@@ -30,7 +30,6 @@
 #include <QAction>
 #include <KActionMenu>
 #include <KActionCollection>
-#include <KApplication>
 #include <KgDifficulty>
 #include <KGameRenderer>
 #include <KLocalizedString>
