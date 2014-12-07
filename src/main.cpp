@@ -23,13 +23,13 @@
 
 #include <KAboutData>
 
-#include <KGlobal>
 #include <KLocalizedString>
-#include <KStandardDirs>
+
 #include <KgDifficulty>
 #include <kdelibs4configmigrator.h>
 #include <QApplication>
 #include <QCommandLineParser>
+#include <QStandardPaths>
 
 static const char description[] = I18N_NOOP("KDiamond, a three-in-a-row game.");
 static const char version[] = "1.4";
@@ -60,7 +60,7 @@ int main(int argc, char ** argv)
     about.processCommandLine(&parser);
 
 	//resource directory for KNewStuff2 (this call causes the directory to be created; its existence is necessary for the downloader)
-	KStandardDirs::locateLocal("appdata", "themes/");
+	QStandardPaths::writableLocation(QStandardPaths::DataLocation) + QLatin1Char('/') + "themes/";
 
 	Kg::difficulty()->addStandardLevelRange(
 		KgDifficultyLevel::VeryEasy,
