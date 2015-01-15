@@ -30,6 +30,7 @@
 #include <QApplication>
 #include <QCommandLineParser>
 #include <QStandardPaths>
+#include <KDBusService>
 
 static const char description[] = I18N_NOOP("KDiamond, a three-in-a-row game.");
 static const char version[] = "1.4";
@@ -37,6 +38,7 @@ static const char version[] = "1.4";
 int main(int argc, char ** argv)
 {
 	qsrand(time(0));
+    QApplication app(argc, argv);
 
     Kdelibs4ConfigMigrator migrate(QLatin1String("kdiamond"));
     migrate.setConfigFiles(QStringList() << QLatin1String("kdiamondrc") << QLatin1String("kdiamond.notifyrc"));
@@ -50,7 +52,6 @@ int main(int argc, char ** argv)
 	about.addCredit(i18n("Eugene Trounev"), i18n("Default theme"), "eugene.trounev@gmail.com");
 	about.addCredit(i18n("Felix Lemke"), i18n("Classic theme"), "lemke.felix@ages-skripte.org");
 	about.addCredit(i18n("Jeffrey Kelling"), i18n("Technical consultant"), "kelling.jeffrey@ages-skripte.org");
-    QApplication app(argc, argv);
     QCommandLineParser parser;
     KAboutData::setApplicationData(about);
     parser.addVersionOption();
@@ -66,7 +67,7 @@ int main(int argc, char ** argv)
 		KgDifficultyLevel::VeryEasy,
 		KgDifficultyLevel::VeryHard
 	);
-
+        KDBusService service;
 	// see if we are starting with session management
 	if (app.isSessionRestored())
 	{
