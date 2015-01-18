@@ -53,10 +53,10 @@ MainWindow::MainWindow(QWidget *parent)
 {
 	KDiamond::renderer()->setDefaultPrimaryView(m_view);
 	//init GUI - "New Action"
-	//PORT QT5 m_newAct->setShortcut(KStandardShortcut::openNew());
 	m_newAct->setToolTip(i18n("Start a new game"));
 	m_newAct->setWhatsThis(i18n("Start a new game."));
 	actionCollection()->addAction( QLatin1String( "game_new" ), m_newAct);
+        actionCollection()->setDefaultShortcuts( m_newAct, KStandardShortcut::openNew() );
 	connect(m_newAct, &KActionMenu::triggered, this, &MainWindow::startGameDispatcher);
 	m_newAct->addAction(m_newTimedAct);
 	connect(m_newTimedAct, &QAction::triggered, this, &MainWindow::startGameDispatcher);
