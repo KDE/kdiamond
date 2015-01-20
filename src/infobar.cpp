@@ -21,67 +21,62 @@
 
 #include <KLocalizedString>
 #include <QStatusBar>
+#include <QLabel>
 
 KDiamond::InfoBar::InfoBar(QStatusBar* bar)
 	: m_untimed(Settings::untimed())
 	, m_bar(bar)
 {
 //PORT TO QT5
-#if 0
-	m_bar->insertPermanentItem(i18n("Points: %1", 0), 1, 1);
-	if (m_untimed)
-		m_bar->insertPermanentItem(i18n("Untimed game"), 2, 1);
-	else
-		m_bar->insertPermanentItem(i18n("Time left: %1", QLatin1String("0:00")), 2, 1);
-	m_bar->insertPermanentItem(i18n("Possible moves: %1", 0), 3, 1);
+    mMovement = new QLabel(i18n("Possible moves: %1", 0));
+    mPoints = new QLabel(i18n("Points: %1", 0));
+    mTime = new QLabel;
+    if (m_untimed)
+        mTime->setText(i18n("Untimed game"));
+    else
+        mTime->setText(i18n("Time left: %1", QLatin1String("0:00")));
+    m_bar->addPermanentWidget(mPoints);
+    m_bar->addPermanentWidget(mTime);
+    m_bar->addPermanentWidget(mMovement);
 	m_bar->show();
-#endif
 }
 
 void KDiamond::InfoBar::setUntimed(bool untimed)
 {
-#if 0 //PORT QT5
 	if (untimed)
-		m_bar->changeItem(i18n("Untimed game"), 2);
+        mTime->setText(i18n("Untimed game"));
 	m_untimed = untimed;
-#endif
 }
 
 void KDiamond::InfoBar::updatePoints(int points)
 {
-#if 0 //PORT QT5
-	m_bar->changeItem(i18n("Points: %1", points), 1);
-#endif
+    mPoints->setText(i18n("Points: %1", points));
 }
 
 void KDiamond::InfoBar::updateMoves(int moves)
 {
-#if 0 //PORT QT5
 	if (moves == -1)
-		m_bar->changeItem(i18nc("Shown when the board is in motion.", "Possible moves: ..."), 3);
+        mMovement->setText(i18nc("Shown when the board is in motion.", "Possible moves: ..."));
 	else
-		m_bar->changeItem(i18n("Possible moves: %1", moves), 3);
-#endif
+        mMovement->setText(i18n("Possible moves: %1", moves));
 }
 
 void KDiamond::InfoBar::updateRemainingTime(int remainingSeconds)
 {
-#if 0 //PORT QT5
 	if (m_untimed)
 		return;
 	//split time in seconds and minutes
-	int seconds = remainingSeconds % 60;
-	int minutes = remainingSeconds / 60;
+    const int seconds = remainingSeconds % 60;
+    const int minutes = remainingSeconds / 60;
 	//compose new string
-	QString secondString = QString::number(seconds);
-	QString minuteString = QString::number(minutes);
+    QString secondString = QString::number(seconds);
+    const QString minuteString = QString::number(minutes);
 	if (seconds < 10)
 		secondString.prepend(QChar('0'));
-	m_bar->changeItem(i18n("Time left: %1", QString("%1:%2").arg(minuteString).arg(secondString)), 2);
+    mTime->setText(i18n("Time left: %1", QString("%1:%2").arg(minuteString).arg(secondString)));
 	//special treatment if game is finished
 	if (remainingSeconds == 0)
 		updateMoves(0);
-#endif
 }
 
 

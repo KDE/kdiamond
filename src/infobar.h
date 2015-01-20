@@ -21,7 +21,7 @@
 
 #include <QObject>
 class QStatusBar;
-
+class QLabel;
 namespace KDiamond
 {
 
@@ -38,6 +38,10 @@ namespace KDiamond
 		private:
 			bool m_untimed;
 			QStatusBar* m_bar;
+            QLabel *mMovement;
+            QLabel *mPoints;
+            QLabel *mTime;
+
 	};
 
 }
