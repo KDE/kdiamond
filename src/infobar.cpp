@@ -27,7 +27,6 @@ KDiamond::InfoBar::InfoBar(QStatusBar* bar)
 	: m_untimed(Settings::untimed())
 	, m_bar(bar)
 {
-//PORT TO QT5
     mMovement = new QLabel(i18n("Possible moves: %1", 0));
     mPoints = new QLabel(i18n("Points: %1", 0));
     mTime = new QLabel;
