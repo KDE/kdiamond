@@ -33,7 +33,7 @@
 #include <KDBusService>
 
 static const char description[] = I18N_NOOP("KDiamond, a three-in-a-row game.");
-static const char version[] = "1.4";
+static const char version[] = "1.5";
 
 int main(int argc, char ** argv)
 {
