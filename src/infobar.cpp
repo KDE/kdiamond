@@ -71,8 +71,8 @@ void KDiamond::InfoBar::updateRemainingTime(int remainingSeconds)
     QString secondString = QString::number(seconds);
     const QString minuteString = QString::number(minutes);
 	if (seconds < 10)
-		secondString.prepend(QChar('0'));
-    mTime->setText(i18n("Time left: %1", QString("%1:%2").arg(minuteString).arg(secondString)));
+        secondString.prepend(QLatin1Char('0'));
+    mTime->setText(i18n("Time left: %1", QString::fromLatin1("%1:%2").arg(minuteString).arg(secondString)));
 	//special treatment if game is finished
 	if (remainingSeconds == 0)
 		updateMoves(0);

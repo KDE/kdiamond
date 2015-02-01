@@ -138,7 +138,7 @@ void MainWindow::gameIsOver()
 	scoreInfo[KScoreDialog::Custom1] = m_gameState->mode() == KDiamond::UntimedGame ? i18n("Untimed") : i18n("Timed");
 	//report score
 	QPointer<KScoreDialog> dialog = new KScoreDialog(KScoreDialog::Name | KScoreDialog::Score, this);
-	dialog->addField(KScoreDialog::Custom1, i18n("Mode"), "mode");
+    dialog->addField(KScoreDialog::Custom1, i18n("Mode"), QLatin1Literal("mode"));
 	dialog->initFromDifficulty(Kg::difficulty());
 	dialog->addScore(scoreInfo);
 	dialog->exec();
@@ -150,10 +150,10 @@ void MainWindow::showHighscores()
 	//pause game if necessary
 	m_gameState->setState(KDiamond::Paused);
 	if (m_gameState->state() != KDiamond::Finished)
-		actionCollection()->action("game_pause")->setChecked(true);
+        actionCollection()->action(QLatin1Literal("game_pause"))->setChecked(true);
 	//show dialog
 	QPointer<KScoreDialog> dialog = new KScoreDialog(KScoreDialog::Name | KScoreDialog::Score, this);
-	dialog->addField(KScoreDialog::Custom1, i18n("Mode"), "mode");
+    dialog->addField(KScoreDialog::Custom1, i18n("Mode"), QLatin1Literal("mode"));
 	dialog->initFromDifficulty(Kg::difficulty());
 	dialog->exec();
 	delete dialog;

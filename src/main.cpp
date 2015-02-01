@@ -45,13 +45,13 @@ int main(int argc, char ** argv)
     migrate.setUiFiles(QStringList() << QLatin1String("kdiamondui.rc"));
     migrate.migrate();
 
-	KAboutData about("kdiamond", i18nc("The application's name", "KDiamond"), version, i18n(description),
-		KAboutLicense::GPL, i18n("(C) 2008-2010 Stefan Majewsky and others"), "http://games.kde.org/kdiamond" );
-	about.addAuthor(i18n("Stefan Majewsky"), i18n("Original author and current maintainer"), "majewsky@gmx.net");
-	about.addAuthor(i18n("Paul Bunbury"), i18n("Gameplay refinement"), "happysmileman@googlemail.com");
-	about.addCredit(i18n("Eugene Trounev"), i18n("Default theme"), "eugene.trounev@gmail.com");
-	about.addCredit(i18n("Felix Lemke"), i18n("Classic theme"), "lemke.felix@ages-skripte.org");
-	about.addCredit(i18n("Jeffrey Kelling"), i18n("Technical consultant"), "kelling.jeffrey@ages-skripte.org");
+    KAboutData about(QLatin1Literal("kdiamond"), i18nc("The application's name", "KDiamond"), QLatin1Literal(version), i18n(description),
+        KAboutLicense::GPL, i18n("(C) 2008-2010 Stefan Majewsky and others"), QLatin1Literal("http://games.kde.org/kdiamond") );
+    about.addAuthor(i18n("Stefan Majewsky"), i18n("Original author and current maintainer"), QLatin1Literal("majewsky@gmx.net"));
+    about.addAuthor(i18n("Paul Bunbury"), i18n("Gameplay refinement"), QLatin1Literal("happysmileman@googlemail.com"));
+    about.addCredit(i18n("Eugene Trounev"), i18n("Default theme"), QLatin1Literal("eugene.trounev@gmail.com"));
+    about.addCredit(i18n("Felix Lemke"), i18n("Classic theme"), QLatin1Literal("lemke.felix@ages-skripte.org"));
+    about.addCredit(i18n("Jeffrey Kelling"), i18n("Technical consultant"), QLatin1Literal("kelling.jeffrey@ages-skripte.org"));
     QCommandLineParser parser;
     KAboutData::setApplicationData(about);
     parser.addVersionOption();
@@ -61,13 +61,13 @@ int main(int argc, char ** argv)
     about.processCommandLine(&parser);
 
 	//resource directory for KNewStuff2 (this call causes the directory to be created; its existence is necessary for the downloader)
-	QStandardPaths::writableLocation(QStandardPaths::DataLocation) + QLatin1Char('/') + "themes/";
+    QStandardPaths::writableLocation(QStandardPaths::DataLocation) + QLatin1String("/themes/");
 
 	Kg::difficulty()->addStandardLevelRange(
 		KgDifficultyLevel::VeryEasy,
 		KgDifficultyLevel::VeryHard
 	);
-        KDBusService service;
+    KDBusService service;
 	// see if we are starting with session management
 	if (app.isSessionRestored())
 	{
