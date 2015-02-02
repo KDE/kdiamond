@@ -71,7 +71,7 @@ MainWindow::MainWindow(QWidget *parent)
 	KStandardAction::configureNotifications(this, SLOT(configureNotifications()), actionCollection());
 	//difficulty
 	KgDifficultyGUI::init(this);
-	connect(Kg::difficulty(), SIGNAL(currentLevelChanged(const KgDifficultyLevel*)), SLOT(startGameDispatcher()));
+    connect(Kg::difficulty(), &KgDifficulty::currentLevelChanged, this, &MainWindow::startGameDispatcher);
 	//late GUI initialisation
 	setupGUI(QSize(300, 400)); //TODO: find better solution for a minimum size
 	setCaption(i18nc("The application's name", "KDiamond"));
