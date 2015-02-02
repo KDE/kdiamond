@@ -27,60 +27,60 @@ class KGameRenderer;
 
 namespace KDiamond
 {
-	class Board : public QGraphicsObject
-	{
-		Q_OBJECT
-		public:
-			Board(KGameRenderer* renderer);
+class Board : public QGraphicsObject
+{
+    Q_OBJECT
+public:
+    Board(KGameRenderer *renderer);
 
-			int gridSize() const;
-			Diamond* diamond(const QPoint& point) const;
+    int gridSize() const;
+    Diamond *diamond(const QPoint &point) const;
 
-			bool hasDiamond(const QPoint& point) const;
-			bool hasRunningAnimations() const;
-			QList<QPoint> selections() const;
-			bool hasSelection(const QPoint& point) const;
-			void setSelection(const QPoint& point, bool selected);
-			void clearSelection();
+    bool hasDiamond(const QPoint &point) const;
+    bool hasRunningAnimations() const;
+    QList<QPoint> selections() const;
+    bool hasSelection(const QPoint &point) const;
+    void setSelection(const QPoint &point, bool selected);
+    void clearSelection();
 
-			void removeDiamond(const QPoint& point);
-			void swapDiamonds(const QPoint& point1, const QPoint& point2);
-			void fillGaps();
+    void removeDiamond(const QPoint &point);
+    void swapDiamonds(const QPoint &point1, const QPoint &point2);
+    void fillGaps();
 
-			virtual QRectF boundingRect() const;
-			virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0);
-		public Q_SLOTS:
-			void setPaused(bool paused);
-		Q_SIGNALS:
-			void animationsFinished();
-			void clicked(const QPoint& point);
-			void dragged(const QPoint& point, const QPoint& direction);
-		private Q_SLOTS:
-			void slotAnimationFinished();
-			void slotClicked();
-			void slotDragged(const QPoint& direction);
-		private:
-			struct MoveAnimSpec {
-				Diamond* diamond;
-				QPointF from, to;
-			};
-			QPoint findDiamond(Diamond* diamond) const;
-			Diamond*& rDiamond(const QPoint& point);
-			Diamond* spawnDiamond(int color);
-			void spawnMoveAnimations(const QList<MoveAnimSpec>& specs);
+    virtual QRectF boundingRect() const;
+    virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);
+public Q_SLOTS:
+    void setPaused(bool paused);
+Q_SIGNALS:
+    void animationsFinished();
+    void clicked(const QPoint &point);
+    void dragged(const QPoint &point, const QPoint &direction);
+private Q_SLOTS:
+    void slotAnimationFinished();
+    void slotClicked();
+    void slotDragged(const QPoint &direction);
+private:
+    struct MoveAnimSpec {
+        Diamond *diamond;
+        QPointF from, to;
+    };
+    QPoint findDiamond(Diamond *diamond) const;
+    Diamond *&rDiamond(const QPoint &point);
+    Diamond *spawnDiamond(int color);
+    void spawnMoveAnimations(const QList<MoveAnimSpec> &specs);
 
-			static const int MoveDuration;
-			static const int RemoveDuration;
+    static const int MoveDuration;
+    static const int RemoveDuration;
 
-			int m_difficultyIndex, m_size, m_colorCount;
-			QList<QPoint> m_selections;
-			bool m_paused;
+    int m_difficultyIndex, m_size, m_colorCount;
+    QList<QPoint> m_selections;
+    bool m_paused;
 
-			KGameRenderer* m_renderer;
-			QVector<Diamond*> m_diamonds;
-			QList<Diamond*> m_activeSelectors, m_inactiveSelectors;
-			QList<QAbstractAnimation*> m_runningAnimations;
-	};
+    KGameRenderer *m_renderer;
+    QVector<Diamond *> m_diamonds;
+    QList<Diamond *> m_activeSelectors, m_inactiveSelectors;
+    QList<QAbstractAnimation *> m_runningAnimations;
+};
 }
 
 #endif // KDIAMOND_BOARD_H

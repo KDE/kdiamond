@@ -30,41 +30,41 @@ class KActionMenu;
 
 namespace KDiamond
 {
-	class InfoBar;
-	class View;
+class InfoBar;
+class View;
 }
 
 class MainWindow : public KXmlGuiWindow
 {
-	Q_OBJECT
-	public:
-		MainWindow(QWidget *parent = 0);
-		~MainWindow();
-	public Q_SLOTS:
-		void startGame(KDiamond::Mode mode);
-		void startGameDispatcher();
-		void stateChange(KDiamond::State state);
-		void gameIsOver();
-		void showHighscores();
+    Q_OBJECT
+public:
+    MainWindow(QWidget *parent = 0);
+    ~MainWindow();
+public Q_SLOTS:
+    void startGame(KDiamond::Mode mode);
+    void startGameDispatcher();
+    void stateChange(KDiamond::State state);
+    void gameIsOver();
+    void showHighscores();
 
-		void configureNotifications();
-	Q_SIGNALS:
-		void pause(bool paused);
-	protected Q_SLOTS:
-		void pausedAction(bool paused);
-	private:
-		KDiamond::GameState* m_gameState;
-		Game* m_game;
-		KDiamond::View* m_view;
+    void configureNotifications();
+Q_SIGNALS:
+    void pause(bool paused);
+protected Q_SLOTS:
+    void pausedAction(bool paused);
+private:
+    KDiamond::GameState *m_gameState;
+    Game *m_game;
+    KDiamond::View *m_view;
 
-		KDiamond::InfoBar* m_infoBar;
+    KDiamond::InfoBar *m_infoBar;
 
-		KActionMenu *m_newAct;
-		QAction *m_newTimedAct;
-		QAction *m_newUntimedAct;
-		QAction *m_pauseAct;
-		QAction *m_hintAct;
-		KgThemeSelector m_selector;
+    KActionMenu *m_newAct;
+    QAction *m_newTimedAct;
+    QAction *m_newUntimedAct;
+    QAction *m_pauseAct;
+    QAction *m_hintAct;
+    KgThemeSelector m_selector;
 };
 
 #endif //KDIAMOND_MAINWINDOW_H

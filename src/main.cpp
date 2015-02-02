@@ -35,9 +35,9 @@
 static const char description[] = I18N_NOOP("KDiamond, a three-in-a-row game.");
 static const char version[] = "1.5";
 
-int main(int argc, char ** argv)
+int main(int argc, char **argv)
 {
-	qsrand(time(0));
+    qsrand(time(0));
     QApplication app(argc, argv);
 
     Kdelibs4ConfigMigrator migrate(QLatin1String("kdiamond"));
@@ -46,7 +46,7 @@ int main(int argc, char ** argv)
     migrate.migrate();
 
     KAboutData about(QLatin1Literal("kdiamond"), i18nc("The application's name", "KDiamond"), QLatin1Literal(version), i18n(description),
-        KAboutLicense::GPL, i18n("(C) 2008-2010 Stefan Majewsky and others"), QLatin1Literal("http://games.kde.org/kdiamond") );
+                     KAboutLicense::GPL, i18n("(C) 2008-2010 Stefan Majewsky and others"), QLatin1Literal("http://games.kde.org/kdiamond"));
     about.addAuthor(i18n("Stefan Majewsky"), i18n("Original author and current maintainer"), QLatin1Literal("majewsky@gmx.net"));
     about.addAuthor(i18n("Paul Bunbury"), i18n("Gameplay refinement"), QLatin1Literal("happysmileman@googlemail.com"));
     about.addCredit(i18n("Eugene Trounev"), i18n("Default theme"), QLatin1Literal("eugene.trounev@gmail.com"));
@@ -60,23 +60,20 @@ int main(int argc, char ** argv)
     parser.process(app);
     about.processCommandLine(&parser);
 
-	//resource directory for KNewStuff2 (this call causes the directory to be created; its existence is necessary for the downloader)
+    //resource directory for KNewStuff2 (this call causes the directory to be created; its existence is necessary for the downloader)
     QStandardPaths::writableLocation(QStandardPaths::DataLocation) + QLatin1String("/themes/");
 
-	Kg::difficulty()->addStandardLevelRange(
-		KgDifficultyLevel::VeryEasy,
-		KgDifficultyLevel::VeryHard
-	);
+    Kg::difficulty()->addStandardLevelRange(
+        KgDifficultyLevel::VeryEasy,
+        KgDifficultyLevel::VeryHard
+    );
     KDBusService service;
-	// see if we are starting with session management
-	if (app.isSessionRestored())
-	{
-		RESTORE(MainWindow);
-	}
-	else
-	{
-		MainWindow* window = new MainWindow;
-		window->show();
-	}
-	return app.exec();
+    // see if we are starting with session management
+    if (app.isSessionRestored()) {
+        RESTORE(MainWindow);
+    } else {
+        MainWindow *window = new MainWindow;
+        window->show();
+    }
+    return app.exec();
 }

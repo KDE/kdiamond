@@ -23,40 +23,39 @@
 
 namespace KDiamond
 {
-	//registered colors of diamonds
-	enum Color
-	{
-		NoColor = -1,  //use this if no actual color can be named (e.g. for a null Diamond pointer)
-		Selection = 0, //actually no diamond type, but this allows to reuse the Diamond class' code for the selection marker
-		RedDiamond = 1,
-		GreenDiamond,
-		BlueDiamond,
-		YellowDiamond,
-		WhiteDiamond,
-		BlackDiamond,
-		OrangeDiamond,
-		ColorsCount
-	};
+//registered colors of diamonds
+enum Color {
+    NoColor = -1,  //use this if no actual color can be named (e.g. for a null Diamond pointer)
+    Selection = 0, //actually no diamond type, but this allows to reuse the Diamond class' code for the selection marker
+    RedDiamond = 1,
+    GreenDiamond,
+    BlueDiamond,
+    YellowDiamond,
+    WhiteDiamond,
+    BlackDiamond,
+    OrangeDiamond,
+    ColorsCount
+};
 }
 
 class Diamond : public KGameRenderedObjectItem
 {
-	Q_OBJECT
-	public:
-		Diamond(KDiamond::Color color, KGameRenderer* renderer, QGraphicsItem* parent = 0);
+    Q_OBJECT
+public:
+    Diamond(KDiamond::Color color, KGameRenderer *renderer, QGraphicsItem *parent = 0);
 
-		KDiamond::Color color() const;
-	Q_SIGNALS:
-		void clicked();
-		void dragged(const QPoint& direction);
-	protected:
-		virtual void mousePressEvent(QGraphicsSceneMouseEvent *);
-		virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *);
-		virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *);
-	private:
-		KDiamond::Color m_color;
-		bool m_mouseDown;
-		QPointF m_mouseDownPos; //position of last mouse-down event in local coordinates
+    KDiamond::Color color() const;
+Q_SIGNALS:
+    void clicked();
+    void dragged(const QPoint &direction);
+protected:
+    virtual void mousePressEvent(QGraphicsSceneMouseEvent *);
+    virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *);
+    virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *);
+private:
+    KDiamond::Color m_color;
+    bool m_mouseDown;
+    QPointF m_mouseDownPos; //position of last mouse-down event in local coordinates
 };
 
 #endif //KDIAMOND_DIAMOND_H

@@ -25,24 +25,24 @@ class QLabel;
 namespace KDiamond
 {
 
-	class InfoBar : public QObject
-	{
-		Q_OBJECT
-		public:
-			InfoBar(QStatusBar* bar);
-		public Q_SLOTS:
-			void setUntimed(bool untimed);
-			void updatePoints(int points);
-			void updateMoves(int moves);
-			void updateRemainingTime(int remainingSeconds);
-		private:
-			bool m_untimed;
-			QStatusBar* m_bar;
-            QLabel *mMovement;
-            QLabel *mPoints;
-            QLabel *mTime;
+class InfoBar : public QObject
+{
+    Q_OBJECT
+public:
+    InfoBar(QStatusBar *bar);
+public Q_SLOTS:
+    void setUntimed(bool untimed);
+    void updatePoints(int points);
+    void updateMoves(int moves);
+    void updateRemainingTime(int remainingSeconds);
+private:
+    bool m_untimed;
+    QStatusBar *m_bar;
+    QLabel *mMovement;
+    QLabel *mPoints;
+    QLabel *mTime;
 
-	};
+};
 
 }
 

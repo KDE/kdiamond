@@ -24,16 +24,16 @@
 namespace KDiamond
 {
 
-	class View : public QGraphicsView
-	{
-		public:
-			View(QWidget* parent = 0);
+class View : public QGraphicsView
+{
+public:
+    View(QWidget *parent = 0);
 
-			void setScene(QGraphicsScene* scene);
-		protected:
-			virtual void resizeEvent(QResizeEvent* event);
-			virtual void wheelEvent(QWheelEvent* event);
-	};
+    void setScene(QGraphicsScene *scene);
+protected:
+    virtual void resizeEvent(QResizeEvent *event);
+    virtual void wheelEvent(QWheelEvent *event);
+};
 
 }
 
