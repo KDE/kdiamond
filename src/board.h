@@ -47,6 +47,8 @@ public:
     void swapDiamonds(const QPoint &point1, const QPoint &point2);
     void fillGaps();
 
+    KGameRenderer *renderer() const;
+
     virtual QRectF boundingRect() const;
     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);
 public Q_SLOTS:

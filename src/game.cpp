@@ -30,44 +30,11 @@
 #include <KgThemeProvider>
 #include <KNotification>
 
-//BEGIN global KGameRenderer instance
-
-namespace KDiamond
-{
-class ThemeProvider : public KgThemeProvider
-{
-public:
-    ThemeProvider(QObject *parent = 0)
-        : KgThemeProvider("Theme", parent)
-    {
-        discoverThemes("appdata", QLatin1String("themes"));
-    }
-};
-
-class Renderer : public KGameRenderer
-{
-public:
-    Renderer() : KGameRenderer(new ThemeProvider, 10)
-    {
-        setFrameSuffix(QString::fromLatin1("-%1"));
-    }
-};
-}
-
-Q_GLOBAL_STATIC(KDiamond::Renderer, g_renderer)
-
-KGameRenderer *KDiamond::renderer()
-{
-    return g_renderer;
-}
-
-//END global KGameRenderer instance
-
 const int UpdateInterval = 40;
 
-Game::Game(KDiamond::GameState *state)
+Game::Game(KDiamond::GameState *state, KGameRenderer *renderer)
     : m_timerId(-1)
-    , m_board(new KDiamond::Board(g_renderer))
+    , m_board(new KDiamond::Board(renderer))
     , m_gameState(state)
     , m_messenger(new KGamePopupItem)
 {
@@ -78,7 +45,7 @@ Game::Game(KDiamond::GameState *state)
     const int minSize = m_board->gridSize();
     setSceneRect(0.0, 0.0, minSize, minSize);
     connect(this, &Game::sceneRectChanged, this, &Game::updateGraphics);
-    connect(g_renderer->themeProvider(), SIGNAL(currentThemeChanged(const KgTheme*)), SLOT(updateGraphics()));
+    connect(renderer->themeProvider(), SIGNAL(currentThemeChanged(const KgTheme*)), SLOT(updateGraphics()));
     addItem(m_board);
     //init messenger
     m_messenger->setMessageOpacity(0.8);
@@ -181,14 +148,14 @@ void Game::updateGraphics()
     t.translate(leftOffset, 0).scale(diamondSize, diamondSize);
     m_board->setTransform(t);
     //render background
-    QPixmap pix = g_renderer->spritePixmap(QLatin1Literal("kdiamond-background"), sceneSize);
-    const KgTheme *theme = g_renderer->theme();
+    QPixmap pix = m_board->renderer()->spritePixmap(QLatin1Literal("kdiamond-background"), sceneSize);
+    const KgTheme *theme = m_board->renderer()->theme();
     const bool hasBorder = theme->customData(QLatin1Literal("HasBorder")).toInt() > 0;
     if (hasBorder) {
         const qreal borderPercentage = theme->customData(QLatin1Literal("BorderPercentage")).toFloat();
         const int padding = borderPercentage * boardSize;
         const int boardBorderSize = 2 * padding + boardSize;
-        const QPixmap boardPix = g_renderer->spritePixmap(QLatin1Literal("kdiamond-border"), QSize(boardBorderSize, boardBorderSize));
+        const QPixmap boardPix = m_board->renderer()->spritePixmap(QLatin1Literal("kdiamond-border"), QSize(boardBorderSize, boardBorderSize));
         QPainter painter(&pix);
         painter.drawPixmap(QPoint(leftOffset - padding, -padding), boardPix);
     }

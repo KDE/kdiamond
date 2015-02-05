@@ -288,6 +288,11 @@ void KDiamond::Board::fillGaps()
     spawnMoveAnimations(specs);
 }
 
+KGameRenderer *KDiamond::Board::renderer() const
+{
+    return m_renderer;
+}
+
 void KDiamond::Board::slotClicked()
 {
     const QPoint point = findDiamond(qobject_cast<Diamond *>(sender()));

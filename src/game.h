@@ -40,15 +40,13 @@ enum Job {
 };
 
 class Board;
-
-KGameRenderer *renderer();
 }
 
 class Game : public QGraphicsScene
 {
     Q_OBJECT
 public:
-    Game(KDiamond::GameState *state);
+    Game(KDiamond::GameState *state, KGameRenderer *renderer);
 public Q_SLOTS:
     void updateGraphics();
 

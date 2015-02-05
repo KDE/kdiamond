@@ -40,6 +40,28 @@
 #include <KStandardGameAction>
 #include <KToggleAction>
 
+namespace KDiamond
+{
+class ThemeProvider : public KgThemeProvider
+{
+public:
+    ThemeProvider(QObject *parent = 0)
+        : KgThemeProvider("Theme", parent)
+    {
+        discoverThemes("appdata", QLatin1String("themes"));
+    }
+};
+
+class Renderer : public KGameRenderer
+{
+public:
+    Renderer() : KGameRenderer(new ThemeProvider, 10)
+    {
+        setFrameSuffix(QString::fromLatin1("-%1"));
+    }
+};
+}
+
 MainWindow::MainWindow(QWidget *parent)
     : KXmlGuiWindow(parent)
     , m_gameState(new KDiamond::GameState)
@@ -49,9 +71,10 @@ MainWindow::MainWindow(QWidget *parent)
     , m_newAct(new KActionMenu(QIcon::fromTheme(QLatin1String("document-new")), i18nc("new game", "&New"), this))
     , m_newTimedAct(new QAction(i18n("Timed game"), this))
     , m_newUntimedAct(new QAction(i18n("Untimed game"), this))
-    , m_selector(KDiamond::renderer()->themeProvider(), KgThemeSelector::EnableNewStuffDownload)
+    , m_renderer(new KDiamond::Renderer())
+    , m_selector(m_renderer->themeProvider(), KgThemeSelector::EnableNewStuffDownload)
 {
-    KDiamond::renderer()->setDefaultPrimaryView(m_view);
+    m_renderer->setDefaultPrimaryView(m_view);
     //init GUI - "New Action"
     m_newAct->setToolTip(i18n("Start a new game"));
     m_newAct->setWhatsThis(i18n("Start a new game."));
@@ -88,6 +111,7 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     Settings::self()->save();
+    delete m_renderer;
     delete m_game;
     delete m_gameState;
 }
@@ -112,7 +136,7 @@ void MainWindow::startGame(KDiamond::Mode mode)
     //start new game
     m_gameState->startNewGame();
     m_gameState->setMode(mode);
-    m_game = new Game(m_gameState);
+    m_game = new Game(m_gameState, m_renderer);
     connect(m_gameState, &KDiamond::GameState::stateChanged, m_game, &Game::stateChange);
     connect(m_gameState, &KDiamond::GameState::message, m_game, &Game::message);
     connect(m_game, &Game::numberMoves, m_infoBar, &KDiamond::InfoBar::updateMoves);
