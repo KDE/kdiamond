@@ -13,14 +13,15 @@ set(kdiamond_SRCS
 
 kconfig_add_kcfg_files(kdiamond_SRCS settings.kcfgc)
 
-#kde4_add_app_icon(kdiamond_SRCS "pics/hi*-apps-kdiamond.png")
+file(GLOB ICONS_SRCS "pics/hi*-apps-kdiamond.png")
+ecm_add_app_icon(kdiamond_SRCS ICONS ${ICONS_SRCS})
 
 add_executable(kdiamond ${kdiamond_SRCS})
 target_link_libraries(kdiamond  KF5KDEGames KF5::NotifyConfig KF5::I18n KF5::XmlGui KF5::Notifications KF5::DBusAddons)
 
-install(TARGETS kdiamond  ${INSTALL_TARGETS_DEFAULT_ARGS})
-install(FILES kdiamond.knsrc  DESTINATION ${CONFIG_INSTALL_DIR})
-install(PROGRAMS org.kde.kdiamond.desktop  DESTINATION ${XDG_APPS_INSTALL_DIR})
-install(FILES kdiamond.kcfg DESTINATION ${DATA_INSTALL_DIR}/kdiamond)
-install(FILES kdiamondui.rc  DESTINATION ${KXMLGUI_INSTALL_DIR}/kdiamond)
-install(FILES kdiamond.notifyrc DESTINATION ${KNOTIFYRC_INSTALL_DIR})
+install(TARGETS kdiamond  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+install(FILES kdiamond.knsrc  DESTINATION ${KDE_INSTALL_CONFDIR})
+install(PROGRAMS org.kde.kdiamond.desktop  DESTINATION ${KDE_INSTALL_APPDIR})
+install(FILES kdiamond.kcfg DESTINATION ${KDE_INSTALL_DATADIR}/kdiamond)
+install(FILES kdiamondui.rc  DESTINATION ${KDE_INSTALL_KXMLGUI5DIR}/kdiamond)
+install(FILES kdiamond.notifyrc DESTINATION ${KDE_INSTALL_KNOTIFY5RCDIR})

@@ -9,4 +9,4 @@ set(kdiamond_THEME_SRCS
         egyptian.svgz
         egyptian_preview.png
 )
-install(FILES ${kdiamond_THEME_SRCS} DESTINATION ${DATA_INSTALL_DIR}/kdiamond/themes)
+install(FILES ${kdiamond_THEME_SRCS} DESTINATION ${KDE_INSTALL_DATADIR}/kdiamond/themes)
