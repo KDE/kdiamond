@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Exec=kdiamond -caption %c
+Exec=kdiamond -qwindowtitle %c
 Name=KDiamond
 Name[ast]=KDiamond
 Name[bs]=KDiamond
