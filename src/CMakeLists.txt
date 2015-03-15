@@ -13,7 +13,7 @@ set(kdiamond_SRCS
 
 kconfig_add_kcfg_files(kdiamond_SRCS settings.kcfgc)
 
-file(GLOB ICONS_SRCS "pics/hi*-apps-kdiamond.png")
+file(GLOB ICONS_SRCS "pics/*-apps-kdiamond.png")
 ecm_add_app_icon(kdiamond_SRCS ICONS ${ICONS_SRCS})
 
 add_executable(kdiamond ${kdiamond_SRCS})

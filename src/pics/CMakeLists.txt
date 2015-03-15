@@ -1,1 +1,1 @@
-ecm_install_icons(ICONS hi128-apps-kdiamond.png  hi16-apps-kdiamond.png  hi22-apps-kdiamond.png  hi32-apps-kdiamond.png  hi48-apps-kdiamond.png  hi64-apps-kdiamond.png DESTINATION ${KDE_INSTALL_ICONDIR})
+ecm_install_icons(ICONS 128-apps-kdiamond.png  16-apps-kdiamond.png  22-apps-kdiamond.png  32-apps-kdiamond.png  48-apps-kdiamond.png  64-apps-kdiamond.png DESTINATION ${KDE_INSTALL_ICONDIR} THEME hicolor)
