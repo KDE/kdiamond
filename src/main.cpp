@@ -37,13 +37,13 @@ static const char version[] = "1.5";
 
 int main(int argc, char **argv)
 {
+    QApplication app(argc, argv);
     Kdelibs4ConfigMigrator migrate(QLatin1String("kdiamond"));
     migrate.setConfigFiles(QStringList() << QLatin1String("kdiamondrc") << QLatin1String("kdiamond.notifyrc"));
     migrate.setUiFiles(QStringList() << QLatin1String("kdiamondui.rc"));
     migrate.migrate();
 
     qsrand(time(0));
-    QApplication app(argc, argv);
 
     KAboutData about(QLatin1Literal("kdiamond"), i18nc("The application's name", "KDiamond"), QLatin1Literal(version), i18n(description),
                      KAboutLicense::GPL, i18n("(C) 2008-2010 Stefan Majewsky and others"), QLatin1Literal("http://games.kde.org/kdiamond"));
