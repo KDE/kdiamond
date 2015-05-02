@@ -1,6 +1,7 @@
 [Global]
 IconName=kdiamond
 Comment=KDiamond Game
+Comment[ast]=Xuegu KDiamond
 Comment[bs]=KDiamond igra
 Comment[ca]=Joc KDiamond
 Comment[ca@valencia]=Joc KDiamond
@@ -44,6 +45,7 @@ Comment[zh_TW]=KDiamond 寶石方塊
 
 [Context/game]
 Name=Game
+Name[ast]=Xuegu
 Name[bs]=Igra
 Name[ca]=Joc
 Name[ca@valencia]=Joc
@@ -98,6 +100,7 @@ Name[x-test]=xxGamexx
 Name[zh_CN]=游戏
 Name[zh_TW]=遊戲
 Comment=Sounds that appear during a game
+Comment[ast]=Soníos qu'apaecen durante el xuegu
 Comment[bs]=Zvukovi koji se pojavljuju tokom igre
 Comment[ca]=Sons que apareixen durant la partida
 Comment[ca@valencia]=Sons que apareixen durant la partida
@@ -146,6 +149,7 @@ Comment[zh_TW]=遊戲間的音效
 
 [Event/remove]
 Name=Diamonds removed
+Name[ast]=Diamantes desaniciaos
 Name[bs]=Dijamanti uklonjeni
 Name[ca]=Diamants eliminats
 Name[ca@valencia]=Diamants eliminats
@@ -195,6 +199,7 @@ Name[x-test]=xxDiamonds removedxx
 Name[zh_CN]=已消去钻石
 Name[zh_TW]=寶石已移除
 Comment=Diamonds were removed.
+Comment[ast]=Desaniciáronse los diamantes
 Comment[bs]=Dijamanti su uklonjeni.
 Comment[ca]=S'han eliminat els diamants.
 Comment[ca@valencia]=S'han eliminat els diamants.
@@ -249,6 +254,7 @@ Action=Sound
 
 [Event/move]
 Name=Diamonds moving
+Name[ast]=Moviendo los diamantes
 Name[bs]=Dijamanti se kreću
 Name[ca]=Movent els diamants
 Name[ca@valencia]=Movent els diamants
@@ -298,6 +304,7 @@ Name[x-test]=xxDiamonds movingxx
 Name[zh_CN]=移动中的钻石
 Name[zh_TW]=寶石移動中
 Comment=Diamonds are moving.
+Comment[ast]=Moviéronse los diamantes
 Comment[bs]=Dijamanti se kreću.
 Comment[ca]=Els diamants s'estan movent.
 Comment[ca@valencia]=Els diamants s'estan movent.
@@ -352,6 +359,7 @@ Action=None
 
 [Event/gamefinished]
 Name=Game over
+Name[ast]=Partida finada
 Name[bs]=Igra je završena
 Name[ca]=Fi de la partida
 Name[ca@valencia]=Fi de la partida
@@ -405,6 +413,7 @@ Name[x-test]=xxGame overxx
 Name[zh_CN]=游戏结束
 Name[zh_TW]=遊戲結束
 Comment=Time is up.
+Comment[ast]=El tiempu aumentó.
 Comment[bs]=Vrijeme je isteklo.
 Comment[ca]=S'ha esgotat el temps.
 Comment[ca@valencia]=S'ha esgotat el temps.
