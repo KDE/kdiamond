@@ -44,7 +44,7 @@ int main(int argc, char **argv)
     migrate.migrate();
 
     qsrand(time(0));
-
+    KLocalizedString::setApplicationDomain("kdiamond");
     KAboutData about(QLatin1Literal("kdiamond"), i18nc("The application's name", "KDiamond"), QLatin1Literal(version), i18n(description),
                      KAboutLicense::GPL, i18n("(C) 2008-2010 Stefan Majewsky and others"), QLatin1Literal("http://games.kde.org/kdiamond"));
     about.addAuthor(i18n("Stefan Majewsky"), i18n("Original author and current maintainer"), QLatin1Literal("majewsky@gmx.net"));
