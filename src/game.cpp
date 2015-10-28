@@ -45,7 +45,7 @@ Game::Game(KDiamond::GameState *state, KGameRenderer *renderer)
     const int minSize = m_board->gridSize();
     setSceneRect(0.0, 0.0, minSize, minSize);
     connect(this, &Game::sceneRectChanged, this, &Game::updateGraphics);
-    connect(renderer->themeProvider(), SIGNAL(currentThemeChanged(const KgTheme*)), SLOT(updateGraphics()));
+    connect(renderer->themeProvider(), &KgThemeProvider::currentThemeChanged, this, &Game::updateGraphics);
     addItem(m_board);
     //init messenger
     m_messenger->setMessageOpacity(0.8);
@@ -148,14 +148,14 @@ void Game::updateGraphics()
     t.translate(leftOffset, 0).scale(diamondSize, diamondSize);
     m_board->setTransform(t);
     //render background
-    QPixmap pix = m_board->renderer()->spritePixmap(QLatin1Literal("kdiamond-background"), sceneSize);
+    QPixmap pix = m_board->renderer()->spritePixmap(QStringLiteral("kdiamond-background"), sceneSize);
     const KgTheme *theme = m_board->renderer()->theme();
-    const bool hasBorder = theme->customData(QLatin1Literal("HasBorder")).toInt() > 0;
+    const bool hasBorder = theme->customData(QStringLiteral("HasBorder")).toInt() > 0;
     if (hasBorder) {
-        const qreal borderPercentage = theme->customData(QLatin1Literal("BorderPercentage")).toFloat();
+        const qreal borderPercentage = theme->customData(QStringLiteral("BorderPercentage")).toFloat();
         const int padding = borderPercentage * boardSize;
         const int boardBorderSize = 2 * padding + boardSize;
-        const QPixmap boardPix = m_board->renderer()->spritePixmap(QLatin1Literal("kdiamond-border"), QSize(boardBorderSize, boardBorderSize));
+        const QPixmap boardPix = m_board->renderer()->spritePixmap(QStringLiteral("kdiamond-border"), QSize(boardBorderSize, boardBorderSize));
         QPainter painter(&pix);
         painter.drawPixmap(QPoint(leftOffset - padding, -padding), boardPix);
     }
@@ -243,7 +243,7 @@ void Game::timerEvent(QTimerEvent *event)
     } //fall through
     case KDiamond::RevokeSwapDiamondsJob:
         //invoke movement
-        KNotification::event(QLatin1Literal("move"));
+        KNotification::event(QStringLiteral("move"));
         m_board->swapDiamonds(m_swappingDiamonds[0], m_swappingDiamonds[1]);
         break;
     case KDiamond::RemoveRowsJob: {
@@ -267,7 +267,7 @@ void Game::timerEvent(QTimerEvent *event)
             //report to Game
             m_gameState->addPoints(diamondsToRemove.count());
             //invoke remove animation, then fill gaps immediately after the animation
-            KNotification::event(QLatin1Literal("remove"));
+            KNotification::event(QStringLiteral("remove"));
             foreach (const QPoint &diamondPos, diamondsToRemove) {
                 m_board->removeDiamond(diamondPos);
             }

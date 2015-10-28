@@ -48,7 +48,7 @@ public:
     ThemeProvider(QObject *parent = 0)
         : KgThemeProvider("Theme", parent)
     {
-        discoverThemes("appdata", QLatin1String("themes"));
+        discoverThemes("appdata", QStringLiteral("themes"));
     }
 };
 
@@ -57,7 +57,7 @@ class Renderer : public KGameRenderer
 public:
     Renderer() : KGameRenderer(new ThemeProvider, 10)
     {
-        setFrameSuffix(QString::fromLatin1("-%1"));
+        setFrameSuffix(QStringLiteral("-%1"));
     }
 };
 }
@@ -68,7 +68,7 @@ MainWindow::MainWindow(QWidget *parent)
     , m_game(0)
     , m_view(new KDiamond::View)
     , m_infoBar(0)
-    , m_newAct(new KActionMenu(QIcon::fromTheme(QLatin1String("document-new")), i18nc("new game", "&New"), this))
+    , m_newAct(new KActionMenu(QIcon::fromTheme(QStringLiteral("document-new")), i18nc("new game", "&New"), this))
     , m_newTimedAct(new QAction(i18n("Timed game"), this))
     , m_newUntimedAct(new QAction(i18n("Untimed game"), this))
     , m_renderer(new KDiamond::Renderer())
@@ -78,7 +78,7 @@ MainWindow::MainWindow(QWidget *parent)
     //init GUI - "New Action"
     m_newAct->setToolTip(i18n("Start a new game"));
     m_newAct->setWhatsThis(i18n("Start a new game."));
-    actionCollection()->addAction(QLatin1String("game_new"), m_newAct);
+    actionCollection()->addAction(QStringLiteral("game_new"), m_newAct);
     actionCollection()->setDefaultShortcuts(m_newAct, KStandardShortcut::openNew());
     connect(m_newAct, &KActionMenu::triggered, this, &MainWindow::startGameDispatcher);
     m_newAct->addAction(m_newTimedAct);
@@ -164,7 +164,7 @@ void MainWindow::gameIsOver()
     scoreInfo[KScoreDialog::Custom1] = m_gameState->mode() == KDiamond::UntimedGame ? i18n("Untimed") : i18n("Timed");
     //report score
     QPointer<KScoreDialog> dialog = new KScoreDialog(KScoreDialog::Name | KScoreDialog::Score, this);
-    dialog->addField(KScoreDialog::Custom1, i18n("Mode"), QLatin1Literal("mode"));
+    dialog->addField(KScoreDialog::Custom1, i18n("Mode"), QStringLiteral("mode"));
     dialog->initFromDifficulty(Kg::difficulty());
     dialog->addScore(scoreInfo);
     dialog->exec();
@@ -176,11 +176,11 @@ void MainWindow::showHighscores()
     //pause game if necessary
     m_gameState->setState(KDiamond::Paused);
     if (m_gameState->state() != KDiamond::Finished) {
-        actionCollection()->action(QLatin1Literal("game_pause"))->setChecked(true);
+        actionCollection()->action(QStringLiteral("game_pause"))->setChecked(true);
     }
     //show dialog
     QPointer<KScoreDialog> dialog = new KScoreDialog(KScoreDialog::Name | KScoreDialog::Score, this);
-    dialog->addField(KScoreDialog::Custom1, i18n("Mode"), QLatin1Literal("mode"));
+    dialog->addField(KScoreDialog::Custom1, i18n("Mode"), QStringLiteral("mode"));
     dialog->initFromDifficulty(Kg::difficulty());
     dialog->exec();
     delete dialog;

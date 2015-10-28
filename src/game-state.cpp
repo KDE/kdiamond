@@ -118,7 +118,7 @@ void KDiamond::GameState::setState(KDiamond::State state)
     p->m_state = state;
     emit stateChanged(state);
     if (state == KDiamond::Finished) {
-        KNotification::event(QLatin1Literal("gamefinished"));
+        KNotification::event(QStringLiteral("gamefinished"));
         emit message(i18nc("Not meant like 'You have lost', more like 'Time is up'.", "Game over."));
     }
 }

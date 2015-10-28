@@ -38,20 +38,20 @@ static const char version[] = "1.5";
 int main(int argc, char **argv)
 {
     QApplication app(argc, argv);
-    Kdelibs4ConfigMigrator migrate(QLatin1String("kdiamond"));
-    migrate.setConfigFiles(QStringList() << QLatin1String("kdiamondrc") << QLatin1String("kdiamond.notifyrc"));
-    migrate.setUiFiles(QStringList() << QLatin1String("kdiamondui.rc"));
+    Kdelibs4ConfigMigrator migrate(QStringLiteral("kdiamond"));
+    migrate.setConfigFiles(QStringList() << QStringLiteral("kdiamondrc") << QStringLiteral("kdiamond.notifyrc"));
+    migrate.setUiFiles(QStringList() << QStringLiteral("kdiamondui.rc"));
     migrate.migrate();
 
     qsrand(time(0));
     KLocalizedString::setApplicationDomain("kdiamond");
-    KAboutData about(QLatin1Literal("kdiamond"), i18nc("The application's name", "KDiamond"), QLatin1Literal(version), i18n(description),
-                     KAboutLicense::GPL, i18n("(C) 2008-2010 Stefan Majewsky and others"), QLatin1Literal("http://games.kde.org/kdiamond"));
-    about.addAuthor(i18n("Stefan Majewsky"), i18n("Original author and current maintainer"), QLatin1Literal("majewsky@gmx.net"));
-    about.addAuthor(i18n("Paul Bunbury"), i18n("Gameplay refinement"), QLatin1Literal("happysmileman@googlemail.com"));
-    about.addCredit(i18n("Eugene Trounev"), i18n("Default theme"), QLatin1Literal("eugene.trounev@gmail.com"));
-    about.addCredit(i18n("Felix Lemke"), i18n("Classic theme"), QLatin1Literal("lemke.felix@ages-skripte.org"));
-    about.addCredit(i18n("Jeffrey Kelling"), i18n("Technical consultant"), QLatin1Literal("kelling.jeffrey@ages-skripte.org"));
+    KAboutData about(QStringLiteral("kdiamond"), i18nc("The application's name", "KDiamond"), QLatin1Literal(version), i18n(description),
+                     KAboutLicense::GPL, i18n("(C) 2008-2010 Stefan Majewsky and others"), QStringLiteral("http://games.kde.org/kdiamond"));
+    about.addAuthor(i18n("Stefan Majewsky"), i18n("Original author and current maintainer"), QStringLiteral("majewsky@gmx.net"));
+    about.addAuthor(i18n("Paul Bunbury"), i18n("Gameplay refinement"), QStringLiteral("happysmileman@googlemail.com"));
+    about.addCredit(i18n("Eugene Trounev"), i18n("Default theme"), QStringLiteral("eugene.trounev@gmail.com"));
+    about.addCredit(i18n("Felix Lemke"), i18n("Classic theme"), QStringLiteral("lemke.felix@ages-skripte.org"));
+    about.addCredit(i18n("Jeffrey Kelling"), i18n("Technical consultant"), QStringLiteral("kelling.jeffrey@ages-skripte.org"));
     QCommandLineParser parser;
     KAboutData::setApplicationData(about);
     parser.addVersionOption();
