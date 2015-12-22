@@ -29,7 +29,7 @@ class InfoBar : public QObject
 {
     Q_OBJECT
 public:
-    InfoBar(QStatusBar *bar);
+    explicit InfoBar(QStatusBar *bar);
 public Q_SLOTS:
     void setUntimed(bool untimed);
     void updatePoints(int points);

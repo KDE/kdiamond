@@ -31,7 +31,7 @@ class Board : public QGraphicsObject
 {
     Q_OBJECT
 public:
-    Board(KGameRenderer *renderer);
+    explicit Board(KGameRenderer *renderer);
 
     int gridSize() const;
     Diamond *diamond(const QPoint &point) const;

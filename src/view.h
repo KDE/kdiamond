@@ -27,7 +27,7 @@ namespace KDiamond
 class View : public QGraphicsView
 {
 public:
-    View(QWidget *parent = 0);
+    explicit View(QWidget *parent = 0);
 
     void setScene(QGraphicsScene *scene);
 protected:
