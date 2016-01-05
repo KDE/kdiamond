@@ -249,7 +249,7 @@ Comment[x-test]=xxDiamonds were removed.xx
 Comment[zh_CN]=已消去的钻石。
 Comment[zh_TW]=寶石已移除
 Contexts=game
-Sound=KDE-Window-Shade-Down.ogg
+Sound=Oxygen-Window-Shade-Down.ogg
 Action=Sound
 
 [Event/move]
@@ -463,5 +463,5 @@ Comment[x-test]=xxTime is up.xx
 Comment[zh_CN]=时间到。
 Comment[zh_TW]=時間到了。
 Contexts=game
-Sound=KDE-Im-User-Auth.ogg
+Sound=Oxygen-Im-User-Auth.ogg
 Action=Sound
