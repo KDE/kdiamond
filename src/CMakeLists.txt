@@ -17,7 +17,15 @@ file(GLOB ICONS_SRCS "pics/*-apps-kdiamond.png")
 ecm_add_app_icon(kdiamond_SRCS ICONS ${ICONS_SRCS})
 
 add_executable(kdiamond ${kdiamond_SRCS})
-target_link_libraries(kdiamond  KF5KDEGames KF5::NotifyConfig KF5::I18n KF5::XmlGui KF5::Notifications KF5::DBusAddons)
+target_link_libraries(kdiamond
+    KF5KDEGames
+    KF5::NotifyConfig
+    KF5::I18n
+    KF5::XmlGui
+    KF5::Notifications
+    KF5::DBusAddons
+    KF5::Crash
+)
 
 install(TARGETS kdiamond  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES kdiamond.knsrc  DESTINATION ${KDE_INSTALL_CONFDIR})

@@ -22,6 +22,7 @@
 #include <ctime>
 
 #include <KAboutData>
+#include <KCrash>
 
 #include <KLocalizedString>
 
@@ -54,6 +55,7 @@ int main(int argc, char **argv)
     about.addCredit(i18n("Jeffrey Kelling"), i18n("Technical consultant"), QStringLiteral("kelling.jeffrey@ages-skripte.org"));
     QCommandLineParser parser;
     KAboutData::setApplicationData(about);
+    KCrash::initialize();
     parser.addVersionOption();
     parser.addHelpOption();
     about.setupCommandLine(&parser);
