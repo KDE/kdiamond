@@ -65,7 +65,7 @@ int main(int argc, char **argv)
     app.setWindowIcon(QIcon::fromTheme(QStringLiteral("kdiamond")));
 
     //resource directory for KNewStuff2 (this call causes the directory to be created; its existence is necessary for the downloader)
-    QStandardPaths::writableLocation(QStandardPaths::DataLocation) + QLatin1String("/themes/");
+    QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + QLatin1String("/themes/");
 
     Kg::difficulty()->addStandardLevelRange(
         KgDifficultyLevel::VeryEasy,
