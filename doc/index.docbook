@@ -1,8 +1,5 @@
 <?xml version="1.0" ?>
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
-<!ENTITY kdiamond "<application>KDiamond</application>">
-<!ENTITY kappname "&kdiamond;">
-<!ENTITY package "kdegames">
 <!ENTITY % English "INCLUDE"> 
 <!ENTITY % addindex "IGNORE">
 ]>
@@ -27,8 +24,8 @@
     
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2013-05-05</date>
-<releaseinfo>1.4 (&kde; 4.11)</releaseinfo>
+<date>2016-05-09</date>
+<releaseinfo>1.5 (Applications 16.04)</releaseinfo>
 
 <abstract>
 <para>
@@ -50,6 +47,17 @@
 <para>
 &kdiamond; is a single player puzzle game.
 </para>
+
+<screenshot>
+<mediaobject>
+<imageobject>
+<imagedata fileref="gameboard.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase>&kbreakout; gameboard</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
 
 <para>
 The object of the game is to build lines of three similar diamonds.
@@ -110,7 +118,8 @@ Starts a new game. It creates a random board using the current difficulty level.
 <term><menuchoice>
 <shortcut><keycap>P</keycap></shortcut>
 <guimenu>Game</guimenu>
-<guimenuitem>Pause</guimenuitem></menuchoice></term>
+<guimenuitem>Pause</guimenuitem>
+</menuchoice></term>
 <listitem>
 <para>
 Pauses the game time. Click on the menu item again to make the game resume. Note that the board disappears when the game is paused as it would be unfair if you could search for good moves without the time pressure.
@@ -124,7 +133,8 @@ Pauses the game time. Click on the menu item again to make the game resume. Note
 <keycombo action="simul">&Ctrl;<keycap>H</keycap></keycombo>
 </shortcut>
 <guimenu>Game</guimenu>
-<guimenuitem>Show High Scores</guimenuitem></menuchoice></term>
+<guimenuitem>Show High Scores</guimenuitem>
+</menuchoice></term>
 <listitem>
 <para>
 Shows a dialog containing the High Scores for the various difficulty levels.
@@ -179,8 +189,10 @@ Highlight a diamond which can be moved.
 </varlistentry>
 
 <varlistentry>
-<term><menuchoice><guimenu>Settings</guimenu><guimenuitem>Configure
-Notifications...</guimenuitem></menuchoice></term>
+<term><menuchoice>
+<guimenu>Settings</guimenu>
+<guimenuitem>Configure Notifications...</guimenuitem>
+</menuchoice></term>
 <listitem><para>This item displays a standard &kde; notifications configuration
 dialog, where you can change the notifications (sounds, visible messages,
 &etc;) used by &kdiamond;.</para></listitem>
@@ -279,25 +291,6 @@ Documentation copyright 2008, 2009, 2010 by Stefan Majewsky <email>majewsky@gmx.
 &underGPL;
 
 </chapter>
-
-<appendix id="installation">
-<title>Installation</title>
-
-<sect1 id="getting-kdiamond">
-<title>How to obtain &kdiamond;</title>
-
-&install.intro.documentation;
-
-</sect1>
-
-<sect1 id="compilation">
-<title>Compilation and Installation</title>
-
-&install.compile.documentation;
-
-</sect1>
-</appendix>
-
 
 &documentation.index; 
 </book>
