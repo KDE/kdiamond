@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
-<!ENTITY % English "INCLUDE"> 
+<!ENTITY % English "INCLUDE">
 <!ENTITY % addindex "IGNORE">
 ]>
 
@@ -21,7 +21,7 @@
 <year>2008, 2009, 2010</year>
 <holder>Stefan Majewsky</holder>
 </copyright>
-    
+
 <legalnotice>&FDLNotice;</legalnotice>
 
 <date>2016-05-09</date>
@@ -209,7 +209,7 @@ dialog, where you can change the notifications (sounds, visible messages,
 </variablelist>
 
 <para>
-Additionally &kappname; has the common &kde; <guimenu>Settings</guimenu> and <guimenu>Help</guimenu>
+Additionally &kdiamond; has the common &kde; <guimenu>Settings</guimenu> and <guimenu>Help</guimenu>
 menu items, for more information read the sections about the <ulink url="help:/fundamentals/ui.html#menus-settings"
 >Settings Menu</ulink> and <ulink url="help:/fundamentals/ui.html#menus-help">Help Menu</ulink>
 of the &kde; Fundamentals.
@@ -292,7 +292,7 @@ Documentation copyright 2008, 2009, 2010 by Stefan Majewsky <email>majewsky@gmx.
 
 </chapter>
 
-&documentation.index; 
+&documentation.index;
 </book>
 <!--
 Local Variables:
