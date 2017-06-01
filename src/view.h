@@ -31,8 +31,8 @@ public:
 
     void setScene(QGraphicsScene *scene);
 protected:
-    virtual void resizeEvent(QResizeEvent *event);
-    virtual void wheelEvent(QWheelEvent *event);
+    void resizeEvent(QResizeEvent *event) Q_DECL_OVERRIDE;
+    void wheelEvent(QWheelEvent *event) Q_DECL_OVERRIDE;
 };
 
 }

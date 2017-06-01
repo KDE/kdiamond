@@ -49,8 +49,8 @@ public:
 
     KGameRenderer *renderer() const;
 
-    virtual QRectF boundingRect() const;
-    virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);
+    QRectF boundingRect() const Q_DECL_OVERRIDE;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0) Q_DECL_OVERRIDE;
 public Q_SLOTS:
     void setPaused(bool paused);
 Q_SIGNALS:

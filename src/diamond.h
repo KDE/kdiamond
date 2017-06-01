@@ -49,9 +49,9 @@ Q_SIGNALS:
     void clicked();
     void dragged(const QPoint &direction);
 protected:
-    virtual void mousePressEvent(QGraphicsSceneMouseEvent *);
-    virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *);
-    virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *);
+    void mousePressEvent(QGraphicsSceneMouseEvent *) Q_DECL_OVERRIDE;
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *) Q_DECL_OVERRIDE;
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *) Q_DECL_OVERRIDE;
 private:
     KDiamond::Color m_color;
     bool m_mouseDown;

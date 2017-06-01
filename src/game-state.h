@@ -65,7 +65,7 @@ Q_SIGNALS:
     void pointsChanged(int points);
     void leftTimeChanged(int seconds);
 protected:
-    virtual void timerEvent(QTimerEvent *event);
+    void timerEvent(QTimerEvent *event) Q_DECL_OVERRIDE;
 private:
     GameStatePrivate *p;
 };
