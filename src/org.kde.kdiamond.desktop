@@ -129,6 +129,7 @@ Comment[tr]=Mantık oyunu
 Comment[uk]=Гра на логіку
 Comment[x-test]=xxLogic gamexx
 Comment[zh_CN]=逻辑游戏
+Comment[zh_TW]=智力遊戲
 Terminal=false
 Icon=kdiamond
 StartupNotify=true
