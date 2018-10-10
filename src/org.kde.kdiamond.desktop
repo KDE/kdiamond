@@ -2,7 +2,6 @@
 Type=Application
 Exec=kdiamond -qwindowtitle %c
 Name=KDiamond
-Name[ast]=KDiamond
 Name[bs]=KDiamond
 Name[ca]=KDiamond
 Name[ca@valencia]=KDiamond
