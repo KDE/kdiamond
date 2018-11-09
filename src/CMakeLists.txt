@@ -30,6 +30,7 @@ target_link_libraries(kdiamond
 install(TARGETS kdiamond  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES kdiamond.knsrc  DESTINATION ${KDE_INSTALL_CONFDIR})
 install(PROGRAMS org.kde.kdiamond.desktop  DESTINATION ${KDE_INSTALL_APPDIR})
+install(FILES org.kde.kdiamond.appdata.xml  DESTINATION  ${KDE_INSTALL_METAINFODIR})
 install(FILES kdiamond.kcfg DESTINATION ${KDE_INSTALL_DATADIR}/kdiamond)
 install(FILES kdiamondui.rc  DESTINATION ${KDE_INSTALL_KXMLGUI5DIR}/kdiamond)
 install(FILES kdiamond.notifyrc DESTINATION ${KDE_INSTALL_KNOTIFY5RCDIR})

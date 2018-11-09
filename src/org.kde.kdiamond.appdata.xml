@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component type="desktop">
+  <id>org.kde.kdiamond.desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-2.0+</project_license>
+  <name>KDiamond</name>
+  <summary>KDiamond is a three-in-a-row game by KDE</summary>
+  <description>
+    <p>
+      KDiamond is a single player puzzle game. The object of the game is to build lines of three similar diamonds.
+    </p>
+  </description>
+  <url type="homepage">http://games.kde.org/game.php?game=kdiamond</url>
+  <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=kdiamond</url>
+  <url type="help">https://docs.kde.org/?application=kdiamond</url>
+  <url type="donation">https://www.kde.org/community/donations/?app=kdiamond&amp;source=appdata</url>
+  <screenshots>
+    <screenshot type="default">
+      <caption>Playing KDiamond</caption>
+      <image>http://kde.org/images/screenshots/kdiamond.png</image>
+    </screenshot>
+  </screenshots>
+  <project_group>KDE</project_group>
+</component>
