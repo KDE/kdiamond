@@ -4,11 +4,32 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0+</project_license>
   <name>KDiamond</name>
+  <name xml:lang="ca">KDiamond</name>
+  <name xml:lang="ca-valencia">KDiamond</name>
+  <name xml:lang="nl">KDiamond</name>
+  <name xml:lang="pt">KDiamond</name>
+  <name xml:lang="sv">Kdiamant</name>
+  <name xml:lang="uk">KDiamond</name>
+  <name xml:lang="x-test">xxKDiamondxx</name>
   <summary>KDiamond is a three-in-a-row game by KDE</summary>
+  <summary xml:lang="ca">El KDiamond és un joc de tres en ratlla fet per la comunitat KDE</summary>
+  <summary xml:lang="ca-valencia">El KDiamond és un joc de tres en ratlla fet per la comunitat KDE</summary>
+  <summary xml:lang="nl">KDiamond, een drie-op-een-rij spel door KDE</summary>
+  <summary xml:lang="pt">O KDiamond é um jogo de três-em-linha do KDE</summary>
+  <summary xml:lang="sv">Kdiamant är ett tre-i-rad spel av KDE</summary>
+  <summary xml:lang="uk">KDiamond — гра у три-у-ряд від KDE</summary>
+  <summary xml:lang="x-test">xxKDiamond is a three-in-a-row game by KDExx</summary>
   <description>
     <p>
       KDiamond is a single player puzzle game. The object of the game is to build lines of three similar diamonds.
     </p>
+    <p xml:lang="ca">El KDiamond és un joc de puzzle per a un únic jugador. L'objectiu del joc és construir línies de tres diamants semblants.</p>
+    <p xml:lang="ca-valencia">El KDiamond és un joc de puzzle per a un únic jugador. L'objectiu del joc és construir línies de tres diamants semblants.</p>
+    <p xml:lang="nl">KDiamond is een puzzelspel voor een enkele speler. Het doel van het spel is om drie gelijke ruiten op één rij te krijgen.</p>
+    <p xml:lang="pt">O KDiamond é um jogo de 'puzzles' para um único jogador. O objectivo do jogo é construir linhas com três diamantes semelhantes.</p>
+    <p xml:lang="sv">Kdiamant är ett pusselspel för en spelare. Spelets mål är att bygga rader av tre liknande diamanter.</p>
+    <p xml:lang="uk">KDiamond — гра-головоломка для одного гравця. Метою гри є побудова лінії з трьох однакових діамантів.</p>
+    <p xml:lang="x-test">xxKDiamond is a single player puzzle game. The object of the game is to build lines of three similar diamonds.xx</p>
   </description>
   <url type="homepage">http://games.kde.org/game.php?game=kdiamond</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=kdiamond</url>
@@ -17,6 +38,13 @@
   <screenshots>
     <screenshot type="default">
       <caption>Playing KDiamond</caption>
+      <caption xml:lang="ca">Jugant al KDiamond</caption>
+      <caption xml:lang="ca-valencia">Jugant al KDiamond</caption>
+      <caption xml:lang="nl">KDiamond spelen</caption>
+      <caption xml:lang="pt">Jogar ao KDiamond</caption>
+      <caption xml:lang="sv">Spela Kdiamant</caption>
+      <caption xml:lang="uk">Гра у KDiamond</caption>
+      <caption xml:lang="x-test">xxPlaying KDiamondxx</caption>
       <image>http://kde.org/images/screenshots/kdiamond.png</image>
     </screenshot>
   </screenshots>
