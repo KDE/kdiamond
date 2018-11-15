@@ -20,6 +20,7 @@
   <summary xml:lang="es">KDiamond es un juego de tres en raya creado por KDE</summary>
   <summary xml:lang="nl">KDiamond, een drie-op-een-rij spel door KDE</summary>
   <summary xml:lang="pt">O KDiamond é um jogo de três-em-linha do KDE</summary>
+  <summary xml:lang="pt-BR">O KDiamond é um jogo três em linha do KDE</summary>
   <summary xml:lang="sv">Kdiamant är ett tre-i-rad spel av KDE</summary>
   <summary xml:lang="uk">KDiamond — гра у три-у-ряд від KDE</summary>
   <summary xml:lang="x-test">xxKDiamond is a three-in-a-row game by KDExx</summary>
@@ -32,6 +33,7 @@
     <p xml:lang="es">KDiamond es un juego de rompecabezas para un único jugador. El objetivo del juego es el de construir líneas de tres diamantes idénticos.</p>
     <p xml:lang="nl">KDiamond is een puzzelspel voor een enkele speler. Het doel van het spel is om drie gelijke ruiten op één rij te krijgen.</p>
     <p xml:lang="pt">O KDiamond é um jogo de 'puzzles' para um único jogador. O objectivo do jogo é construir linhas com três diamantes semelhantes.</p>
+    <p xml:lang="pt-BR">KDiamond é um jogo de quebra-cabeças para um jogador. O objetivo do jogo é construir linhas com três diamantes similares.</p>
     <p xml:lang="sv">Kdiamant är ett pusselspel för en spelare. Spelets mål är att bygga rader av tre liknande diamanter.</p>
     <p xml:lang="uk">KDiamond — гра-головоломка для одного гравця. Метою гри є побудова лінії з трьох однакових діамантів.</p>
     <p xml:lang="x-test">xxKDiamond is a single player puzzle game. The object of the game is to build lines of three similar diamonds.xx</p>
