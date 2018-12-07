@@ -91,7 +91,7 @@ MainWindow::MainWindow(QWidget *parent)
     KStandardGameAction::quit(this, SLOT(close()), actionCollection());
     m_hintAct = KStandardGameAction::hint(nullptr, nullptr, actionCollection());
     KStandardAction::preferences(&m_selector, SLOT(showAsDialog()), actionCollection());
-    KStandardAction::configureNotifications(this, SLOT(configureNotifications()), actionCollection());
+    KStandardAction::configureNotifications(this, &MainWindow::configureNotifications, actionCollection());
     //difficulty
     KgDifficultyGUI::init(this);
     connect(Kg::difficulty(), &KgDifficulty::currentLevelChanged, this, &MainWindow::startGameDispatcher);
