@@ -27,12 +27,12 @@ namespace KDiamond
 class View : public QGraphicsView
 {
 public:
-    explicit View(QWidget *parent = 0);
+    explicit View(QWidget *parent = nullptr);
 
     void setScene(QGraphicsScene *scene);
 protected:
-    void resizeEvent(QResizeEvent *event) Q_DECL_OVERRIDE;
-    void wheelEvent(QWheelEvent *event) Q_DECL_OVERRIDE;
+    void resizeEvent(QResizeEvent *event) override;
+    void wheelEvent(QWheelEvent *event) override;
 };
 
 }

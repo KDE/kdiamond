@@ -42,16 +42,16 @@ class Diamond : public KGameRenderedObjectItem
 {
     Q_OBJECT
 public:
-    Diamond(KDiamond::Color color, KGameRenderer *renderer, QGraphicsItem *parent = 0);
+    explicit Diamond(KDiamond::Color color, KGameRenderer *renderer, QGraphicsItem *parent = nullptr);
 
     KDiamond::Color color() const;
 Q_SIGNALS:
     void clicked();
     void dragged(const QPoint &direction);
 protected:
-    void mousePressEvent(QGraphicsSceneMouseEvent *) Q_DECL_OVERRIDE;
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *) Q_DECL_OVERRIDE;
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent *) Q_DECL_OVERRIDE;
+    void mousePressEvent(QGraphicsSceneMouseEvent *) override;
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *) override;
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *) override;
 private:
     KDiamond::Color m_color;
     bool m_mouseDown;

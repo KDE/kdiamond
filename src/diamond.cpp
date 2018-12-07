@@ -41,7 +41,7 @@ Diamond::Diamond(KDiamond::Color color, KGameRenderer *renderer, QGraphicsItem *
 {
     //selection markers do not react to mouse events; they should also appear behind diamonds
     if (color == KDiamond::Selection) {
-        setAcceptedMouseButtons(0);
+        setAcceptedMouseButtons({});
         setZValue(-1);
     } else {
         setAcceptedMouseButtons(Qt::LeftButton);

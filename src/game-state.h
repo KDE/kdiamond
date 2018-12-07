@@ -44,7 +44,7 @@ class GameState : public QObject
     Q_OBJECT
 public:
     GameState();
-    ~GameState();
+    ~GameState() override;
 
     Mode mode() const;
     State state() const;
@@ -65,7 +65,7 @@ Q_SIGNALS:
     void pointsChanged(int points);
     void leftTimeChanged(int seconds);
 protected:
-    void timerEvent(QTimerEvent *event) Q_DECL_OVERRIDE;
+    void timerEvent(QTimerEvent *event) override;
 private:
     GameStatePrivate *p;
 };

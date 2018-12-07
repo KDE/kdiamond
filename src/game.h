@@ -62,7 +62,7 @@ Q_SIGNALS:
     void numberMoves(int moves);
     void pendingAnimationsFinished();
 protected:
-    void timerEvent(QTimerEvent *event) Q_DECL_OVERRIDE;
+    void timerEvent(QTimerEvent *event) override;
 private:
     QList<QPoint> findCompletedRows();
     void getMoves();

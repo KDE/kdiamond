@@ -36,7 +36,7 @@ KDiamond::View::View(QWidget *parent)
 void KDiamond::View::setScene(QGraphicsScene *scene)
 {
     QGraphicsView::setScene(scene);
-    resizeEvent(0);
+    resizeEvent(nullptr);
 }
 
 void KDiamond::View::resizeEvent(QResizeEvent *event)

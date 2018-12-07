@@ -45,7 +45,7 @@ namespace KDiamond
 class ThemeProvider : public KgThemeProvider
 {
 public:
-    ThemeProvider(QObject *parent = 0)
+    explicit ThemeProvider(QObject *parent = nullptr)
         : KgThemeProvider("Theme", parent)
     {
         discoverThemes("appdata", QStringLiteral("themes"));
@@ -65,9 +65,9 @@ public:
 MainWindow::MainWindow(QWidget *parent)
     : KXmlGuiWindow(parent)
     , m_gameState(new KDiamond::GameState)
-    , m_game(0)
+    , m_game(nullptr)
     , m_view(new KDiamond::View)
-    , m_infoBar(0)
+    , m_infoBar(nullptr)
     , m_newAct(new KActionMenu(QIcon::fromTheme(QStringLiteral("document-new")), i18nc("new game", "&New"), this))
     , m_newTimedAct(new QAction(i18n("Timed game"), this))
     , m_newUntimedAct(new QAction(i18n("Untimed game"), this))
@@ -89,7 +89,7 @@ MainWindow::MainWindow(QWidget *parent)
     KStandardGameAction::highscores(this, SLOT(showHighscores()), actionCollection());
     m_pauseAct = KStandardGameAction::pause(this, SLOT(pausedAction(bool)), actionCollection());
     KStandardGameAction::quit(this, SLOT(close()), actionCollection());
-    m_hintAct = KStandardGameAction::hint(0, 0, actionCollection());
+    m_hintAct = KStandardGameAction::hint(nullptr, nullptr, actionCollection());
     KStandardAction::preferences(&m_selector, SLOT(showAsDialog()), actionCollection());
     KStandardAction::configureNotifications(this, SLOT(configureNotifications()), actionCollection());
     //difficulty

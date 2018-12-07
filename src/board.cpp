@@ -35,7 +35,7 @@ KDiamond::Board::Board(KGameRenderer *renderer)
     , m_colorCount(boardColorCounts[m_difficultyIndex])
     , m_paused(false)
     , m_renderer(renderer)
-    , m_diamonds(m_size *m_size, 0)
+    , m_diamonds(m_size *m_size, nullptr)
 {
     for (QPoint point; point.x() < m_size; ++point.rx())
         for (point.ry() = 0; point.y() < m_size; ++point.ry()) {
@@ -194,7 +194,7 @@ void KDiamond::Board::removeDiamond(const QPoint &point)
     if (!diamond) {
         return;    //diamond has already been removed
     }
-    rDiamond(point) = 0;
+    rDiamond(point) = nullptr;
     //play remove animation (TODO: For non-animated sprites, play an opacity animation instead.)
     QPropertyAnimation *animation = new QPropertyAnimation(diamond, "frame", this);
     animation->setStartValue(0);
@@ -258,7 +258,7 @@ void KDiamond::Board::fillGaps()
                 }
             }
             rDiamond(QPoint(x, yt)) = diamond(QPoint(x, y));
-            rDiamond(QPoint(x, y)) = 0;
+            rDiamond(QPoint(x, y)) = nullptr;
             const MoveAnimSpec spec = { diamond(QPoint(x, yt)), QPoint(x, y), QPoint(x, yt) };
             specs << spec;
             //if this element is selected, move the selection, too
