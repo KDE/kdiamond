@@ -23,14 +23,14 @@
 QString colorKey(KDiamond::Color color)
 {
     QString colors[] = {
-        QString::fromLatin1("kdiamond-selection"),
-        QString::fromLatin1("kdiamond-red"),
-        QString::fromLatin1("kdiamond-green"),
-        QString::fromLatin1("kdiamond-blue"),
-        QString::fromLatin1("kdiamond-yellow"),
-        QString::fromLatin1("kdiamond-white"),
-        QString::fromLatin1("kdiamond-black"),
-        QString::fromLatin1("kdiamond-orange")
+        QLatin1String("kdiamond-selection"),
+        QLatin1String("kdiamond-red"),
+        QLatin1String("kdiamond-green"),
+        QLatin1String("kdiamond-blue"),
+        QLatin1String("kdiamond-yellow"),
+        QLatin1String("kdiamond-white"),
+        QLatin1String("kdiamond-black"),
+        QLatin1String("kdiamond-orange")
     };
     return colors[(color < 0 || color >= KDiamond::ColorsCount) ? 0 : color];
 }

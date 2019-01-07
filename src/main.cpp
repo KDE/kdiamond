@@ -44,7 +44,7 @@ int main(int argc, char **argv)
     migrate.setUiFiles(QStringList() << QStringLiteral("kdiamondui.rc"));
     migrate.migrate();
 
-    qsrand(time(0));
+    qsrand(time(nullptr));
     KLocalizedString::setApplicationDomain("kdiamond");
     KAboutData about(QStringLiteral("kdiamond"), i18nc("The application's name", "KDiamond"), QLatin1Literal(version), i18n(description),
                      KAboutLicense::GPL, i18n("(C) 2008-2010 Stefan Majewsky and others"), QStringLiteral("http://games.kde.org/kdiamond"));
