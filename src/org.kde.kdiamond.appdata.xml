@@ -21,6 +21,7 @@
   <name xml:lang="uk">KDiamond</name>
   <name xml:lang="x-test">xxKDiamondxx</name>
   <name xml:lang="zh-CN">KDiamond</name>
+  <name xml:lang="zh-TW">KDiamond</name>
   <summary>KDiamond is a three-in-a-row game by KDE</summary>
   <summary xml:lang="ca">El KDiamond és un joc de tres en ratlla fet per la comunitat KDE</summary>
   <summary xml:lang="ca-valencia">El KDiamond és un joc de tres en ratlla fet per la comunitat KDE</summary>
@@ -80,6 +81,7 @@
       <caption xml:lang="sv">Spela Kdiamant</caption>
       <caption xml:lang="uk">Гра у KDiamond</caption>
       <caption xml:lang="x-test">xxPlaying KDiamondxx</caption>
+      <caption xml:lang="zh-TW">KDiamond 遊玩畫面</caption>
       <image>http://kde.org/images/screenshots/kdiamond.png</image>
     </screenshot>
   </screenshots>
