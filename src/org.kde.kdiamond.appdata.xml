@@ -14,6 +14,7 @@
   <name xml:lang="gl">KDiamond</name>
   <name xml:lang="id">KDiamond</name>
   <name xml:lang="nl">KDiamond</name>
+  <name xml:lang="pl">KDiament</name>
   <name xml:lang="pt">KDiamond</name>
   <name xml:lang="pt-BR">KDiamond</name>
   <name xml:lang="sk">KDiamond</name>
@@ -32,6 +33,7 @@
   <summary xml:lang="gl">KDiamond é un xogo de tres en raia de KDE</summary>
   <summary xml:lang="id">KDiamond adalah sebuah permainan sederet tiga (three-in-a-row) oleh KDE</summary>
   <summary xml:lang="nl">KDiamond, een drie-op-een-rij spel door KDE</summary>
+  <summary xml:lang="pl">KDiament jest grą trzy-w-rzędzie dla KDE</summary>
   <summary xml:lang="pt">O KDiamond é um jogo de três-em-linha do KDE</summary>
   <summary xml:lang="pt-BR">O KDiamond é um jogo três em linha do KDE</summary>
   <summary xml:lang="sv">Kdiamant är ett tre-i-rad spel av KDE</summary>
@@ -50,6 +52,7 @@
     <p xml:lang="gl">KDiamond é un xogo de quebracabezas para un xogador. O obxectivo do xogo é construír liñas de tres rombos semellantes.</p>
     <p xml:lang="id">KDiamond adalah sebuah permainan teka-teki pemain tunggal. Sasaran permainan ini adalah untuk membangun sebaris-tiga berlian-berlian yang mirip</p>
     <p xml:lang="nl">KDiamond is een puzzelspel voor een enkele speler. Het doel van het spel is om drie gelijke ruiten op één rij te krijgen.</p>
+    <p xml:lang="pl">KDiament jest grą z puzzlami dla jednego gracza. Celem gry jest tworzenie rzędów trzech podobnych diamentów.</p>
     <p xml:lang="pt">O KDiamond é um jogo de 'puzzles' para um único jogador. O objectivo do jogo é construir linhas com três diamantes semelhantes.</p>
     <p xml:lang="pt-BR">KDiamond é um jogo de quebra-cabeças para um jogador. O objetivo do jogo é construir linhas com três diamantes similares.</p>
     <p xml:lang="sv">Kdiamant är ett pusselspel för en spelare. Spelets mål är att bygga rader av tre liknande diamanter.</p>
@@ -72,6 +75,7 @@
       <caption xml:lang="gl">Xogando a KDiamond</caption>
       <caption xml:lang="id">Memainkan KDiamond</caption>
       <caption xml:lang="nl">KDiamond spelen</caption>
+      <caption xml:lang="pl">Granie w KDiament</caption>
       <caption xml:lang="pt">Jogar ao KDiamond</caption>
       <caption xml:lang="pt-BR">Jogando KDiamond</caption>
       <caption xml:lang="sk">Hranie KDiamond</caption>
