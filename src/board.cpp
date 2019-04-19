@@ -166,7 +166,7 @@ void KDiamond::Board::setSelection(const QPoint &point, bool selected)
 
 void KDiamond::Board::clearSelection()
 {
-    foreach (Diamond *selector, m_activeSelectors) {
+    for (Diamond *selector : qAsConst(m_activeSelectors)) {
         selector->hide();
         m_inactiveSelectors << selector;
     }
@@ -208,7 +208,7 @@ void KDiamond::Board::removeDiamond(const QPoint &point)
 
 void KDiamond::Board::spawnMoveAnimations(const QList<MoveAnimSpec> &specs)
 {
-    foreach (const MoveAnimSpec &spec, specs) {
+    for (const MoveAnimSpec &spec : specs) {
         const int duration = KDiamond::Board::MoveDuration * (spec.to - spec.from).manhattanLength();
         QPropertyAnimation *animation = new QPropertyAnimation(spec.diamond, "pos", this);
         animation->setStartValue(spec.from);

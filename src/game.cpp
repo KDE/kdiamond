@@ -173,7 +173,8 @@ void Game::clickDiamond(const QPoint &point)
         return;
     }
     //select only adjacent diamonds (i.e. if a distant diamond is selected, deselect the first one)
-    foreach (const QPoint &point2, m_board->selections()) {
+    const auto selections = m_board->selections();
+    for (const QPoint &point2 : selections) {
         const int diff = qAbs(point2.x() - point.x()) + qAbs(point2.y() - point.y());
         if (diff > 1) {
             m_board->setSelection(point2, false);
@@ -268,7 +269,7 @@ void Game::timerEvent(QTimerEvent *event)
             m_gameState->addPoints(diamondsToRemove.count());
             //invoke remove animation, then fill gaps immediately after the animation
             KNotification::event(QStringLiteral("remove"));
-            foreach (const QPoint &diamondPos, diamondsToRemove) {
+            for (const QPoint &diamondPos : qAsConst(diamondsToRemove)) {
                 m_board->removeDiamond(diamondPos);
             }
             m_jobQueue.prepend(KDiamond::FillGapsJob);
