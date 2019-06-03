@@ -22,7 +22,6 @@
 class Game;
 #include "game-state.h"
 
-class QTime;
 class QAction;
 class KActionMenu;
 class KGameRenderer;

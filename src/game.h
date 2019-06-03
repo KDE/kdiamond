@@ -22,7 +22,6 @@
 class Diamond;
 #include "game-state.h"
 
-class QAbstractAnimation;
 #include <QGraphicsScene>
 class KGamePopupItem;
 class KGameRenderer;
