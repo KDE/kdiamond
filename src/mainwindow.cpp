@@ -23,22 +23,18 @@
 #include "settings.h"
 #include "view.h"
 
-#include <QCloseEvent>
 #include <QPointer>
 #include <QTime>
-#include <QTimer>
 #include <QAction>
 #include <KActionMenu>
 #include <KActionCollection>
 #include <KgDifficulty>
 #include <KGameRenderer>
 #include <KLocalizedString>
-#include <KMessageBox>
 #include <KNotifyConfigWidget>
 #include <KScoreDialog>
 #include <KStandardAction>
 #include <KStandardGameAction>
-#include <KToggleAction>
 
 namespace KDiamond
 {
