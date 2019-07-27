@@ -18,6 +18,7 @@
 
 #include "mainwindow.h"
 #include "settings.h"
+#include "kdiamond_version.h"
 
 #include <ctime>
 
@@ -34,7 +35,6 @@
 #include <KDBusService>
 
 static const char description[] = I18N_NOOP("KDiamond, a three-in-a-row game.");
-static const char version[] = "1.5";
 
 int main(int argc, char **argv)
 {
@@ -46,7 +46,7 @@ int main(int argc, char **argv)
 
     qsrand(time(nullptr));
     KLocalizedString::setApplicationDomain("kdiamond");
-    KAboutData about(QStringLiteral("kdiamond"), i18nc("The application's name", "KDiamond"), QLatin1Literal(version), i18n(description),
+    KAboutData about(QStringLiteral("kdiamond"), i18nc("The application's name", "KDiamond"), QLatin1Literal(KDIAMOND_VERSION_STRING), i18n(description),
                      KAboutLicense::GPL, i18n("(C) 2008-2010 Stefan Majewsky and others"), QStringLiteral("http://games.kde.org/kdiamond"));
     about.addAuthor(i18n("Stefan Majewsky"), i18n("Original author and current maintainer"), QStringLiteral("majewsky@gmx.net"));
     about.addAuthor(i18n("Paul Bunbury"), i18n("Gameplay refinement"), QStringLiteral("happysmileman@googlemail.com"));

@@ -11,6 +11,8 @@ set(kdiamond_SRCS
 	view.cpp
 )
 
+ecm_setup_version(${KDE_APPLICATIONS_VERSION} VARIABLE_PREFIX KDIAMOND VERSION_HEADER kdiamond_version.h)
+
 kconfig_add_kcfg_files(kdiamond_SRCS settings.kcfgc)
 
 file(GLOB ICONS_SRCS "pics/*-apps-kdiamond.png")
