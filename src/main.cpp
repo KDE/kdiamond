@@ -46,7 +46,7 @@ int main(int argc, char **argv)
 
     qsrand(time(nullptr));
     KLocalizedString::setApplicationDomain("kdiamond");
-    KAboutData about(QStringLiteral("kdiamond"), i18nc("The application's name", "KDiamond"), QLatin1Literal(KDIAMOND_VERSION_STRING), i18n(description),
+    KAboutData about(QStringLiteral("kdiamond"), i18nc("The application's name", "KDiamond"), QLatin1String(KDIAMOND_VERSION_STRING), i18n(description),
                      KAboutLicense::GPL, i18n("(C) 2008-2010 Stefan Majewsky and others"), QStringLiteral("http://games.kde.org/kdiamond"));
     about.addAuthor(i18n("Stefan Majewsky"), i18n("Original author and current maintainer"), QStringLiteral("majewsky@gmx.net"));
     about.addAuthor(i18n("Paul Bunbury"), i18n("Gameplay refinement"), QStringLiteral("happysmileman@googlemail.com"));
