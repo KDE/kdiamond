@@ -1,5 +1,6 @@
 [Global]
 IconName=kdiamond
+DesktopEntry=org.kde.kdiamond
 Comment=KDiamond Game
 Comment[bs]=KDiamond igra
 Comment[ca]=Joc KDiamond
