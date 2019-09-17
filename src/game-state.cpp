@@ -19,7 +19,7 @@
 #include "game-state.h"
 #include "settings.h"
 
-#include <QTime>
+#include <QElapsedTimer>
 #include <KLocalizedString>
 #include <KNotification>
 
@@ -32,7 +32,7 @@ public:
     GameStatePrivate();
     ~GameStatePrivate();
 
-    QTime m_gameTime, m_pauseTime;
+    QElapsedTimer m_gameTime, m_pauseTime;
 
     Mode m_mode;
     State m_state;
