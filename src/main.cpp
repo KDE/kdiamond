@@ -72,7 +72,7 @@ int main(int argc, char **argv)
     KDBusService service;
     // see if we are starting with session management
     if (app.isSessionRestored()) {
-        RESTORE(MainWindow);
+        kRestoreMainWindows<MainWindow>();
     } else {
         MainWindow *window = new MainWindow;
         window->show();
