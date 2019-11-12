@@ -10,6 +10,7 @@
   <name xml:lang="de">KDiamond</name>
   <name xml:lang="en-GB">KDiamond</name>
   <name xml:lang="es">KDiamond</name>
+  <name xml:lang="et">KDiamond</name>
   <name xml:lang="fr">KDiamond</name>
   <name xml:lang="gl">KDiamond</name>
   <name xml:lang="id">KDiamond</name>
@@ -32,6 +33,7 @@
   <summary xml:lang="de">KDiamond, ein Drei-Gewinnt-Spiel von KDE</summary>
   <summary xml:lang="en-GB">KDiamond is a three-in-a-row game by KDE</summary>
   <summary xml:lang="es">KDiamond es un juego de tres en raya creado por KDE</summary>
+  <summary xml:lang="et">KDiamond on KDE "kolm ühes reas" mäng.</summary>
   <summary xml:lang="fr">KDiamond est un jeu de « Trois-en-ligne » par KDE.</summary>
   <summary xml:lang="gl">KDiamond é un xogo de tres en raia de KDE</summary>
   <summary xml:lang="id">KDiamond adalah sebuah permainan sederet tiga (three-in-a-row) oleh KDE</summary>
@@ -54,6 +56,7 @@
     <p xml:lang="de">KDiamond ist ein Rätsel-Spiel für einen Spieler. Das Ziel des Spiels ist, Linien mit drei gleichen Diamanten zu bauen.</p>
     <p xml:lang="en-GB">KDiamond is a single player puzzle game. The object of the game is to build lines of three similar diamonds.</p>
     <p xml:lang="es">KDiamond es un juego de rompecabezas para un único jugador. El objetivo del juego es el de construir líneas de tres diamantes idénticos.</p>
+    <p xml:lang="et">KDiamond on ühe mängijaga nuputamismäng. Mängu siht on luua kolmest ühesugusest rombist ridu.</p>
     <p xml:lang="fr">KDiamond est un jeu de puzzle à un seul joueur. L'objectif du jeu est de construire des lignes comprenant trois diamants semblables.</p>
     <p xml:lang="gl">KDiamond é un xogo de quebracabezas para un xogador. O obxectivo do xogo é construír liñas de tres rombos semellantes.</p>
     <p xml:lang="id">KDiamond adalah sebuah permainan teka-teki pemain tunggal. Sasaran permainan ini adalah untuk membangun sebaris-tiga berlian-berlian yang mirip</p>
@@ -80,6 +83,7 @@
       <caption xml:lang="de">KDiamond spielen</caption>
       <caption xml:lang="en-GB">Playing KDiamond</caption>
       <caption xml:lang="es">Jugando a KDiamond</caption>
+      <caption xml:lang="et">KDiamondi mängimine</caption>
       <caption xml:lang="fr">Partie de KDiamond en cours</caption>
       <caption xml:lang="gl">Xogando a KDiamond</caption>
       <caption xml:lang="id">Memainkan KDiamond</caption>
