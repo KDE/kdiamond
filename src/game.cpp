@@ -23,6 +23,7 @@
 
 #include <cmath>
 #include <QPainter>
+#include <QRandomGenerator>
 #include <QTimerEvent>
 #include <KGamePopupItem>
 #include <KGameRenderer>
@@ -368,7 +369,7 @@ void Game::showHint()
     if (m_availableMoves.isEmpty() || !m_board->selections().isEmpty()) {
         return;
     }
-    const QPoint location = m_availableMoves.value(qrand() % m_availableMoves.size());
+    const QPoint location = m_availableMoves.value( QRandomGenerator::global()->bounded(m_availableMoves.size()));
     m_board->setSelection(location, true);
     m_gameState->removePoints(3);
 }

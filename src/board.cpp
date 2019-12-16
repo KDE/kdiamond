@@ -20,6 +20,7 @@
 #include "diamond.h"
 
 #include <QPropertyAnimation>
+#include <QRandomGenerator>
 #include <KgDifficulty>
 
 const int KDiamond::Board::MoveDuration = 100; //duration of a move animation (per coordinate unit) in milliseconds
@@ -45,7 +46,7 @@ KDiamond::Board::Board(KGameRenderer *renderer)
             //roll the dice to get a color, but ensure that there are not three of a color in a row from the start
             int color;
             while (true) {
-                color = qrand() % m_colorCount + 1; // +1 because numbering of enum KDiamond::Color starts at 1
+                color = QRandomGenerator::global()->bounded(1, m_colorCount + 1);
                 //condition: no triplet in y axis (attention: only the diamonds above us are defined already)
                 if (point.y() >= 2) { //no triplet possible for i = 0, 1
                     const int otherColor1 = diamond(point + dispY1)->color();
@@ -279,7 +280,8 @@ void KDiamond::Board::fillGaps()
                 continue;    //inside of diamond stack - no gaps to fill
             }
             --yt;
-            diamond = spawnDiamond(qrand() % m_colorCount + 1);
+            const quint32 randValue = QRandomGenerator::global()->bounded(1, m_colorCount + 1); //high value is excluse
+            diamond = spawnDiamond(randValue);
             diamond->setPos(QPoint(x, yt));
             const MoveAnimSpec spec = { diamond, QPoint(x, yt), QPoint(x, y) };
             specs << spec;
