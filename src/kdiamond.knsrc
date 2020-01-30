@@ -1,5 +1,4 @@
 [KNewStuff3]
-ProvidersUrl=https://autoconfig.kde.org/ocs/providers.xml
 Categories=KDiamonds Themes
 TargetDir=kdiamond/themes/
 Uncompress=always
