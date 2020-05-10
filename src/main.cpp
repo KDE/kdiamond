@@ -38,6 +38,8 @@ static const char description[] = I18N_NOOP("KDiamond, a three-in-a-row game.");
 
 int main(int argc, char **argv)
 {
+    // Fixes blurry icons with fractional scaling
+    QGuiApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
     QApplication app(argc, argv);
     Kdelibs4ConfigMigrator migrate(QStringLiteral("kdiamond"));
     migrate.setConfigFiles(QStringList() << QStringLiteral("kdiamondrc") << QStringLiteral("kdiamond.notifyrc"));
