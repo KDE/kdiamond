@@ -26,7 +26,6 @@
   <name xml:lang="sl">KDiamond</name>
   <name xml:lang="sv">Kdiamant</name>
   <name xml:lang="uk">KDiamond</name>
-  <name xml:lang="x-test">xxKDiamondxx</name>
   <name xml:lang="zh-CN">KDiamond</name>
   <name xml:lang="zh-TW">KDiamond</name>
   <summary>KDiamond is a three-in-a-row game by KDE</summary>
@@ -50,7 +49,6 @@
   <summary xml:lang="sl">KDiamond je igra 'treh v vrsto' v KDE</summary>
   <summary xml:lang="sv">Kdiamant är ett tre-i-rad spel av KDE</summary>
   <summary xml:lang="uk">KDiamond — гра у три-у-ряд від KDE</summary>
-  <summary xml:lang="x-test">xxKDiamond is a three-in-a-row game by KDExx</summary>
   <description>
     <p>
       KDiamond is a single player puzzle game. The object of the game is to build lines of three similar diamonds.
@@ -75,7 +73,6 @@
     <p xml:lang="sl">KDiamond je igra za enega igralca. Cilj igre je zgraditi vrsto treh podobnih rombov (diamantov).</p>
     <p xml:lang="sv">Kdiamant är ett pusselspel för en spelare. Spelets mål är att bygga rader av tre liknande diamanter.</p>
     <p xml:lang="uk">KDiamond — гра-головоломка для одного гравця. Метою гри є побудова лінії з трьох однакових діамантів.</p>
-    <p xml:lang="x-test">xxKDiamond is a single player puzzle game. The object of the game is to build lines of three similar diamonds.xx</p>
   </description>
   <url type="homepage">http://games.kde.org/game.php?game=kdiamond</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=kdiamond</url>
@@ -104,7 +101,6 @@
       <caption xml:lang="sl">Igra KDiamond</caption>
       <caption xml:lang="sv">Spela Kdiamant</caption>
       <caption xml:lang="uk">Гра у KDiamond</caption>
-      <caption xml:lang="x-test">xxPlaying KDiamondxx</caption>
       <caption xml:lang="zh-TW">KDiamond 遊玩畫面</caption>
       <image>https://cdn.kde.org/screenshots/kdiamond/kdiamond.png</image>
     </screenshot>
