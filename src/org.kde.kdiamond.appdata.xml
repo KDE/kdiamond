@@ -78,7 +78,7 @@
     <p xml:lang="uk">KDiamond — гра-головоломка для одного гравця. Метою гри є побудова лінії з трьох однакових діамантів.</p>
     <p xml:lang="x-test">xxKDiamond is a single player puzzle game. The object of the game is to build lines of three similar diamonds.xx</p>
   </description>
-  <url type="homepage">http://games.kde.org/game.php?game=kdiamond</url>
+  <url type="homepage">https://games.kde.org/game.php?game=kdiamond</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=kdiamond</url>
   <url type="help">https://docs.kde.org/?application=kdiamond</url>
   <url type="donation">https://www.kde.org/community/donations/?app=kdiamond&amp;source=appdata</url>
