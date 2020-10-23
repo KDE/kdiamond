@@ -18,7 +18,6 @@
 
 #include "mainwindow.h"
 #include "game.h"
-#include "game-state.h"
 #include "infobar.h"
 #include "settings.h"
 #include "view.h"
