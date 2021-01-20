@@ -127,7 +127,7 @@ void Game::getMoves()
         }
     }
 #undef C
-    emit numberMoves(m_availableMoves.size());
+    Q_EMIT numberMoves(m_availableMoves.size());
     if (m_availableMoves.isEmpty()) {
         m_board->clearSelection();
         m_gameState->setState(KDiamond::Finished);
@@ -262,7 +262,7 @@ void Game::timerEvent(QTimerEvent *event)
             //all moves may now be out-dated - flush the moves list
             if (!m_availableMoves.isEmpty()) {
                 m_availableMoves.clear();
-                emit numberMoves(-1);
+                Q_EMIT numberMoves(-1);
             }
             //it is now safe to delete the position of the swapping diamonds
             m_swappingDiamonds.clear();
@@ -288,7 +288,7 @@ void Game::timerEvent(QTimerEvent *event)
         }
         break;
     case KDiamond::EndGameJob:
-        emit pendingAnimationsFinished();
+        Q_EMIT pendingAnimationsFinished();
         killTimer(m_timerId);
         m_timerId = -1;
         break;

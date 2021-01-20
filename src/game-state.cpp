@@ -108,18 +108,18 @@ void KDiamond::GameState::setState(KDiamond::State state)
         //resuming from paused state
         p->m_pausedMilliseconds += p->m_pauseTime.elapsed();
         update(true); //recalculate time
-        emit message(QString()); //flush message
+        Q_EMIT message(QString()); //flush message
     } else if (p->m_state == KDiamond::Playing && state == KDiamond::Paused) {
         //going to paused state
         p->m_pauseTime.restart();
-        emit message(i18n("Click the pause button again to resume the game."));
+        Q_EMIT message(i18n("Click the pause button again to resume the game."));
     }
     //set new state
     p->m_state = state;
-    emit stateChanged(state);
+    Q_EMIT stateChanged(state);
     if (state == KDiamond::Finished) {
         KNotification::event(QStringLiteral("gamefinished"));
-        emit message(i18nc("Not meant like 'You have lost', more like 'Time is up'.", "Game over."));
+        Q_EMIT message(i18nc("Not meant like 'You have lost', more like 'Time is up'.", "Game over."));
     }
 }
 
@@ -138,14 +138,14 @@ void KDiamond::GameState::addPoints(int removedDiamonds)
     {
         p->m_earnedMilliseconds += 500 * (removedDiamonds - 3);
     }
-    emit pointsChanged(p->m_points);
+    Q_EMIT pointsChanged(p->m_points);
     update(true); //recalculate time
 }
 
 void KDiamond::GameState::removePoints(int points)
 {
     p->m_points = qMax(0, p->m_points - points);
-    emit pointsChanged(p->m_points);
+    Q_EMIT pointsChanged(p->m_points);
 }
 
 void KDiamond::GameState::resetCascadeCounter()
@@ -165,9 +165,9 @@ void KDiamond::GameState::startNewGame()
     p->m_points = 0;
     p->m_cascade = 0;
     update(true); //recalculate time
-    emit message(QString()); //flush message
-    emit stateChanged(p->m_state);
-    emit pointsChanged(p->m_points);
+    Q_EMIT message(QString()); //flush message
+    Q_EMIT stateChanged(p->m_state);
+    Q_EMIT pointsChanged(p->m_points);
 }
 
 void KDiamond::GameState::update(bool forceRecalculation)
@@ -183,7 +183,7 @@ void KDiamond::GameState::update(bool forceRecalculation)
         setState(KDiamond::Finished);
     }
     if (p->m_leftMilliseconds / 1000 != leftSeconds) {
-        emit leftTimeChanged(qMax(0, leftSeconds));
+        Q_EMIT leftTimeChanged(qMax(0, leftSeconds));
     }
     p->m_leftMilliseconds = leftMilliseconds;
 }

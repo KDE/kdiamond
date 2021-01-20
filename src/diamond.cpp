@@ -69,12 +69,12 @@ void Diamond::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         static const qreal draggingFuzziness = 2.0 / 3.0;
         if (qAbs(dx) > qAbs(dy)) {
             if (qAbs(dx) >= diamondSize.width() * draggingFuzziness) {
-                emit dragged(QPoint(dx < 0 ? -1 : 1, 0));
+                Q_EMIT dragged(QPoint(dx < 0 ? -1 : 1, 0));
                 m_mouseDown = false; //mouse action has been handled
             }
         } else {
             if (qAbs(dy) >= diamondSize.height() * draggingFuzziness) {
-                emit dragged(QPoint(0, dy < 0 ? -1 : 1));
+                Q_EMIT dragged(QPoint(0, dy < 0 ? -1 : 1));
                 m_mouseDown = false;
             }
         }
@@ -84,7 +84,7 @@ void Diamond::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 void Diamond::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     if (m_mouseDown && boundingRect().contains(event->pos())) {
-        emit clicked();
+        Q_EMIT clicked();
         m_mouseDown = false;
     }
 }

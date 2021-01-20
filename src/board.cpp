@@ -122,7 +122,7 @@ void KDiamond::Board::slotAnimationFinished()
     //because result pointer is never dereferenced here
     m_runningAnimations.removeAll(static_cast<QAbstractAnimation *>(sender()));
     if (m_runningAnimations.isEmpty()) {
-        emit animationsFinished();
+        Q_EMIT animationsFinished();
     }
 }
 
@@ -299,7 +299,7 @@ void KDiamond::Board::slotClicked()
 {
     const QPoint point = findDiamond(qobject_cast<Diamond *>(sender()));
     if (point.x() >= 0 && point.y() >= 0) {
-        emit clicked(point);
+        Q_EMIT clicked(point);
     }
 }
 
@@ -307,7 +307,7 @@ void KDiamond::Board::slotDragged(const QPoint &direction)
 {
     const QPoint point = findDiamond(qobject_cast<Diamond *>(sender()));
     if (point.x() >= 0 && point.y() >= 0) {
-        emit dragged(point, direction);
+        Q_EMIT dragged(point, direction);
     }
 }
 
