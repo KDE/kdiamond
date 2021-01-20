@@ -22,8 +22,6 @@
 #include <QStandardPaths>
 #include <KDBusService>
 
-static const char description[] = I18N_NOOP("KDiamond, a three-in-a-row game.");
-
 int main(int argc, char **argv)
 {
     // Fixes blurry icons with fractional scaling
@@ -35,7 +33,9 @@ int main(int argc, char **argv)
     migrate.migrate();
 
     KLocalizedString::setApplicationDomain("kdiamond");
-    KAboutData about(QStringLiteral("kdiamond"), i18nc("The application's name", "KDiamond"), QLatin1String(KDIAMOND_VERSION_STRING), i18n(description),
+    KAboutData about(QStringLiteral("kdiamond"), i18nc("The application's name", "KDiamond"),
+                     QStringLiteral(KDIAMOND_VERSION_STRING),
+                     i18n("KDiamond, a three-in-a-row game."),
                      KAboutLicense::GPL, i18n("(C) 2008-2010 Stefan Majewsky and others"), QStringLiteral("https://kde.org/applications/games/org.kde.kdiamond"));
     about.addAuthor(i18n("Stefan Majewsky"), i18n("Original author and current maintainer"), QStringLiteral("majewsky@gmx.net"));
     about.addAuthor(i18n("Paul Bunbury"), i18n("Gameplay refinement"), QStringLiteral("happysmileman@googlemail.com"));
