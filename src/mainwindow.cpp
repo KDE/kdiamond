@@ -69,11 +69,11 @@ MainWindow::MainWindow(QWidget *parent)
     m_newAct->addAction(m_newUntimedAct);
     connect(m_newUntimedAct, &QAction::triggered, this, &MainWindow::startGameDispatcher);
     //init GUI - the other actions
-    KStandardGameAction::highscores(this, SLOT(showHighscores()), actionCollection());
-    m_pauseAct = KStandardGameAction::pause(this, SLOT(pausedAction(bool)), actionCollection());
-    KStandardGameAction::quit(this, SLOT(close()), actionCollection());
+    KStandardGameAction::highscores(this, &MainWindow::showHighscores, actionCollection());
+    m_pauseAct = KStandardGameAction::pause(this, &MainWindow::pausedAction, actionCollection());
+    KStandardGameAction::quit(this, &QWidget::close, actionCollection());
     m_hintAct = KStandardGameAction::hint(nullptr, nullptr, actionCollection());
-    KStandardAction::preferences(&m_selector, SLOT(showAsDialog()), actionCollection());
+    KStandardAction::preferences(this, &MainWindow::showPreferences, actionCollection());
     KStandardAction::configureNotifications(this, &MainWindow::configureNotifications, actionCollection());
     //difficulty
     KgDifficultyGUI::init(this);
@@ -168,6 +168,12 @@ void MainWindow::showHighscores()
     dialog->exec();
     delete dialog;
 }
+
+void MainWindow::showPreferences()
+{
+    m_selector.showAsDialog();
+}
+
 
 void MainWindow::pausedAction(bool paused)
 {

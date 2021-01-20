@@ -35,6 +35,7 @@ public Q_SLOTS:
     void stateChange(KDiamond::State state);
     void gameIsOver();
     void showHighscores();
+    void showPreferences();
 
     void configureNotifications();
 Q_SIGNALS:
