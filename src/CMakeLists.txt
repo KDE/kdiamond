@@ -15,6 +15,10 @@ ecm_setup_version(${RELEASE_SERVICE_VERSION} VARIABLE_PREFIX KDIAMOND VERSION_HE
 
 kconfig_add_kcfg_files(kdiamond_SRCS settings.kcfgc)
 
+qt5_add_resources(kdiamond_SRCS
+    kdiamond.qrc
+)
+
 file(GLOB ICONS_SRCS "pics/*-apps-kdiamond.png")
 ecm_add_app_icon(kdiamond_SRCS ICONS ${ICONS_SRCS})
 
@@ -34,5 +38,4 @@ install(FILES kdiamond.knsrc  DESTINATION ${KDE_INSTALL_DATADIR}/knsrcfiles)
 install(PROGRAMS org.kde.kdiamond.desktop  DESTINATION ${KDE_INSTALL_APPDIR})
 install(FILES org.kde.kdiamond.appdata.xml  DESTINATION  ${KDE_INSTALL_METAINFODIR})
 install(FILES kdiamond.kcfg DESTINATION ${KDE_INSTALL_DATADIR}/kdiamond)
-install(FILES kdiamondui.rc  DESTINATION ${KDE_INSTALL_KXMLGUI5DIR}/kdiamond)
 install(FILES kdiamond.notifyrc DESTINATION ${KDE_INSTALL_KNOTIFY5RCDIR})
