@@ -1,25 +1,30 @@
 add_subdirectory(pics)
 
-set(kdiamond_SRCS
-	board.cpp
-	diamond.cpp
-	game.cpp
-	game-state.cpp
-	infobar.cpp
-	main.cpp
-	mainwindow.cpp
-	view.cpp
-	kdiamond.qrc
+ecm_setup_version(${RELEASE_SERVICE_VERSION}
+    VARIABLE_PREFIX KDIAMOND
+    VERSION_HEADER kdiamond_version.h
 )
 
-ecm_setup_version(${RELEASE_SERVICE_VERSION} VARIABLE_PREFIX KDIAMOND VERSION_HEADER kdiamond_version.h)
+add_executable(kdiamond)
 
-kconfig_add_kcfg_files(kdiamond_SRCS settings.kcfgc)
+target_sources(kdiamond PRIVATE
+    board.cpp
+    diamond.cpp
+    game.cpp
+    game-state.cpp
+    infobar.cpp
+    main.cpp
+    mainwindow.cpp
+    view.cpp
+
+    kdiamond.qrc
+)
+
+kconfig_add_kcfg_files(kdiamond settings.kcfgc)
 
 file(GLOB ICONS_SRCS "pics/*-apps-kdiamond.png")
-ecm_add_app_icon(kdiamond_SRCS ICONS ${ICONS_SRCS})
+ecm_add_app_icon(kdiamond ICONS ${ICONS_SRCS})
 
-add_executable(kdiamond ${kdiamond_SRCS})
 target_link_libraries(kdiamond
     KF5KDEGames
     KF5::NotifyConfig
