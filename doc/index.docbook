@@ -24,8 +24,8 @@
 
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2016-05-09</date>
-<releaseinfo>1.5 (Applications 16.04)</releaseinfo>
+<date>2021-06-26</date>
+<releaseinfo>KDE Gear 21.04</releaseinfo>
 
 <abstract>
 <para>
@@ -37,7 +37,7 @@
 <keyword>kdegames</keyword>
 <keyword>game</keyword>
 <keyword>puzzle game</keyword>
-<keyword>kdiamond</keyword>
+<keyword>KDiamond</keyword>
 </keywordset>
 </bookinfo>
 
@@ -133,7 +133,7 @@ Pauses the game time. Click on the menu item again to make the game resume. Note
 <keycombo action="simul">&Ctrl;<keycap>H</keycap></keycombo>
 </shortcut>
 <guimenu>Game</guimenu>
-<guimenuitem>Show High Scores</guimenuitem>
+<guimenuitem>Show High Scores...</guimenuitem>
 </menuchoice></term>
 <listitem>
 <para>
@@ -200,10 +200,13 @@ dialog, where you can change the notifications (sounds, visible messages,
 
 <varlistentry>
 <term><menuchoice>
+<shortcut>
+<keycombo action="simul">&Ctrl;&Shift;<keycap>,</keycap></keycombo>
+</shortcut>
 <guimenu>Settings</guimenu>
 <guimenuitem>Configure &kdiamond;...</guimenuitem>
 </menuchoice></term>
-<listitem><para>Choose a graphical theme for the game. Which themes are available depends on the current installation. You may also download new themes which have been created by third-party designers.</para></listitem>
+<listitem><para>Shows a dialog for choose a graphical theme for the game. Which themes are available depends on the current installation. You may also download new themes which have been created by third-party designers.</para></listitem>
 </varlistentry>
 
 </variablelist>
