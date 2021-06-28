@@ -153,7 +153,7 @@ Comment[zh_TW]=遊戲間的音效
 [Event/remove]
 Name=Diamonds removed
 Name[bs]=Dijamanti uklonjeni
-Name[ca]=Diamants eliminats
+Name[ca]=Eliminant els diamants
 Name[ca@valencia]=Diamants eliminats
 Name[cs]=Odebrány diamanty
 Name[da]=Diamanter fjernet
@@ -308,7 +308,7 @@ Name[zh_CN]=移动中的钻石
 Name[zh_TW]=寶石移動中
 Comment=Diamonds are moving.
 Comment[bs]=Dijamanti se kreću.
-Comment[ca]=Els diamants s'estan movent.
+Comment[ca]=S'estan movent els diamants.
 Comment[ca@valencia]=Els diamants s'estan movent.
 Comment[cs]=Diamanty se pohybují.
 Comment[da]=Diamanter flytter.
