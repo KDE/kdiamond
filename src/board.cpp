@@ -155,7 +155,7 @@ void KDiamond::Board::setSelection(const QPoint &point, bool selected)
 
 void KDiamond::Board::clearSelection()
 {
-    for (Diamond *selector : qAsConst(m_activeSelectors)) {
+    for (Diamond *selector : std::as_const(m_activeSelectors)) {
         selector->hide();
         m_inactiveSelectors << selector;
     }

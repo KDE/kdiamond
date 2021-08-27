@@ -258,7 +258,7 @@ void Game::timerEvent(QTimerEvent *event)
             m_gameState->addPoints(diamondsToRemove.count());
             //invoke remove animation, then fill gaps immediately after the animation
             KNotification::event(QStringLiteral("remove"));
-            for (const QPoint &diamondPos : qAsConst(diamondsToRemove)) {
+            for (const QPoint &diamondPos : std::as_const(diamondsToRemove)) {
                 m_board->removeDiamond(diamondPos);
             }
             m_jobQueue.prepend(KDiamond::FillGapsJob);
