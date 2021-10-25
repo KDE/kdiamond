@@ -28,7 +28,7 @@ class MainWindow : public KXmlGuiWindow
     Q_OBJECT
 public:
     explicit MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    ~MainWindow() override;
 public Q_SLOTS:
     void startGame(KDiamond::Mode mode);
     void startGameDispatcher();
