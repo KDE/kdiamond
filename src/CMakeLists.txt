@@ -9,13 +9,21 @@ add_executable(kdiamond)
 
 target_sources(kdiamond PRIVATE
     board.cpp
+    board.h
     diamond.cpp
+    diamond.h
     game.cpp
+    game.h
     game-state.cpp
+    game-state.h
     infobar.cpp
+    infobar.h
     main.cpp
     mainwindow.cpp
+    mainwindow.h
     view.cpp
+    view.h
+
 
     kdiamond.qrc
 )
