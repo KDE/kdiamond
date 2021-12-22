@@ -2,6 +2,7 @@
 IconName=kdiamond
 DesktopEntry=org.kde.kdiamond
 Comment=KDiamond Game
+Comment[ar]=لعبة الألماس
 Comment[bs]=KDiamond igra
 Comment[ca]=Joc KDiamond
 Comment[ca@valencia]=Joc KDiamond
@@ -48,6 +49,7 @@ Comment[zh_TW]=KDiamond 寶石方塊遊戲
 
 [Context/game]
 Name=Game
+Name[ar]=لعبة
 Name[bs]=Igra
 Name[ca]=Joc
 Name[ca@valencia]=Joc
@@ -103,6 +105,7 @@ Name[x-test]=xxGamexx
 Name[zh_CN]=游戏
 Name[zh_TW]=遊戲
 Comment=Sounds that appear during a game
+Comment[ar]=الأصوات التي تظهر في اللعبة
 Comment[bs]=Zvukovi koji se pojavljuju tokom igre
 Comment[ca]=Sons que apareixen durant la partida
 Comment[ca@valencia]=Sons que apareixen durant la partida
@@ -152,6 +155,7 @@ Comment[zh_TW]=遊戲間的音效
 
 [Event/remove]
 Name=Diamonds removed
+Name[ar]=أزيل الألماس
 Name[bs]=Dijamanti uklonjeni
 Name[ca]=Eliminant els diamants
 Name[ca@valencia]=Eliminant els diamants
@@ -202,6 +206,7 @@ Name[x-test]=xxDiamonds removedxx
 Name[zh_CN]=已消去钻石
 Name[zh_TW]=寶石已移除
 Comment=Diamonds were removed.
+Comment[ar]=أزيل الألماس.
 Comment[bs]=Dijamanti su uklonjeni.
 Comment[ca]=S'han eliminat els diamants.
 Comment[ca@valencia]=S'han eliminat els diamants.
@@ -257,6 +262,7 @@ Action=Sound
 
 [Event/move]
 Name=Diamonds moving
+Name[ar]=الألماس يتحرك
 Name[bs]=Dijamanti se kreću
 Name[ca]=Movent els diamants
 Name[ca@valencia]=Movent els diamants
@@ -307,6 +313,7 @@ Name[x-test]=xxDiamonds movingxx
 Name[zh_CN]=移动中的钻石
 Name[zh_TW]=寶石移動中
 Comment=Diamonds are moving.
+Comment[ar]=حُرك الألماس
 Comment[bs]=Dijamanti se kreću.
 Comment[ca]=S'estan movent els diamants.
 Comment[ca@valencia]=S'estan movent els diamants.
@@ -362,6 +369,7 @@ Action=None
 
 [Event/gamefinished]
 Name=Game over
+Name[ar]=انتهت اللعبة
 Name[bs]=Igra je završena
 Name[ca]=Final de la partida
 Name[ca@valencia]=Final de la partida
@@ -416,6 +424,7 @@ Name[x-test]=xxGame overxx
 Name[zh_CN]=游戏结束
 Name[zh_TW]=遊戲結束
 Comment=Time is up.
+Comment[ar]=انتهى الوقت
 Comment[bs]=Vrijeme je isteklo.
 Comment[ca]=S'ha esgotat el temps.
 Comment[ca@valencia]=S'ha esgotat el temps.
