@@ -148,7 +148,13 @@ void Game::updateGraphics()
         QPainter painter(&pix);
         painter.drawPixmap(QPoint(leftOffset - padding, -padding), boardPix);
     }
-    setBackgroundBrush(pix);
+    m_backgroundPixmap = pix;
+    update();
+}
+
+void Game::drawBackground(QPainter *painter, const QRectF &/*rect*/)
+{
+    painter->drawPixmap(0, 0, m_backgroundPixmap);
 }
 
 void Game::clickDiamond(const QPoint &point)

@@ -50,6 +50,7 @@ Q_SIGNALS:
     void pendingAnimationsFinished();
 protected:
     void timerEvent(QTimerEvent *event) override;
+    void drawBackground(QPainter *painter, const QRectF &rect) override;
 private:
     QList<QPoint> findCompletedRows();
     void getMoves();
@@ -62,6 +63,7 @@ private:
     KDiamond::GameState *m_gameState;
 
     KGamePopupItem *m_messenger;
+    QPixmap m_backgroundPixmap;
 };
 
 #endif //KDIAMOND_GAME_H
