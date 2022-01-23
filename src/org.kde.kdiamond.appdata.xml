@@ -4,6 +4,7 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0+</project_license>
   <name>KDiamond</name>
+  <name xml:lang="ar">لعبة الألماس</name>
   <name xml:lang="ca">KDiamond</name>
   <name xml:lang="ca-valencia">KDiamond</name>
   <name xml:lang="cs">KDiamond</name>
@@ -34,6 +35,7 @@
   <name xml:lang="zh-CN">KDiamond</name>
   <name xml:lang="zh-TW">KDiamond</name>
   <summary>KDiamond is a three-in-a-row game by KDE</summary>
+  <summary xml:lang="ar">لعبة الألماس هي لعبة ثلاث في صف بواسطة كدي</summary>
   <summary xml:lang="ca">El KDiamond és un joc de tres en ratlla fet per la comunitat KDE</summary>
   <summary xml:lang="ca-valencia">El KDiamond és un joc de tres en ratlla fet per la comunitat KDE</summary>
   <summary xml:lang="de">KDiamond, ein Drei-Gewinnt-Spiel von KDE</summary>
@@ -63,6 +65,7 @@
     <p>
       KDiamond is a single player puzzle game. The object of the game is to build lines of three similar diamonds.
     </p>
+    <p xml:lang="ar">لعبة الألماس هي لعبة ألغاز للاعب واحد. الهدف من اللعبة هو بناء خط من ثلاث ألماسات متشابهة.</p>
     <p xml:lang="ca">El KDiamond és un joc de puzle per a un únic jugador. L'objectiu del joc és construir línies de tres diamants semblants.</p>
     <p xml:lang="ca-valencia">El KDiamond és un joc de puzle per a un únic jugador. L'objectiu del joc és construir línies de tres diamants semblants.</p>
     <p xml:lang="de">KDiamond ist ein Rätsel-Spiel für einen Spieler. Das Ziel des Spiels ist, Linien mit drei gleichen Diamanten zu bauen.</p>
@@ -95,6 +98,7 @@
   <screenshots>
     <screenshot type="default">
       <caption>Playing KDiamond</caption>
+      <caption xml:lang="ar">لعبة الألماس تعلب</caption>
       <caption xml:lang="ca">Jugant al KDiamond</caption>
       <caption xml:lang="ca-valencia">Jugant al KDiamond</caption>
       <caption xml:lang="de">KDiamond spielen</caption>
