@@ -35,6 +35,7 @@ ecm_add_app_icon(kdiamond ICONS ${ICONS_SRCS})
 
 target_link_libraries(kdiamond
     KF5KDEGames
+    KF5::CoreAddons
     KF5::NotifyConfig
     KF5::I18n
     KF5::XmlGui
