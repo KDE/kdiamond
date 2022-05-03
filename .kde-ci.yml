@@ -18,3 +18,5 @@ Dependencies:
     'frameworks/kxmlgui': '@stable'
     'frameworks/knotifications': '@stable'
     'frameworks/knotifyconfig': '@stable'
+Options:
+  require-passing-tests-on: [ 'Linux', 'FreeBSD']
