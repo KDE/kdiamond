@@ -9,19 +9,21 @@
 #include "infobar.h"
 #include "settings.h"
 #include "view.h"
+// KDEGames
+#include <kdegames_version.h>
+#include <KgDifficulty>
+#include <KGameRenderer>
+#include <KScoreDialog>
+#include <KStandardGameAction>
 
 #include <QPointer>
 #include <QTime>
 #include <QAction>
 #include <KActionMenu>
 #include <KActionCollection>
-#include <KgDifficulty>
-#include <KGameRenderer>
 #include <KLocalizedString>
 #include <KNotifyConfigWidget>
-#include <KScoreDialog>
 #include <KStandardAction>
-#include <KStandardGameAction>
 
 namespace KDiamond
 {
@@ -31,7 +33,11 @@ public:
     explicit ThemeProvider(QObject *parent = nullptr)
         : KgThemeProvider("Theme", parent)
     {
+#if KDEGAMES_VERSION >= QT_VERSION_CHECK(7, 4, 0)
+        discoverThemes(QStringLiteral("themes"));
+#else
         discoverThemes("appdata", QStringLiteral("themes"));
+#endif
     }
 };
 
