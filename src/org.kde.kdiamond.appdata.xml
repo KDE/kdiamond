@@ -57,6 +57,7 @@
   <summary xml:lang="pt">O KDiamond é um jogo de três-em-linha do KDE</summary>
   <summary xml:lang="pt-BR">O KDiamond é um jogo três em linha do KDE</summary>
   <summary xml:lang="ro">KDiamond e un joc KDE de trei-în-linie</summary>
+  <summary xml:lang="ru">KDiamond. Убийца вашего времени от KDE</summary>
   <summary xml:lang="sk">KDiamond je hra KDE o troch v rade</summary>
   <summary xml:lang="sl">KDiamond je igra 'treh v vrsto' v KDE</summary>
   <summary xml:lang="sv">Kdiamant är ett tre-i-rad spel av KDE</summary>
@@ -88,6 +89,7 @@
     <p xml:lang="pl">KDiament jest grą z puzzlami dla jednego gracza. Celem gry jest tworzenie rzędów trzech podobnych diamentów.</p>
     <p xml:lang="pt">O KDiamond é um jogo de 'puzzles' para um único jogador. O objectivo do jogo é construir linhas com três diamantes semelhantes.</p>
     <p xml:lang="pt-BR">KDiamond é um jogo de quebra-cabeças para um jogador. O objetivo do jogo é construir linhas com três diamantes similares.</p>
+    <p xml:lang="ru">KDiamond — головоломка для одного игрока. Цель игры заключается в построении линий из трёх схожих бриллиантов.</p>
     <p xml:lang="sk">KDiamond je logická hra pre jedného hráča. Cieľom hry je postaviť línie troch podobných diamantov.</p>
     <p xml:lang="sl">KDiamond je igra za enega igralca. Cilj igre je zgraditi vrsto treh podobnih rombov (diamantov).</p>
     <p xml:lang="sv">Kdiamant är ett pusselspel för en spelare. Spelets mål är att bygga rader av tre liknande diamanter.</p>
@@ -124,6 +126,7 @@
       <caption xml:lang="pt">Jogar ao KDiamond</caption>
       <caption xml:lang="pt-BR">Jogando KDiamond</caption>
       <caption xml:lang="ro">Joc de KDiamond</caption>
+      <caption xml:lang="ru">Игра в KDiamond</caption>
       <caption xml:lang="sk">Hranie KDiamond</caption>
       <caption xml:lang="sl">Igra KDiamond</caption>
       <caption xml:lang="sv">Spela Kdiamant</caption>
