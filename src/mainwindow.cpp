@@ -16,14 +16,13 @@
 #include <KScoreDialog>
 #include <KStandardGameAction>
 
-#include <QPointer>
-#include <QTime>
-#include <QAction>
-#include <KActionMenu>
 #include <KActionCollection>
+#include <KActionMenu>
 #include <KLocalizedString>
 #include <KNotifyConfigWidget>
 #include <KStandardAction>
+#include <QAction>
+#include <QPointer>
 
 namespace KDiamond
 {
