@@ -1,0 +1,253 @@
+# translation of kdiamond.po to Français
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+# Jean-Jacques Finazzi <mrjay01@users.sourceforge.net>, 2008, 2010.
+# Sébastien Renard <Sebastien.Renard@digitalfox.org>, 2008.
+# xavier <xavier.besnard@neuf.fr>, 2012, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kdiamond\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-09-26 00:42+0000\n"
+"PO-Revision-Date: 2013-07-08 16:51+0200\n"
+"Last-Translator: xavier <xavier.besnard@neuf.fr>\n"
+"Language-Team: French <kde-i18n-doc@kde.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Lokalize 1.5\n"
+"X-Environment: kde\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Jean-Jacques Finazzi"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "mrjay01@users.sourceforge.net"
+
+#: game-state.cpp:103
+#, kde-format
+msgid "Click the pause button again to resume the game."
+msgstr "Cliquez à nouveau sur le bouton « Pause » pour reprendre le jeu."
+
+#: game-state.cpp:110
+#, kde-format
+msgctxt "Not meant like 'You have lost', more like 'Time is up'."
+msgid "Game over."
+msgstr "Partie terminée."
+
+#: infobar.cpp:18 infobar.cpp:50
+#, kde-format
+msgid "Possible moves: %1"
+msgstr "Coups possibles : %1"
+
+#: infobar.cpp:19 infobar.cpp:42
+#, kde-format
+msgid "Points: %1"
+msgstr "Points : %1"
+
+#: infobar.cpp:22 infobar.cpp:35 mainwindow.cpp:61
+#, kde-format
+msgid "Untimed game"
+msgstr "Partie non temporisée"
+
+#: infobar.cpp:24 infobar.cpp:68
+#, kde-format
+msgid "Time left: %1"
+msgstr "Temps restant : %1"
+
+#: infobar.cpp:48
+#, kde-format
+msgctxt "Shown when the board is in motion."
+msgid "Possible moves: ..."
+msgstr "Coups possibles : ..."
+
+#. i18n: ectx: label, entry (Untimed), group (Preferences)
+#: kdiamond.kcfg:9
+#, kde-format
+msgid "Play an untimed game."
+msgstr "Jouer une partie non temporisée."
+
+#. i18n: ectx: ToolBar (mainToolBar)
+#: kdiamondui.rc:11
+#, kde-format
+msgid "Main Toolbar"
+msgstr "Barre principale d'outils"
+
+#: main.cpp:42 mainwindow.cpp:88
+#, kde-format
+msgctxt "The application's name"
+msgid "KDiamond"
+msgstr "KDiamond"
+
+#: main.cpp:44
+#, kde-format
+msgid "KDiamond, a three-in-a-row game."
+msgstr "KDiamond, un jeu de « Trois-en-ligne »."
+
+#: main.cpp:45
+#, kde-format
+msgid "(C) 2008-2010 Stefan Majewsky and others"
+msgstr "(C) 2008-2010 Stefan Majewsky et d'autres personnes"
+
+#: main.cpp:48
+#, kde-format
+msgid "Stefan Majewsky"
+msgstr "Stefan Majewsky"
+
+#: main.cpp:48
+#, kde-format
+msgid "Original author and current maintainer"
+msgstr "Auteur initial et mainteneur actuel"
+
+#: main.cpp:49
+#, kde-format
+msgid "Paul Bunbury"
+msgstr "Paul Bunbury"
+
+#: main.cpp:49
+#, kde-format
+msgid "Gameplay refinement"
+msgstr "Amélioration de l'expérience de jeu"
+
+#: main.cpp:50
+#, kde-format
+msgid "Eugene Trounev"
+msgstr "Eugene Trounev"
+
+#: main.cpp:50
+#, kde-format
+msgid "Default theme"
+msgstr "Thème par défaut"
+
+#: main.cpp:51
+#, kde-format
+msgid "Felix Lemke"
+msgstr "Felix Lemke"
+
+#: main.cpp:51
+#, kde-format
+msgid "Classic theme"
+msgstr "Thème classique"
+
+#: main.cpp:52
+#, kde-format
+msgid "Jeffrey Kelling"
+msgstr "Jeffrey Kelling"
+
+#: main.cpp:52
+#, kde-format
+msgid "Technical consultant"
+msgstr "Consultant technique"
+
+#: mainwindow.cpp:59
+#, kde-format
+msgctxt "new game"
+msgid "&New"
+msgstr "&Nouvelle"
+
+#: mainwindow.cpp:60
+#, kde-format
+msgid "Timed game"
+msgstr "Partie temporisée"
+
+#: mainwindow.cpp:67
+#, kde-format
+msgid "Start a new game"
+msgstr "Démarrer une nouvelle partie"
+
+#: mainwindow.cpp:68
+#, kde-format
+msgid "Start a new game."
+msgstr "Démarrer une nouvelle partie."
+
+#: mainwindow.cpp:152
+#, kde-format
+msgid "Untimed"
+msgstr "Aucune temporisation"
+
+#: mainwindow.cpp:152
+#, kde-format
+msgid "Timed"
+msgstr "Avec temporisation"
+
+#: mainwindow.cpp:155 mainwindow.cpp:171
+#, kde-format
+msgid "Mode"
+msgstr "Mode"
+
+#: view.cpp:21
+#, kde-format
+msgid ""
+"<h3>Rules of Game</h3><p>Your goal is to assemble lines of at least three "
+"similar diamonds. Click on two adjacent diamonds to swap them.</p><p>Earn "
+"extra points by building cascades, and extra seconds by assembling big lines "
+"or multiple lines at one time.</p>"
+msgstr ""
+"<h3>Règles du jeu</h3><p>Votre objectif est d'assembler des lignes d'au "
+"moins trois diamants similaires. Cliquez sur deux diamants adjacents afin de "
+"les permuter.</p><p>Gagnez des points supplémentaires en construisant des "
+"cascades et des secondes supplémentaires en assemblant de grandes ou de "
+"multiples lignes en une seule fois.</p>"
+
+#~ msgid "Theme"
+#~ msgstr "Thème"
+
+#~ msgid "The graphical theme to be used."
+#~ msgstr "Le thème graphique à utiliser."
+
+#~ msgid "Start with Very Easy difficulty level"
+#~ msgstr "Démarrer avec un niveau de difficulté « très facile »"
+
+#~ msgid "Start with Easy difficulty level"
+#~ msgstr "Démarrer avec un niveau de difficulté « facile »"
+
+#~ msgid "Start with Medium difficulty level"
+#~ msgstr "Démarrer avec un niveau de difficulté « moyen »"
+
+#~ msgid "Start with Hard difficulty level"
+#~ msgstr "Démarrer avec un niveau de difficulté « difficile »"
+
+#~ msgid "Start with Very Hard difficulty level"
+#~ msgstr "Démarrer avec un niveau de difficulté « très difficile »"
+
+#~ msgid "The difficulty level."
+#~ msgstr "Le niveau de difficulté."
+
+#~ msgid "Failed to load \"%1\" theme. Please check your installation."
+#~ msgstr ""
+#~ "Impossible de charger le thème « %1 ». Veuillez vérifier votre "
+#~ "installation."
+
+#~ msgid "Time left: 1 second"
+#~ msgid_plural "Time left: %1 seconds"
+#~ msgstr[0] "Temps restant : 1 seconde"
+#~ msgstr[1] "Temps restant : %1 secondes"
+
+#~ msgid "1 second"
+#~ msgid_plural "%1 seconds"
+#~ msgstr[0] "1 seconde"
+#~ msgstr[1] "%1 secondes"
+
+#~ msgid "1 minute"
+#~ msgid_plural "%1 minutes"
+#~ msgstr[0] "1 minute"
+#~ msgstr[1] "%1 minutes"
+
+#~ msgctxt "The two parameters are strings like '2 minutes' or '1 second'."
+#~ msgid "Time left: %1, %2"
+#~ msgstr "Temps restant : %1, %2"
+
+#~ msgid "Show minutes on timer"
+#~ msgstr "Afficher le minuteur en minutes"
+
+#~ msgid "Show minutes separately on the timer."
+#~ msgstr "Afficher les minutes séparément sur le minuteur."

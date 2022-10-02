@@ -1,0 +1,475 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+<!ENTITY % Swedish "INCLUDE">
+<!ENTITY % addindex "IGNORE">
+]>
+
+<book id="kdiamond" lang="&language;">
+<bookinfo>
+<title
+>Handbok Kdiamant</title>
+
+<authorgroup>
+<author
+><firstname
+>Stefan</firstname
+> <surname
+>Majewsky</surname
+> <affiliation
+><address
+><email
+>majewsky@gmx.net</email
+></address
+></affiliation>
+</author>
+<othercredit role="translator"
+> <firstname
+>Stefan</firstname
+> <surname
+>Asserhäll</surname
+> <affiliation
+><address
+><email
+>stefan.asserhall@bredband.net</email
+></address
+></affiliation
+> <contrib
+>Översättare</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2008, 2009, 2010</year>
+<holder
+>Stefan Majewsky</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2021-06-26</date>
+<releaseinfo
+>KDE Gear 21.04</releaseinfo>
+
+<abstract>
+<para
+>Kdiamant är ett tre-i-rad spel.</para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kdegames</keyword>
+<keyword
+>spel</keyword>
+<keyword
+>pussel</keyword>
+<keyword
+>Kdiamant</keyword>
+</keywordset>
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Inledning</title>
+
+<para
+>Kdiamant är ett pussel för en spelare. </para>
+
+<screenshot>
+<mediaobject>
+<imageobject>
+<imagedata fileref="gameboard.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Spelbrädet i Kdiamant</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Spelets syfte är att skapa rader med tre liknande diamanter. </para>
+</chapter>
+
+<chapter id="how-to-play">
+<title
+>Hur man spelar</title>
+
+<para
+>Ett rektangulärt rutnät som innehåller flera typer av diamanter visas för spelaren. Spelets syfte är att byta intilligande diamander för att skapa rader med tre liknande diamanter. Raderna försvinner, och spelbrädet fylls med nya diamanter. Speltiden är begränsad. Försök skapa så många rader som nöjligt för att uppnå höga poäng. </para>
+
+<para
+>Klicka på en diamant, och därefter på en av dess grannar. Diamanterna byts då. (Du kan också klicka och dra en diamant till någon av dess grannar för att utföra ett byte.) Om någon rad med minst tre diamanter inte skapas av bytet, återställs det. Statusraden visar återstående speltid, antal poäng du har tjänat ihop, och antal möjliga drag. </para>
+
+</chapter>
+
+<chapter id="rules-strategies-tips">
+<title
+>Spelregler, strategi och tips</title>
+
+<sect1 id="rules">
+<title
+>Regler</title>
+<itemizedlist>
+<listitem
+><para
+>När en rad tas bort och diamanter faller ner för att fylla i tomrum, kan det hända att nya rader skapas. Försök att uppnå sådana kaskader när ett par diamanter väljes, eftersom du då tjänar extrapoäng: Du får ett poäng för en rad du skapar, 2 poäng för den första kaskaden, 3 poäng för en möjlig nästa kaskad, och så vidare.</para
+></listitem>
+<listitem
+><para
+>Försök att bygga rader med fler än tre diamanter. Du tjänar en extra sekund för varje extra par av diamanter som tas bort.</para
+></listitem>
+<listitem
+><para
+>Antal diamanttyper ökar när du väljer <guilabel
+>svåra</guilabel
+> svårighetsnivåer, vilket gör det svårare att skapa rader. Omvänt, växer spelbrädets storlek för <guilabel
+>lätta</guilabel
+> svårighetsnivåer för att göra det enklare att hitta ett drag.</para
+></listitem>
+<listitem
+><para
+>Spelet slutar så fort det inte finns några möjliga drag kvar. I synnerhet på <guilabel
+>svåra</guilabel
+> svårighetsnivåer, bör du ha det i åtanke när du väljer ditt nästa drag.</para
+></listitem>
+</itemizedlist>
+</sect1>
+
+</chapter>
+
+<chapter id="interface-overview">
+<title
+>Översikt av gränssnittet</title>
+
+<sect1 id="menu">
+<title
+>Menyalternativ</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Spel</guimenu
+> <guimenuitem
+>Ny</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Startar ett nytt spel. Det skapar ett slumpmässigt spelbräde med nuvarande svårighetsnivå. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>P</keycap
+></shortcut
+> <guimenu
+>Spel</guimenu
+> <guimenuitem
+>Paus</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Gör paus i speltidtagningen. Klicka på menyalternativet igen för att återuppta spelet. Observera att spelbrädet försvinner när spelet gör paus, eftersom det vore ojust om du kunde leta efter bra drag utan tidspress. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Spel</guimenu
+> <guimenuitem
+>Visa bästa resultat...</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Visar en dialogruta som innehåller bästa resultat för de olika svårighetsnivåerna. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Spel</guimenu
+> <guimenuitem
+>Avsluta</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Avslutar programmet. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>H</keycap
+></shortcut
+> <guimenu
+>Flytta</guimenu
+> <guimenuitem
+>Tips</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Markera en diamant som kan flyttas. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guisubmenu
+>Svårighetsnivå</guisubmenu
+> </menuchoice
+></term>
+<listitem>
+<para
+>Låter dig ange svårighetsnivån från en undermeny.</para>
+<para
+>Det finns fem svårighetsnivåer: <itemizedlist>
+<listitem
+><para
+><guimenuitem
+>Mycket lätt</guimenuitem
+>: 12 rader, 12 kolumner, 5 diamanttyper.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Lätt</guimenuitem
+>: 10 rader, 10 kolumner, 5 diamanttyper.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Normal</guimenuitem
+>: 8 rader, 8 kolumner, 5 diamanttyper.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Svår</guimenuitem
+>: 8 rader, 8 kolumner, 6 diamanttyper.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Mycket svår</guimenuitem
+>: 8 rader, 8 kolumner, 7 diamanttyper.</para
+></listitem>
+</itemizedlist>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Anpassa meddelanden...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Alternativet visar &kde;:s vanliga inställningsdialogruta för underrättelser, där du kan ändra underrättelserna (ljud, synliga meddelanden, etc.) som används av Kdiamant.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>,</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Anpassa Kdiamant...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Visar en dialogruta för att välja ett grafiskt tema för spelet. Vilka teman som är tillgängliga beror på aktuell installation. Du kan också ladda ner nya teman som har skapats av tredje part konstruktörer.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>Dessutom har Kdiamant de vanliga menyalternativen <guimenu
+>Inställningar</guimenu
+> och <guimenu
+>Hjälp</guimenu
+> i &kde;. För mer information, läs avsnitten  <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Menyn Inställningar</ulink
+> och <ulink url="help:/fundamentals/menus.html#menus-help"
+>Menyn Hjälp</ulink
+> i &kde;:s Grunder. </para>
+
+</sect1>
+
+<sect1 id="keybindings">
+<title id="keybindings-title"
+>Genvägar</title>
+
+<para
+>Förvalda genvägar är:</para>
+
+<table>
+<title
+>Genvägar</title>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry
+>Starta ett nytt spel</entry>
+<entry>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Paus</entry>
+<entry>
+<keycombo action="simul"
+><keysym
+>P</keysym
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Visa bästa resultat</entry>
+<entry>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Tips</entry>
+<entry
+><keycap
+>H</keycap
+></entry>
+</row>
+<row>
+<entry
+>Avsluta</entry>
+<entry>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Hjälp</entry>
+<entry
+><keycap
+>F1</keycap
+></entry>
+</row>
+<row>
+<entry
+>Vad är det här?</entry>
+<entry>
+<keycombo action="simul"
+>&Shift;<keycap
+>F1</keycap
+></keycombo>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+
+</sect1>
+</chapter>
+
+
+<chapter id="credits">
+<title
+>Tack till och licens</title>
+
+<para
+>Kdiamant </para>
+<para
+>Program copyright 2008, 2009 by Stefan Majewsky <email
+>majewsky@gmx.net</email
+> </para>
+<para
+>Dokumentation copyright 2008, 2009, 2010 av Stefan Majewsky <email
+>majewsky@gmx.net</email
+> </para>
+
+<para
+>Översättning Stefan Asserhäll <email
+>stefan.asserhall@bredband.net</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-always-quote-attributes:t
+sgml-indent-step:0
+sgml-indent-data:t
+End:
+-->
+

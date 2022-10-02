@@ -1,0 +1,245 @@
+# Burkhard Lück <lueck@hube-lueck.de>, 2008.
+# Linda-Maria Wirthmann <dont.breathe.today@googlemail.de>, 2008, 2009.
+# Johannes Obermayr <johannesobermayr@gmx.de>, 2009, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: kdiamond\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-09-26 00:42+0000\n"
+"PO-Revision-Date: 2010-07-14 09:39+0200\n"
+"Last-Translator: Johannes Obermayr <johannesobermayr@gmx.de>\n"
+"Language-Team: German <kde-i18n-de@kde.org>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Burkhard Lück"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "lueck@hube-lueck.de"
+
+#: game-state.cpp:103
+#, kde-format
+msgid "Click the pause button again to resume the game."
+msgstr "Klicken Sie erneut auf Pause, um weiterzuspielen."
+
+#: game-state.cpp:110
+#, kde-format
+msgctxt "Not meant like 'You have lost', more like 'Time is up'."
+msgid "Game over."
+msgstr "Spiel beendet."
+
+#: infobar.cpp:18 infobar.cpp:50
+#, kde-format
+msgid "Possible moves: %1"
+msgstr "Mögliche Züge: %1"
+
+#: infobar.cpp:19 infobar.cpp:42
+#, kde-format
+msgid "Points: %1"
+msgstr "Punkte: %1"
+
+#: infobar.cpp:22 infobar.cpp:35 mainwindow.cpp:61
+#, kde-format
+msgid "Untimed game"
+msgstr "Spiel ohne Zeitzählung"
+
+#: infobar.cpp:24 infobar.cpp:68
+#, kde-format
+msgid "Time left: %1"
+msgstr "Restzeit: %1"
+
+#: infobar.cpp:48
+#, kde-format
+msgctxt "Shown when the board is in motion."
+msgid "Possible moves: ..."
+msgstr "Mögliche Züge: ..."
+
+#. i18n: ectx: label, entry (Untimed), group (Preferences)
+#: kdiamond.kcfg:9
+#, kde-format
+msgid "Play an untimed game."
+msgstr "Spielen Sie ein Spiel ohne Zeitzählung."
+
+#. i18n: ectx: ToolBar (mainToolBar)
+#: kdiamondui.rc:11
+#, kde-format
+msgid "Main Toolbar"
+msgstr "Haupt-Werkzeugleiste"
+
+#: main.cpp:42 mainwindow.cpp:88
+#, kde-format
+msgctxt "The application's name"
+msgid "KDiamond"
+msgstr "KDiamond"
+
+#: main.cpp:44
+#, kde-format
+msgid "KDiamond, a three-in-a-row game."
+msgstr "KDiamond, ein Drei-Gewinnt-Spiel"
+
+#: main.cpp:45
+#, kde-format
+msgid "(C) 2008-2010 Stefan Majewsky and others"
+msgstr "© 2008–2010, Stefan Majewsky und andere"
+
+#: main.cpp:48
+#, kde-format
+msgid "Stefan Majewsky"
+msgstr "Stefan Majewsky"
+
+#: main.cpp:48
+#, kde-format
+msgid "Original author and current maintainer"
+msgstr "Autor und aktueller Betreuer"
+
+#: main.cpp:49
+#, kde-format
+msgid "Paul Bunbury"
+msgstr "Paul Bunbury"
+
+#: main.cpp:49
+#, kde-format
+msgid "Gameplay refinement"
+msgstr "Verbesserung des Spielerlebnisses"
+
+#: main.cpp:50
+#, kde-format
+msgid "Eugene Trounev"
+msgstr "Eugene Trounev"
+
+#: main.cpp:50
+#, kde-format
+msgid "Default theme"
+msgstr "Standard-Design"
+
+#: main.cpp:51
+#, kde-format
+msgid "Felix Lemke"
+msgstr "Felix Lemke"
+
+#: main.cpp:51
+#, kde-format
+msgid "Classic theme"
+msgstr "Klassisches Design"
+
+#: main.cpp:52
+#, kde-format
+msgid "Jeffrey Kelling"
+msgstr "Jeffrey Kelling"
+
+#: main.cpp:52
+#, kde-format
+msgid "Technical consultant"
+msgstr "Technische Beratung"
+
+#: mainwindow.cpp:59
+#, kde-format
+msgctxt "new game"
+msgid "&New"
+msgstr "&Neu"
+
+#: mainwindow.cpp:60
+#, kde-format
+msgid "Timed game"
+msgstr "Spiel mit Zeitzählung"
+
+#: mainwindow.cpp:67
+#, kde-format
+msgid "Start a new game"
+msgstr "Startet ein neues Spiel"
+
+#: mainwindow.cpp:68
+#, kde-format
+msgid "Start a new game."
+msgstr "Startet ein neues Spiel."
+
+#: mainwindow.cpp:152
+#, kde-format
+msgid "Untimed"
+msgstr "Ohne Zeitzählung"
+
+#: mainwindow.cpp:152
+#, kde-format
+msgid "Timed"
+msgstr "Mit Zeitzählung"
+
+#: mainwindow.cpp:155 mainwindow.cpp:171
+#, kde-format
+msgid "Mode"
+msgstr "Modus"
+
+#: view.cpp:21
+#, kde-format
+msgid ""
+"<h3>Rules of Game</h3><p>Your goal is to assemble lines of at least three "
+"similar diamonds. Click on two adjacent diamonds to swap them.</p><p>Earn "
+"extra points by building cascades, and extra seconds by assembling big lines "
+"or multiple lines at one time.</p>"
+msgstr ""
+"<h3>Spielregeln</h3><p>Ziel des Spiels ist es, mindestens drei gleiche "
+"Diamanten in einer Zeile anzuordnen. Klicken Sie dazu auf zwei benachbarte "
+"Diamanten, um sie zu vertauschen.</p><p>Für Kaskaden erhalten Sie "
+"Zusatzpunkte, für mehr als drei Diamanten in einer Zeile oder gleichzeitig "
+"drei Diamanten in mehreren Zeilen zusätzliche Spielzeit.</p>"
+
+#~ msgid "Theme"
+#~ msgstr "Design"
+
+#~ msgid "The graphical theme to be used."
+#~ msgstr "Das zu verwendende Grafikdesign."
+
+#~ msgid "Start with Very Easy difficulty level"
+#~ msgstr "Mit sehr einfacher Schwierigkeitsstufe starten"
+
+#~ msgid "Start with Easy difficulty level"
+#~ msgstr "Mit einfacher Schwierigkeitsstufe starten"
+
+#~ msgid "Start with Medium difficulty level"
+#~ msgstr "Mit mittlerer Schwierigkeitsstufe starten"
+
+#~ msgid "Start with Hard difficulty level"
+#~ msgstr "Mit schwieriger Schwierigkeitsstufe starten"
+
+#~ msgid "Start with Very Hard difficulty level"
+#~ msgstr "Mit sehr schwieriger Schwierigkeitsstufe starten"
+
+#~ msgid "The difficulty level."
+#~ msgstr "Schwierigkeitsgrad."
+
+#~ msgid "Failed to load \"%1\" theme. Please check your installation."
+#~ msgstr ""
+#~ "Design „%1“ lässt sich nicht laden. Bitten überprüfen Sie die "
+#~ "Installation."
+
+#~ msgid "Time left: 1 second"
+#~ msgid_plural "Time left: %1 seconds"
+#~ msgstr[0] "Restzeit: 1 Sekunde"
+#~ msgstr[1] "Restzeit: %1 Sekunden"
+
+#~ msgid "1 second"
+#~ msgid_plural "%1 seconds"
+#~ msgstr[0] "1 Sekunde"
+#~ msgstr[1] "%1 Sekunden"
+
+#~ msgid "1 minute"
+#~ msgid_plural "%1 minutes"
+#~ msgstr[0] "1 Minute"
+#~ msgstr[1] "%1 Minuten"
+
+#~ msgctxt "The two parameters are strings like '2 minutes' or '1 second'."
+#~ msgid "Time left: %1, %2"
+#~ msgstr "Restzeit: %1, %2"
+
+#~ msgid "Show minutes on timer"
+#~ msgstr "Zeit in Minuten anzeigen"
+
+#~ msgid "Show minutes separately on the timer."
+#~ msgstr "Zeit in Minuten und Sekunden anzeigen."

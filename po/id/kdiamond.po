@@ -1,0 +1,193 @@
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the kdiamond package.
+# Wantoyo <wantoyek@gmail.com>, 2019, 2021, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kdiamond\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-09-26 00:42+0000\n"
+"PO-Revision-Date: 2022-08-19 20:36+0700\n"
+"Last-Translator: Wantoyèk <wantoyek@gmail.com>\n"
+"Language-Team: https://t.me/Localizations_KDE_Indonesia\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 21.12.3\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Wantoyo"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "wantoyek@gmail.com"
+
+#: game-state.cpp:103
+#, kde-format
+msgid "Click the pause button again to resume the game."
+msgstr "Klik tombol jeda lagi untuk melanjutkan permainan."
+
+#: game-state.cpp:110
+#, kde-format
+msgctxt "Not meant like 'You have lost', more like 'Time is up'."
+msgid "Game over."
+msgstr "Permainan berakhir."
+
+#: infobar.cpp:18 infobar.cpp:50
+#, kde-format
+msgid "Possible moves: %1"
+msgstr "Yang bisa dipindah: %1"
+
+#: infobar.cpp:19 infobar.cpp:42
+#, kde-format
+msgid "Points: %1"
+msgstr "Poin: %1"
+
+#: infobar.cpp:22 infobar.cpp:35 mainwindow.cpp:61
+#, kde-format
+msgid "Untimed game"
+msgstr "Permainan tak berwaktu"
+
+#: infobar.cpp:24 infobar.cpp:68
+#, kde-format
+msgid "Time left: %1"
+msgstr "Waktunya tinggal: %1"
+
+#: infobar.cpp:48
+#, kde-format
+msgctxt "Shown when the board is in motion."
+msgid "Possible moves: ..."
+msgstr "Yang bisa dipindah: ..."
+
+#. i18n: ectx: label, entry (Untimed), group (Preferences)
+#: kdiamond.kcfg:9
+#, kde-format
+msgid "Play an untimed game."
+msgstr "Mainkan permainan tak berwaktu."
+
+#. i18n: ectx: ToolBar (mainToolBar)
+#: kdiamondui.rc:11
+#, kde-format
+msgid "Main Toolbar"
+msgstr "Bilah Alat Utama"
+
+#: main.cpp:42 mainwindow.cpp:88
+#, kde-format
+msgctxt "The application's name"
+msgid "KDiamond"
+msgstr "KDiamond"
+
+#: main.cpp:44
+#, kde-format
+msgid "KDiamond, a three-in-a-row game."
+msgstr "KDiamond, adalah sebuah permainan tiga dalam sebaris."
+
+#: main.cpp:45
+#, kde-format
+msgid "(C) 2008-2010 Stefan Majewsky and others"
+msgstr "(C) 2008-2010 Stefan Majewsky dan lainnya"
+
+#: main.cpp:48
+#, kde-format
+msgid "Stefan Majewsky"
+msgstr "Stefan Majewsky"
+
+#: main.cpp:48
+#, kde-format
+msgid "Original author and current maintainer"
+msgstr "Penulis asli dan pemelihara saat ini"
+
+#: main.cpp:49
+#, kde-format
+msgid "Paul Bunbury"
+msgstr "Paul Bunbury"
+
+#: main.cpp:49
+#, kde-format
+msgid "Gameplay refinement"
+msgstr "Penyempurnaan mainnya permainan"
+
+#: main.cpp:50
+#, kde-format
+msgid "Eugene Trounev"
+msgstr "Eugene Trounev"
+
+#: main.cpp:50
+#, kde-format
+msgid "Default theme"
+msgstr "Tema baku"
+
+#: main.cpp:51
+#, kde-format
+msgid "Felix Lemke"
+msgstr "Felix Lemke"
+
+#: main.cpp:51
+#, kde-format
+msgid "Classic theme"
+msgstr "Tema klasik"
+
+#: main.cpp:52
+#, kde-format
+msgid "Jeffrey Kelling"
+msgstr "Jeffrey Kellin"
+
+#: main.cpp:52
+#, kde-format
+msgid "Technical consultant"
+msgstr "Konsultan teknik"
+
+#: mainwindow.cpp:59
+#, kde-format
+msgctxt "new game"
+msgid "&New"
+msgstr "&Baru"
+
+#: mainwindow.cpp:60
+#, kde-format
+msgid "Timed game"
+msgstr "Permainan berwaktu"
+
+#: mainwindow.cpp:67
+#, kde-format
+msgid "Start a new game"
+msgstr "Mulai sebagai permainan baru"
+
+#: mainwindow.cpp:68
+#, kde-format
+msgid "Start a new game."
+msgstr "Mulai sebagai permainan baru."
+
+#: mainwindow.cpp:152
+#, kde-format
+msgid "Untimed"
+msgstr "Tak berwaktu"
+
+#: mainwindow.cpp:152
+#, kde-format
+msgid "Timed"
+msgstr "Berwaktu"
+
+#: mainwindow.cpp:155 mainwindow.cpp:171
+#, kde-format
+msgid "Mode"
+msgstr "Mode"
+
+#: view.cpp:21
+#, kde-format
+msgid ""
+"<h3>Rules of Game</h3><p>Your goal is to assemble lines of at least three "
+"similar diamonds. Click on two adjacent diamonds to swap them.</p><p>Earn "
+"extra points by building cascades, and extra seconds by assembling big lines "
+"or multiple lines at one time.</p>"
+msgstr ""
+"<h3>Peraturan Permainan</h3><p>Tujuanmu adalah untuk merakit barisan "
+"setidaknya tiga berlian yang serupa. Klik pada dua berlian yang berdekatan "
+"untuk menukarnya.</p><p>Dapatkan poin ekstra dengan membangun kaskade, dan "
+"detik ekstra dengan merakit barisan yang panjang atau barisan multipel dalam "
+"satu waktu sekaligus.</p>"

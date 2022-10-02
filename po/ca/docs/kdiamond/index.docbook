@@ -1,0 +1,459 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+<!ENTITY % Catalan  "INCLUDE">
+<!ENTITY % addindex "IGNORE">
+]>
+
+<book id="kdiamond" lang="&language;">
+<bookinfo>
+<title
+>El manual del &kdiamond;</title>
+
+<authorgroup>
+<author
+><firstname
+>Stefan</firstname
+> <surname
+>Majewsky</surname
+> <affiliation
+><address
+><email
+>majewsky@gmx.net</email
+></address
+></affiliation>
+</author>
+&traductor.Antoni.Bella; 
+</authorgroup>
+
+<copyright>
+<year
+>2008, 2009, 2010</year>
+<holder
+>Stefan Majewsky</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>26 de juny de 2021</date>
+<releaseinfo
+>KDE Gear 21.04</releaseinfo>
+
+<abstract>
+<para
+>El &kdiamond;, un joc de tres en ratlla.</para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kdegames</keyword>
+<keyword
+>joc</keyword>
+<keyword
+>joc de trencaclosques</keyword>
+<keyword
+>KDiamond</keyword>
+</keywordset>
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Introducció</title>
+
+<para
+>El &kdiamond; és un joc de trencaclosques d'un sol jugador. </para>
+
+<screenshot>
+<mediaobject>
+<imageobject>
+<imagedata fileref="gameboard.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Joc de taula &kdiamond;</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>L'objectiu del joc és construir línies de tres diamants iguals. </para>
+</chapter>
+
+<chapter id="how-to-play">
+<title
+>Com jugar</title>
+
+<para
+>Al jugador se li presenta una quadrícula rectangular que conté diversos tipus de diamants. L'objectiu del joc és intercanviar els diamants veïns per a formar una línia de tres diamants iguals. Aquestes línies desapareixeran i el tauler s'omplirà amb diamants nous. El temps de joc és limitat, per a obtenir una puntuació alta intenteu construir tantes línies com sigui possible. </para>
+
+<para
+>Feu clic sobre un diamant i després sobre un dels seus veïns. A continuació, s'intercanviaran els diamants. (Per a invocar l'intercanvi, també podeu fer clic i arrossegar un diamant sobre un dels seus veïns). Si l'intercanvi no forma una línia d'almenys tres diamants, es revertirà. La barra d'estat mostra el temps de joc restant, la quantitat de punts que heu guanyat i la quantitat de moviments possibles. </para>
+
+</chapter>
+
+<chapter id="rules-strategies-tips">
+<title
+>Les regles del joc, estratègies i consells</title>
+
+<sect1 id="rules">
+<title
+>Regles</title>
+<itemizedlist>
+<listitem
+><para
+>Quan s'elimina una línia i els diamants cauen per a emplenar els buits, és possible que després es componguin línies noves. Intenteu aconseguir aquestes cascades en seleccionar un parell de diamants, ja que obtindreu punts extres: obtindreu 1 punt per la línia que construïu, 2 punts per la primera cascada, 3 punts per una possible pròxima cascada, i així successivament.</para
+></listitem>
+<listitem
+><para
+>Intenteu construir línies amb més de 3 diamants: guanyareu un segon addicional per cada dos diamants addicionals que elimineu.</para
+></listitem>
+<listitem
+><para
+>El nombre de tipus de diamants augmenta quan es trien els nivells de dificultat <guilabel
+>Difícil</guilabel
+>, aquests dificultaran la construcció de línies. Per contra, la mida del tauler augmentarà en els nivells de dificultat &nbsp;<guilabel
+>Fàcil</guilabel
+>, perquè sigui més fàcil trobar un moviment.</para
+></listitem>
+<listitem
+><para
+>La partida s'aturarà una vegada que no quedin més moviments possibles. Especialment en els nivells de dificultat &nbsp;<guilabel
+>Difícil</guilabel
+>, ho haureu de tenir en compte quan trieu el vostre proper moviment.</para
+></listitem>
+</itemizedlist>
+</sect1>
+
+</chapter>
+
+<chapter id="interface-overview">
+<title
+>Resum de la interfície</title>
+
+<sect1 id="menu">
+<title
+>Elements de menú</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Joc</guimenu
+> <guimenuitem
+>Nova</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Inicia una partida nova. Crea un tauler aleatori emprant el nivell de dificultat actual. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycap
+>P</keycap
+> </shortcut
+> <guimenu
+>Joc</guimenu
+> <guimenuitem
+>Pausa</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Posa en pausa el temps de la partida. Torneu a fer clic sobre l'element de menú per a reprendre-la. Recordeu que quan la partida estigui en pausa, el tauler desapareixerà, ja que seria injust si poguéssiu cercar moviments bons sense la pressió del temps. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Joc</guimenu
+> <guimenuitem
+>Mostra les puntuacions...</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Mostra un diàleg que conté les puntuacions més altes per als diferents nivells de dificultat. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Joc</guimenu
+> <guimenuitem
+>Surt</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Surt del programa. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>H</keycap
+></shortcut
+> <guimenu
+>Mou</guimenu
+> <guimenuitem
+>Consell</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Ressalta un diamant que es pot moure. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guisubmenu
+>Dificultat</guisubmenu
+> </menuchoice
+></term>
+<listitem>
+<para
+>Permet establir el nivell de dificultat des d'un submenú.</para>
+<para
+>Hi ha cinc nivells de dificultat: <itemizedlist>
+<listitem
+><para
+><guimenuitem
+>Molt fàcil</guimenuitem
+>: 12 files, 12 columnes, 5 tipus de diamants.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Fàcil</guimenuitem
+>: 10 files, 10 columnes, 5 tipus de diamants.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Mitjana</guimenuitem
+>: 8 files, 8 columnes, 5 tipus de diamants.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Difícil</guimenuitem
+>: 8 files, 8 columnes, 6 tipus de diamants.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Molt difícil</guimenuitem
+>: 8 files, 8 columnes, 7 tipus de diamants.</para
+></listitem>
+</itemizedlist>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Configura les notificacions...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Aquest element mostra un diàleg de configuració estàndard per a les notificacions del &kde;, on podreu canviar les notificacions (sons, missatges visibles, &etc;) utilitzats per l'aplicació &kdiamond;.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>,</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Configura el &kdiamond;...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Mostra un diàleg per a triar un tema gràfic per al joc. Els temes disponibles dependran de la instal·lació actual. També podreu descarregar temes nous creats per dissenyadors externs.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>De manera addicional, el &kdiamond; té la configuració comuna al &kde; i els elements dels menús <guimenu
+>Arranjament</guimenu
+> i <guimenu
+>Ajuda</guimenu
+>. Per a obtenir més informació, llegiu les seccions sobre <ulink url="help:/fundamentals/menus.html#menus-settings"
+>El menú Arranjament</ulink
+> i <ulink url="help:/fundamentals/menus.html#menus-help"
+>El menú Ajuda</ulink
+> en els Fonaments del &kde;. </para>
+
+</sect1>
+
+<sect1 id="keybindings">
+<title id="keybindings-title"
+>Dreceres</title>
+
+<para
+>Les dreceres predeterminades són les següents:</para>
+
+<table>
+<title
+>Dreceres</title>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry
+>Inicia una partida nova</entry>
+<entry>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Pausa</entry>
+<entry>
+<keycombo action="simul"
+><keysym
+>P</keysym
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Mostra les millors puntuacions</entry>
+<entry>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Consell</entry>
+<entry
+><keycap
+>H</keycap
+></entry>
+</row>
+<row>
+<entry
+>Surt</entry>
+<entry>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Ajuda</entry>
+<entry
+><keycap
+>F1</keycap
+></entry>
+</row>
+<row>
+<entry
+>Ajuda «Què és això?»</entry>
+<entry>
+<keycombo action="simul"
+>&Maj;<keycap
+>F1</keycap
+></keycombo>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+
+</sect1>
+</chapter>
+
+
+<chapter id="credits">
+<title
+>Crèdits i llicència</title>
+
+<para
+>&kdiamond; </para>
+<para
+>Copyright del programa 2008, 2009 per en Stefan Majewsky <email
+>majewsky@gmx.net</email
+> </para>
+<para
+>Copyright de la documentació 2008, 2009, 2010 per en Stefan Majewsky <email
+>majewsky@gmx.net</email
+> </para>
+
+<para
+>Traductor de la documentació: &credits.Antoni.Bella;</para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-always-quote-attributes:t
+sgml-indent-step:0
+sgml-indent-data:t
+End:
+-->
+

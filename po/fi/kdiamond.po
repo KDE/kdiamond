@@ -1,0 +1,257 @@
+# translation of kdiamond.po to Finnish
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+# Teemu Rytilahti <teemu.rytilahti@kde-fi.org>, 2008.
+# Lasse Liehu <lasse.liehu@gmail.com>, 2010, 2012, 2013, 2014.
+# Tommi Nieminen <translator@legisign.org>, 2011.
+#
+# KDE Finnish translation sprint participants:
+msgid ""
+msgstr ""
+"Project-Id-Version: kdiamond\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-09-26 00:42+0000\n"
+"PO-Revision-Date: 2014-11-08 02:37+0200\n"
+"Last-Translator: Lasse Liehu <lasse.liehu@gmail.com>\n"
+"Language-Team: Finnish <lokalisointi@lists.coss.fi>\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-POT-Import-Date: 2012-12-01 22:24:00+0000\n"
+"X-Generator: Lokalize 1.5\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Teemu Rytilahti"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "teemu.rytilahti@kde-fi.org"
+
+#: game-state.cpp:103
+#, kde-format
+msgid "Click the pause button again to resume the game."
+msgstr "Napsauta Tauko-painiketta uudestaan jatkaaksesi peliä."
+
+#: game-state.cpp:110
+#, kde-format
+msgctxt "Not meant like 'You have lost', more like 'Time is up'."
+msgid "Game over."
+msgstr "Peli loppui."
+
+# KONTEKSTI: Amount of possible moves
+#: infobar.cpp:18 infobar.cpp:50
+#, kde-format
+msgid "Possible moves: %1"
+msgstr "Mahdollisia siirtoja: %1"
+
+#: infobar.cpp:19 infobar.cpp:42
+#, kde-format
+msgid "Points: %1"
+msgstr "Pisteitä: %1"
+
+#: infobar.cpp:22 infobar.cpp:35 mainwindow.cpp:61
+#, kde-format
+msgid "Untimed game"
+msgstr "Peli ilman ajanottoa"
+
+#: infobar.cpp:24 infobar.cpp:68
+#, kde-format
+msgid "Time left: %1"
+msgstr "Aikaa jäljellä: %1"
+
+# KONTEKSTI: Amount of possible moves
+#: infobar.cpp:48
+#, kde-format
+msgctxt "Shown when the board is in motion."
+msgid "Possible moves: ..."
+msgstr "Mahdollisia siirtoja: …"
+
+#. i18n: ectx: label, entry (Untimed), group (Preferences)
+#: kdiamond.kcfg:9
+#, kde-format
+msgid "Play an untimed game."
+msgstr "Pelaa ilman ajanottoa."
+
+#. i18n: ectx: ToolBar (mainToolBar)
+#: kdiamondui.rc:11
+#, kde-format
+msgid "Main Toolbar"
+msgstr "Päätyökalurivi"
+
+# pmap: =/gen=KDiamondin/
+# pmap: =/elat=KDiamondista/
+#: main.cpp:42 mainwindow.cpp:88
+#, kde-format
+msgctxt "The application's name"
+msgid "KDiamond"
+msgstr "KDiamond"
+
+#: main.cpp:44
+#, kde-format
+msgid "KDiamond, a three-in-a-row game."
+msgstr "KDiamond – kolme riviin -peli"
+
+#: main.cpp:45
+#, kde-format
+msgid "(C) 2008-2010 Stefan Majewsky and others"
+msgstr "© 2008–2010 Stefan Majewsky ja muut"
+
+#: main.cpp:48
+#, kde-format
+msgid "Stefan Majewsky"
+msgstr "Stefan Majewsky"
+
+#: main.cpp:48
+#, kde-format
+msgid "Original author and current maintainer"
+msgstr "Alkuperäinen tekijä ja nykyinen ylläpitäjä"
+
+#: main.cpp:49
+#, kde-format
+msgid "Paul Bunbury"
+msgstr "Paul Bunbury"
+
+#: main.cpp:49
+#, kde-format
+msgid "Gameplay refinement"
+msgstr "Pelaamisen hienosäätö"
+
+#: main.cpp:50
+#, kde-format
+msgid "Eugene Trounev"
+msgstr "Eugene Trounev"
+
+#: main.cpp:50
+#, kde-format
+msgid "Default theme"
+msgstr "Oletusteema"
+
+#: main.cpp:51
+#, kde-format
+msgid "Felix Lemke"
+msgstr "Felix Lemke"
+
+#: main.cpp:51
+#, kde-format
+msgid "Classic theme"
+msgstr "Klassinen teema"
+
+#: main.cpp:52
+#, kde-format
+msgid "Jeffrey Kelling"
+msgstr "Jeffrey Kelling"
+
+#: main.cpp:52
+#, kde-format
+msgid "Technical consultant"
+msgstr "Tekninen konsultti"
+
+#: mainwindow.cpp:59
+#, kde-format
+msgctxt "new game"
+msgid "&New"
+msgstr "&Uusi"
+
+#: mainwindow.cpp:60
+#, kde-format
+msgid "Timed game"
+msgstr "Ajanotollinen peli"
+
+#: mainwindow.cpp:67
+#, kde-format
+msgid "Start a new game"
+msgstr "Aloita uusi peli"
+
+#: mainwindow.cpp:68
+#, kde-format
+msgid "Start a new game."
+msgstr "Aloita uusi peli."
+
+#: mainwindow.cpp:152
+#, kde-format
+msgid "Untimed"
+msgstr "Ei ajanottoa"
+
+#: mainwindow.cpp:152
+#, kde-format
+msgid "Timed"
+msgstr "Ajanotto"
+
+#: mainwindow.cpp:155 mainwindow.cpp:171
+#, kde-format
+msgid "Mode"
+msgstr "Tila"
+
+#: view.cpp:21
+#, kde-format
+msgid ""
+"<h3>Rules of Game</h3><p>Your goal is to assemble lines of at least three "
+"similar diamonds. Click on two adjacent diamonds to swap them.</p><p>Earn "
+"extra points by building cascades, and extra seconds by assembling big lines "
+"or multiple lines at one time.</p>"
+msgstr ""
+"<h3>Pelin säännöt</h3><p>Tavoitteena on kerätä vähintään kolme samanlaista "
+"timanttia riviin. Napsauta kahta vierekkäin olevaa timanttia vaihtaaksesi "
+"niiden paikkaa.</p><p>Lisäpisteitä saa rakentamalla peräkkäisiä "
+"timanttirivejä, ja lisäaikaa rakentamalla pitkiä rivejä tai yhtäaikaisia "
+"rivejä.</p>"
+
+#~ msgid "Theme"
+#~ msgstr "Teema"
+
+#~ msgid "The graphical theme to be used."
+#~ msgstr "Käytettävä teema."
+
+#~ msgid "Start with Very Easy difficulty level"
+#~ msgstr "Aloita erittäin helpolta tasolta"
+
+#~ msgid "Start with Easy difficulty level"
+#~ msgstr "Aloita helpolta tasolta"
+
+#~ msgid "Start with Medium difficulty level"
+#~ msgstr "Aloita keskivaikealta tasolta"
+
+#~ msgid "Start with Hard difficulty level"
+#~ msgstr "Aloita vaikealta tasolta"
+
+#~ msgid "Start with Very Hard difficulty level"
+#~ msgstr "Aloita erittäin vaikealta tasolta"
+
+#~ msgid "The difficulty level."
+#~ msgstr "Vaikeustaso."
+
+#~ msgid "Failed to load \"%1\" theme. Please check your installation."
+#~ msgstr "Teeman \"%1\" lataus epäonnistui. Tarkasta asennuksesi."
+
+#~ msgid "Time left: 1 second"
+#~ msgid_plural "Time left: %1 seconds"
+#~ msgstr[0] "Aikaa jäljellä: 1 sekunti"
+#~ msgstr[1] "Aikaa jäljellä: %1 sekuntia"
+
+#~ msgid "1 second"
+#~ msgid_plural "%1 seconds"
+#~ msgstr[0] "1 sekunti"
+#~ msgstr[1] "%1 sekuntia"
+
+#~ msgid "1 minute"
+#~ msgid_plural "%1 minutes"
+#~ msgstr[0] "1 minuutti"
+#~ msgstr[1] "%1 minuuttia"
+
+#~ msgctxt "The two parameters are strings like '2 minutes' or '1 second'."
+#~ msgid "Time left: %1, %2"
+#~ msgstr "Aikaa jäljellä: %1, %2"
+
+#~ msgid "Show minutes on timer"
+#~ msgstr "Näytä minuutit ajastimessa"
+
+#~ msgid "Show minutes separately on the timer."
+#~ msgstr "Näytä minuutit erikseen ajastimessa."
+
+#~ msgid "Could not create the themes directory at: %1"
+#~ msgstr "Teemahakemistoa ei löytynyt paikasta: %1"

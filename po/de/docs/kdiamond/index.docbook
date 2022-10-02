@@ -1,0 +1,481 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+<!ENTITY % German "INCLUDE">
+<!ENTITY % addindex "IGNORE">
+]>
+
+<book id="kdiamond" lang="&language;">
+<bookinfo>
+<title
+>Das Handbuch zu &kdiamond;</title>
+
+<authorgroup>
+<author
+><firstname
+>Stefan</firstname
+> <surname
+>Majewsky</surname
+> <affiliation
+><address
+><email
+>majewsky@gmx.net</email
+></address
+></affiliation>
+</author>
+ <othercredit role="translator"
+><firstname
+>Burkhard</firstname
+><surname
+>Lück</surname
+><affiliation
+><address
+><email
+>lueck@hube-lueck.de</email
+></address
+></affiliation
+><contrib
+>Übersetzung</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2008, 2009, 2010</year>
+<holder
+>Stefan Majewsky</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2021-06-26</date>
+<releaseinfo
+>KDE Gear 21.04</releaseinfo>
+
+<abstract>
+<para
+>&kdiamond;, ein <quote
+>Drei in einer Reihe</quote
+>-Spiel.</para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>KDE-Spiele</keyword>
+<keyword
+>Spiel</keyword>
+<keyword
+>Rätsel</keyword>
+<keyword
+>KDiamond</keyword>
+</keywordset>
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Einführung</title>
+
+<para
+>&kdiamond; ist ein Rätsel-Spiel für einen Spieler. </para>
+
+<screenshot>
+<mediaobject>
+<imageobject>
+<imagedata fileref="gameboard.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>&kdiamond;-Spielfeld</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Das Ziel des Spiels ist, Linien mit drei gleichen Diamanten zu bauen. </para>
+</chapter>
+
+<chapter id="how-to-play">
+<title
+>Spielanleitung</title>
+
+<para
+>Das Spielfeld besteht aus einem rechteckigen Gitternetz mit Diamanten verschiedener Form. das Ziel des Spiels ist es, benachbarte Diamanten zu tauschen, sodass sich eine Linie von drei gleichen Diamanten ergibt. Diese Linien verschwinden dann und das Spielfeld wird mit neuen Diamanten aufgefüllt. Die Spielzeit ist begrenzt - versuchen Sie, so viele Linien wie möglich zu bilden, um eine hohe Punktzahl zu erreichen. </para>
+
+<para
+>Markieren Sie einen Diamanten und dann einen seiner Nachbarn, damit sie die Plätze tauschen (das Ziehen eines Diamanten auf den anderen funktioniert auch). Wenn dadurch keine Linie von mindestens drei gleichen Diamanten gebildet wird, wird der Zug wieder rückgängig gemacht. In der Statusleiste werden die verbleibende Spielzeit, der Punktestand und die Anzahl der noch möglichen Züge angezeigt. </para>
+
+</chapter>
+
+<chapter id="rules-strategies-tips">
+<title
+>Spielregeln, Spielstrategien und Tipps</title>
+
+<sect1 id="rules">
+<title
+>Spielregeln</title>
+<itemizedlist>
+<listitem
+><para
+>Wenn eine Linie verschwindet und die Diamanten hinunterfallen um die Lücken zu schließen, können weitere neue Linien gleicher Diamanten entstehen. Für solche Kaskaden erhalten Sie zusätzliche Punkte: 1 Punkt pro gebildete Linie, 2 Punkte für die erste Kaskade, 3 Punkte für eine mögliche nächste Kaskade und so weiter.</para
+></listitem>
+<listitem
+><para
+>Versuchen Sie Reihen mit mehr als drei Diamanten zu bilden: Dafür erhalten Sie je eine zusätzliche Sekunde für je zwei weitere entfernte Diamanten (z. B. 5er-Reihe = 1 Sekunde).</para
+></listitem>
+<listitem
+><para
+>Wenn der Schwierigkeitsgrad <guilabel
+>Schwierig</guilabel
+> gewählt wird, steigt die Anzahl der Diamantentypen und es wird dadurch kniffliger, Linien zu bilden. Im Gegensatz dazu vergrößert sich das Spielbrett und das Finden des richtigen Zuges wird einfacher, wenn Sie den Schwierigkeitsgrad <guilabel
+>Leicht</guilabel
+> wählen.</para
+></listitem>
+<listitem
+><para
+>Das Spiel endet, wenn keine weiteren Züge mehr möglich sind. Besonders bei <guilabel
+>Schwierig</guilabel
+> bzw. <guilabel
+>Sehr schwierig</guilabel
+> sollte dies vor Ausführung des nächsten Zuges beachtet werden.</para
+></listitem>
+</itemizedlist>
+</sect1>
+
+</chapter>
+
+<chapter id="interface-overview">
+<title
+>Die Benutzeroberfläche</title>
+
+<sect1 id="menu">
+<title
+>Menüeinträge</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Spiel</guimenu
+> <guimenuitem
+>Neu</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Startet eine neues Spiel mit einem zufälligen Spielbrett im aktuellen Schwierigkeitsgrad.  </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>P</keycap
+> </shortcut
+> <guimenu
+>Spiel</guimenu
+> <guimenuitem
+>Pause</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Hält die Spielzeit an. Klicken Sie erneut auf den Menüpunkt, um das Spiel fortzusetzen. Beachten Sie, dass das Spielfeld während der Pause verschwindet, da Sie sich sonst unfairerweise ohne Zeitdruck gute Züge überlegen könnten. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Spiel</guimenu
+> <guimenuitem
+>Bestenliste anzeigen ...</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Zeigt einen Dialog mit den Bestenlisten für die unterschiedlichen Schwierigkeitsstufen. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Spiel</guimenu
+> <guimenuitem
+>Beenden</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Beendet das Programm. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>H</keycap
+></shortcut
+> <guimenu
+>Zug</guimenu
+> <guimenuitem
+>Tipp</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Ein tauschbarer Diamant wird angezeigt. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Einstellungen</guimenu
+><guisubmenu
+>Schwierigkeitsgrad</guisubmenu
+> </menuchoice
+></term>
+<listitem>
+<para
+>Hier können Sie den Schwierigkeitsgrad aus einem Untermenü wählen.</para>
+<para
+>Es gibt fünf Schwierigkeitsgrade: <itemizedlist>
+<listitem
+><para
+><guimenuitem
+>Sehr einfach</guimenuitem
+>: 12 Zeilen, 12 Spalten, 5 Diamantentypen.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Einfach</guimenuitem
+>: 10 Zeilen, 10 Spalten, 5 Diamantentypen.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Mittel</guimenuitem
+>: 8 Zeilen, 8 Spalten, 5 Diamantentypen.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Schwierig</guimenuitem
+>: 8 Zeilen, 8 Spalten, 6 Diamantentypen.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Sehr schwierig</guimenuitem
+>: 8 Zeilen, 8 Spalten, 7 Diamantentypen.</para
+></listitem>
+</itemizedlist>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Einstellungen</guimenu
+><guimenuitem
+>Benachrichtigungen festlegen ...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Öffnet den &kde;-Standarddialog zum Einrichten der Benachrichtigungen (Klänge, Meldungen &etc;) für &kdiamond;.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>,</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Einstellungen</guimenu
+> <guimenuitem
+>&kdiamond; einrichten ...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Zeigt einen Dialog zur Auswahl eines grafisches Designs für das Spiel. Die verfügbaren Designs hängen von der spezifischen Installation ab. Es können auch neue Designs von anderen Personen heruntergeladen werden.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>Zusätzlich hat &kdiamond; die bekannten &kde;-Einträge im Menü <guimenu
+>Einstellungen</guimenu
+> und <guimenu
+>Hilfe</guimenu
+>, weitere Informationen dazu finden Sie in den Abschnitten über die Menüs <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Einstellungen</ulink
+> und <ulink url="help:/fundamentals/menus.html#menus-help"
+>Hilfe</ulink
+> der &kde;-Grundlagen. </para>
+
+</sect1>
+
+<sect1 id="keybindings">
+<title id="keybindings-title"
+>Kurzbefehle</title>
+
+<para
+>Folgende Tastenkürzel sind als Standard eingestellt:</para>
+
+<table>
+<title
+>Kurzbefehle</title>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry
+>Ein neues Spiel starten.</entry>
+<entry>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Pause</entry>
+<entry>
+<keycombo action="simul"
+><keysym
+>P</keysym
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Bestenliste anzeigen</entry>
+<entry>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Tipp</entry>
+<entry
+><keycap
+>H</keycap
+></entry>
+</row>
+<row>
+<entry
+>Beenden</entry>
+<entry>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Hilfe</entry>
+<entry
+><keycap
+>F1</keycap
+></entry>
+</row>
+<row>
+<entry
+><quote
+>Was ist das?</quote
+>-Hilfe</entry>
+<entry>
+<keycombo action="simul"
+>&Shift;<keycap
+>F1</keycap
+></keycombo>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+
+</sect1>
+</chapter>
+
+
+<chapter id="credits">
+<title
+>Danksagungen und Lizenz</title>
+
+<para
+>&kdiamond; </para>
+<para
+>Programm © 2008, 2009, Stefan Majewsky <email
+>majewsky@gmx.net</email
+> </para>
+<para
+>Dokumentation © 2008, 2009, 2010, Stefan Majewsky <email
+>majewsky@gmx.net</email
+> </para>
+
+ <para
+>Übersetzung: Burkhard Lück <email
+>lueck@hube-lueck.de</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-always-quote-attributes:t
+sgml-indent-step:0
+sgml-indent-data:t
+End:
+-->
+

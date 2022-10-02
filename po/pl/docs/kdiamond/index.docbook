@@ -1,0 +1,567 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+<!ENTITY kdiamond "<application
+>KDiamond</application
+>">
+<!ENTITY kappname "&kdiamond;">
+<!ENTITY package "kdegames">
+<!ENTITY % Polish "INCLUDE"
+> 
+<!ENTITY % addindex "IGNORE">
+]>
+
+<book lang="&language;">
+<bookinfo>
+<title
+>Podręcznik &kdiamond;</title>
+
+<authorgroup>
+<author
+><firstname
+>Stefan</firstname
+> <surname
+>Majewsky</surname
+> <affiliation
+><address
+><email
+>majewsky@gmx.net</email
+></address
+></affiliation>
+</author>
+<othercredit role="translator"
+> <firstname
+>Krzysztof</firstname
+><surname
+>Woźniak</surname
+> <affiliation
+><address
+><email
+>wozniakk@ceti.pl</email
+></address
+> </affiliation
+><contrib
+>Polskie tłumaczenie</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2008</year>
+<holder
+>Stefan Majewsky</holder>
+</copyright>
+    
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2009-01-27</date>
+<releaseinfo
+>1.1.0</releaseinfo>
+
+<abstract>
+<para
+>&kdiamond; to gra typu ''trzy w jednej linii''.</para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kdegames</keyword>
+<keyword
+>gra</keyword>
+<keyword
+>łamigłówka</keyword>
+<keyword
+>kdiamond</keyword>
+</keywordset>
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Wprowadzenie</title>
+
+<para
+>&kdiamond; jest przeznaczoną dla jednego gracza łamigłówką. </para>
+
+<para
+>Celem gry jest budowanie linii trzech podobnych do siebie diamentów. </para>
+</chapter>
+
+<chapter id="how-to-play">
+<title
+>Jak grać</title>
+
+<para
+>Gracz otrzymuje prostokątną siatkę zawierającą różne rodzaje diamentów. Zadaniem gracza jest zamienianie sąsiadujących diamentów, tak aby utworzyć linię składającą się z trzech podobnych do siebie diamentów. Takie linie znikają z planszy i zapełniane zostają nowymi diamentami. Czas gry jest ograniczony, należy starać się zbudować jak najwięcej linii i zdobyć najlepszy wynik. </para>
+
+<para
+>Kliknij na diament i na jednego z jego sąsiadów. Diamenty zamienią się miejscami. (Można także kliknąć i przeciągnąć myszką na diament sąsiadujący aby spowodować zamianę miejsc). Jeżeli po zamianie nie powstanie linia trzech identycznych diamentów, to zamiana jest cofana. Pasek stanu pokazuje ile pozostało czasu, liczbę punktów, oraz liczbę możliwych ruchów. </para>
+
+</chapter>
+
+<chapter id="rules-strategies-tips">
+<title
+>Zasady gry, strategia gry i sztuczki</title>
+
+<sect1 id="rules">
+<title
+>Zasady</title>
+<itemizedlist>
+<listitem
+><para
+>Gdy utworzona linia zostaje usunięta, i pozostałe diamenty spadają uzupełniając puste miejsce, mogą się wtedy utworzyć nowe linie identycznych diamentów. Staraj się uzyskiwać tego rodzaju kaskady przy wybieraniu par diamentów, do zarabianie dodatkowych punktów: Dostajesz 1 punkt za zbudowaną linię, 2 punkty za pierwszą kaskadę, 3 punkty za kolejną i tak dalej.</para
+></listitem>
+<listitem
+><para
+>Staraj się budować także linie o długości większej niż 3 diamenty: Dla takich liniidostajesz dodatkową sekundę czasu za każde dwa dodatkowe diamenty.</para
+></listitem>
+<listitem
+><para
+>Liczba rodzajów diamentów zwiększa się po wybraniu <guilabel
+>Trudnego</guilabel
+> poziomu gry, utrudnia to budowanie linii. Wielkość planszy rośnie na poziomie trudności<guilabel
+>Łatwy</guilabel
+> dzięki czemu łatwiej jest znaleźć możliwy ruch.</para
+></listitem>
+<listitem
+><para
+>Gra zatrzymuje się gdy nie ma już żadnych możliwych ruchów. Szczególnie należy o tym pamiętać na <guilabel
+>Trudnych</guilabel
+> poziomach, ostrożnie planując kolejne ruchy.</para
+></listitem>
+</itemizedlist>
+</sect1>
+
+</chapter>
+
+<chapter id="interface-overview">
+<title
+>Przegląd interfejsu</title>
+
+<sect1 id="game-menu">
+ <title
+>Menu <guimenu
+>Gra</guimenu
+></title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Gra</guimenu
+> <guimenuitem
+>Nowa</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Uruchamia nową grę. Tworzy losową planszę dla ustalonego poziom trudności. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycap
+>P</keycap
+></shortcut
+> <guimenu
+>Gra</guimenu
+> <guimenuitem
+>Pauza</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Wstrzymuje grę. Ponowne kliknięcie uruchamia grę ponownie. Uwaga! plansza gry znika w czasie gdy gra jest wstrzymywana, gdyż byłoby oszustwem dawanie możliwości poszukiwania dobrego ruchu bez odpowiedniej presji czasu. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Gra</guimenu
+> <guimenuitem
+>Pokaż najlepsze wyniki</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Wyświetla okno dialogowe z listą najlepszych wyników dla różnych poziomów trudności. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Gra</guimenu
+> <guimenuitem
+>Zakończ</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Kończy pracę programu. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="move-menu">
+<title
+>Menu <guimenu
+>Ruch</guimenu
+></title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>H</keycap
+></shortcut
+><guimenu
+>Ruch</guimenu
+><guimenuitem
+>Podpowiedź</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Podświetla diament, dla którego możliwy jest ruch. Kosztuje to jednak trzy sekundy odejmowane z czasu gry. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="settings-menu">
+<title
+>Menu <guimenu
+>Ustawienia</guimenu
+></title>
+
+<variablelist>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Ustawienia</guimenu
+> <guimenuitem
+>Pokaż minuty na liczniku</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Włącza lub wyłącza wyświetlanie minut na liczniku (np. "3 minuty i 10 sekund" zamiast "190 sekund"). </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Ustawienia</guimenu
+> <guimenuitem
+>Wyświetl pasek narzędzi</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Włącza lub wyłącza wyświetlanie paska narzędzi. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Ustawienia</guimenu
+> <guimenuitem
+>Wyświetl pasek stanu</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Włącza lub wyłącza wyświetlanie paska stanu. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Ustawienia</guimenu
+><guisubmenu
+>Poziom trudności</guisubmenu
+> </menuchoice
+></term>
+<listitem>
+<para
+>Pozwala na wybranie poziomu trudności z podmenu.</para>
+<para
+>Dostępne są cztery poziomy trudności: <itemizedlist>
+<listitem
+><para
+><guimenuitem
+>Bardzo łatwy</guimenuitem
+>: 12 wierszy, 12 kolumn, 5 rodzajów diamentów.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Łatwy</guimenuitem
+>: 10 wierszy, 10 kolumn, 5 rodzajów diamentów.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Średni</guimenuitem
+>: 8 wierszy, 8 kolumn, 5 rodzajów diamentów.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Trudny</guimenuitem
+>: 8 wierszy, 8 kolumn, 6 rodzajów diamentów.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Bardzo trudny</guimenuitem
+>: 8 wierszy, 8 kolumn, 7 rodzajów diamentów.</para
+></listitem>
+</itemizedlist>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Ustawienia</guimenu
+> <guimenuitem
+>Konfiguracja skrótów...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para>
+<action
+>Otwiera okno, które pozwala Ci na zdefiniowanie wszystkich skrótów klawiszowych.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Ustawienia</guimenu
+> <guimenuitem
+>Konfiguracja pasków narzędzi...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Wyświetla standardowe okno &kde;, gdzie możesz skonfigurować ikony paska narzędzi.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Ustawienia</guimenu
+> <guimenuitem
+>Konfiguracja powiadomień...</guimenuitem
+></menuchoice
+></term>
+<listitem
+><para
+>Ta funkcja wyświetla standardowe okno dialogowe konfiguracji powiadomień &kde;, gdzie można zmienić różne powiadomienia (dźwięki, komunikaty, itp.) używane przez &kdiamond;.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Ustawienia</guimenu
+> <guimenuitem
+>Konfiguracja &kdiamond;...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Pozwala na wybranie graficznego motywu wyglądu gry. Dostępność motywów uzależniona jest od bieżącej instalacji. Można także pobierać nowe motywy, utworzone przez innych twórców.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+</sect1>
+
+<sect1 id="help">
+<title
+>Menu <guimenu
+>Pomoc</guimenu
+></title>
+&help.menu.documentation; </sect1>
+
+<sect1 id="keybindings">
+<title id="keybindings-title"
+>Skróty klawiszowe</title>
+
+<para
+>Domyślne skróty to:</para>
+
+<table>
+<title
+>Skróty klawiszowe</title>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry
+>Rozpocznij nową grę</entry>
+<entry>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Wstrzymaj</entry>
+<entry>
+<keycombo action="simul"
+><keysym
+>P</keysym
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Pokaż najlepsze wyniki</entry>
+<entry>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Zakończ</entry>
+<entry>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Pomoc</entry>
+<entry
+><keycap
+>F1</keycap
+></entry>
+</row>
+<row>
+<entry
+>Co to jest?</entry>
+<entry>
+<keycombo action="simul"
+>&Shift;<keycap
+>F1</keycap
+></keycombo>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+
+</sect1>
+</chapter>
+
+
+<chapter id="credits">
+<title
+>Zasługi i licencje</title>
+
+<para
+>&kdiamond; </para>
+<para
+>Prawa autorskie do programu: (c) 2008 by Stefan Majewsky <email
+>majewsky@gmx.net</email
+> </para>
+<para
+>Prawa autorskie do dokumentacji: (c) 2008 by Stefan Majewsky <email
+>majewsky@gmx.net</email
+> </para>
+
+<para
+>Polskie tłumaczenie dokumentacji: Krzysztof Woźniak<email
+>wozniakk@ceti.pl</email
+></para
+> 
+&underFDL; &underGPL; </chapter>
+
+<appendix id="installation">
+<title
+>Instalacja</title>
+
+<sect1 id="getting-kdiamond">
+<title
+>Jak zdobyć &kdiamond;</title>
+&install.intro.documentation; </sect1>
+
+<sect1 id="compilation">
+<title
+>Kompilacja i instalacja</title>
+&install.compile.documentation; </sect1>
+</appendix>
+
+
+&documentation.index; 
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-always-quote-attributes:t
+sgml-indent-step:0
+sgml-indent-data:t
+End:
+-->
+

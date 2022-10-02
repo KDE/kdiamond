@@ -1,0 +1,193 @@
+# Translation of kdiamond into Japanese.
+# This file is distributed under the same license as the kdegames package.
+# Yukiko Bando <ybando@k6.dion.ne.jp>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kdiamond\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-09-26 00:42+0000\n"
+"PO-Revision-Date: 2010-09-26 12:20-0700\n"
+"Last-Translator: Fumiaki Okushi <okushi@kde.gr.jp>\n"
+"Language-Team: Japanese <kde-jp@kde.org>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Yukiko Bando"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "ybando@k6.dion.ne.jp"
+
+#: game-state.cpp:103
+#, kde-format
+msgid "Click the pause button again to resume the game."
+msgstr "ゲームを再開するには、もう一度「一時停止」ボタンを押します。"
+
+#: game-state.cpp:110
+#, kde-format
+msgctxt "Not meant like 'You have lost', more like 'Time is up'."
+msgid "Game over."
+msgstr "ゲームオーバー"
+
+#: infobar.cpp:18 infobar.cpp:50
+#, kde-format
+msgid "Possible moves: %1"
+msgstr "可能な手: %1"
+
+#: infobar.cpp:19 infobar.cpp:42
+#, kde-format
+msgid "Points: %1"
+msgstr "ポイント: %1"
+
+#: infobar.cpp:22 infobar.cpp:35 mainwindow.cpp:61
+#, kde-format
+msgid "Untimed game"
+msgstr "制限時間なし"
+
+#: infobar.cpp:24 infobar.cpp:68
+#, kde-format
+msgid "Time left: %1"
+msgstr "残り時間: %1"
+
+#: infobar.cpp:48
+#, kde-format
+msgctxt "Shown when the board is in motion."
+msgid "Possible moves: ..."
+msgstr "可能な手: ..."
+
+#. i18n: ectx: label, entry (Untimed), group (Preferences)
+#: kdiamond.kcfg:9
+#, kde-format
+msgid "Play an untimed game."
+msgstr "制限時間なしのゲームを開始します。"
+
+#. i18n: ectx: ToolBar (mainToolBar)
+#: kdiamondui.rc:11
+#, kde-format
+msgid "Main Toolbar"
+msgstr "メインツールバー"
+
+#: main.cpp:42 mainwindow.cpp:88
+#, kde-format
+msgctxt "The application's name"
+msgid "KDiamond"
+msgstr "KDiamond"
+
+#: main.cpp:44
+#, kde-format
+msgid "KDiamond, a three-in-a-row game."
+msgstr "KDiamond 三目並べ"
+
+#: main.cpp:45
+#, kde-format
+msgid "(C) 2008-2010 Stefan Majewsky and others"
+msgstr "(C) 2008-2010 Stefan Majewsky 他"
+
+#: main.cpp:48
+#, kde-format
+msgid "Stefan Majewsky"
+msgstr "Stefan Majewsky"
+
+#: main.cpp:48
+#, kde-format
+msgid "Original author and current maintainer"
+msgstr "オリジナルの作者、現在のメンテナ"
+
+#: main.cpp:49
+#, kde-format
+msgid "Paul Bunbury"
+msgstr "Paul Bunbury"
+
+#: main.cpp:49
+#, kde-format
+msgid "Gameplay refinement"
+msgstr "ゲームプレイの改良"
+
+#: main.cpp:50
+#, kde-format
+msgid "Eugene Trounev"
+msgstr "Eugene Trounev"
+
+#: main.cpp:50
+#, kde-format
+msgid "Default theme"
+msgstr "標準のテーマ"
+
+#: main.cpp:51
+#, kde-format
+msgid "Felix Lemke"
+msgstr "Felix Lemke"
+
+#: main.cpp:51
+#, kde-format
+msgid "Classic theme"
+msgstr "クラシックテーマ"
+
+#: main.cpp:52
+#, kde-format
+msgid "Jeffrey Kelling"
+msgstr "Jeffrey Kelling"
+
+#: main.cpp:52
+#, kde-format
+msgid "Technical consultant"
+msgstr "技術顧問"
+
+#: mainwindow.cpp:59
+#, kde-format
+msgctxt "new game"
+msgid "&New"
+msgstr "新しいゲーム(&N)"
+
+#: mainwindow.cpp:60
+#, kde-format
+msgid "Timed game"
+msgstr "制限時間あり"
+
+#: mainwindow.cpp:67
+#, kde-format
+msgid "Start a new game"
+msgstr "新しいゲームを開始"
+
+#: mainwindow.cpp:68
+#, kde-format
+msgid "Start a new game."
+msgstr "新しいゲームを開始します。"
+
+#: mainwindow.cpp:152
+#, kde-format
+msgid "Untimed"
+msgstr "制限時間なし"
+
+#: mainwindow.cpp:152
+#, kde-format
+msgid "Timed"
+msgstr "制限時間あり"
+
+#: mainwindow.cpp:155 mainwindow.cpp:171
+#, kde-format
+msgid "Mode"
+msgstr "モード"
+
+#: view.cpp:21
+#, kde-format
+msgid ""
+"<h3>Rules of Game</h3><p>Your goal is to assemble lines of at least three "
+"similar diamonds. Click on two adjacent diamonds to swap them.</p><p>Earn "
+"extra points by building cascades, and extra seconds by assembling big lines "
+"or multiple lines at one time.</p>"
+msgstr ""
+"<h3>ゲームのルール</h3><p>同じダイヤが少なくとも 3 つ連続するラインを作ってく"
+"ださい。隣接する 2 つのダイヤをクリックすると、位置が入れ替わります。</p><p>"
+"カスケードを作るとボーナスポイントが与えられます。同時に複数のラインを作った"
+"り、長いラインを作ると、プレイ秒数が加算されます。</p>"

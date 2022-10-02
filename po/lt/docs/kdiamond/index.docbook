@@ -1,0 +1,554 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+<!ENTITY kdiamond "<application
+>KDiamond</application
+>">
+<!ENTITY kappname "&kdiamond;">
+<!ENTITY package "kdegames">
+<!ENTITY % Lithuanian "INCLUDE"
+> 
+<!ENTITY % addindex "IGNORE">
+]>
+
+<book id="kdiamond" lang="&language;">
+<bookinfo>
+<title
+>&kdiamond; vadovas</title>
+
+<authorgroup>
+<author
+><firstname
+>Stefan</firstname
+> <surname
+>Majewsky</surname
+> <affiliation
+><address
+><email
+>majewsky@gmx.net</email
+></address
+></affiliation>
+</author>
+<othercredit role="translator"
+><firstname
+>Tomas</firstname
+><surname
+>Straupis</surname
+><affiliation
+><address
+><email
+>tomasstraupis@gmail.com</email
+></address
+></affiliation
+><contrib
+>Vertė</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2008, 2009, 2010</year>
+<holder
+>Stefan Majewsky</holder>
+</copyright>
+    
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2010-01-21</date>
+<releaseinfo
+>1.3.1</releaseinfo>
+
+<abstract>
+<para
+>&kdiamond;, trijų eilėje žaidimas.</para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kdegames</keyword>
+<keyword
+>žaidimas</keyword>
+<keyword
+>galvosūkis</keyword>
+<keyword
+>kdiamond</keyword>
+</keywordset>
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Įvadas</title>
+
+<para
+>&kdiamond; – vienam žaidėjui skirtas žaidimas. </para>
+
+<para
+>Šio žaidimo tikslas – sustatyti deimantus į trijų elementų eiles. </para>
+</chapter>
+
+<chapter id="how-to-play">
+<title
+>Žaidimo taisyklės</title>
+
+<para
+>Žaidimo lauke pateikiamai stačiakampyje tinklelyje išdėstyti įvairūs deimantai. Jūs galite sukeisti šalia esančius deimantus taip, kad susidarytų eilė iš trijų tokių pačių deimantų. Šitos vienodų deimantų eilės dings, o į žaidimo lauką iš viršaus bus įmesti nauji deimantai. Žaidimo laikas ribojamas. Tikslas – sukurti kiek galima daugiau deimantų linijų. </para>
+
+<para
+>Spustelėkite ant vieno deimanto, o tada ant kurio nors iš keturių jo kaimynų. Deimantai susikeis vietomis. (Taipogi galima pažymėti ir nešti vieną deimantą ant kaimyninio deimanto, kad juos apkeistumėte). Jei po tokio pakeitimo nesusiformuoja jokia eilė iš trijų – ėjimas atstatomas. Būsenos juostoje matysite likusį laiką, jūsų surinktų taškų skaičių ir galimų ėjimų skaičių. </para>
+
+</chapter>
+
+<chapter id="rules-strategies-tips">
+<title
+>Žaidimo taisyklės, strategija ir patarimai</title>
+
+<sect1 id="rules">
+<title
+>Taisyklės</title>
+<itemizedlist>
+<listitem
+><para
+>Panaikinus vieną eilę, naujiems deimantams krentant žemyn, gali susiformuoti naujos vienodų deimantų eilės. Stenkitės sukurti tokias situacijas, nes taip gausite papildomų taškų: 1 tašką gaunate už jūsų sukurtą eilę, 2 taškus už pirmą kritimo metu susikūrusią eilę, 3 taškus už antrą ir t.t.</para
+></listitem>
+<listitem
+><para
+>Stenkitės sukurti eiles, sudarytas iš daugiau nei 4 deimantų. Už kiekvienus du papildomus deimantus gausite po papildomą sekundę žaidimo laiko.</para
+></listitem>
+<listitem
+><para
+>Kuo sunkesnį žaidimo lygį pasirinksite, tuo daugiau deimantų tipų bus naudojama, taip bus sunkiau suformuoti vienodų deimantų eiles. O kuo lengvesnį lygį rinksitės – tuo didesnė bus naudojama žaidimo lenta, taip supaprastinant tokių pačių deimantų paieškas.</para
+></listitem>
+<listitem
+><para
+>Žaidimas baigsis arba kai baigsis žaidimui skirtas laikas, arba kai nebeliks įmanomų ėjimų. Jei žaidžiate pasirinkę sudėtingą lygį – atkreipkite dėmesį į tai, kiek ėjimų turėsite po ėjimo, kurį ruošiatės daryti!</para
+></listitem>
+</itemizedlist>
+</sect1>
+
+</chapter>
+
+<chapter id="interface-overview">
+<title
+>Naudotojo sąsaja</title>
+
+<sect1 id="game-menu">
+ <title
+>Meniu <guimenu
+>Žaidimas</guimenu
+></title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Žaidimas</guimenu
+> <guimenuitem
+>Naujas</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Pradeda naują žaidimą. Sukuriama nauja žaidimo lenta, atitinkantį pasirinktą žaidimo sudėtingumo lygį. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>P</keycap
+></shortcut
+> <guimenu
+>Žaidimas</guimenu
+> <guimenuitem
+>Pristabdyti</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Pristabdo žaidimą. Spustelėkite dar kartą, norėdami tęsti. Atkreipkite dėmesį, kad žaidimo lenta paslepiama, kol žaidimas pristabdytas, nes priešingu atveju jūs galėtumėte pristabdyti žaidimą (ir laiko skaičiavimą) ir tuo metu ieškoti geriausio sekančio ėjimo. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Žaidimas</guimenu
+> <guimenuitem
+>Rezultatai</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Parodo dialogą, kuriame surašyti geriausi rezultatai skirtinguose žaidimo lygiuose. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Žaidimas</guimenu
+> <guimenuitem
+>Baigti</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Baigia žaidimą. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="move-menu">
+<title
+>Meniu <guimenu
+>Perkelti</guimenu
+></title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>H</keycap
+></shortcut
+> <guimenu
+>Perkelti</guimenu
+> <guimenuitem
+>Patarimas</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Paryškiną deimantą, kurį galima keisti vietomis su kitu. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="settings-menu">
+<title
+>Meniu <guimenu
+>Nustatymai</guimenu
+></title>
+
+<variablelist>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Nustatymai</guimenu
+> <guimenuitem
+>Rodyti įrankių juostą</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Įjungia ir išjungia įrankių juostos rodymą. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Nustatymai</guimenu
+> <guimenuitem
+>Rodyti būsenos juostą</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Įjungia arba išjungia būsenos juostą. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Nustatymai</guimenu
+> <guisubmenu
+>Sudėtingumas</guisubmenu
+> </menuchoice
+></term>
+<listitem>
+<para
+>Čia galite pasirinkti žaidimo sudėtingumo lygį (pasirinkimas žaidimo lango dešiniame apatiniame kampe).</para>
+<para
+>Galite rinktis vieną iš penkių žaidimo sudėtingumo lygių: <itemizedlist>
+<listitem
+><para
+><guimenuitem
+>Labai lengva</guimenuitem
+>: 12 eilučių, 12 stulpelių, 5 deimantų tipai.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Lengva</guimenuitem
+>: 10 eilučių, 10 stulpelių, 5 deimantų tipai.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Vidutiniška</guimenuitem
+>: 8 eilutės, 8 stulpeliai, 5 deimantų tipai.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Sunku</guimenuitem
+>: 8 eilutės, 8 stulpeliai, 6 deimantų tipai.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Labai sunku</guimenuitem
+>: 8 eilutės, 8 stulpeliai, 7 deimantų tipai.</para
+></listitem>
+</itemizedlist>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Nustatymai</guimenu
+> <guimenuitem
+>Konfigūruoti sparčiuosius klavišus...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para>
+<action
+>Atvidaro dialogą, kuriame galite nustatyti sparčiuosius klavišus.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Nustatymai</guimenu
+> <guimenuitem
+>Konfigūruoti įrankines...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Parodo standartinį &kde; dialogą, kuriame galite nustatyi, kokie mygtukai rodomi įrankinėje.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Nustatymai</guimenu
+><guimenuitem
+>Konfigūruoti pranešimus...</guimenuitem
+></menuchoice
+></term>
+<listitem
+><para
+>Šis meniu punktas atvers standartinį &kde; pranešimų dialogą, kuriame galėsite pasirinkti, kaip turi būti pranešta apie įvairius &kdiamond; įvykius (garsai, matomi pranešimai ir t.t.).</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Nustatymai</guimenu
+> <guimenuitem
+>Konfigūruoti &kdiamond;...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Pasirinkite frafine žaidimo temą. Sąrašas temu, iš kurių galima rinktis, priklausys nuo įdiegtos žaidimo versijos. Jei norite, galite parsisiųsti naujų temų, sukurtų trečiųjų asmenų.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+</sect1>
+
+<sect1 id="help">
+<title
+>Meniu <guimenu
+>Pagalba</guimenu
+></title>
+&help.menu.documentation; </sect1>
+
+<sect1 id="keybindings">
+<title id="keybindings-title"
+>Spartieji klavišai</title>
+
+<para
+>Numatytieji spartieji klavišai:</para>
+
+<table>
+<title
+>Spartieji klavišai</title>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry
+>Pradėti naują žaidimą</entry>
+<entry>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Pristabdyti</entry>
+<entry>
+<keycombo action="simul"
+><keysym
+>P</keysym
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Parodyti geriausių rezultatų sąrašą</entry>
+<entry>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Užuomina</entry>
+<entry
+><keycap
+>H</keycap
+></entry>
+</row>
+<row>
+<entry
+>Baigti</entry>
+<entry>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Pagalba</entry>
+<entry
+><keycap
+>F1</keycap
+></entry>
+</row>
+<row>
+<entry
+>Kas tai?</entry>
+<entry>
+<keycombo action="simul"
+>&Shift;<keycap
+>F1</keycap
+></keycombo>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+
+</sect1>
+</chapter>
+
+
+<chapter id="credits">
+<title
+>Padėkos ir licencija</title>
+
+<para
+>&kdiamond; </para>
+<para
+>Programos autorinės teisės: 2008, 2009 Stefan Majewsky <email
+>majewsky@gmx.net</email
+> </para>
+<para
+>Documentacija 2008, 2009 Stefan Majewsky <email
+>majewsky@gmx.net</email
+> </para>
+
+<para
+>Translation Tomas Straupis <email
+>tomasstraupis@gmail.com</email
+></para
+> 
+&underFDL; &underGPL; </chapter>
+
+<appendix id="installation">
+<title
+>Įdiegimas</title>
+
+<sect1 id="getting-kdiamond">
+<title
+>Iš kur gauti &kdiamond;</title>
+&install.intro.documentation; </sect1>
+
+<sect1 id="compilation">
+<title
+>Kompiliavimas ir diegimas</title>
+&install.compile.documentation; </sect1>
+</appendix>
+
+
+&documentation.index; 
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-always-quote-attributes:t
+sgml-indent-step:0
+sgml-indent-data:t
+End:
+-->
+

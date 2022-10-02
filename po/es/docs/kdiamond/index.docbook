@@ -1,0 +1,495 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+<!ENTITY % Spanish "INCLUDE">
+<!ENTITY % addindex "IGNORE">
+]>
+
+<book id="kdiamond" lang="&language;">
+<bookinfo>
+<title
+>Manual de &kdiamond;</title>
+
+<authorgroup>
+<author
+><firstname
+>Stefan</firstname
+> <surname
+>Majewsky</surname
+> <affiliation
+><address
+><email
+>majewsky@gmx.net</email
+></address
+></affiliation>
+</author>
+<othercredit role="translator"
+><firstname
+>Santiago</firstname
+><surname
+>Fernández Sancho</surname
+><affiliation
+><address
+><email
+>santi@kde-es.org</email
+></address
+></affiliation
+><contrib
+>Traductor</contrib
+></othercredit
+> <othercredit role="translator"
+><firstname
+>Kira</firstname
+><surname
+>J. Fernández</surname
+><affiliation
+><address
+><email
+>kirajfdez@gmail.com</email
+></address
+></affiliation
+><contrib
+>Traductora</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2008, 2009, 2010</year>
+<holder
+>Stefan Majewsky</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2021-06-26</date>
+<releaseinfo
+>KDE Gear 21.04</releaseinfo>
+
+<abstract>
+<para
+>&kdiamond;, un juego de tres en línea.</para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kdegames</keyword>
+<keyword
+>juego</keyword>
+<keyword
+>juego de rompecabezas</keyword>
+<keyword
+>KDiamond</keyword>
+</keywordset>
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Introducción</title>
+
+<para
+>&kdiamond; es un juego de rompecabezas para un jugador. </para>
+
+<screenshot>
+<mediaobject>
+<imageobject>
+<imagedata fileref="gameboard.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>El tablero de juego de &kdiamond;</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>El objeto del juego es construir líneas de tres diamantes similares. </para>
+</chapter>
+
+<chapter id="how-to-play">
+<title
+>Cómo jugar</title>
+
+<para
+>Ante el jugador se presentará una rejilla rectangular con varios tipos de diamantes. El objeto del juego es intercambiar los diamantes vecinos para crear líneas con tres diamantes similares. Estas líneas desaparecerán y el tablero se rellenará con más diamantes. El tiempo de juego está limitado, por tanto, intente construir el mayor número de líneas posible para obtener la mejor puntuación. </para>
+
+<para
+>Pulse en un diamante y a continuación en uno de sus vecinos. Entonces los diamantes se intercambiarán. (También puede hacer click y arrastrar un diamante sobre uno de sus vecinos para hacer que intercambien su posición) Si no hay, al menos, tres diamantes que formen una línea, volverán a su estado anterior. La barra de estado muestra el tiempo restante, el número de puntos ganados y el número de movimientos posibles. </para>
+
+</chapter>
+
+<chapter id="rules-strategies-tips">
+<title
+>Reglas del juego, estrategias y juegos</title>
+
+<sect1 id="rules">
+<title
+>Reglas</title>
+<itemizedlist>
+<listitem
+><para
+>Cuando se elimina una línea y los diamantes caen para rellenar los huecos, se crean líneas nuevas. Intente conseguir cascadas seleccionado pares de diamantes para obtener puntos extra: Obtendrá 1 punto por la línea construida, 2 puntos por la primera cascada, 3 por la siguiente, y así sucesivamente.</para
+></listitem>
+<listitem
+><para
+>Intente formar líneas con más de 3 diamantes: ganará un segundo extra por cada dos diamantes extra eliminados.</para
+></listitem>
+<listitem
+><para
+>El número de tipos de diamantes se incrementa cuando se eligen niveles de dificultad <guilabel
+>Difícil</guilabel
+>, para hacer más complicada la construcción de líneas. En contraposición, el tamaño del tablero se incrementa en los niveles de dificultad <guilabel
+>Fácil</guilabel
+> para hacer más sencillo encontrar los movimientos.</para
+></listitem>
+<listitem
+><para
+>El juego se detendrá una vez que no queden movimientos posibles. Especialmente en el nivel de dificultad <guilabel
+>Difícil</guilabel
+>, debería tener esto en cuenta cuando elija su siguiente movimiento.</para
+></listitem>
+</itemizedlist>
+</sect1>
+
+</chapter>
+
+<chapter id="interface-overview">
+<title
+>Visión general de la interfaz</title>
+
+<sect1 id="menu">
+<title
+>Opciones de menú</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Juego</guimenu
+> <guimenuitem
+>Nuevo</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Inicia una partida nueva. Crea un tablero aleatorio usando el nivel de dificultad actual. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+><keysym
+>P</keysym
+></keycombo
+> </shortcut
+> <guimenu
+>Juego</guimenu
+> <guimenuitem
+>Pausar</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Detiene el tiempo de la partida. Pulse de nuevo en el elemento de menú para continuar con la partida. Tenga en cuenta que el tablero de juego desaparecerá cuando se detenga el juego, ya que sería injusto si buscara nuevos movimientos sin la presión del tiempo. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Juego</guimenu
+> <guimenuitem
+>Mostrar mejores puntuaciones...</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Muestra un diálogo que contiene las mejores puntuaciones de los diferentes niveles de dificultad. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Juego</guimenu
+> <guimenuitem
+>Salir</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Sale del programa. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Movimiento</guimenu
+> <guimenuitem
+>Pista</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Resaltar un diamante que se puede mover.  </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Preferencias</guimenu
+> <guisubmenu
+>Dificultad</guisubmenu
+> </menuchoice
+></term>
+<listitem>
+<para
+>Le permite establecer el nivel de dificultad desde un submenú.</para>
+<para
+>Hay cinco niveles de dificultad: <itemizedlist>
+<listitem
+><para
+><guimenuitem
+>Muy fácil</guimenuitem
+>: 12 filas, 12 columnas, 5 tipos de diamantes.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Fácil</guimenuitem
+>: 10 filas, 10 columnas, 5 tipos de diamantes.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Medio</guimenuitem
+>: 8 filas, 8 columnas, 5 tipos de diamantes.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Difícil</guimenuitem
+>: 8 filas, 8 columnas, 6 tipos de diamantes.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Muy difícil</guimenuitem
+>: 8 filas, 8 columnas, 7 tipos de diamantes.</para
+></listitem>
+</itemizedlist>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Preferencias</guimenu
+> <guimenuitem
+>Configurar notificaciones...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Este elemento muestra un diálogo estándar para configurar las notificaciones de &kde;, donde puede cambiar las notificaciones (sonidos, mensajes visibles, &etc;) usadas por &kdiamond;.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>,</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Preferencias</guimenu
+> <guimenuitem
+>Configurar &kdiamond;...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Muestra un diálogo para escoger un tema gráfico para el juego. Los temas disponibles dependerán de la instalación actual. También puede descargar temas nuevos que han sido creados por diseñadores externos.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>Además &kdiamond; tiene las opciones de menú <guimenu
+>Preferencias</guimenu
+> y <guimenu
+>Ayuda</guimenu
+> comunes de &kde;. Para obtener más información, consulte las secciones sobre el <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Menú «Preferencias»</ulink
+> y <ulink url="help:/fundamentals/menus.html#menus-help"
+>Menú «Ayuda» </ulink
+> de «Aspectos básicos de &kde;». </para>
+
+</sect1>
+
+<sect1 id="keybindings">
+<title id="keybindings-title"
+>Accesos rápidos</title>
+
+<para
+>Los accesos rápidos predefinidos son:</para>
+
+<table>
+<title
+>Accesos rápidos</title>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry
+>Comenzar una partida nueva</entry>
+<entry>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Detener</entry>
+<entry>
+<keycombo action="simul"
+><keysym
+>P</keysym
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Mostrar mejores puntuaciones</entry>
+<entry>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Pista</entry>
+<entry
+><keycap
+>H</keycap
+></entry>
+</row>
+<row>
+<entry
+>Salir</entry>
+<entry>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Ayuda</entry>
+<entry
+><keycap
+>F1</keycap
+></entry>
+</row>
+<row>
+<entry
+>¿Qué es esto?</entry>
+<entry>
+<keycombo action="simul"
+>&Shift;<keycap
+>F1</keycap
+></keycombo>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+
+</sect1>
+</chapter>
+
+
+<chapter id="credits">
+<title
+>Créditos y licencia</title>
+
+<para
+>&kdiamond; </para>
+<para
+>Copyright del programa 2008, 2009 de Stefan Majewsky <email
+>majewsky@gmx.net</email
+> </para>
+<para
+>Copyright de la documentación 2008, 2009, 2010 de Stefan Majewsky <email
+>majewsky@gmx.net</email
+> </para>
+
+<para
+>Traducido por Santiago Fernández Sancho<email
+>santi@kde-es.org</email
+> y Kira J. Fernández <email
+>kirajfdez@gmail.com</email
+>.</para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-always-quote-attributes:t
+sgml-indent-step:0
+sgml-indent-data:t
+End:
+-->
+

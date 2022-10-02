@@ -1,0 +1,475 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+<!ENTITY % Ukrainian "INCLUDE">
+<!ENTITY % addindex "IGNORE">
+]>
+
+<book id="kdiamond" lang="&language;">
+<bookinfo>
+<title
+>Підручник з &kdiamond;</title>
+
+<authorgroup>
+<author
+><firstname
+>Stefan</firstname
+> <surname
+>Majewsky</surname
+> <affiliation
+><address
+><email
+>majewsky@gmx.net</email
+></address
+></affiliation>
+</author>
+<othercredit role="translator"
+><firstname
+>Сергій</firstname
+><surname
+>Якимчук</surname
+><affiliation
+><address
+><email
+>yakim@yakim.org.ua</email
+></address
+></affiliation
+><contrib
+>Переклад українською</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2008, 2009, 2010</year>
+<holder
+>Stefan Majewsky</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>26 червня 2021 року</date>
+<releaseinfo
+>KDE Gear 21.04</releaseinfo>
+
+<abstract>
+<para
+>&kdiamond; — гра типу три в ряд.</para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kdegames</keyword>
+<keyword
+>гра</keyword>
+<keyword
+>гра-головоломка</keyword>
+<keyword
+>KDiamond</keyword>
+</keywordset>
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Вступ</title>
+
+<para
+>&kdiamond; — це гра-головоломка для одного гравця. </para>
+
+<screenshot>
+<mediaobject>
+<imageobject>
+<imagedata fileref="gameboard.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Ігрове поле &kdiamond;</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Метою гри є побудова лінії з трьох однакових діамантів. </para>
+</chapter>
+
+<chapter id="how-to-play">
+<title
+>Як гратися</title>
+
+<para
+>Гравець має прямокутне поле, яке заповнено діамантами різних типів. Ціллю гри є, міняючи два діаманти, що знаходяться поруч, зібрати лінію з трьох однакових діамантів. Ці лінії зникнуть, а поле буде знову наповнене новими діамантами. Ігровий час обмежений, спробуйте побудувати якомога більше ліній, щоб отримати більше очок. </para>
+
+<para
+>Наведіть вказівник миші на діамант і клацніть лівою кнопкою, а потім зробіть те саме з якимось з його сусідів. (Крім того, ви можете перетягнути вказівником миші діамант на одного з його сусідів, щоб поміняти діаманти місцями.) Діаманти поміняються місцями. Якщо не побудується жодної лінії з трьох діамантів, то вони поміняються місцями назад. У смужці стану відображається час, що лишився до кінця гри, та кількість набраних очок. </para>
+
+</chapter>
+
+<chapter id="rules-strategies-tips">
+<title
+>Правила гри, стратегія та поради</title>
+
+<sect1 id="rules">
+<title
+>Правила гри</title>
+<itemizedlist>
+<listitem
+><para
+>Коли рядок зникає і діаманти падають донизу, може статися, що утвориться нова лінія. Намагайтеся зберігати такі каскади, коли вибираєте пару діамантів, бо за них ви отримаєте додаткові очки. Ви отримаєте 1 очко за лінію, яку Ви побудували, 2 очки за наступний каскад, 3 — за можливий наступний тощо.</para
+></listitem>
+<listitem
+><para
+>Намагайтеся будувати рядки з більше, ніж 3 діамантів: на кожні два додаткових вилучених діаманти ви отримаєте додаткову секунду часу.</para
+></listitem>
+<listitem
+><para
+>Кількість типів діамантів збільшується, коли ви обираєте <guilabel
+>Важкий</guilabel
+> рівень складності, оскільки тоді важче побудувати лінію. І навпаки, розмір поля збільшується при обиранні рівня складності <guilabel
+>Легкий</guilabel
+>, щоб було простіше знайти наступний хід.</para
+></listitem>
+<listitem
+><para
+>Після того, як не залишиться можливих ходів, гру буде зупинено. Ви маєте пам’ятати про це під час вибору наступного ходу, особливо на <guilabel
+>Складному</guilabel
+> рівні.</para
+></listitem>
+</itemizedlist>
+</sect1>
+
+</chapter>
+
+<chapter id="interface-overview">
+<title
+>Огляд інтерфейсу</title>
+
+<sect1 id="menu">
+<title
+>Пункти меню</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Гра</guimenu
+> <guimenuitem
+>Нова</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Почати нову гру. Створюється випадкове поле, відповідно до поточного рівня складності. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>P</keycap
+></shortcut
+> <guimenu
+> Гра</guimenu
+><guimenuitem
+> Пауза</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Зупинка ігрового часу. Натисніть той же пункт меню для продовження гри. Зауважте, що ігрове поле недоступне в режимі паузи, бо це б було не чесно, якщо б Ви могли познаходити гарні ходи не витрачаючи час. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Гра</guimenu
+> <guimenuitem
+>Показати найкращі результати…</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Показується діалогове вікно, що містить рекорди для різних рівнів складності. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Гра</guimenu
+> <guimenuitem
+>Вийти</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Завершує роботу програми. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>H</keycap
+></shortcut
+> <guimenu
+>Хід</guimenu
+> <guimenuitem
+>Підказка</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Підсвічує діамант, який можна пересунути. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Параметри</guimenu
+> <guisubmenu
+>Складність</guisubmenu
+> </menuchoice
+></term>
+<listitem>
+<para
+>Встановіть рівень складності за допомогою підменю.</para>
+<para
+>Передбачено п’ять рівнів складності: <itemizedlist>
+<listitem
+><para
+><guimenuitem
+>Дуже простий</guimenuitem
+>: 12 рядків, 12 стовпчиків, 5 типів діамантів.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Простий</guimenuitem
+>:10 рядків, 10 стовпчиків, 5 типів діамантів.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+> Середній</guimenuitem
+>:8 рядків, 8 стовпчиків, 5 типів діамантів.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Складний</guimenuitem
+>:8 рядків, 8 стовпчиків, 6 типів діамантів.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Дуже складний</guimenuitem
+>:8 рядків, 8 стовпчиків, 7 типів діамантів.</para
+></listitem>
+</itemizedlist>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Параметри</guimenu
+> <guimenuitem
+>Налаштувати сповіщення...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Цей пункт відкриває стандартне діалогове вікно налаштування &kde;, де можна змінити сповіщення (звуки, повідомлення-вигульки &etc;), які використовуються в &kdiamond;.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>,</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Параметри</guimenu
+> <guimenuitem
+>Налаштувати &kdiamond;...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Відкриває вікно, у якому ви можете вибрати графічну тему гри. Список доступних тем залежить від встановлених компонентів. Крім того, ви можете отримати нові теми, які було створено сторонніми дизайнерами.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>Крім того, у &kdiamond; передбачено типові для &kde; пункти меню <guimenu
+>Параметри</guimenu
+> і <guimenu
+>Довідка</guimenu
+>. Щоб дізнатися більше, ознайомтеся з розділами щодо <ulink url="help:/fundamentals/menus.html#menus-settings"
+>меню «Параметри»</ulink
+> та <ulink url="help:/fundamentals/menus.html#menus-help"
+>меню «Довідка»</ulink
+> підручника з основ роботи у &kde;. </para>
+
+</sect1>
+
+<sect1 id="keybindings">
+<title id="keybindings-title"
+>Клавіатурні скорочення</title>
+
+<para
+>Типові скорочення:</para>
+
+<table>
+<title
+>Клавіатурні скорочення</title>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry
+>Почати нову гру</entry>
+<entry>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Пауза</entry>
+<entry>
+<keycombo action="simul"
+><keysym
+>P</keysym
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Показати рекорди</entry>
+<entry>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Підказка</entry>
+<entry
+><keycap
+>H</keycap
+></entry>
+</row>
+<row>
+<entry
+>Вийти</entry>
+<entry>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Довідка</entry>
+<entry
+><keycap
+>F1</keycap
+></entry>
+</row>
+<row>
+<entry
+>Що це?</entry>
+<entry>
+<keycombo action="simul"
+>&Shift;<keycap
+>F1</keycap
+></keycombo>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+
+</sect1>
+</chapter>
+
+
+<chapter id="credits">
+<title
+>Подяки та ліцензія</title>
+
+<para
+>КДіамант </para>
+<para
+>Авторські права на програму належать Stefan Majewsky <email
+>majewsky@gmx.net</email
+>, ©2008, 2009 </para>
+<para
+>Авторські права на документацію належать Stefan Majewsky <email
+>majewsky@gmx.net</email
+>, ©2008–2010 </para>
+
+<para
+>Автор перекладу українською — Сергій Якимчук<email
+>yana-radio@bigmir.net</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-always-quote-attributes:t
+sgml-indent-step:0
+sgml-indent-data:t
+End:
+-->
+

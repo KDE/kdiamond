@@ -1,0 +1,469 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+<!ENTITY % Brazilian-Portuguese "INCLUDE">
+<!ENTITY % addindex "IGNORE">
+]>
+
+<book id="kdiamond" lang="&language;">
+<bookinfo>
+<title
+>Manual do &kdiamond;</title>
+
+<authorgroup>
+<author
+><firstname
+>Stefan</firstname
+> <surname
+>Majewsky</surname
+> <affiliation
+><address
+><email
+>majewsky@gmx.net</email
+></address
+></affiliation>
+</author>
+<othercredit role="translator"
+><firstname
+>Marcus</firstname
+><surname
+>Gama</surname
+><affiliation
+><address
+><email
+>marcus.gama@gmail.com</email
+> </address
+></affiliation
+><contrib
+>Tradução</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2008, 2009, 2010</year>
+<holder
+>Stefan Majewsky</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>09/05/2016</date>
+<releaseinfo
+>1.5 (Applications 16.04)</releaseinfo>
+
+<abstract>
+<para
+>O &kdiamond; é um jogo de três-em-linha.</para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kdegames</keyword>
+<keyword
+>jogo</keyword>
+<keyword
+>jogo de quebra-cabeça</keyword>
+<keyword
+>kdiamond</keyword>
+</keywordset>
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Introdução</title>
+
+<para
+>O &kdiamond; é um jogo de 'quebra-cabeça' apenas para um jogador. </para>
+
+<screenshot>
+<mediaobject>
+<imageobject>
+<imagedata fileref="gameboard.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Tabuleiro do jogo &kdiamond;</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>O objetivo do jogo é criar linhas com três diamantes semelhantes. </para>
+</chapter>
+
+<chapter id="how-to-play">
+<title
+>Como jogar</title>
+
+<para
+>É apresentada ao jogador uma grade retangular que contém vários tipos de diamantes. O objetivo do jogo é trocar os diamantes vizinhos para formar uma linha com três diamantes semelhantes. Estas linhas irão desaparecer e o tabuleiro será preenchido de novo com diamantes novos. O tempo de jogo é limitado, assim tente criar o máximo de linhas possíveis para atingir um recorde. </para>
+
+<para
+>Clique em um diamante e depois num dos seus vizinhos. Os diamantes serão então trocados de posição (Você poderá também clicar e arrastar um diamante para cima de um dos seus vizinhos, de modo a invocar a troca.). Se não for formada nenhuma linha com pelo menos três diamantes com a troca, esta será revertida. A barra de estado mostra o tempo restante de jogo, assim como o número de pontos adquiridos até então. </para>
+
+</chapter>
+
+<chapter id="rules-strategies-tips">
+<title
+>Regras do jogo, estratégias e dicas</title>
+
+<sect1 id="rules">
+<title
+>Regras</title>
+<itemizedlist>
+<listitem
+><para
+>Quando uma linha for removida e os diamantes caírem para preencher lacunas, poderá acontecer que sejam compostas linhas novas. Tente obter essas cascatas ao selecionar um par de diamantes, uma vez que irá obter pontos extra: irá obter 1 ponto pela linha que criou, 2 pontos pela primeira cascata, 3 por uma possível cascata seguinte, e assim por diante.</para
+></listitem>
+<listitem
+><para
+>Tente criar linhas com mais de 3 diamantes: Você irá ganhar um segundo extra por cada dois diamantes extra removidos.</para
+></listitem>
+<listitem
+><para
+>O número de tipos de diamantes aumenta quando escolher os níveis de dificuldade <guilabel
+>Difícil</guilabel
+>, complicando a criação de linhas. Por outro lado, o tamanho do tabuleiro irá aumentar com os níveis de dificuldade <guilabel
+>Fácil</guilabel
+> para simplificar a pesquisa de uma jogada.</para
+></listitem>
+<listitem
+><para
+>O jogo irá parar assim que não forem possíveis mais movimentos. Especialmente no caso dos níveis de dificuldade <guilabel
+>Difícil</guilabel
+>, deverá ter isso em mente ao escolher a sua próxima jogada.</para
+></listitem>
+</itemizedlist>
+</sect1>
+
+</chapter>
+
+<chapter id="interface-overview">
+<title
+>Resumo da interface</title>
+
+<sect1 id="menu">
+<title
+>Itens dos menus</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Jogo</guimenu
+> <guimenuitem
+>Novo</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Começa um jogo novo. Ele cria um tabuleiro novo com base no nível de dificuldade atual. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>P</keycap
+></shortcut
+> <guimenu
+>Jogo</guimenu
+> <guimenuitem
+>Pausa</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Coloca o tempo de jogo em pausa. Clique de novo no item do menu para prosseguir com o jogo. Repare que o tabuleiro desaparece quando o jogo fica em pausa, uma vez que seria injusto poder descobrir jogadas boas sem ter a pressão do tempo. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Jogo</guimenu
+> <guimenuitem
+>Mostrar recordes</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Mostra uma janela que contém os Recordes para os diferentes níveis de dificuldade. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Jogo</guimenu
+> <guimenuitem
+>Sair</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Sai do programa. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>H</keycap
+></shortcut
+> <guimenu
+>Mover</guimenu
+> <guimenuitem
+>Dica</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Realça um diamante que poderá ser movido. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Configurações</guimenu
+> <guisubmenu
+>Dificuldade</guisubmenu
+> </menuchoice
+></term>
+<listitem>
+<para
+>Permite-lhe definir o nível de dificuldade a partir de um submenu.</para>
+<para
+>Existem cinco níveis de dificuldade: <itemizedlist>
+<listitem
+><para
+><guimenuitem
+>Muito fácil</guimenuitem
+>: 12 linhas, 12 colunas, 5 tipos de diamantes.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Fácil</guimenuitem
+>: 10 linhas, 10 colunas, 5 tipos de diamantes.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Médio</guimenuitem
+>: 8 linhas, 8 colunas, 5 tipos de diamantes.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Difícil</guimenuitem
+>: 8 linhas, 8 colunas, 6 tipos de diamantes.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Muito difícil</guimenuitem
+>: 8 linhas, 8 colunas, 7 tipos de diamantes.</para
+></listitem>
+</itemizedlist>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Configurações</guimenu
+> <guimenuitem
+>Configurar notificações...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Este item mostra uma janela de configuração de notificações padrão do &kde;, onde você poderá alterar as notificações (sons, mensagens visíveis, &etc;) usadas pelo &kdiamond;.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Configurações</guimenu
+> <guimenuitem
+>Configurar o &kdiamond;...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Escolha um tema gráfico para o jogo. Os temas disponíveis dependem da instalação atual. Você poderá também obter temas novos que tenham sido criados por terceiros.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>O &kdiamond; possui os itens dos menus <guimenu
+>Configurações</guimenu
+> e <guimenu
+>Ajuda</guimenu
+>, comuns do &kde;. Para mais informações, consulte as seções sobre o <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Menu Configurações</ulink
+> e o <ulink url="help:/fundamentals/menus.html#menus-help"
+>Menu Ajuda</ulink
+> dos Fundamentos do &kde;. </para>
+
+</sect1>
+
+<sect1 id="keybindings">
+<title id="keybindings-title"
+>Atalhos</title>
+
+<para
+>Os atalhos padrão são:</para>
+
+<table>
+<title
+>Atalhos</title>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry
+>Iniciar um novo jogo</entry>
+<entry>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Pausar</entry>
+<entry>
+<keycombo action="simul"
+><keysym
+>P</keysym
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Mostrar os Recordes</entry>
+<entry>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Dica</entry>
+<entry
+><keycap
+>H</keycap
+></entry>
+</row>
+<row>
+<entry
+>Sair</entry>
+<entry>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Ajuda</entry>
+<entry
+><keycap
+>F1</keycap
+></entry>
+</row>
+<row>
+<entry
+>O que é isto?</entry>
+<entry>
+<keycombo action="simul"
+>&Shift;<keycap
+>F1</keycap
+></keycombo>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+
+</sect1>
+</chapter>
+
+
+<chapter id="credits">
+<title
+>Créditos e Licença</title>
+
+<para
+>&kdiamond; </para>
+<para
+>Direitos autorais do programa 2008, 2009 por Stefan Majewsky <email
+>majewsky@gmx.net</email
+> </para>
+<para
+>Direitos autorais da documentação 2008, 2009, 2010 por Stefan Majewsky <email
+>majewsky@gmx.net</email
+> </para>
+
+<para
+>Tradução de Marcus Gama <email
+>marcus.gama@gmail.com</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-always-quote-attributes:t
+sgml-indent-step:0
+sgml-indent-data:t
+End:
+-->
+

@@ -1,0 +1,457 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+<!ENTITY % Dutch "INCLUDE">
+<!ENTITY % addindex "IGNORE">
+]>
+
+<book id="kdiamond" lang="&language;">
+<bookinfo>
+<title
+>Het handboek van &kdiamond;</title>
+
+<authorgroup>
+<author
+><firstname
+>Stefan</firstname
+> <surname
+>Majewsky</surname
+> <affiliation
+><address
+><email
+>majewsky@gmx.net</email
+></address
+></affiliation>
+</author>
+&Freek.de.Kruijf;&Ronald.Stroethoff; 
+</authorgroup>
+
+<copyright>
+<year
+>2008, 2009, 2010</year>
+<holder
+>Stefan Majewsky</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2021-06-26</date>
+<releaseinfo
+>KDE Gear 21.04</releaseinfo>
+
+<abstract>
+<para
+>&kdiamond;, een drie-op-een-rij spel.</para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kdegames</keyword>
+<keyword
+>spel</keyword>
+<keyword
+>puzzel</keyword>
+<keyword
+>KDiamond</keyword>
+</keywordset>
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Inleiding</title>
+
+<para
+>&kdiamond; is een spel voor één speler. </para>
+
+<screenshot>
+<mediaobject>
+<imageobject>
+<imagedata fileref="gameboard.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Het spelbord van &kdiamond;</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Het doel van het spel is om drie gelijke ruiten op één rij te krijgen. </para>
+</chapter>
+
+<chapter id="how-to-play">
+<title
+>Hoe te spelen</title>
+
+<para
+>De speler ziet een rechthoekig speelbord met daarop verschillend gekleurde diamanten. Het doel is om door het wisselen van naburige diamanten een rij van drie gelijke diamanten te krijgen. Deze rij zal vervolgens verdwijnen en het speelbord wordt aangevuld met nieuwe diamanten. De speeltijd is beperkt, probeer daarom zoveel mogelijk rijen op te bouwen om een hoge score te krijgen. </para>
+
+<para
+>Klik op een diamant en vervolgens op een van zijn buren. Vervolgens zullen de diamanten van plaats wisselen. (U kunt ook een diamant selecteren en daarna naar een van de buren verslepen om ze van plaats te laten wisselen). Als dat geen rij van tenminste drie diamanten oplevert dan zal de wisseling ongedaan gemaakt worden. De statusbalk toont de nog resterende tijd, het aantal verdiende punten en het aantal mogelijke verplaatsingen. </para>
+
+</chapter>
+
+<chapter id="rules-strategies-tips">
+<title
+>Spelregels, strategieën en tips</title>
+
+<sect1 id="rules">
+<title
+>Regels</title>
+<itemizedlist>
+<listitem
+><para
+>Wanneer een rij is verwijderd waardoor de diamanten omlaag vallen om de gaten op te vullen dan kan het gebeuren dat zich nieuwe rijen vormen. Probeer zulke cascades te krijgen omdat u daarvoor extra punten krijgt: u krijgt 1 punt voor de rij die creëerde, 2 punten voor de eerste cascade, 3 punten voor de volgende cascade, enzovoort.</para
+></listitem>
+<listitem
+><para
+>Probeer om een rij meer dan 3 diamanten te maken. U verdient voor elke twee extra verwijderde diamanten een extra seconde.</para
+></listitem>
+<listitem
+><para
+>Wanneer u de moeilijkheidsgraad <guilabel
+>Moeilijk</guilabel
+> kiest dan komen er meer soorten diamanten waardoor het moeilijker is om een rij te maken. Daartegenover staat dat het speelbord groter is bij de moeilijkheidsgraad <guilabel
+>Gemakkelijk</guilabel
+> waardoor het gemakkelijker is om een mogelijke wissel te vinden.</para
+></listitem>
+<listitem
+><para
+>Het spel stopt als er geen wissels meer mogelijk zijn. Met name bij de moeilijkheidsgraad <guilabel
+>Moeilijk</guilabel
+> moet u daarop letten als u uw volgende wissel kiest.</para
+></listitem>
+</itemizedlist>
+</sect1>
+
+</chapter>
+
+<chapter id="interface-overview">
+<title
+>Overzicht van het interface</title>
+
+<sect1 id="menu">
+<title
+>Menu-items</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Spel</guimenu
+> <guimenuitem
+>Nieuw</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Start een nieuw spel. Het maakt een willekeurig bord met de huidige moeilijkheidsgraad. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>P</keycap
+></shortcut
+> <guimenu
+>Spel</guimenu
+> <guimenuitem
+>Pauze</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Pauzeer de speeltijd. Klik opnieuw op het menu-item om het spel te hervatten. Merk op dat het bord verdwijnt wanneer het spel wordt gepauzeerd omdat het oneerlijk zou zijn als u naar goede zetten zou kunnen zoeken zonder de tijdsdruk. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Spel</guimenu
+> <guimenuitem
+>Topscores tonen...</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Toont een dialoog met de hoge scores voor de verschillende moeilijkheidsgraden. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Spel</guimenu
+> <guimenuitem
+>Afsluiten</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Sluit het programma. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>H</keycap
+></shortcut
+><guimenu
+>Zet</guimenu
+><guimenuitem
+>Tip</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Markeert een diamant voor een wissel. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Instellingen</guimenu
+> <guisubmenu
+>Moeilijkheidsgraad</guisubmenu
+> </menuchoice
+></term>
+<listitem>
+<para
+>Hier kunt u de moeilijkheidsgraad in een submenu selecteren.</para>
+<para
+>Er zijn vijf niveaus in de moeilijkheidsgraad: <itemizedlist>
+<listitem
+><para
+><guimenuitem
+>Zeer eenvoudig</guimenuitem
+>: 12 rijen, 12 kolommen, 5 soorten diamanten.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Gemakkelijk</guimenuitem
+>: 10 rijen, 10 kolommen, 5 soorten diamanten.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Gemiddeld</guimenuitem
+>: 8 rijen, 8 kolommen, 5 soorten diamanten.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Moeilijk</guimenuitem
+>: 8 rijen, 8 kolommen, 6 soorten diamanten.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Erg moeilijk</guimenuitem
+>: 8 rijen, 8 kolommen, 7 soorten diamanten.</para
+></listitem>
+</itemizedlist>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Instellingen</guimenu
+> <guimenuitem
+>Meldingen instellen...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Dit item toont de standaard instellingendialoog van &kde; voor meldingen, waar u de meldingen (geluiden, zichtbare berichten, &etc;) in gebruik bij &kdiamond; kunt aanpassen.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>,</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Instellingen</guimenu
+> <guimenuitem
+>&kdiamond; configureren...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Toont een dialoog voor het kiezen van een grafisch thema voor het spel. Welke thema's beschikbaar zijn is afhankelijk van de huidige installatie. U kunt ook nieuwe thema's downloaden die door onafhankelijke ontwerpers zijn ontworpen.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>Bovendien heeft &kdiamond; de gezamenlijke menu-items van &kde; <guimenu
+>Instellingen</guimenu
+> en <guimenu
+>Help</guimenu
+>, voor meer informatie lees de secties over de <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Menu-instellingen</ulink
+> en <ulink url="help:/fundamentals/menus.html#menus-help"
+>Menu Help</ulink
+> van &kde;-fundamentals. </para>
+
+</sect1>
+
+<sect1 id="keybindings">
+<title id="keybindings-title"
+>Sneltoetsen</title>
+
+<para
+>De standaard sneltoetsen zijn:</para>
+
+<table>
+<title
+>Sneltoetsen</title>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry
+>Start een nieuw spel</entry>
+<entry>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Pauze</entry>
+<entry>
+<keycombo action="simul"
+><keysym
+>P</keysym
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Topscores tonen</entry>
+<entry>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Tip</entry>
+<entry
+><keycap
+>H</keycap
+></entry>
+</row>
+<row>
+<entry
+>Afsluiten</entry>
+<entry>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Help</entry>
+<entry
+><keycap
+>F1</keycap
+></entry>
+</row>
+<row>
+<entry
+>Wat is dit?</entry>
+<entry>
+<keycombo action="simul"
+>&Shift;<keycap
+>F1</keycap
+></keycombo>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+
+</sect1>
+</chapter>
+
+
+<chapter id="credits">
+<title
+>Dankbetuiging en licentie</title>
+
+<para
+>&kdiamond; </para>
+<para
+>Programma copyright 2008, 2009 bij Stefan Majewsky <email
+>majewsky@gmx.net</email
+> </para>
+<para
+>Documentatie copyright 2008, 2009, 2010 bij Stefan Majewsky <email
+>majewsky@gmx.net</email
+> </para>
+
+&meld.fouten;&vertaling.freek;&vertaling.ronald;&nagelezen.freek; &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-always-quote-attributes:t
+sgml-indent-step:0
+sgml-indent-data:t
+End:
+-->
+
