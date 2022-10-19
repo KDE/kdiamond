@@ -19,6 +19,7 @@
   <name xml:lang="gl">KDiamond</name>
   <name xml:lang="id">KDiamond</name>
   <name xml:lang="it">KDiamond</name>
+  <name xml:lang="ka">KDiamond</name>
   <name xml:lang="ko">KDiamond</name>
   <name xml:lang="nl">KDiamond</name>
   <name xml:lang="nn">KDiamond</name>
@@ -119,6 +120,7 @@
       <caption xml:lang="gl">Xogando a KDiamond</caption>
       <caption xml:lang="id">Memainkan KDiamond</caption>
       <caption xml:lang="it">Giocare a KDiamond</caption>
+      <caption xml:lang="ka">KDiamond-ის თამაში</caption>
       <caption xml:lang="ko">KDiamond 플레이</caption>
       <caption xml:lang="nl">KDiamond spelen</caption>
       <caption xml:lang="nn">Spelar KDiamond</caption>
