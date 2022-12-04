@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kdiamond\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-09-26 00:42+0000\n"
-"PO-Revision-Date: 2022-09-30 16:29+0200\n"
+"PO-Revision-Date: 2022-12-03 09:31+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -86,12 +86,12 @@ msgstr "KDiamond"
 #: main.cpp:44
 #, kde-format
 msgid "KDiamond, a three-in-a-row game."
-msgstr ""
+msgstr "KDiamond, თამაში სამი მწკრივში."
 
 #: main.cpp:45
 #, kde-format
 msgid "(C) 2008-2010 Stefan Majewsky and others"
-msgstr ""
+msgstr "(C) 2008-2010 Stefan Majewsky და სხვები"
 
 #: main.cpp:48
 #, kde-format
@@ -101,7 +101,7 @@ msgstr "Stefan Majewsky"
 #: main.cpp:48
 #, kde-format
 msgid "Original author and current maintainer"
-msgstr ""
+msgstr "პროექტის მიმდინარე ხელმძღვანელი, ავტორი"
 
 #: main.cpp:49
 #, kde-format
@@ -111,7 +111,7 @@ msgstr "Paul Bunbury"
 #: main.cpp:49
 #, kde-format
 msgid "Gameplay refinement"
-msgstr ""
+msgstr "თამაშის დახვეწა"
 
 #: main.cpp:50
 #, kde-format
@@ -141,7 +141,7 @@ msgstr "Jeffrey Kelling"
 #: main.cpp:52
 #, kde-format
 msgid "Technical consultant"
-msgstr ""
+msgstr "ტექნიკური მრჩეველი"
 
 #: mainwindow.cpp:59
 #, kde-format
@@ -152,7 +152,7 @@ msgstr "&ახალი"
 #: mainwindow.cpp:60
 #, kde-format
 msgid "Timed game"
-msgstr ""
+msgstr "დროში შეზღუდული თამაში"
 
 #: mainwindow.cpp:67
 #, kde-format
@@ -167,7 +167,7 @@ msgstr "ახალი თამაშის დაწყება."
 #: mainwindow.cpp:152
 #, kde-format
 msgid "Untimed"
-msgstr ""
+msgstr "ულიმიტო"
 
 #: mainwindow.cpp:152
 #, kde-format
@@ -187,3 +187,7 @@ msgid ""
 "extra points by building cascades, and extra seconds by assembling big lines "
 "or multiple lines at one time.</p>"
 msgstr ""
+"<h3>თამაშის წესები</h3><p>თქვენი მიზანია სამი ერთნაირი ალმასიდან ხაზებ "
+"ააწყოთ. დააწკაპუნეთ მეზობელ ალმასებზე მათი ადგილების შესაცვლელად.</"
+"p><p>მიიღეთ დამატებითი ქულები კასკადების აშენებით და დამატებითი წამები დიდი "
+"ან ერთზე მეტი ხაზის აწყობით.</p>"
