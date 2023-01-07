@@ -1,52 +1,86 @@
 <?xml version="1.0" ?>
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
-<!ENTITY % English "INCLUDE">
+<!ENTITY % German "INCLUDE">
 <!ENTITY % addindex "IGNORE">
 ]>
 
 <book id="kdiamond" lang="&language;">
 <bookinfo>
-<title>The &kdiamond; Handbook</title>
+<title
+>Das Handbuch zu &kdiamond;</title>
 
 <authorgroup>
-<author>
-<firstname>Stefan</firstname>
-<surname>Majewsky</surname>
-<affiliation><address><email>majewsky@gmx.net</email></address></affiliation>
+<author
+><firstname
+>Stefan</firstname
+> <surname
+>Majewsky</surname
+> <affiliation
+><address
+><email
+>majewsky@gmx.net</email
+></address
+></affiliation>
 </author>
-<!-- TRANS:ROLES_OF_TRANSLATORS -->
+ <othercredit role="translator"
+><firstname
+>Burkhard</firstname
+><surname
+>Lück</surname
+><affiliation
+><address
+><email
+>lueck@hube-lueck.de</email
+></address
+></affiliation
+><contrib
+>Übersetzung</contrib
+></othercredit
+> 
 </authorgroup>
 
 <copyright>
-<year>2008, 2009, 2010</year>
-<holder>Stefan Majewsky</holder>
+<year
+>2008, 2009, 2010</year>
+<holder
+>Stefan Majewsky</holder>
 </copyright>
 
-<legalnotice>&FDLNotice;</legalnotice>
+<legalnotice
+>&FDLNotice;</legalnotice>
 
-<date>2021-06-26</date>
-<releaseinfo>KDE Gear 21.04</releaseinfo>
+<date
+>2021-06-26</date>
+<releaseinfo
+>KDE Gear 21.04</releaseinfo>
 
 <abstract>
-<para>
-&kdiamond;, a three-in-a-row game.</para>
+<para
+>&kdiamond;, ein <quote
+>Drei in einer Reihe</quote
+>-Spiel.</para>
 </abstract>
 
 <keywordset>
-<keyword>KDE</keyword>
-<keyword>kdegames</keyword>
-<keyword>game</keyword>
-<keyword>puzzle game</keyword>
-<keyword>KDiamond</keyword>
+<keyword
+>KDE</keyword>
+<keyword
+>KDE-Spiele</keyword>
+<keyword
+>Spiel</keyword>
+<keyword
+>Rätsel</keyword>
+<keyword
+>KDiamond</keyword>
 </keywordset>
 </bookinfo>
 
 <chapter id="introduction">
-<title>Introduction</title>
+<title
+>Einführung</title>
 
-<para>
-&kdiamond; is a single player puzzle game.
-</para>
+<para
+>&kdiamond; ist ein Rätsel-Spiel für einen Spieler. </para>
 
 <screenshot>
 <mediaobject>
@@ -54,217 +88,353 @@
 <imagedata fileref="gameboard.png" format="PNG"/>
 </imageobject>
 <textobject>
-<phrase>&kdiamond; gameboard</phrase>
+<phrase
+>&kdiamond;-Spielfeld</phrase>
 </textobject>
 </mediaobject>
 </screenshot>
 
-<para>
-The object of the game is to build lines of three similar diamonds.
-</para>
+<para
+>Das Ziel des Spiels ist, Linien mit drei gleichen Diamanten zu bauen. </para>
 </chapter>
 
 <chapter id="how-to-play">
-<title>How to Play</title>
+<title
+>Spielanleitung</title>
 
-<para>
-The player is presented with a rectangular grid containing several types of diamonds. The object of the game is to swap neighbored diamonds to assemble a line of three similar diamonds. These lines will vanish and the board will be refilled with new diamonds. The game time is limited, try to build as much lines as possible to earn a high score.
-</para>
+<para
+>Das Spielfeld besteht aus einem rechteckigen Gitternetz mit Diamanten verschiedener Form. das Ziel des Spiels ist es, benachbarte Diamanten zu tauschen, sodass sich eine Linie von drei gleichen Diamanten ergibt. Diese Linien verschwinden dann und das Spielfeld wird mit neuen Diamanten aufgefüllt. Die Spielzeit ist begrenzt - versuchen Sie, so viele Linien wie möglich zu bilden, um eine hohe Punktzahl zu erreichen. </para>
 
-<para>
-Click on one diamond, then on one of its neighbors. The diamonds will then be swapped. (You may also click and drag a diamond upon one of its neighbors to invoke the swap.) If no line of at least three diamonds is formed by the swap, it will be reverted. The status bar displays the game time left, the number of points you have earned, and the number of possible moves.
-</para>
+<para
+>Markieren Sie einen Diamanten und dann einen seiner Nachbarn, damit sie die Plätze tauschen (das Ziehen eines Diamanten auf den anderen funktioniert auch). Wenn dadurch keine Linie von mindestens drei gleichen Diamanten gebildet wird, wird der Zug wieder rückgängig gemacht. In der Statusleiste werden die verbleibende Spielzeit, der Punktestand und die Anzahl der noch möglichen Züge angezeigt. </para>
 
 </chapter>
 
 <chapter id="rules-strategies-tips">
-<title>Game Rules, Strategies and Tips</title>
+<title
+>Spielregeln, Spielstrategien und Tipps</title>
 
 <sect1 id="rules">
-<title>Rules</title>
+<title
+>Spielregeln</title>
 <itemizedlist>
-<listitem><para>When a line was removed and the diamonds fall down to fill gaps, it may be that then new lines are composed. Try to achieve such cascades when selecting a diamond pair as you will earn extra points: You get 1 point for the line you build, 2 points for the first cascade, 3 points for a possible next cascade, and so on.</para></listitem>
-<listitem><para>Try to build lines with more than 3 diamonds: You will earn an extra second for each two extra diamonds removed.</para></listitem>
-<listitem><para>The number of diamond types increases when choosing <guilabel>Hard</guilabel> difficulty levels, thus making it harder to build lines. In contrast, the board size will grow on the <guilabel>Easy</guilabel> difficulty levels to make it easier to find a move.</para></listitem>
-<listitem><para>The game will stop once there are no possible moves left. Especially on <guilabel>Hard</guilabel> difficulty levels, you should keep this in mind when choosing your next move.</para></listitem>
+<listitem
+><para
+>Wenn eine Linie verschwindet und die Diamanten hinunterfallen um die Lücken zu schließen, können weitere neue Linien gleicher Diamanten entstehen. Für solche Kaskaden erhalten Sie zusätzliche Punkte: 1 Punkt pro gebildete Linie, 2 Punkte für die erste Kaskade, 3 Punkte für eine mögliche nächste Kaskade und so weiter.</para
+></listitem>
+<listitem
+><para
+>Versuchen Sie Reihen mit mehr als drei Diamanten zu bilden: Dafür erhalten Sie je eine zusätzliche Sekunde für je zwei weitere entfernte Diamanten (z. B. 5er-Reihe = 1 Sekunde).</para
+></listitem>
+<listitem
+><para
+>Wenn der Schwierigkeitsgrad <guilabel
+>Schwierig</guilabel
+> gewählt wird, steigt die Anzahl der Diamantentypen und es wird dadurch kniffliger, Linien zu bilden. Im Gegensatz dazu vergrößert sich das Spielbrett und das Finden des richtigen Zuges wird einfacher, wenn Sie den Schwierigkeitsgrad <guilabel
+>Leicht</guilabel
+> wählen.</para
+></listitem>
+<listitem
+><para
+>Das Spiel endet, wenn keine weiteren Züge mehr möglich sind. Besonders bei <guilabel
+>Schwierig</guilabel
+> bzw. <guilabel
+>Sehr schwierig</guilabel
+> sollte dies vor Ausführung des nächsten Zuges beachtet werden.</para
+></listitem>
 </itemizedlist>
 </sect1>
 
 </chapter>
 
 <chapter id="interface-overview">
-<title>Interface Overview</title>
+<title
+>Die Benutzeroberfläche</title>
 
 <sect1 id="menu">
-<title>Menu Items</title>
+<title
+>Menüeinträge</title>
 
 <variablelist>
 <varlistentry>
-<term><menuchoice>
-<shortcut>
-<keycombo action="simul">&Ctrl;<keycap>N</keycap></keycombo>
-</shortcut>
-<guimenu>Game</guimenu>
-<guimenuitem>New</guimenuitem>
-</menuchoice></term>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Spiel</guimenu
+> <guimenuitem
+>Neu</guimenuitem
+> </menuchoice
+></term>
 <listitem>
-<para>
-Starts a new game. It creates a random board using the current difficulty level.
-</para>
+<para
+>Startet eine neues Spiel mit einem zufälligen Spielbrett im aktuellen Schwierigkeitsgrad.  </para>
 </listitem>
 </varlistentry>
 
 <varlistentry>
-<term><menuchoice>
-<shortcut><keycap>P</keycap></shortcut>
-<guimenu>Game</guimenu>
-<guimenuitem>Pause</guimenuitem>
-</menuchoice></term>
+<term
+><menuchoice
+><shortcut
+><keycap
+>P</keycap
+> </shortcut
+> <guimenu
+>Spiel</guimenu
+> <guimenuitem
+>Pause</guimenuitem
+> </menuchoice
+></term>
 <listitem>
-<para>
-Pauses the game time. Click on the menu item again to make the game resume. Note that the board disappears when the game is paused as it would be unfair if you could search for good moves without the time pressure.
-</para>
+<para
+>Hält die Spielzeit an. Klicken Sie erneut auf den Menüpunkt, um das Spiel fortzusetzen. Beachten Sie, dass das Spielfeld während der Pause verschwindet, da Sie sich sonst unfairerweise ohne Zeitdruck gute Züge überlegen könnten. </para>
 </listitem>
 </varlistentry>
 
 <varlistentry>
-<term><menuchoice>
-<shortcut>
-<keycombo action="simul">&Ctrl;<keycap>H</keycap></keycombo>
-</shortcut>
-<guimenu>Game</guimenu>
-<guimenuitem>Show High Scores...</guimenuitem>
-</menuchoice></term>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Spiel</guimenu
+> <guimenuitem
+>Bestenliste anzeigen ...</guimenuitem
+> </menuchoice
+></term>
 <listitem>
-<para>
-Shows a dialog containing the High Scores for the various difficulty levels.
-</para>
+<para
+>Zeigt einen Dialog mit den Bestenlisten für die unterschiedlichen Schwierigkeitsstufen. </para>
 </listitem>
 </varlistentry>
 
 <varlistentry>
-<term><menuchoice>
-<shortcut>
-<keycombo action="simul">&Ctrl;<keycap>Q</keycap></keycombo>
-</shortcut>
-<guimenu>Game</guimenu>
-<guimenuitem>Quit</guimenuitem>
-</menuchoice></term>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Spiel</guimenu
+> <guimenuitem
+>Beenden</guimenuitem
+> </menuchoice
+></term>
 <listitem>
-<para>
-Quits the program.
-</para>
+<para
+>Beendet das Programm. </para>
 </listitem>
 </varlistentry>
 
 <varlistentry>
-<term><menuchoice>
-<shortcut><keycap>H</keycap></shortcut>
-<guimenu>Move</guimenu>
-<guimenuitem>Hint</guimenuitem>
-</menuchoice></term>
+<term
+><menuchoice
+><shortcut
+><keycap
+>H</keycap
+></shortcut
+> <guimenu
+>Zug</guimenu
+> <guimenuitem
+>Tipp</guimenuitem
+> </menuchoice
+></term>
 <listitem>
-<para>
-Highlight a diamond which can be moved.
-</para>
+<para
+>Ein tauschbarer Diamant wird angezeigt. </para>
 </listitem>
 </varlistentry>
 
 <varlistentry>
-<term><menuchoice>
-<guimenu>Settings</guimenu>
-<guisubmenu>Difficulty</guisubmenu>
-</menuchoice></term>
+<term
+><menuchoice
+><guimenu
+>Einstellungen</guimenu
+><guisubmenu
+>Schwierigkeitsgrad</guisubmenu
+> </menuchoice
+></term>
 <listitem>
-<para>Lets you set the difficulty level from a sub-menu.</para>
-<para>There are five levels of difficulty:
-<itemizedlist>
-<listitem><para><guimenuitem>Very easy</guimenuitem>: 12 rows, 12 columns, 5 types of diamonds.</para></listitem>
-<listitem><para><guimenuitem>Easy</guimenuitem>: 10 rows, 10 columns, 5 types of diamonds.</para></listitem>
-<listitem><para><guimenuitem>Medium</guimenuitem>: 8 rows, 8 columns, 5 types of diamonds.</para></listitem>
-<listitem><para><guimenuitem>Hard</guimenuitem>: 8 rows, 8 columns, 6 types of diamonds.</para></listitem>
-<listitem><para><guimenuitem>Very hard</guimenuitem>: 8 rows, 8 columns, 7 types of diamonds.</para></listitem>
+<para
+>Hier können Sie den Schwierigkeitsgrad aus einem Untermenü wählen.</para>
+<para
+>Es gibt fünf Schwierigkeitsgrade: <itemizedlist>
+<listitem
+><para
+><guimenuitem
+>Sehr einfach</guimenuitem
+>: 12 Zeilen, 12 Spalten, 5 Diamantentypen.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Einfach</guimenuitem
+>: 10 Zeilen, 10 Spalten, 5 Diamantentypen.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Mittel</guimenuitem
+>: 8 Zeilen, 8 Spalten, 5 Diamantentypen.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Schwierig</guimenuitem
+>: 8 Zeilen, 8 Spalten, 6 Diamantentypen.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Sehr schwierig</guimenuitem
+>: 8 Zeilen, 8 Spalten, 7 Diamantentypen.</para
+></listitem>
 </itemizedlist>
-</para></listitem>
+</para
+></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><menuchoice>
-<guimenu>Settings</guimenu>
-<guimenuitem>Configure Notifications...</guimenuitem>
-</menuchoice></term>
-<listitem><para>This item displays a standard &kde; notifications configuration
-dialog, where you can change the notifications (sounds, visible messages,
-&etc;) used by &kdiamond;.</para></listitem>
+<term
+><menuchoice
+><guimenu
+>Einstellungen</guimenu
+><guimenuitem
+>Benachrichtigungen festlegen ...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Öffnet den &kde;-Standarddialog zum Einrichten der Benachrichtigungen (Klänge, Meldungen &etc;) für &kdiamond;.</para
+></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><menuchoice>
-<shortcut>
-<keycombo action="simul">&Ctrl;&Shift;<keycap>,</keycap></keycombo>
-</shortcut>
-<guimenu>Settings</guimenu>
-<guimenuitem>Configure &kdiamond;...</guimenuitem>
-</menuchoice></term>
-<listitem><para>Shows a dialog for choose a graphical theme for the game. Which themes are available depends on the current installation. You may also download new themes which have been created by third-party designers.</para></listitem>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>,</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Einstellungen</guimenu
+> <guimenuitem
+>&kdiamond; einrichten ...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Zeigt einen Dialog zur Auswahl eines grafisches Designs für das Spiel. Die verfügbaren Designs hängen von der spezifischen Installation ab. Es können auch neue Designs von anderen Personen heruntergeladen werden.</para
+></listitem>
 </varlistentry>
 
 </variablelist>
 
-<para>
-Additionally &kdiamond; has the common &kde; <guimenu>Settings</guimenu> and <guimenu>Help</guimenu>
-menu items, for more information read the sections about the <ulink url="help:/fundamentals/menus.html#menus-settings"
->Settings Menu</ulink> and <ulink url="help:/fundamentals/menus.html#menus-help">Help Menu</ulink>
-of the &kde; Fundamentals.
-</para>
+<para
+>Zusätzlich hat &kdiamond; die bekannten &kde;-Einträge im Menü <guimenu
+>Einstellungen</guimenu
+> und <guimenu
+>Hilfe</guimenu
+>, weitere Informationen dazu finden Sie in den Abschnitten über die Menüs <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Einstellungen</ulink
+> und <ulink url="help:/fundamentals/menus.html#menus-help"
+>Hilfe</ulink
+> der &kde;-Grundlagen. </para>
 
 </sect1>
 
 <sect1 id="keybindings">
-<title id="keybindings-title">Shortcuts</title>
+<title id="keybindings-title"
+>Kurzbefehle</title>
 
-<para>The default shortcuts are:</para>
+<para
+>Folgende Tastenkürzel sind als Standard eingestellt:</para>
 
 <table>
-<title>Shortcuts</title>
+<title
+>Kurzbefehle</title>
 <tgroup cols="2">
 <tbody>
 <row>
-<entry>Start a new game</entry>
+<entry
+>Ein neues Spiel starten.</entry>
 <entry>
-<keycombo action="simul">&Ctrl;<keycap>N</keycap></keycombo>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo>
 </entry>
 </row>
 <row>
-<entry>Pause</entry>
+<entry
+>Pause</entry>
 <entry>
-<keycombo action="simul"><keysym>P</keysym></keycombo>
+<keycombo action="simul"
+><keysym
+>P</keysym
+></keycombo>
 </entry>
 </row>
 <row>
-<entry>Show High Scores</entry>
+<entry
+>Bestenliste anzeigen</entry>
 <entry>
-<keycombo action="simul">&Ctrl;<keycap>H</keycap></keycombo>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo>
 </entry>
 </row>
 <row>
-<entry>Hint</entry>
-<entry><keycap>H</keycap></entry>
+<entry
+>Tipp</entry>
+<entry
+><keycap
+>H</keycap
+></entry>
 </row>
 <row>
-<entry>Quit</entry>
+<entry
+>Beenden</entry>
 <entry>
-<keycombo action="simul">&Ctrl;<keycap>Q</keycap></keycombo>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo>
 </entry>
 </row>
 <row>
-<entry>Help</entry>
-<entry><keycap>F1</keycap></entry>
+<entry
+>Hilfe</entry>
+<entry
+><keycap
+>F1</keycap
+></entry>
 </row>
 <row>
-<entry>What's this?</entry>
+<entry
+><quote
+>Was ist das?</quote
+>-Hilfe</entry>
 <entry>
-<keycombo action="simul">&Shift;<keycap>F1</keycap></keycombo>
+<keycombo action="simul"
+>&Shift;<keycap
+>F1</keycap
+></keycombo>
 </entry>
 </row>
 </tbody>
@@ -276,24 +446,25 @@ of the &kde; Fundamentals.
 
 
 <chapter id="credits">
-<title>Credits and License</title>
+<title
+>Danksagungen und Lizenz</title>
 
-<para>
-&kdiamond;
-</para>
-<para>
-Program copyright 2008, 2009 by Stefan Majewsky <email>majewsky@gmx.net</email>
-</para>
-<para>
-Documentation copyright 2008, 2009, 2010 by Stefan Majewsky <email>majewsky@gmx.net</email>
-</para>
+<para
+>&kdiamond; </para>
+<para
+>Programm © 2008, 2009, Stefan Majewsky <email
+>majewsky@gmx.net</email
+> </para>
+<para
+>Dokumentation © 2008, 2009, 2010, Stefan Majewsky <email
+>majewsky@gmx.net</email
+> </para>
 
-<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
-
-&underFDL;
-&underGPL;
-
-</chapter>
+ <para
+>Übersetzung: Burkhard Lück <email
+>lueck@hube-lueck.de</email
+></para
+> &underFDL; &underGPL; </chapter>
 
 &documentation.index;
 </book>
