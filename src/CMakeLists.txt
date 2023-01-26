@@ -35,13 +35,13 @@ ecm_add_app_icon(kdiamond ICONS ${ICONS_SRCS})
 
 target_link_libraries(kdiamond
     KF5KDEGames
-    KF5::CoreAddons
-    KF5::NotifyConfig
-    KF5::I18n
-    KF5::XmlGui
-    KF5::Notifications
-    KF5::DBusAddons
-    KF5::Crash
+    KF${KF_MAJOR_VERSION}::CoreAddons
+    KF${KF_MAJOR_VERSION}::NotifyConfig
+    KF${KF_MAJOR_VERSION}::I18n
+    KF${KF_MAJOR_VERSION}::XmlGui
+    KF${KF_MAJOR_VERSION}::Notifications
+    KF${KF_MAJOR_VERSION}::DBusAddons
+    KF${KF_MAJOR_VERSION}::Crash
 )
 
 install(TARGETS kdiamond  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
