@@ -50,9 +50,9 @@
 >&FDLNotice;</legalnotice>
 
 <date
->09/05/2016</date>
+>26/05/2021</date>
 <releaseinfo
->1.5 (Applications 16.04)</releaseinfo>
+>KDE Gear 21.04</releaseinfo>
 
 <abstract>
 <para
@@ -69,7 +69,7 @@
 <keyword
 >jogo de quebra-cabeça</keyword>
 <keyword
->kdiamond</keyword>
+>KDiamond</keyword>
 </keywordset>
 </bookinfo>
 
@@ -204,7 +204,7 @@
 > <guimenu
 >Jogo</guimenu
 > <guimenuitem
->Mostrar recordes</guimenuitem
+>Mostrar recordes...</guimenuitem
 > </menuchoice
 ></term>
 <listitem>
@@ -320,15 +320,21 @@
 <varlistentry>
 <term
 ><menuchoice
-><guimenu
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>,</keycap
+></keycombo
+> </shortcut
+> <guimenu
 >Configurações</guimenu
 > <guimenuitem
->Configurar o &kdiamond;...</guimenuitem
+>Configurar &kdiamond;...</guimenuitem
 > </menuchoice
 ></term>
 <listitem
 ><para
->Escolha um tema gráfico para o jogo. Os temas disponíveis dependem da instalação atual. Você poderá também obter temas novos que tenham sido criados por terceiros.</para
+>Mostra uma janela para escolher um tema gráfico para o jogo. Os temas disponíveis dependem da instalação atual. Você poderá também obter temas novos que tenham sido criados por terceiros.</para
 ></listitem>
 </varlistentry>
 
