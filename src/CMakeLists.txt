@@ -33,8 +33,13 @@ kconfig_add_kcfg_files(kdiamond settings.kcfgc)
 file(GLOB ICONS_SRCS "pics/*-apps-kdiamond.png")
 ecm_add_app_icon(kdiamond ICONS ${ICONS_SRCS})
 
+if (QT_MAJOR_VERSION STREQUAL "6")
+    target_link_libraries(kdiamond KDEGames6)
+else()
+    target_link_libraries(kdiamond KF5KDEGames)
+endif()
+
 target_link_libraries(kdiamond
-    KF5KDEGames
     KF${KF_MAJOR_VERSION}::CoreAddons
     KF${KF_MAJOR_VERSION}::NotifyConfig
     KF${KF_MAJOR_VERSION}::I18n
