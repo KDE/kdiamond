@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kdiamond\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-09-26 00:42+0000\n"
-"PO-Revision-Date: 2023-01-06 12:00+0100\n"
+"PO-Revision-Date: 2023-06-06 22:02+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -111,7 +111,7 @@ msgstr "Paul Bunbury"
 #: main.cpp:49
 #, kde-format
 msgid "Gameplay refinement"
-msgstr ""
+msgstr "Ludreĝima rafinado"
 
 #: main.cpp:50
 #, kde-format
@@ -121,7 +121,7 @@ msgstr "Eugene Trounev"
 #: main.cpp:50
 #, kde-format
 msgid "Default theme"
-msgstr ""
+msgstr "Defaŭlta etoso"
 
 #: main.cpp:51
 #, kde-format
@@ -141,7 +141,7 @@ msgstr "Jeffrey Kelling"
 #: main.cpp:52
 #, kde-format
 msgid "Technical consultant"
-msgstr ""
+msgstr "Teknika konsilanto"
 
 #: mainwindow.cpp:59
 #, kde-format
@@ -187,3 +187,7 @@ msgid ""
 "extra points by building cascades, and extra seconds by assembling big lines "
 "or multiple lines at one time.</p>"
 msgstr ""
+"<h3>Reguloj de Ludo</h3><p>Via eclo estas kunmeti liniojn de almenaŭ tri "
+"similaj diamantoj. Klaku sur du apudaj diamantoj por interŝanĝi ilin.</"
+"p><p>Gajnu ekstrajn poentojn konstruante kaskadojn kaj gajnu ekstrajn "
+"sekundojn kunmetante grandajn aŭ multoblajn liniojn je sama tempo.</p>"
