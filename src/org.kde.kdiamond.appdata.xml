@@ -12,6 +12,7 @@
   <name xml:lang="de">KDiamond</name>
   <name xml:lang="el">KDiamond</name>
   <name xml:lang="en-GB">KDiamond</name>
+  <name xml:lang="eo">KDiamond</name>
   <name xml:lang="es">KDiamond</name>
   <name xml:lang="et">KDiamond</name>
   <name xml:lang="eu">KDiamond</name>
@@ -44,6 +45,7 @@
   <summary xml:lang="de">KDiamond, ein Drei-Gewinnt-Spiel von KDE</summary>
   <summary xml:lang="el">Το KDiamond είναι ένα παιχνίδι τρία-στη-σειρά από το KDE</summary>
   <summary xml:lang="en-GB">KDiamond is a three-in-a-row game by KDE</summary>
+  <summary xml:lang="eo">KDiamond estas tri-en-vica ludo de KDE</summary>
   <summary xml:lang="es">KDiamond es un juego de tres en raya creado por KDE</summary>
   <summary xml:lang="et">KDiamond on KDE "kolm ühes reas" mäng.</summary>
   <summary xml:lang="eu">KDiamond KDEren hiruko artzain joko bat da</summary>
@@ -115,6 +117,7 @@
       <caption xml:lang="de">KDiamond spielen</caption>
       <caption xml:lang="el">Παίζω KDiamond</caption>
       <caption xml:lang="en-GB">Playing KDiamond</caption>
+      <caption xml:lang="eo">Ludante KDiamond</caption>
       <caption xml:lang="es">Jugando a KDiamond</caption>
       <caption xml:lang="et">KDiamondi mängimine</caption>
       <caption xml:lang="eu">KDiamond-ean jolastea</caption>
