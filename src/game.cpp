@@ -400,3 +400,4 @@ void Game::message(const QString &message)
     }
 }
 
+#include "moc_game.cpp"

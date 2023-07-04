@@ -72,3 +72,4 @@ void KDiamond::InfoBar::updateRemainingTime(int remainingSeconds)
     }
 }
 
+#include "moc_infobar.cpp"

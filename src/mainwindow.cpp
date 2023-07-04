@@ -190,3 +190,4 @@ void MainWindow::configureNotifications()
     KNotifyConfigWidget::configure(this);
 }
 
+#include "moc_mainwindow.cpp"
