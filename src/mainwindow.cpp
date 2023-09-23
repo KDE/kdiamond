@@ -10,7 +10,6 @@
 #include "settings.h"
 #include "view.h"
 // KDEGames
-#include <kdegames_version.h>
 #include <KgDifficulty>
 #include <KGameRenderer>
 #include <KScoreDialog>
@@ -32,11 +31,7 @@ public:
     explicit ThemeProvider(QObject *parent = nullptr)
         : KgThemeProvider("Theme", parent)
     {
-#if KDEGAMES_VERSION >= QT_VERSION_CHECK(7, 4, 0)
         discoverThemes(QStringLiteral("themes"));
-#else
-        discoverThemes("appdata", QStringLiteral("themes"));
-#endif
     }
 };
 

@@ -24,7 +24,6 @@ target_sources(kdiamond PRIVATE
     view.cpp
     view.h
 
-
     kdiamond.qrc
 )
 
@@ -33,20 +32,15 @@ kconfig_add_kcfg_files(kdiamond settings.kcfgc)
 file(GLOB ICONS_SRCS "pics/*-apps-kdiamond.png")
 ecm_add_app_icon(kdiamond ICONS ${ICONS_SRCS})
 
-if (QT_MAJOR_VERSION STREQUAL "6")
-    target_link_libraries(kdiamond KDEGames6)
-else()
-    target_link_libraries(kdiamond KF5KDEGames)
-endif()
-
 target_link_libraries(kdiamond
-    KF${KF_MAJOR_VERSION}::CoreAddons
-    KF${KF_MAJOR_VERSION}::NotifyConfig
-    KF${KF_MAJOR_VERSION}::I18n
-    KF${KF_MAJOR_VERSION}::XmlGui
-    KF${KF_MAJOR_VERSION}::Notifications
-    KF${KF_MAJOR_VERSION}::DBusAddons
-    KF${KF_MAJOR_VERSION}::Crash
+    KDEGames6
+    KF6::CoreAddons
+    KF6::NotifyConfig
+    KF6::I18n
+    KF6::XmlGui
+    KF6::Notifications
+    KF6::DBusAddons
+    KF6::Crash
 )
 
 install(TARGETS kdiamond  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})

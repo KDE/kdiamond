@@ -12,31 +12,17 @@
 
 #include <KAboutData>
 #include <KCrash>
-
 #include <KLocalizedString>
-
 #include <KgDifficulty>
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-#include <kdelibs4configmigrator.h>
-#endif
+#include <KDBusService>
+
 #include <QApplication>
 #include <QCommandLineParser>
 #include <QStandardPaths>
-#include <KDBusService>
 
 int main(int argc, char **argv)
 {
-    // Fixes blurry icons with fractional scaling
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    QGuiApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
-#endif
     QApplication app(argc, argv);
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    Kdelibs4ConfigMigrator migrate(QStringLiteral("kdiamond"));
-    migrate.setConfigFiles(QStringList() << QStringLiteral("kdiamondrc") << QStringLiteral("kdiamond.notifyrc"));
-    migrate.setUiFiles(QStringList() << QStringLiteral("kdiamondui.rc"));
-    migrate.migrate();
-#endif
 
     KLocalizedString::setApplicationDomain("kdiamond");
     KAboutData about(QStringLiteral("kdiamond"), i18nc("The application's name", "KDiamond"),
