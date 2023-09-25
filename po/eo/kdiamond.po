@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdiamond\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-09-26 00:42+0000\n"
+"POT-Creation-Date: 2023-09-25 01:39+0000\n"
 "PO-Revision-Date: 2023-06-06 22:02+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
@@ -49,7 +49,7 @@ msgstr "Eblaj movoj: %1"
 msgid "Points: %1"
 msgstr "Poentoj: %1"
 
-#: infobar.cpp:22 infobar.cpp:35 mainwindow.cpp:61
+#: infobar.cpp:22 infobar.cpp:35 mainwindow.cpp:56
 #, kde-format
 msgid "Untimed game"
 msgstr "Netempigita ludo"
@@ -77,104 +77,104 @@ msgstr "Komenci netempigitan ludon."
 msgid "Main Toolbar"
 msgstr "Ĉefa ilobreto"
 
-#: main.cpp:42 mainwindow.cpp:88
+#: main.cpp:28 mainwindow.cpp:83
 #, kde-format
 msgctxt "The application's name"
 msgid "KDiamond"
 msgstr "KDiamond"
 
-#: main.cpp:44
+#: main.cpp:30
 #, kde-format
 msgid "KDiamond, a three-in-a-row game."
 msgstr "KDiamond, tri-en-vica ludo."
 
-#: main.cpp:45
+#: main.cpp:31
 #, kde-format
 msgid "(C) 2008-2010 Stefan Majewsky and others"
 msgstr "(C) 2008-2010 Stefan Majewsky kaj aliaj"
 
-#: main.cpp:48
+#: main.cpp:34
 #, kde-format
 msgid "Stefan Majewsky"
 msgstr "Stefan Majewsky"
 
-#: main.cpp:48
+#: main.cpp:34
 #, kde-format
 msgid "Original author and current maintainer"
 msgstr "Origina aŭtoro kaj aktuala prizorganto"
 
-#: main.cpp:49
+#: main.cpp:35
 #, kde-format
 msgid "Paul Bunbury"
 msgstr "Paul Bunbury"
 
-#: main.cpp:49
+#: main.cpp:35
 #, kde-format
 msgid "Gameplay refinement"
 msgstr "Ludreĝima rafinado"
 
-#: main.cpp:50
+#: main.cpp:36
 #, kde-format
 msgid "Eugene Trounev"
 msgstr "Eugene Trounev"
 
-#: main.cpp:50
+#: main.cpp:36
 #, kde-format
 msgid "Default theme"
 msgstr "Defaŭlta etoso"
 
-#: main.cpp:51
+#: main.cpp:37
 #, kde-format
 msgid "Felix Lemke"
 msgstr "Felix Lemke"
 
-#: main.cpp:51
+#: main.cpp:37
 #, kde-format
 msgid "Classic theme"
 msgstr "Klasika etoso"
 
-#: main.cpp:52
+#: main.cpp:38
 #, kde-format
 msgid "Jeffrey Kelling"
 msgstr "Jeffrey Kelling"
 
-#: main.cpp:52
+#: main.cpp:38
 #, kde-format
 msgid "Technical consultant"
 msgstr "Teknika konsilanto"
 
-#: mainwindow.cpp:59
+#: mainwindow.cpp:54
 #, kde-format
 msgctxt "new game"
 msgid "&New"
 msgstr "&Nova"
 
-#: mainwindow.cpp:60
+#: mainwindow.cpp:55
 #, kde-format
 msgid "Timed game"
 msgstr "Tempigita ludo"
 
-#: mainwindow.cpp:67
+#: mainwindow.cpp:62
 #, kde-format
 msgid "Start a new game"
 msgstr "Komenci novan ludon"
 
-#: mainwindow.cpp:68
+#: mainwindow.cpp:63
 #, kde-format
 msgid "Start a new game."
 msgstr "Komenci novan ludon."
 
-#: mainwindow.cpp:152
+#: mainwindow.cpp:147
 #, kde-format
 msgid "Untimed"
 msgstr "Netempigita"
 
-#: mainwindow.cpp:152
+#: mainwindow.cpp:147
 #, kde-format
 msgid "Timed"
 msgstr "Tempigita"
 
-#: mainwindow.cpp:155 mainwindow.cpp:171
+#: mainwindow.cpp:150 mainwindow.cpp:166
 #, kde-format
 msgid "Mode"
 msgstr "Reĝimo"

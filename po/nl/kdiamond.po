@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdiamond\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-09-26 00:42+0000\n"
+"POT-Creation-Date: 2023-09-25 01:39+0000\n"
 "PO-Revision-Date: 2010-09-11 10:56+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: Dutch <kde-i18n-nl@kde.org>\n"
@@ -49,7 +49,7 @@ msgstr "Mogelijke bewegingen: %1"
 msgid "Points: %1"
 msgstr "Punten: %1"
 
-#: infobar.cpp:22 infobar.cpp:35 mainwindow.cpp:61
+#: infobar.cpp:22 infobar.cpp:35 mainwindow.cpp:56
 #, kde-format
 msgid "Untimed game"
 msgstr "Spel zonder tijdslimiet"
@@ -77,104 +77,104 @@ msgstr "Een spel zonder tijdslimiet spelen"
 msgid "Main Toolbar"
 msgstr "Hoofdwerkbalk"
 
-#: main.cpp:42 mainwindow.cpp:88
+#: main.cpp:28 mainwindow.cpp:83
 #, kde-format
 msgctxt "The application's name"
 msgid "KDiamond"
 msgstr "KDiamond"
 
-#: main.cpp:44
+#: main.cpp:30
 #, kde-format
 msgid "KDiamond, a three-in-a-row game."
 msgstr "KDiamond, een drie-op-een-rij spel."
 
-#: main.cpp:45
+#: main.cpp:31
 #, kde-format
 msgid "(C) 2008-2010 Stefan Majewsky and others"
 msgstr "(C) 2008-2010 Stefan Majewsky en anderen"
 
-#: main.cpp:48
+#: main.cpp:34
 #, kde-format
 msgid "Stefan Majewsky"
 msgstr "Stefan Majewsky"
 
-#: main.cpp:48
+#: main.cpp:34
 #, kde-format
 msgid "Original author and current maintainer"
 msgstr "Originele auteur en huidige onderhouder"
 
-#: main.cpp:49
+#: main.cpp:35
 #, kde-format
 msgid "Paul Bunbury"
 msgstr "Paul Bunbury"
 
-#: main.cpp:49
+#: main.cpp:35
 #, kde-format
 msgid "Gameplay refinement"
 msgstr "Verbeteringen in gameplay"
 
-#: main.cpp:50
+#: main.cpp:36
 #, kde-format
 msgid "Eugene Trounev"
 msgstr "Eugene Trounev"
 
-#: main.cpp:50
+#: main.cpp:36
 #, kde-format
 msgid "Default theme"
 msgstr "Standaard thema"
 
-#: main.cpp:51
+#: main.cpp:37
 #, kde-format
 msgid "Felix Lemke"
 msgstr "Felix Lemke"
 
-#: main.cpp:51
+#: main.cpp:37
 #, kde-format
 msgid "Classic theme"
 msgstr "Classic thema"
 
-#: main.cpp:52
+#: main.cpp:38
 #, kde-format
 msgid "Jeffrey Kelling"
 msgstr "Jeffrey Kelling"
 
-#: main.cpp:52
+#: main.cpp:38
 #, kde-format
 msgid "Technical consultant"
 msgstr "Technische consultant"
 
-#: mainwindow.cpp:59
+#: mainwindow.cpp:54
 #, kde-format
 msgctxt "new game"
 msgid "&New"
 msgstr "&Nieuw"
 
-#: mainwindow.cpp:60
+#: mainwindow.cpp:55
 #, kde-format
 msgid "Timed game"
 msgstr "Spel met tijdslimiet"
 
-#: mainwindow.cpp:67
+#: mainwindow.cpp:62
 #, kde-format
 msgid "Start a new game"
 msgstr "Start een nieuw spel"
 
-#: mainwindow.cpp:68
+#: mainwindow.cpp:63
 #, kde-format
 msgid "Start a new game."
 msgstr "Start een nieuw spel."
 
-#: mainwindow.cpp:152
+#: mainwindow.cpp:147
 #, kde-format
 msgid "Untimed"
 msgstr "Zonder tijdslimiet"
 
-#: mainwindow.cpp:152
+#: mainwindow.cpp:147
 #, kde-format
 msgid "Timed"
 msgstr "Met tijdslimiet"
 
-#: mainwindow.cpp:155 mainwindow.cpp:171
+#: mainwindow.cpp:150 mainwindow.cpp:166
 #, kde-format
 msgid "Mode"
 msgstr "Modus"

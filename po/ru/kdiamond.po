@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdiamond\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-09-26 00:42+0000\n"
+"POT-Creation-Date: 2023-09-25 01:39+0000\n"
 "PO-Revision-Date: 2010-09-16 23:17+0400\n"
 "Last-Translator: Alexander Potashev <aspotashev@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -55,7 +55,7 @@ msgstr "Возможное число ходов: %1"
 msgid "Points: %1"
 msgstr "Очки: %1"
 
-#: infobar.cpp:22 infobar.cpp:35 mainwindow.cpp:61
+#: infobar.cpp:22 infobar.cpp:35 mainwindow.cpp:56
 #, kde-format
 msgid "Untimed game"
 msgstr "Асинхронная игра"
@@ -83,104 +83,104 @@ msgstr "Играть в асинхронную игру"
 msgid "Main Toolbar"
 msgstr "Основная панель инструментов"
 
-#: main.cpp:42 mainwindow.cpp:88
+#: main.cpp:28 mainwindow.cpp:83
 #, kde-format
 msgctxt "The application's name"
 msgid "KDiamond"
 msgstr "KDiamond"
 
-#: main.cpp:44
+#: main.cpp:30
 #, kde-format
 msgid "KDiamond, a three-in-a-row game."
 msgstr "KDiamond. Убийца вашего времени"
 
-#: main.cpp:45
+#: main.cpp:31
 #, kde-format
 msgid "(C) 2008-2010 Stefan Majewsky and others"
 msgstr "© Stefan Majewsky и другие, 2008-2010"
 
-#: main.cpp:48
+#: main.cpp:34
 #, kde-format
 msgid "Stefan Majewsky"
 msgstr "Stefan Majewsky"
 
-#: main.cpp:48
+#: main.cpp:34
 #, kde-format
 msgid "Original author and current maintainer"
 msgstr "Автор идеи и текущий сопровождающий"
 
-#: main.cpp:49
+#: main.cpp:35
 #, kde-format
 msgid "Paul Bunbury"
 msgstr "Paul Bunbury"
 
-#: main.cpp:49
+#: main.cpp:35
 #, kde-format
 msgid "Gameplay refinement"
 msgstr "Усовершенствование игрового процесса"
 
-#: main.cpp:50
+#: main.cpp:36
 #, kde-format
 msgid "Eugene Trounev"
 msgstr "Eugene Trounev"
 
-#: main.cpp:50
+#: main.cpp:36
 #, kde-format
 msgid "Default theme"
 msgstr "Оформление по умолчанию"
 
-#: main.cpp:51
+#: main.cpp:37
 #, kde-format
 msgid "Felix Lemke"
 msgstr "Felix Lemke"
 
-#: main.cpp:51
+#: main.cpp:37
 #, kde-format
 msgid "Classic theme"
 msgstr "Классическое оформление"
 
-#: main.cpp:52
+#: main.cpp:38
 #, kde-format
 msgid "Jeffrey Kelling"
 msgstr "Jeffrey Kelling"
 
-#: main.cpp:52
+#: main.cpp:38
 #, kde-format
 msgid "Technical consultant"
 msgstr "Технический консультант"
 
-#: mainwindow.cpp:59
+#: mainwindow.cpp:54
 #, kde-format
 msgctxt "new game"
 msgid "&New"
 msgstr "С&оздать"
 
-#: mainwindow.cpp:60
+#: mainwindow.cpp:55
 #, kde-format
 msgid "Timed game"
 msgstr "Синхронная игра"
 
-#: mainwindow.cpp:67
+#: mainwindow.cpp:62
 #, kde-format
 msgid "Start a new game"
 msgstr "Начать новую игру"
 
-#: mainwindow.cpp:68
+#: mainwindow.cpp:63
 #, kde-format
 msgid "Start a new game."
 msgstr "Начать новую игру."
 
-#: mainwindow.cpp:152
+#: mainwindow.cpp:147
 #, kde-format
 msgid "Untimed"
 msgstr "Асинхронно"
 
-#: mainwindow.cpp:152
+#: mainwindow.cpp:147
 #, kde-format
 msgid "Timed"
 msgstr "Синхронно"
 
-#: mainwindow.cpp:155 mainwindow.cpp:171
+#: mainwindow.cpp:150 mainwindow.cpp:166
 #, kde-format
 msgid "Mode"
 msgstr "Режим"

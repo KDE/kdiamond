@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdiamond\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2020-05-11 03:20+0200\n"
+"POT-Creation-Date: 2023-09-25 01:39+0000\n"
 "PO-Revision-Date: 2010-12-15 16:51+0100\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -30,43 +30,43 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "slsimic@gmail.com"
 
-#: game-state.cpp:115
+#: game-state.cpp:103
 #, kde-format
 msgid "Click the pause button again to resume the game."
 msgstr "Kliknite ponovo na dugme pauze za nastavak igre."
 
-#: game-state.cpp:122
+#: game-state.cpp:110
 #, kde-format
 msgctxt "Not meant like 'You have lost', more like 'Time is up'."
 msgid "Game over."
 msgstr "Kraj igre."
 
 # >> @info:status
-#: infobar.cpp:30 infobar.cpp:62
+#: infobar.cpp:18 infobar.cpp:50
 #, kde-format
 msgid "Possible moves: %1"
 msgstr "mogućih poteza: %1"
 
 # >> @info:status
-#: infobar.cpp:31 infobar.cpp:54
+#: infobar.cpp:19 infobar.cpp:42
 #, kde-format
 msgid "Points: %1"
 msgstr "poena: %1"
 
 # >> @info:status
-#: infobar.cpp:34 infobar.cpp:47 mainwindow.cpp:69
+#: infobar.cpp:22 infobar.cpp:35 mainwindow.cpp:56
 #, kde-format
 msgid "Untimed game"
 msgstr "nemerena igra"
 
 # >> @info:status
-#: infobar.cpp:36 infobar.cpp:80
+#: infobar.cpp:24 infobar.cpp:68
 #, kde-format
 msgid "Time left: %1"
 msgstr "još %1"
 
 # >> @info:status
-#: infobar.cpp:60
+#: infobar.cpp:48
 #, kde-format
 msgctxt "Shown when the board is in motion."
 msgid "Possible moves: ..."
@@ -84,113 +84,113 @@ msgstr "Nemerena igra."
 msgid "Main Toolbar"
 msgstr "Glavna traka"
 
-#: main.cpp:37
-#, kde-format
-msgid "KDiamond, a three-in-a-row game."
-msgstr "K‑dijamant, igra „tri u redu“"
-
-#: main.cpp:50 mainwindow.cpp:96
+#: main.cpp:28 mainwindow.cpp:83
 #, kde-format
 msgctxt "The application's name"
 msgid "KDiamond"
 msgstr "K‑dijamant"
 
-#: main.cpp:51
+#: main.cpp:30
+#, kde-format
+msgid "KDiamond, a three-in-a-row game."
+msgstr "K‑dijamant, igra „tri u redu“"
+
+#: main.cpp:31
 #, kde-format
 msgid "(C) 2008-2010 Stefan Majewsky and others"
 msgstr "© 2008–2010, Štefan Majevski i ostali"
 
-#: main.cpp:52
+#: main.cpp:34
 #, kde-format
 msgid "Stefan Majewsky"
 msgstr "Štefan Majevski"
 
-#: main.cpp:52
+#: main.cpp:34
 #, kde-format
 msgid "Original author and current maintainer"
 msgstr "prvobitni autor i trenutni održavalac"
 
-#: main.cpp:53
+#: main.cpp:35
 #, kde-format
 msgid "Paul Bunbury"
 msgstr "Pol Banberi"
 
-#: main.cpp:53
+#: main.cpp:35
 #, kde-format
 msgid "Gameplay refinement"
 msgstr "usavršavanje izvođenja"
 
-#: main.cpp:54
+#: main.cpp:36
 #, kde-format
 msgid "Eugene Trounev"
 msgstr "Jevgenij Trunjov"
 
-#: main.cpp:54
+#: main.cpp:36
 #, kde-format
 msgid "Default theme"
 msgstr "podrazumevana tema"
 
-#: main.cpp:55
+#: main.cpp:37
 #, kde-format
 msgid "Felix Lemke"
 msgstr "Feliks Lemke"
 
-#: main.cpp:55
+#: main.cpp:37
 #, kde-format
 msgid "Classic theme"
 msgstr "klasična tema"
 
-#: main.cpp:56
+#: main.cpp:38
 #, kde-format
 msgid "Jeffrey Kelling"
 msgstr "Džefri Keling"
 
-#: main.cpp:56
+#: main.cpp:38
 #, kde-format
 msgid "Technical consultant"
 msgstr "tehnički konsultant"
 
-#: mainwindow.cpp:67
+#: mainwindow.cpp:54
 #, kde-format
 msgctxt "new game"
 msgid "&New"
 msgstr "&Nova"
 
-#: mainwindow.cpp:68
+#: mainwindow.cpp:55
 #, kde-format
 msgid "Timed game"
 msgstr "Merena igra"
 
-#: mainwindow.cpp:75
+#: mainwindow.cpp:62
 #, kde-format
 msgid "Start a new game"
 msgstr "Počni novu partiju"
 
-#: mainwindow.cpp:76
+#: mainwindow.cpp:63
 #, kde-format
 msgid "Start a new game."
 msgstr "Započnite novu partiju."
 
 # >> @item:intable
-#: mainwindow.cpp:160
+#: mainwindow.cpp:147
 #, kde-format
 msgid "Untimed"
 msgstr "nemerena"
 
 # >> @item:intable
-#: mainwindow.cpp:160
+#: mainwindow.cpp:147
 #, kde-format
 msgid "Timed"
 msgstr "merena"
 
 # >> @title:column
-#: mainwindow.cpp:163 mainwindow.cpp:179
+#: mainwindow.cpp:150 mainwindow.cpp:166
 #, kde-format
 msgid "Mode"
 msgstr "režim"
 
 # skip-rule: t-line
-#: view.cpp:33
+#: view.cpp:21
 #, kde-format
 msgid ""
 "<h3>Rules of Game</h3><p>Your goal is to assemble lines of at least three "
