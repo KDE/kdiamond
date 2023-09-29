@@ -67,7 +67,7 @@ private:
     bool m_paused;
 
     KGameRenderer *m_renderer;
-    QVector<Diamond *> m_diamonds;
+    QList<Diamond *> m_diamonds;
     QList<Diamond *> m_activeSelectors, m_inactiveSelectors;
     QList<QAbstractAnimation *> m_runningAnimations;
 };
