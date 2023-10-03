@@ -13,7 +13,7 @@
 #include <KAboutData>
 #include <KCrash>
 #include <KLocalizedString>
-#include <KgDifficulty>
+#include <KGameDifficulty>
 #include <KDBusService>
 
 #include <QApplication>
@@ -48,9 +48,9 @@ int main(int argc, char **argv)
     //resource directory for KNewStuff2 (this call causes the directory to be created; its existence is necessary for the downloader)
     QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + QLatin1String("/themes/");
 
-    Kg::difficulty()->addStandardLevelRange(
-        KgDifficultyLevel::VeryEasy,
-        KgDifficultyLevel::VeryHard
+    KGameDifficulty::global()->addStandardLevelRange(
+        KGameDifficultyLevel::VeryEasy,
+        KGameDifficultyLevel::VeryHard
     );
     KDBusService service;
     // see if we are starting with session management

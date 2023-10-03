@@ -9,17 +9,17 @@
 
 #include <QPropertyAnimation>
 #include <QRandomGenerator>
-#include <KgDifficulty>
+#include <KGameDifficulty>
 
 const int KDiamond::Board::MoveDuration = 100; //duration of a move animation (per coordinate unit) in milliseconds
 const int KDiamond::Board::RemoveDuration = 200; //duration of a move animation in milliseconds
 
-//NOTE: The corresponding difficulty values are {20, 30, 40, 50, 60} (see KgDifficultyLevel::StandardLevel).
+//NOTE: The corresponding difficulty values are {20, 30, 40, 50, 60} (see KGameDifficultyLevel::StandardLevel).
 static int boardSizes[] = { 12, 10, 8, 8, 8 };
 static int boardColorCounts[] = { 5, 5, 5, 6, 7 };
 
 KDiamond::Board::Board(KGameRenderer *renderer)
-    : m_difficultyIndex(Kg::difficultyLevel() / 10 - 2)
+    : m_difficultyIndex(KGameDifficulty::globalLevel() / 10 - 2)
     , m_size(boardSizes[m_difficultyIndex])
     , m_colorCount(boardColorCounts[m_difficultyIndex])
     , m_paused(false)
