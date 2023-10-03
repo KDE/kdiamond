@@ -15,8 +15,8 @@
 #include <QTimerEvent>
 #include <KGamePopupItem>
 #include <KGameRenderer>
-#include <KgTheme>
-#include <KgThemeProvider>
+#include <KGameTheme>
+#include <KGameThemeProvider>
 #include <KNotification>
 
 const int UpdateInterval = 40;
@@ -34,7 +34,7 @@ Game::Game(KDiamond::GameState *state, KGameRenderer *renderer)
     const int minSize = m_board->gridSize();
     setSceneRect(0.0, 0.0, minSize, minSize);
     connect(this, &Game::sceneRectChanged, this, &Game::updateGraphics);
-    connect(renderer->themeProvider(), &KgThemeProvider::currentThemeChanged, this, &Game::updateGraphics);
+    connect(renderer->themeProvider(), &KGameThemeProvider::currentThemeChanged, this, &Game::updateGraphics);
     addItem(m_board);
     //init messenger
     m_messenger->setMessageOpacity(0.8);
@@ -138,7 +138,7 @@ void Game::updateGraphics()
     m_board->setTransform(t);
     //render background
     QPixmap pix = m_board->renderer()->spritePixmap(QStringLiteral("kdiamond-background"), sceneSize);
-    const KgTheme *theme = m_board->renderer()->theme();
+    const KGameTheme *theme = m_board->renderer()->theme();
     const bool hasBorder = theme->customData(QStringLiteral("HasBorder")).toInt() > 0;
     if (hasBorder) {
         const qreal borderPercentage = theme->customData(QStringLiteral("BorderPercentage")).toFloat();

@@ -25,11 +25,11 @@
 
 namespace KDiamond
 {
-class ThemeProvider : public KgThemeProvider
+class ThemeProvider : public KGameThemeProvider
 {
 public:
     explicit ThemeProvider(QObject *parent = nullptr)
-        : KgThemeProvider("Theme", parent)
+        : KGameThemeProvider("Theme", parent)
     {
         discoverThemes(QStringLiteral("themes"));
     }
@@ -55,7 +55,7 @@ MainWindow::MainWindow(QWidget *parent)
     , m_newTimedAct(new QAction(i18n("Timed game"), this))
     , m_newUntimedAct(new QAction(i18n("Untimed game"), this))
     , m_renderer(new KDiamond::Renderer())
-    , m_selector(m_renderer->themeProvider(), KgThemeSelector::EnableNewStuffDownload)
+    , m_selector(m_renderer->themeProvider(), KGameThemeSelector::EnableNewStuffDownload)
 {
     m_renderer->setDefaultPrimaryView(m_view);
     //init GUI - "New Action"

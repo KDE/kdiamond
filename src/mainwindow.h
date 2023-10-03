@@ -15,7 +15,7 @@ class KActionMenu;
 class KGameRenderer;
 
 #include <KXmlGuiWindow>
-#include <KgThemeSelector>
+#include <KGameThemeSelector>
 
 namespace KDiamond
 {
@@ -55,7 +55,7 @@ private:
     QAction *m_pauseAct;
     QAction *m_hintAct;
     KGameRenderer *m_renderer;
-    KgThemeSelector m_selector;
+    KGameThemeSelector m_selector;
 };
 
 #endif //KDIAMOND_MAINWINDOW_H
