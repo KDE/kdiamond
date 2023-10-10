@@ -236,7 +236,8 @@ void Game::timerEvent(QTimerEvent *event)
         //copy selection info into another storage (to allow the user to select the next two diamonds while the cascade runs)
         m_swappingDiamonds = points;
         m_jobQueue << KDiamond::RemoveRowsJob; //We already insert this here to avoid another conditional statement.
-    } //fall through
+        [[fallthrough]];
+    }
     case KDiamond::RevokeSwapDiamondsJob:
         //invoke movement
         KNotification::event(QStringLiteral("move"));
