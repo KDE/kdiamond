@@ -18,7 +18,7 @@ const int KDiamond::Board::RemoveDuration = 200; //duration of a move animation 
 static int boardSizes[] = { 12, 10, 8, 8, 8 };
 static int boardColorCounts[] = { 5, 5, 5, 6, 7 };
 
-KDiamond::Board::Board(KGameRenderer *renderer)
+KDiamond::Board::Board(KGameGraphicsViewRenderer *renderer)
     : m_difficultyIndex(KGameDifficulty::globalLevel() / 10 - 2)
     , m_size(boardSizes[m_difficultyIndex])
     , m_colorCount(boardColorCounts[m_difficultyIndex])
@@ -278,7 +278,7 @@ void KDiamond::Board::fillGaps()
     spawnMoveAnimations(specs);
 }
 
-KGameRenderer *KDiamond::Board::renderer() const
+KGameGraphicsViewRenderer *KDiamond::Board::renderer() const
 {
     return m_renderer;
 }

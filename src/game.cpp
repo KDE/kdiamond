@@ -14,14 +14,14 @@
 #include <QRandomGenerator>
 #include <QTimerEvent>
 #include <KGamePopupItem>
-#include <KGameRenderer>
+#include <KGameGraphicsViewRenderer>
 #include <KGameTheme>
 #include <KGameThemeProvider>
 #include <KNotification>
 
 const int UpdateInterval = 40;
 
-Game::Game(KDiamond::GameState *state, KGameRenderer *renderer)
+Game::Game(KDiamond::GameState *state, KGameGraphicsViewRenderer *renderer)
     : m_timerId(-1)
     , m_board(new KDiamond::Board(renderer))
     , m_gameState(state)

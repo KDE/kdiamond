@@ -12,7 +12,7 @@ class Diamond;
 
 #include <QGraphicsScene>
 class KGamePopupItem;
-class KGameRenderer;
+class KGameGraphicsViewRenderer;
 
 namespace KDiamond
 {
@@ -33,7 +33,7 @@ class Game : public QGraphicsScene
 {
     Q_OBJECT
 public:
-    Game(KDiamond::GameState *state, KGameRenderer *renderer);
+    Game(KDiamond::GameState *state, KGameGraphicsViewRenderer *renderer);
 public Q_SLOTS:
     void updateGraphics();
 

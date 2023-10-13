@@ -7,7 +7,7 @@
 #ifndef KDIAMOND_DIAMOND_H
 #define KDIAMOND_DIAMOND_H
 
-#include <KGameRenderedObjectItem>
+#include <KGameRenderedGraphicsObject>
 
 namespace KDiamond
 {
@@ -26,11 +26,11 @@ enum Color {
 };
 }
 
-class Diamond : public KGameRenderedObjectItem
+class Diamond : public KGameRenderedGraphicsObject
 {
     Q_OBJECT
 public:
-    explicit Diamond(KDiamond::Color color, KGameRenderer *renderer, QGraphicsItem *parent = nullptr);
+    explicit Diamond(KDiamond::Color color, KGameGraphicsViewRenderer *renderer, QGraphicsItem *parent = nullptr);
 
     KDiamond::Color color() const;
 Q_SIGNALS:

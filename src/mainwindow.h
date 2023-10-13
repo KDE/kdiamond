@@ -12,7 +12,7 @@ class Game;
 
 class QAction;
 class KActionMenu;
-class KGameRenderer;
+class KGameGraphicsViewRenderer;
 
 #include <KXmlGuiWindow>
 #include <KGameThemeSelector>
@@ -54,7 +54,7 @@ private:
     QAction *m_newUntimedAct;
     QAction *m_pauseAct;
     QAction *m_hintAct;
-    KGameRenderer *m_renderer;
+    KGameGraphicsViewRenderer *m_renderer;
     KGameThemeSelector m_selector;
 };
 

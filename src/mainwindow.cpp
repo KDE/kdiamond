@@ -11,7 +11,7 @@
 #include "view.h"
 // KDEGames
 #include <KGameDifficulty>
-#include <KGameRenderer>
+#include <KGameGraphicsViewRenderer>
 #include <KScoreDialog>
 #include <KStandardGameAction>
 
@@ -35,10 +35,10 @@ public:
     }
 };
 
-class Renderer : public KGameRenderer
+class Renderer : public KGameGraphicsViewRenderer
 {
 public:
-    Renderer() : KGameRenderer(new ThemeProvider, 10)
+    Renderer() : KGameGraphicsViewRenderer(new ThemeProvider, 10)
     {
         setFrameSuffix(QStringLiteral("-%1"));
     }

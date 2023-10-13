@@ -23,8 +23,8 @@ QString colorKey(KDiamond::Color color)
     return colors[(color < 0 || color >= KDiamond::ColorsCount) ? 0 : color];
 }
 
-Diamond::Diamond(KDiamond::Color color, KGameRenderer *renderer, QGraphicsItem *parent)
-    : KGameRenderedObjectItem(renderer, colorKey(color), parent)
+Diamond::Diamond(KDiamond::Color color, KGameGraphicsViewRenderer *renderer, QGraphicsItem *parent)
+    : KGameRenderedGraphicsObject(renderer, colorKey(color), parent)
     , m_color(color)
 {
     //selection markers do not react to mouse events; they should also appear behind diamonds

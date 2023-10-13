@@ -11,7 +11,7 @@ class Diamond;
 
 class QAbstractAnimation;
 #include <QGraphicsItem>
-class KGameRenderer;
+class KGameGraphicsViewRenderer;
 
 namespace KDiamond
 {
@@ -19,7 +19,7 @@ class Board : public QGraphicsObject
 {
     Q_OBJECT
 public:
-    explicit Board(KGameRenderer *renderer);
+    explicit Board(KGameGraphicsViewRenderer *renderer);
 
     int gridSize() const;
     Diamond *diamond(const QPoint &point) const;
@@ -35,7 +35,7 @@ public:
     void swapDiamonds(const QPoint &point1, const QPoint &point2);
     void fillGaps();
 
-    KGameRenderer *renderer() const;
+    KGameGraphicsViewRenderer *renderer() const;
 
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;
@@ -66,7 +66,7 @@ private:
     QList<QPoint> m_selections;
     bool m_paused;
 
-    KGameRenderer *m_renderer;
+    KGameGraphicsViewRenderer *m_renderer;
     QList<Diamond *> m_diamonds;
     QList<Diamond *> m_activeSelectors, m_inactiveSelectors;
     QList<QAbstractAnimation *> m_runningAnimations;
