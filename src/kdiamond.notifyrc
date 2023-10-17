@@ -266,7 +266,7 @@ Comment[x-test]=xxDiamonds were removed.xx
 Comment[zh_CN]=已消去的钻石。
 Comment[zh_TW]=寶石已移除
 Contexts=game
-Sound=Oxygen-Window-Shade-Down.ogg
+Sound=KDiamond-Stone-Drop.ogg
 Action=Sound
 
 [Event/move]
@@ -375,8 +375,8 @@ Comment[x-test]=xxDiamonds are moving.xx
 Comment[zh_CN]=钻石正在移动。
 Comment[zh_TW]=寶石移動中
 Contexts=game
-Sound=
-Action=None
+Sound=KDiamond-Stone-Swap.ogg
+Action=Sound
 
 [Event/gamefinished]
 Name=Game over
@@ -489,5 +489,5 @@ Comment[x-test]=xxTime is up.xx
 Comment[zh_CN]=时间到。
 Comment[zh_TW]=時間到了。
 Contexts=game
-Sound=Oxygen-Im-User-Auth.ogg
+Sound=game-over-winner
 Action=Sound
