@@ -13,7 +13,7 @@
 #include <KGameDifficulty>
 #include <KGameGraphicsViewRenderer>
 #include <KScoreDialog>
-#include <KStandardGameAction>
+#include <KGameStandardAction>
 
 #include <KActionCollection>
 #include <KActionMenu>
@@ -69,10 +69,10 @@ MainWindow::MainWindow(QWidget *parent)
     m_newAct->addAction(m_newUntimedAct);
     connect(m_newUntimedAct, &QAction::triggered, this, &MainWindow::startGameDispatcher);
     //init GUI - the other actions
-    KStandardGameAction::highscores(this, &MainWindow::showHighscores, actionCollection());
-    m_pauseAct = KStandardGameAction::pause(this, &MainWindow::pausedAction, actionCollection());
-    KStandardGameAction::quit(this, &QWidget::close, actionCollection());
-    m_hintAct = KStandardGameAction::hint(nullptr, nullptr, actionCollection());
+    KGameStandardAction::highscores(this, &MainWindow::showHighscores, actionCollection());
+    m_pauseAct = KGameStandardAction::pause(this, &MainWindow::pausedAction, actionCollection());
+    KGameStandardAction::quit(this, &QWidget::close, actionCollection());
+    m_hintAct = KGameStandardAction::hint(nullptr, nullptr, actionCollection());
     KStandardAction::preferences(this, &MainWindow::showPreferences, actionCollection());
     KStandardAction::configureNotifications(this, &MainWindow::configureNotifications, actionCollection());
     //difficulty
