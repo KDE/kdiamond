@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdiamond\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-25 01:39+0000\n"
+"POT-Creation-Date: 2023-11-10 01:46+0000\n"
 "PO-Revision-Date: 2022-12-01 23:04+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -49,7 +49,7 @@ msgstr "შესაძლო სვლები: %1"
 msgid "Points: %1"
 msgstr "ქულები: %1"
 
-#: infobar.cpp:22 infobar.cpp:35 mainwindow.cpp:56
+#: infobar.cpp:22 infobar.cpp:35 mainwindow.cpp:57
 #, kde-format
 msgid "Untimed game"
 msgstr "ულიმიტო თამაში"
@@ -77,7 +77,7 @@ msgstr "ულიმიტოს თამაში."
 msgid "Main Toolbar"
 msgstr "ხელსაწყოთა მთავარი ზოლი"
 
-#: main.cpp:28 mainwindow.cpp:83
+#: main.cpp:28 mainwindow.cpp:84
 #, kde-format
 msgctxt "The application's name"
 msgid "KDiamond"
@@ -143,38 +143,38 @@ msgstr "Jeffrey Kelling"
 msgid "Technical consultant"
 msgstr "ტექნიკური მრჩეველი"
 
-#: mainwindow.cpp:54
+#: mainwindow.cpp:55
 #, kde-format
 msgctxt "new game"
 msgid "&New"
 msgstr "&ახალი"
 
-#: mainwindow.cpp:55
+#: mainwindow.cpp:56
 #, kde-format
 msgid "Timed game"
 msgstr "დროში შეზღუდული თამაში"
 
-#: mainwindow.cpp:62
+#: mainwindow.cpp:63
 #, kde-format
 msgid "Start a new game"
 msgstr "დაიწყეთ ახალი თამაში"
 
-#: mainwindow.cpp:63
+#: mainwindow.cpp:64
 #, kde-format
 msgid "Start a new game."
 msgstr "ახალი თამაშის დაწყება."
 
-#: mainwindow.cpp:147
+#: mainwindow.cpp:148
 #, kde-format
 msgid "Untimed"
 msgstr "ულიმიტო"
 
-#: mainwindow.cpp:147
+#: mainwindow.cpp:148
 #, kde-format
 msgid "Timed"
 msgstr "დროში შეზღუდული"
 
-#: mainwindow.cpp:150 mainwindow.cpp:166
+#: mainwindow.cpp:151 mainwindow.cpp:167
 #, kde-format
 msgid "Mode"
 msgstr "რეჟიმი"

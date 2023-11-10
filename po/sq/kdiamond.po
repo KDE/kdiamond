@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdegames\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-25 01:39+0000\n"
+"POT-Creation-Date: 2023-11-10 01:46+0000\n"
 "PO-Revision-Date: 2009-07-17 12:27+0000\n"
 "Last-Translator: Vilson Gjeci <vilsongjeci@gmail.com>\n"
 "Language-Team: Albanian <sq@li.org>\n"
@@ -50,7 +50,7 @@ msgstr ""
 msgid "Points: %1"
 msgstr "Pikët: %1"
 
-#: infobar.cpp:22 infobar.cpp:35 mainwindow.cpp:56
+#: infobar.cpp:22 infobar.cpp:35 mainwindow.cpp:57
 #, kde-format
 msgid "Untimed game"
 msgstr ""
@@ -79,7 +79,7 @@ msgstr "Fillo një lojë të re."
 msgid "Main Toolbar"
 msgstr "Shiriti Kryesor"
 
-#: main.cpp:28 mainwindow.cpp:83
+#: main.cpp:28 mainwindow.cpp:84
 #, kde-format
 msgctxt "The application's name"
 msgid "KDiamond"
@@ -145,38 +145,38 @@ msgstr "Jeffrey Kelling"
 msgid "Technical consultant"
 msgstr "Këshilltar teknik"
 
-#: mainwindow.cpp:54
+#: mainwindow.cpp:55
 #, kde-format
 msgctxt "new game"
 msgid "&New"
 msgstr "&I Ri"
 
-#: mainwindow.cpp:55
+#: mainwindow.cpp:56
 #, kde-format
 msgid "Timed game"
 msgstr "Lojë me kohë"
 
-#: mainwindow.cpp:62
+#: mainwindow.cpp:63
 #, kde-format
 msgid "Start a new game"
 msgstr "Fillo një lojë të re"
 
-#: mainwindow.cpp:63
+#: mainwindow.cpp:64
 #, kde-format
 msgid "Start a new game."
 msgstr "Fillo një lojë të re."
 
-#: mainwindow.cpp:147
+#: mainwindow.cpp:148
 #, kde-format
 msgid "Untimed"
 msgstr "Pa Kohë"
 
-#: mainwindow.cpp:147
+#: mainwindow.cpp:148
 #, kde-format
 msgid "Timed"
 msgstr "Me Kohë"
 
-#: mainwindow.cpp:150 mainwindow.cpp:166
+#: mainwindow.cpp:151 mainwindow.cpp:167
 #, kde-format
 msgid "Mode"
 msgstr "Mënyra"

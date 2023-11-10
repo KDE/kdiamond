@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdiamond\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-25 01:39+0000\n"
+"POT-Creation-Date: 2023-11-10 01:46+0000\n"
 "PO-Revision-Date: 2013-07-08 16:51+0200\n"
 "Last-Translator: xavier <xavier.besnard@neuf.fr>\n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
@@ -54,7 +54,7 @@ msgstr "Coups possibles : %1"
 msgid "Points: %1"
 msgstr "Points : %1"
 
-#: infobar.cpp:22 infobar.cpp:35 mainwindow.cpp:56
+#: infobar.cpp:22 infobar.cpp:35 mainwindow.cpp:57
 #, kde-format
 msgid "Untimed game"
 msgstr "Partie non temporisée"
@@ -82,7 +82,7 @@ msgstr "Jouer une partie non temporisée."
 msgid "Main Toolbar"
 msgstr "Barre principale d'outils"
 
-#: main.cpp:28 mainwindow.cpp:83
+#: main.cpp:28 mainwindow.cpp:84
 #, kde-format
 msgctxt "The application's name"
 msgid "KDiamond"
@@ -148,38 +148,38 @@ msgstr "Jeffrey Kelling"
 msgid "Technical consultant"
 msgstr "Consultant technique"
 
-#: mainwindow.cpp:54
+#: mainwindow.cpp:55
 #, kde-format
 msgctxt "new game"
 msgid "&New"
 msgstr "&Nouvelle"
 
-#: mainwindow.cpp:55
+#: mainwindow.cpp:56
 #, kde-format
 msgid "Timed game"
 msgstr "Partie temporisée"
 
-#: mainwindow.cpp:62
+#: mainwindow.cpp:63
 #, kde-format
 msgid "Start a new game"
 msgstr "Démarrer une nouvelle partie"
 
-#: mainwindow.cpp:63
+#: mainwindow.cpp:64
 #, kde-format
 msgid "Start a new game."
 msgstr "Démarrer une nouvelle partie."
 
-#: mainwindow.cpp:147
+#: mainwindow.cpp:148
 #, kde-format
 msgid "Untimed"
 msgstr "Aucune temporisation"
 
-#: mainwindow.cpp:147
+#: mainwindow.cpp:148
 #, kde-format
 msgid "Timed"
 msgstr "Avec temporisation"
 
-#: mainwindow.cpp:150 mainwindow.cpp:166
+#: mainwindow.cpp:151 mainwindow.cpp:167
 #, kde-format
 msgid "Mode"
 msgstr "Mode"

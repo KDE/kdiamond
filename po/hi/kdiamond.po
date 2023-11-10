@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdiamond\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-25 01:39+0000\n"
+"POT-Creation-Date: 2023-11-10 01:46+0000\n"
 "PO-Revision-Date: 2008-03-26 18:31+0530\n"
 "Last-Translator: Ravishankar Shrivastava <raviratlami@yahoo.com>\n"
 "Language-Team: Hindi <indlinux-hindi@lists.sourceforge.net>\n"
@@ -49,7 +49,7 @@ msgstr ""
 msgid "Points: %1"
 msgstr "अंक :%1"
 
-#: infobar.cpp:22 infobar.cpp:35 mainwindow.cpp:56
+#: infobar.cpp:22 infobar.cpp:35 mainwindow.cpp:57
 #, kde-format
 msgid "Untimed game"
 msgstr ""
@@ -77,7 +77,7 @@ msgstr ""
 msgid "Main Toolbar"
 msgstr "मुख्य औज़ार पट्टी"
 
-#: main.cpp:28 mainwindow.cpp:83
+#: main.cpp:28 mainwindow.cpp:84
 #, kde-format
 msgctxt "The application's name"
 msgid "KDiamond"
@@ -144,40 +144,40 @@ msgstr "जेफ्री केलिंग"
 msgid "Technical consultant"
 msgstr "तकनीकी कंसल्टेंट"
 
-#: mainwindow.cpp:54
+#: mainwindow.cpp:55
 #, kde-format
 msgctxt "new game"
 msgid "&New"
 msgstr ""
 
-#: mainwindow.cpp:55
+#: mainwindow.cpp:56
 #, fuzzy, kde-format
 #| msgid "Theme"
 msgid "Timed game"
 msgstr "प्रसंग"
 
-#: mainwindow.cpp:62
+#: mainwindow.cpp:63
 #, kde-format
 msgid "Start a new game"
 msgstr ""
 
-#: mainwindow.cpp:63
+#: mainwindow.cpp:64
 #, kde-format
 msgid "Start a new game."
 msgstr ""
 
-#: mainwindow.cpp:147
+#: mainwindow.cpp:148
 #, kde-format
 msgid "Untimed"
 msgstr ""
 
-#: mainwindow.cpp:147
+#: mainwindow.cpp:148
 #, fuzzy, kde-format
 #| msgid "Theme"
 msgid "Timed"
 msgstr "प्रसंग"
 
-#: mainwindow.cpp:150 mainwindow.cpp:166
+#: mainwindow.cpp:151 mainwindow.cpp:167
 #, kde-format
 msgid "Mode"
 msgstr ""

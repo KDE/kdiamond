@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdiamond\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-25 01:39+0000\n"
+"POT-Creation-Date: 2023-11-10 01:46+0000\n"
 "PO-Revision-Date: 2010-12-04 19:37+0100\n"
 "Last-Translator: Martin Schlander <mschlander@opensuse.org>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -51,7 +51,7 @@ msgstr "Mulige træk: %1"
 msgid "Points: %1"
 msgstr "Point: %1"
 
-#: infobar.cpp:22 infobar.cpp:35 mainwindow.cpp:56
+#: infobar.cpp:22 infobar.cpp:35 mainwindow.cpp:57
 #, kde-format
 msgid "Untimed game"
 msgstr "Spil uden tidsbegrænsning"
@@ -79,7 +79,7 @@ msgstr "Spil uden tidsbegrænsning."
 msgid "Main Toolbar"
 msgstr "Hovedværktøjslinje"
 
-#: main.cpp:28 mainwindow.cpp:83
+#: main.cpp:28 mainwindow.cpp:84
 #, kde-format
 msgctxt "The application's name"
 msgid "KDiamond"
@@ -145,38 +145,38 @@ msgstr "Jeffrey Kelling"
 msgid "Technical consultant"
 msgstr "Teknisk konsulent"
 
-#: mainwindow.cpp:54
+#: mainwindow.cpp:55
 #, kde-format
 msgctxt "new game"
 msgid "&New"
 msgstr "&Nyt"
 
-#: mainwindow.cpp:55
+#: mainwindow.cpp:56
 #, kde-format
 msgid "Timed game"
 msgstr "Spil med tidsbegrænsning"
 
-#: mainwindow.cpp:62
+#: mainwindow.cpp:63
 #, kde-format
 msgid "Start a new game"
 msgstr "Start et nyt spil"
 
-#: mainwindow.cpp:63
+#: mainwindow.cpp:64
 #, kde-format
 msgid "Start a new game."
 msgstr "Start et nyt spil."
 
-#: mainwindow.cpp:147
+#: mainwindow.cpp:148
 #, kde-format
 msgid "Untimed"
 msgstr "Uden tidsbegrænsning"
 
-#: mainwindow.cpp:147
+#: mainwindow.cpp:148
 #, kde-format
 msgid "Timed"
 msgstr "Med tidsbegrænsning"
 
-#: mainwindow.cpp:150 mainwindow.cpp:166
+#: mainwindow.cpp:151 mainwindow.cpp:167
 #, kde-format
 msgid "Mode"
 msgstr "Tilstand"
