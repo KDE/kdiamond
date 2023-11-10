@@ -12,14 +12,15 @@
 // KDEGames
 #include <KGameDifficulty>
 #include <KGameGraphicsViewRenderer>
-#include <KScoreDialog>
+#include <KGameHighScoreDialog>
 #include <KGameStandardAction>
-
+// KF
 #include <KActionCollection>
 #include <KActionMenu>
 #include <KLocalizedString>
 #include <KNotifyConfigWidget>
 #include <KStandardAction>
+// Qt
 #include <QAction>
 #include <QPointer>
 
@@ -142,12 +143,12 @@ void MainWindow::stateChange(KDiamond::State state)
 void MainWindow::gameIsOver()
 {
     //create score info
-    KScoreDialog::FieldInfo scoreInfo;
-    scoreInfo[KScoreDialog::Score].setNum(m_gameState->points());
-    scoreInfo[KScoreDialog::Custom1] = m_gameState->mode() == KDiamond::UntimedGame ? i18n("Untimed") : i18n("Timed");
+    KGameHighScoreDialog::FieldInfo scoreInfo;
+    scoreInfo[KGameHighScoreDialog::Score].setNum(m_gameState->points());
+    scoreInfo[KGameHighScoreDialog::Custom1] = m_gameState->mode() == KDiamond::UntimedGame ? i18n("Untimed") : i18n("Timed");
     //report score
-    QPointer<KScoreDialog> dialog = new KScoreDialog(KScoreDialog::Name | KScoreDialog::Score, this);
-    dialog->addField(KScoreDialog::Custom1, i18n("Mode"), QStringLiteral("mode"));
+    QPointer<KGameHighScoreDialog> dialog = new KGameHighScoreDialog(KGameHighScoreDialog::Name | KGameHighScoreDialog::Score, this);
+    dialog->addField(KGameHighScoreDialog::Custom1, i18n("Mode"), QStringLiteral("mode"));
     dialog->initFromDifficulty(KGameDifficulty::global());
     dialog->addScore(scoreInfo);
     dialog->exec();
@@ -162,8 +163,8 @@ void MainWindow::showHighscores()
         actionCollection()->action(QStringLiteral("game_pause"))->setChecked(true);
     }
     //show dialog
-    QPointer<KScoreDialog> dialog = new KScoreDialog(KScoreDialog::Name | KScoreDialog::Score, this);
-    dialog->addField(KScoreDialog::Custom1, i18n("Mode"), QStringLiteral("mode"));
+    QPointer<KGameHighScoreDialog> dialog = new KGameHighScoreDialog(KGameHighScoreDialog::Name | KGameHighScoreDialog::Score, this);
+    dialog->addField(KGameHighScoreDialog::Custom1, i18n("Mode"), QStringLiteral("mode"));
     dialog->initFromDifficulty(KGameDifficulty::global());
     dialog->exec();
     delete dialog;
