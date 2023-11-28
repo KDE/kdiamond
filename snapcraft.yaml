@@ -175,6 +175,7 @@ parts:
         - "-usr/lib/gcc/$CRAFT_ARCH_TRIPLET/6.0.0"
         - "-usr/lib/aspell/*"
         - "-usr/share/lintain"
+        - "-usr/lib/$CRAFT_ARCH_TRIPLET/libKF5Notifications.so.5.*"
         build-environment: *id005
     cleanup:
         after:
