@@ -1,12 +1,26 @@
-set(kdiamond_THEME_SRCS
-	diamonds.desktop
-	diamonds.svgz
-	diamonds.png
-	funny_zoo.desktop
-	funny_zoo.svgz
-	funny_zoo.png
-        default.desktop
-        egyptian.svgz
-        egyptian_preview.png
-)
-install(FILES ${kdiamond_THEME_SRCS} DESTINATION ${KDE_INSTALL_DATADIR}/kdiamond/themes)
+# SPDX-FileCopyrightText: 2023 Friedrich W. H. Kossebau <kossebau@kde.org>
+#
+# SPDX-License-Identifier: BSD-3-Clause
+
+function(install_theme name)
+    cmake_parse_arguments(ARG "" "SVG;PREVIEW" "" ${ARGN})
+    if (NOT ARG_SVG)
+        set(ARG_SVG "${name}.svg")
+    endif()
+    if (NOT ARG_PREVIEW)
+        set(ARG_PREVIEW "${name}.png")
+    endif()
+    set(svgz "${CMAKE_CURRENT_BINARY_DIR}/${ARG_SVG}z")
+    generate_svgz(${ARG_SVG} ${svgz} "theme-")
+    install(
+        FILES
+            ${name}.desktop
+            ${ARG_PREVIEW}
+            ${svgz}
+        DESTINATION ${KDE_INSTALL_DATADIR}/kdiamond/themes
+    )
+endfunction()
+
+install_theme(diamonds)
+install_theme(funny_zoo)
+install_theme(default SVG egyptian.svg PREVIEW egyptian_preview.png)
