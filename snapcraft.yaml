@@ -174,8 +174,8 @@ parts:
         - "-usr/bin/X11"
         - "-usr/lib/gcc/$CRAFT_ARCH_TRIPLET/6.0.0"
         - "-usr/lib/aspell/*"
-        - "-usr/share/lintain"
-        - "-usr/lib/$CRAFT_ARCH_TRIPLET/libKF5Notifications.so.5.*"
+        - "-usr/share/lintian"
+        - "-usr/lib/$CRAFT_ARCH_TRIPLET/libKF5Notifications.so.5.111.0"
         build-environment: *id005
     cleanup:
         after:
