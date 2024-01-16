@@ -24,7 +24,8 @@ int main(int argc, char **argv)
 {
     QApplication app(argc, argv);
 
-    KLocalizedString::setApplicationDomain("kdiamond");
+    KLocalizedString::setApplicationDomain(QByteArrayLiteral("kdiamond"));
+
     KAboutData about(QStringLiteral("kdiamond"), i18nc("The application's name", "KDiamond"),
                      QStringLiteral(KDIAMOND_VERSION_STRING),
                      i18n("KDiamond, a three-in-a-row game."),
