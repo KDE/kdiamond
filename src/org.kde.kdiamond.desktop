@@ -157,4 +157,3 @@ Icon=kdiamond
 StartupNotify=true
 Categories=Qt;KDE;Game;LogicGame;
 X-DocPath=kdiamond/index.html
-X-DBUS-ServiceName=org.kde.kdiamond
