@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdiamond\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-10 01:46+0000\n"
+"POT-Creation-Date: 2024-01-17 00:36+0000\n"
 "PO-Revision-Date: 2022-08-19 20:36+0700\n"
 "Last-Translator: Wantoyèk <wantoyek@gmail.com>\n"
 "Language-Team: https://t.me/Localizations_KDE_Indonesia\n"
@@ -76,68 +76,68 @@ msgstr "Mainkan permainan tak berwaktu."
 msgid "Main Toolbar"
 msgstr "Bilah Alat Utama"
 
-#: main.cpp:28 mainwindow.cpp:84
+#: main.cpp:29 mainwindow.cpp:84
 #, kde-format
 msgctxt "The application's name"
 msgid "KDiamond"
 msgstr "KDiamond"
 
-#: main.cpp:30
+#: main.cpp:31
 #, kde-format
 msgid "KDiamond, a three-in-a-row game."
 msgstr "KDiamond, adalah sebuah permainan tiga dalam sebaris."
 
-#: main.cpp:31
+#: main.cpp:32
 #, kde-format
 msgid "(C) 2008-2010 Stefan Majewsky and others"
 msgstr "(C) 2008-2010 Stefan Majewsky dan lainnya"
 
-#: main.cpp:34
+#: main.cpp:35
 #, kde-format
 msgid "Stefan Majewsky"
 msgstr "Stefan Majewsky"
 
-#: main.cpp:34
+#: main.cpp:35
 #, kde-format
 msgid "Original author and current maintainer"
 msgstr "Penulis asli dan pemelihara saat ini"
 
-#: main.cpp:35
+#: main.cpp:36
 #, kde-format
 msgid "Paul Bunbury"
 msgstr "Paul Bunbury"
 
-#: main.cpp:35
+#: main.cpp:36
 #, kde-format
 msgid "Gameplay refinement"
 msgstr "Penyempurnaan mainnya permainan"
 
-#: main.cpp:36
+#: main.cpp:37
 #, kde-format
 msgid "Eugene Trounev"
 msgstr "Eugene Trounev"
 
-#: main.cpp:36
+#: main.cpp:37
 #, kde-format
 msgid "Default theme"
 msgstr "Tema baku"
 
-#: main.cpp:37
+#: main.cpp:38
 #, kde-format
 msgid "Felix Lemke"
 msgstr "Felix Lemke"
 
-#: main.cpp:37
+#: main.cpp:38
 #, kde-format
 msgid "Classic theme"
 msgstr "Tema klasik"
 
-#: main.cpp:38
+#: main.cpp:39
 #, kde-format
 msgid "Jeffrey Kelling"
 msgstr "Jeffrey Kellin"
 
-#: main.cpp:38
+#: main.cpp:39
 #, kde-format
 msgid "Technical consultant"
 msgstr "Konsultan teknik"

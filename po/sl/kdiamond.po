@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdiamond\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-10 01:46+0000\n"
+"POT-Creation-Date: 2024-01-17 00:36+0000\n"
 "PO-Revision-Date: 2017-06-17 09:05+0100\n"
 "Last-Translator: Andrej Mernik <andrejm@ubuntu.si>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -78,68 +78,68 @@ msgstr "Igraj časovno neomejeno igro."
 msgid "Main Toolbar"
 msgstr "Glavna orodna vrstica"
 
-#: main.cpp:28 mainwindow.cpp:84
+#: main.cpp:29 mainwindow.cpp:84
 #, kde-format
 msgctxt "The application's name"
 msgid "KDiamond"
 msgstr "KDiamond"
 
-#: main.cpp:30
+#: main.cpp:31
 #, kde-format
 msgid "KDiamond, a three-in-a-row game."
 msgstr "KDiamond, igra tri v vrsto."
 
-#: main.cpp:31
+#: main.cpp:32
 #, kde-format
 msgid "(C) 2008-2010 Stefan Majewsky and others"
 msgstr "© 2008-2010 Stefan Majewsky in ostali"
 
-#: main.cpp:34
+#: main.cpp:35
 #, kde-format
 msgid "Stefan Majewsky"
 msgstr "Stefan Majewsky"
 
-#: main.cpp:34
+#: main.cpp:35
 #, kde-format
 msgid "Original author and current maintainer"
 msgstr "Prvotni avtor in trenutni vzdrževalec"
 
-#: main.cpp:35
+#: main.cpp:36
 #, kde-format
 msgid "Paul Bunbury"
 msgstr "Paul Bunbury"
 
-#: main.cpp:35
+#: main.cpp:36
 #, kde-format
 msgid "Gameplay refinement"
 msgstr "Izboljšanje igranja igre"
 
-#: main.cpp:36
+#: main.cpp:37
 #, kde-format
 msgid "Eugene Trounev"
 msgstr "Eugene Trounev"
 
-#: main.cpp:36
+#: main.cpp:37
 #, kde-format
 msgid "Default theme"
 msgstr "Privzeta tema"
 
-#: main.cpp:37
+#: main.cpp:38
 #, kde-format
 msgid "Felix Lemke"
 msgstr "Felix Lemke"
 
-#: main.cpp:37
+#: main.cpp:38
 #, kde-format
 msgid "Classic theme"
 msgstr "Klasična tema"
 
-#: main.cpp:38
+#: main.cpp:39
 #, kde-format
 msgid "Jeffrey Kelling"
 msgstr "Jeffrey Kelling"
 
-#: main.cpp:38
+#: main.cpp:39
 #, kde-format
 msgid "Technical consultant"
 msgstr "Tehnični svetovalec"

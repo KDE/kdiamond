@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdiamond\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-10 01:46+0000\n"
+"POT-Creation-Date: 2024-01-17 00:36+0000\n"
 "PO-Revision-Date: 2008-03-26 18:31+0530\n"
 "Last-Translator: Ravishankar Shrivastava <raviratlami@yahoo.com>\n"
 "Language-Team: Hindi <indlinux-hindi@lists.sourceforge.net>\n"
@@ -77,69 +77,69 @@ msgstr ""
 msgid "Main Toolbar"
 msgstr "मुख्य औज़ार पट्टी"
 
-#: main.cpp:28 mainwindow.cpp:84
+#: main.cpp:29 mainwindow.cpp:84
 #, kde-format
 msgctxt "The application's name"
 msgid "KDiamond"
 msgstr "केडायमंड"
 
-#: main.cpp:30
+#: main.cpp:31
 #, kde-format
 msgid "KDiamond, a three-in-a-row game."
 msgstr "केडायमंड, एक-पंक्ति-में-तीन का खेल"
 
-#: main.cpp:31
+#: main.cpp:32
 #, fuzzy, kde-format
 #| msgid "(C) 2008 Stefan Majewsky"
 msgid "(C) 2008-2010 Stefan Majewsky and others"
 msgstr "(c) 2008, स्टीफन माजेव्स्की"
 
-#: main.cpp:34
+#: main.cpp:35
 #, kde-format
 msgid "Stefan Majewsky"
 msgstr "स्टीफन माजेव्स्की"
 
-#: main.cpp:34
+#: main.cpp:35
 #, kde-format
 msgid "Original author and current maintainer"
 msgstr "मूल लेखक तथा वर्तमान मेंटेनर"
 
-#: main.cpp:35
+#: main.cpp:36
 #, kde-format
 msgid "Paul Bunbury"
 msgstr ""
 
-#: main.cpp:35
+#: main.cpp:36
 #, kde-format
 msgid "Gameplay refinement"
 msgstr ""
 
-#: main.cpp:36
+#: main.cpp:37
 #, kde-format
 msgid "Eugene Trounev"
 msgstr "यूजीन ट्रोव्नेव"
 
-#: main.cpp:36
+#: main.cpp:37
 #, kde-format
 msgid "Default theme"
 msgstr "डिफ़ॉल्ट प्रसंग"
 
-#: main.cpp:37
+#: main.cpp:38
 #, kde-format
 msgid "Felix Lemke"
 msgstr "फेलिक्स लेम्के"
 
-#: main.cpp:37
+#: main.cpp:38
 #, kde-format
 msgid "Classic theme"
 msgstr "क्लासिक प्रसंग"
 
-#: main.cpp:38
+#: main.cpp:39
 #, kde-format
 msgid "Jeffrey Kelling"
 msgstr "जेफ्री केलिंग"
 
-#: main.cpp:38
+#: main.cpp:39
 #, kde-format
 msgid "Technical consultant"
 msgstr "तकनीकी कंसल्टेंट"
