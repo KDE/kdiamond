@@ -37,14 +37,16 @@ int main(int argc, char **argv)
     about.addCredit(i18n("Eugene Trounev"), i18n("Default theme"), QStringLiteral("eugene.trounev@gmail.com"));
     about.addCredit(i18n("Felix Lemke"), i18n("Classic theme"), QStringLiteral("lemke.felix@ages-skripte.org"));
     about.addCredit(i18n("Jeffrey Kelling"), i18n("Technical consultant"), QStringLiteral("kelling.jeffrey@ages-skripte.org"));
-    QCommandLineParser parser;
+
     KAboutData::setApplicationData(about);
+    app.setWindowIcon(QIcon::fromTheme(QStringLiteral("kdiamond")));
+
     KCrash::initialize();
+
+    QCommandLineParser parser;
     about.setupCommandLine(&parser);
     parser.process(app);
     about.processCommandLine(&parser);
-
-    app.setWindowIcon(QIcon::fromTheme(QStringLiteral("kdiamond")));
 
     //resource directory for KNewStuff2 (this call causes the directory to be created; its existence is necessary for the downloader)
     QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + QLatin1String("/themes/");
