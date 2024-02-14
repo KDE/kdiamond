@@ -26,6 +26,7 @@
   <name xml:lang="it">KDiamond</name>
   <name xml:lang="ka">KDiamond</name>
   <name xml:lang="ko">KDiamond</name>
+  <name xml:lang="lv">KDiamond</name>
   <name xml:lang="nl">KDiamond</name>
   <name xml:lang="nn">KDiamond</name>
   <name xml:lang="pl">KDiament</name>
@@ -61,6 +62,7 @@
   <summary xml:lang="it">KDiamond è un gioco del tris della comunità KDE</summary>
   <summary xml:lang="ka">KDiamond, თამაში სამი მწკრივში, KDE-სგან</summary>
   <summary xml:lang="ko">KDiamond는 KDE의 돌 세 개 맞추기 게임입니다</summary>
+  <summary xml:lang="lv">„KDiamond“ ir KDE trīs rindā spēle</summary>
   <summary xml:lang="nl">KDiamond, een drie-op-een-rij spel door KDE</summary>
   <summary xml:lang="nn">KDiamond er eit tre-på-rad-spel frå KDE</summary>
   <summary xml:lang="pl">KDiament jest grą trzy-w-rzędzie dla KDE</summary>
@@ -99,6 +101,7 @@
     <p xml:lang="it">KDiamond è un puzzle a giocatore singolo. L'obiettivo del gioco è costruire delle linee di tre diamanti simili.</p>
     <p xml:lang="ka">KDiamond ერთკაციანი პაზლის თამაშია. თამაშის იდეაა სამი ან მეტი ალმასისგან ხაზები ააწყოთ.</p>
     <p xml:lang="ko">KDiamond는 단일 플레이어 퍼즐 게임입니다. 게임의 목표는 색이 같은 다이아몬드 세 개 이상을 한 줄로 맞추는 것입니다.</p>
+    <p xml:lang="lv">„KDiamond“ ir viena spēlētāja mīklas veida spēle. Tās mērķis ir izveidot rindas ar trim līdzīgiem dimantiem.</p>
     <p xml:lang="nl">KDiamond is een puzzelspel voor een enkele speler. Het doel van het spel is om drie gelijke ruiten op één rij te krijgen.</p>
     <p xml:lang="nn">KDiamond er eit tenkjespel for éin spelar. Målet er å frå tre diamantar av same type på éi linje.</p>
     <p xml:lang="pl">KDiament jest grą z puzzlami dla jednego gracza. Celem gry jest tworzenie rzędów trzech podobnych diamentów.</p>
@@ -140,6 +143,7 @@
       <caption xml:lang="it">Giocare a KDiamond</caption>
       <caption xml:lang="ka">KDiamond-ის თამაში</caption>
       <caption xml:lang="ko">KDiamond 플레이</caption>
+      <caption xml:lang="lv">„KDiamond“ spēlēšana</caption>
       <caption xml:lang="nl">KDiamond spelen</caption>
       <caption xml:lang="nn">Spelar KDiamond</caption>
       <caption xml:lang="pl">Granie w KDiament</caption>
