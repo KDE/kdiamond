@@ -1,0 +1,475 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+<!ENTITY % Slovenian "INCLUDE">
+<!ENTITY % addindex "IGNORE">
+]>
+
+<book id="kdiamond" lang="&language;">
+<bookinfo>
+<title
+>&kdiamond; Priročnik</title>
+
+<authorgroup>
+<author
+><firstname
+>Stefan</firstname
+> <surname
+>Majewsky</surname
+> <affiliation
+><address
+><email
+>majewsky@gmx.net</email
+></address
+></affiliation>
+</author>
+<othercredit role="translator"
+><firstname
+>Matjaž</firstname
+><surname
+>Jeran</surname
+><affiliation
+><address
+><email
+>matjaz.jeran@amis.net</email
+></address
+></affiliation
+><contrib
+>Prevod</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2008, 2009, 2010</year>
+<holder
+>Stefan Majewsky</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>26.06.2021</date>
+<releaseinfo
+>KDE Gear 21.04</releaseinfo>
+
+<abstract>
+<para
+>&kdiamond;, igra tri v vrsto.</para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kdegames</keyword>
+<keyword
+>igra</keyword>
+<keyword
+>ugankarska igra</keyword>
+<keyword
+>KDiamond</keyword>
+</keywordset>
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Uvod</title>
+
+<para
+>&kdiamond; je ugankarska igra za enega igralca. </para>
+
+<screenshot>
+<mediaobject>
+<imageobject>
+<imagedata fileref="gameboard.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>&kdiamond; igralna plošča</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Cilj igre je zgraditi črte treh podobnih diamantov. </para>
+</chapter>
+
+<chapter id="how-to-play">
+<title
+>Kako igrati</title>
+
+<para
+>Igralec ima pravokotno mrežo, ki vsebuje več vrst diamantov. Cilj igre je zamenjati sosednje diamante in tako sestaviti vrsto treh podobnih diamantov. Te črte bodo izginile in tabla bo ponovno napolnjena z novimi diamanti. Čas igre je omejen, poskusite zgraditi čim več linij, da dobite visoko oceno. </para>
+
+<para
+>Kliknite na en diamant, nato na enega od njegovih sosedov. Diamanti bodo nato zamenjani. (Lahko tudi kliknete in povlečete diamant na enega od njegovih sosedov, da prikličete zamenjavo.) Če zamenjava ne oblikuje nobene vrstice z vsaj tremi diamanti, bo razveljavljena. Statusna vrstica prikazuje preostali čas igre, število točk, ki ste si jih prislužili, in število možnih potez. </para>
+
+</chapter>
+
+<chapter id="rules-strategies-tips">
+<title
+>Pravila igre, strategije in nasveti</title>
+
+<sect1 id="rules">
+<title
+>Pravila</title>
+<itemizedlist>
+<listitem
+><para
+>Ko je bila črta odstranjena in diamanti padejo navzdol, da zapolnijo vrzeli, se lahko zgodi, da se sestavijo nove črte. Poskusite doseči takšne kaskade, da ko izberete par diamantov, boste pridobili dodatne točke: 1 točko prejmete za linijo, ki jo zgradite, 2 točki za prvo kaskado, 3 točke za morebitno naslednjo kaskado itd.</para
+></listitem>
+<listitem
+><para
+>Poskusite zgraditi črte z več kot 3 diamanti: Zaslužili boste dodatno sekundo za vsaka dva dodatna odstranjena diamanta.</para
+></listitem>
+<listitem
+><para
+>Število vrst diamantov se poveča pri izbiri težavnostnih stopenj <guilabel
+>Težko</guilabel
+>, zaradi česar je težje graditi črte. V nasprotju s tem se bo velikost plošče povečala na težavnostnih stopnjah <guilabel
+>Enostavno</guilabel
+>, da bo lažje najti potezo.</para
+></listitem>
+<listitem
+><para
+>Igra se bo ustavila, ko ne bo več možnih potez. Še posebej pri <guilabel
+>težkih</guilabel
+> težavnostnih stopnjah morate to upoštevati, ko izbirate svojo naslednjo potezo.</para
+></listitem>
+</itemizedlist>
+</sect1>
+
+</chapter>
+
+<chapter id="interface-overview">
+<title
+>Pregled vmesnika</title>
+
+<sect1 id="menu">
+<title
+>Elementi menija</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Igra</guimenu
+> <guimenuitem
+>Nova</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Začne novo igro. Ustvari naključno tablo z uporabo trenutne težavnostne stopnje. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>P</keycap
+></shortcut
+> <guimenu
+>Igra</guimenu
+> <guimenuitem
+>Premor</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Začasno ustavi čas igre. Znova kliknite element menija, da se igra nadaljuje. Upoštevajte, da tabla izgine, ko je igra začasno ustavljena, saj bi bilo nepošteno, če bi lahko iskali dobre poteze brez časovnega pritiska. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Igra</guimenu
+> <guimenuitem
+>Pokaži najboljše rezultate ...</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Prikaže pogovorno okno z najboljšimi rezultati za različne težavnostne stopnje. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Igra</guimenu
+> <guimenuitem
+>Zapri</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Zapusti program. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>H</keycap
+></shortcut
+> <guimenu
+>Premakni</guimenu
+> <guimenuitem
+>Namig</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Označite diamant, ki ga je mogoče premikati. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Nastavitve</guimenu
+> <guisubmenu
+>Težavnost</guisubmenu
+> </menuchoice
+></term>
+<listitem>
+<para
+>Omogoča nastavitev težavnostne stopnje iz podmenija.</para>
+<para
+>Obstaja pet težavnostnih stopenj: <itemizedlist>
+<listitem
+><para
+><guimenuitem
+>Zelo enostavno</guimenuitem
+>: 12 vrstic, 12 stolpcev, 5 vrst diamantov.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Enostavno</guimenuitem
+>: 10 vrstic, 10 stolpcev, 5 vrst diamantov.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Srednje</guimenuitem
+>: 8 vrstic, 8 stolpcev, 5 vrst diamantov.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Težko</guimenuitem
+>: 8 vrstic, 8 stolpcev, 6 vrst diamantov.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Zelo težko</guimenuitem
+>: 8 vrstic, 8 stolpcev, 7 vrst diamantov.</para
+></listitem>
+</itemizedlist>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Nastavitve</guimenu
+> <guimenuitem
+>Konfiguriraj obvestila ...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Ta element prikaže standardno &kde; pogovorno okno za konfiguracijo obvestil, kjer lahko spremenite obvestila (zvoke, vidna sporočila &etc;.), ki jih uporablja &kdiamond;.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>,</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Nastavitve</guimenu
+> <guimenuitem
+>Konfiguriraj &kdiamond;...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Prikaže pogovorno okno za izbiro grafične teme za igro. Katere teme so na voljo, je odvisno od trenutne namestitve. Prenesete lahko tudi nove teme, ki so jih ustvarili oblikovalci tretjih oseb.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>Poleg tega &kdiamond; ima skupno &kde; Elementi menija <guimenu
+>Nastavitve</guimenu
+> in <guimenu
+>Pomoč</guimenu
+>, za več informacij preberite razdelke o <ulink url="help:/fundamentals/menus.html#menus-settings"
+>meniju z nastavitvami</ulink
+> in <ulink url="help:/fundamentals/menus.html#menus-help"
+>meni Pomoč</ulink
+> v &kde; Osnove. </para>
+
+</sect1>
+
+<sect1 id="keybindings">
+<title id="keybindings-title"
+>Bližnjice</title>
+
+<para
+>Privzete bližnjice so:</para>
+
+<table>
+<title
+>Bližnjice</title>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry
+>Začni novo igro</entry>
+<entry>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Premor</entry>
+<entry>
+<keycombo action="simul"
+><keysym
+>P</keysym
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Pokaži najboljše rezultate</entry>
+<entry>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Namig</entry>
+<entry
+><keycap
+>H</keycap
+></entry>
+</row>
+<row>
+<entry
+>Zapusti</entry>
+<entry>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Pomoč</entry>
+<entry
+><keycap
+>F1</keycap
+></entry>
+</row>
+<row>
+<entry
+>Kaj je to?</entry>
+<entry>
+<keycombo action="simul"
+>&Shift;<keycap
+>F1</keycap
+></keycombo>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+
+</sect1>
+</chapter>
+
+
+<chapter id="credits">
+<title
+>Zasluge in licenca</title>
+
+<para
+>&kdiamond; </para>
+<para
+>Avtorske pravice za program 2008, 2009 Stefan Majewsky <email
+>majewsky@gmx.net</email
+> </para>
+<para
+>Avtorske pravice za dokumentacijo 2008, 2009, 2010 Stefan Majewsky <email
+>majewsky@gmx.net</email
+> </para>
+
+<para
+>Prevod: Matjaž Jeran<email
+>matjaz.jeran@amis.net</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-always-quote-attributes:t
+sgml-indent-step:0
+sgml-indent-data:t
+End:
+-->
+
