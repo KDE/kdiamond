@@ -81,7 +81,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(KGameDifficulty::global(), &KGameDifficulty::currentLevelChanged, this, &MainWindow::startGameDispatcher);
     //late GUI initialisation
     setupGUI(QSize(300, 400)); //TODO: find better solution for a minimum size
-    setCaption(i18nc("The application's name", "KDiamond"));
     setCentralWidget(m_view);
     //init statusbar
     m_infoBar = new KDiamond::InfoBar(statusBar());
