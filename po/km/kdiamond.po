@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdiamond\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-17 00:36+0000\n"
+"POT-Creation-Date: 2024-05-03 00:36+0000\n"
 "PO-Revision-Date: 2009-10-27 11:47+0700\n"
 "Last-Translator: Morn Met\n"
 "Language-Team: Khmer <kde-i18n-doc@kde.org>\n"
@@ -50,7 +50,7 @@ msgstr "អាច​​ផ្លាស់ទី​បាន ៖ %1"
 msgid "Points: %1"
 msgstr "ពិន្ទុ ៖ %1"
 
-#: infobar.cpp:22 infobar.cpp:35 mainwindow.cpp:57
+#: infobar.cpp:22 infobar.cpp:35
 #, kde-format
 msgid "Untimed game"
 msgstr "ល្បែង​គ្មានពេល​កំណត់"
@@ -61,10 +61,11 @@ msgid "Time left: %1"
 msgstr "ពេលវេលា​នៅ​សល់ ៖ %1"
 
 #: infobar.cpp:48
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Possible moves: %1"
 msgctxt "Shown when the board is in motion."
-msgid "Possible moves: ..."
-msgstr "អាច​ផ្លាស់ទី​បាន..."
+msgid "Possible moves: …"
+msgstr "អាច​​ផ្លាស់ទី​បាន ៖ %1"
 
 #. i18n: ectx: label, entry (Untimed), group (Preferences)
 #: kdiamond.kcfg:9
@@ -78,7 +79,7 @@ msgstr "លេង​​​ល្បែង​ដែល​គ្មាន​ពេ
 msgid "Main Toolbar"
 msgstr "របារ​ឧបករណ៍​មេ"
 
-#: main.cpp:29 mainwindow.cpp:84
+#: main.cpp:29
 #, kde-format
 msgctxt "The application's name"
 msgid "KDiamond"
@@ -145,37 +146,52 @@ msgid "Technical consultant"
 msgstr "ទីប្រឹក្សា​បច្ចេកទេស​"
 
 #: mainwindow.cpp:55
-#, kde-format
-msgctxt "new game"
+#, fuzzy, kde-format
+#| msgctxt "new game"
+#| msgid "&New"
+msgctxt "@title:menu new game"
 msgid "&New"
 msgstr "ថ្មី​"
 
 #: mainwindow.cpp:56
-#, kde-format
-msgid "Timed game"
+#, fuzzy, kde-format
+#| msgid "Timed game"
+msgctxt "@item:inmenu"
+msgid "Timed Game"
 msgstr "ល្បែង​ដែល​បាន​កំណត់​ពេលវេលា​"
 
+#: mainwindow.cpp:57
+#, fuzzy, kde-format
+#| msgid "Untimed game"
+msgctxt "@item:inmenu"
+msgid "Untimed Game"
+msgstr "ល្បែង​គ្មានពេល​កំណត់"
+
 #: mainwindow.cpp:63
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Start a new game"
+msgctxt "@info:tooltip"
 msgid "Start a new game"
 msgstr "ចាប់ផ្ដើម​ល្បែង​ថ្មី"
 
 #: mainwindow.cpp:64
-#, kde-format
-msgid "Start a new game."
+#, fuzzy, kde-format
+#| msgid "Start a new game."
+msgctxt "@info:whatsthis"
+msgid "Starts a new game."
 msgstr "ចាប់ផ្ដើម​ល្បែង​ថ្មី​ ។"
 
-#: mainwindow.cpp:148
+#: mainwindow.cpp:147
 #, kde-format
 msgid "Untimed"
 msgstr "មិន​បាន​កំណត់​ពេលវេលា"
 
-#: mainwindow.cpp:148
+#: mainwindow.cpp:147
 #, kde-format
 msgid "Timed"
 msgstr "បាន​កំណត់​ពេលវេលា"
 
-#: mainwindow.cpp:151 mainwindow.cpp:167
+#: mainwindow.cpp:150 mainwindow.cpp:166
 #, kde-format
 msgid "Mode"
 msgstr "របៀប"
@@ -191,6 +207,10 @@ msgstr ""
 "<h3>ក្បួន​របស់​ល្បែង</h3><p>គោលដៅ​របស់​អ្នក​គឺ​ត្រូវ​ផ្គុំ​បន្ទាត់​​ពេជ្រ​ដូច​គ្នា​យ៉ាង​ហោច​ណាស់​បី ។ ចុច​លើ​ពេជ្រ​ដែល​"
 "នៅ​ជាប់​គ្នា​ពីរ​ដើម្បី​ប្ដូរ​ពួកវា ។ </p><p>រក​ពិន្ទុ​បន្ថែម ដោយ​ស្ថាបនា​ល្បាក់ និង​វិនាទី​បន្ថែម​ដោយ​ផ្គុំ​បន្ទាត់​"
 "ធំ ឬ​បន្ទាត់​ច្រើន​នៅ​ពេល​តែ​មួយ ។</p>"
+
+#~ msgctxt "Shown when the board is in motion."
+#~ msgid "Possible moves: ..."
+#~ msgstr "អាច​ផ្លាស់ទី​បាន..."
 
 #~ msgid "Theme"
 #~ msgstr "ស្បែក"

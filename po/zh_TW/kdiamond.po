@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdiamond\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-17 00:36+0000\n"
+"POT-Creation-Date: 2024-05-03 00:36+0000\n"
 "PO-Revision-Date: 2010-07-15 07:58+0800\n"
 "Last-Translator: Frank Weng (a.k.a. Franklin) <franklin at goodhorse dot idv "
 "dot tw>\n"
@@ -50,7 +50,7 @@ msgstr "可移動處：%1"
 msgid "Points: %1"
 msgstr "分數：%1"
 
-#: infobar.cpp:22 infobar.cpp:35 mainwindow.cpp:57
+#: infobar.cpp:22 infobar.cpp:35
 #, kde-format
 msgid "Untimed game"
 msgstr "不限時的遊戲"
@@ -61,10 +61,11 @@ msgid "Time left: %1"
 msgstr "剩餘時間：%1"
 
 #: infobar.cpp:48
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Possible moves: %1"
 msgctxt "Shown when the board is in motion."
-msgid "Possible moves: ..."
-msgstr "可移動處：..."
+msgid "Possible moves: …"
+msgstr "可移動處：%1"
 
 #. i18n: ectx: label, entry (Untimed), group (Preferences)
 #: kdiamond.kcfg:9
@@ -78,7 +79,7 @@ msgstr "開始不限時的遊戲。"
 msgid "Main Toolbar"
 msgstr "主工具列"
 
-#: main.cpp:29 mainwindow.cpp:84
+#: main.cpp:29
 #, kde-format
 msgctxt "The application's name"
 msgid "KDiamond"
@@ -145,37 +146,52 @@ msgid "Technical consultant"
 msgstr "技術顧問"
 
 #: mainwindow.cpp:55
-#, kde-format
-msgctxt "new game"
+#, fuzzy, kde-format
+#| msgctxt "new game"
+#| msgid "&New"
+msgctxt "@title:menu new game"
 msgid "&New"
 msgstr "新增(&N)"
 
 #: mainwindow.cpp:56
-#, kde-format
-msgid "Timed game"
+#, fuzzy, kde-format
+#| msgid "Timed game"
+msgctxt "@item:inmenu"
+msgid "Timed Game"
 msgstr "限時遊戲"
 
+#: mainwindow.cpp:57
+#, fuzzy, kde-format
+#| msgid "Untimed game"
+msgctxt "@item:inmenu"
+msgid "Untimed Game"
+msgstr "不限時的遊戲"
+
 #: mainwindow.cpp:63
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Start a new game"
+msgctxt "@info:tooltip"
 msgid "Start a new game"
 msgstr "開始新遊戲"
 
 #: mainwindow.cpp:64
-#, kde-format
-msgid "Start a new game."
+#, fuzzy, kde-format
+#| msgid "Start a new game."
+msgctxt "@info:whatsthis"
+msgid "Starts a new game."
 msgstr "開始新遊戲。"
 
-#: mainwindow.cpp:148
+#: mainwindow.cpp:147
 #, kde-format
 msgid "Untimed"
 msgstr "不限時"
 
-#: mainwindow.cpp:148
+#: mainwindow.cpp:147
 #, kde-format
 msgid "Timed"
 msgstr "限時"
 
-#: mainwindow.cpp:151 mainwindow.cpp:167
+#: mainwindow.cpp:150 mainwindow.cpp:166
 #, kde-format
 msgid "Mode"
 msgstr "模式"
@@ -191,3 +207,7 @@ msgstr ""
 "<h3>遊戲規則</h3><p>您的目的是將至少三個相似的寶石組合成線。點擊兩個相鄰的寶"
 "石可以交換位置。</p> <p>如果連續組合成功數次，可以獲得額外的分數。若是一次組"
 "合四顆以上，或是一次組合成多條線，則可以獲得額外的時間。</p>"
+
+#~ msgctxt "Shown when the board is in motion."
+#~ msgid "Possible moves: ..."
+#~ msgstr "可移動處：..."

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdiamond\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-17 00:36+0000\n"
+"POT-Creation-Date: 2024-05-03 00:36+0000\n"
 "PO-Revision-Date: 2023-11-07 21:26+0100\n"
 "Last-Translator: Enol P. <enolp@softastur.org>\n"
 "Language-Team: \n"
@@ -48,7 +48,7 @@ msgstr ""
 msgid "Points: %1"
 msgstr ""
 
-#: infobar.cpp:22 infobar.cpp:35 mainwindow.cpp:57
+#: infobar.cpp:22 infobar.cpp:35
 #, kde-format
 msgid "Untimed game"
 msgstr ""
@@ -61,7 +61,7 @@ msgstr ""
 #: infobar.cpp:48
 #, kde-format
 msgctxt "Shown when the board is in motion."
-msgid "Possible moves: ..."
+msgid "Possible moves: …"
 msgstr ""
 
 #. i18n: ectx: label, entry (Untimed), group (Preferences)
@@ -76,7 +76,7 @@ msgstr ""
 msgid "Main Toolbar"
 msgstr ""
 
-#: main.cpp:29 mainwindow.cpp:84
+#: main.cpp:29
 #, kde-format
 msgctxt "The application's name"
 msgid "KDiamond"
@@ -144,36 +144,45 @@ msgstr ""
 
 #: mainwindow.cpp:55
 #, kde-format
-msgctxt "new game"
+msgctxt "@title:menu new game"
 msgid "&New"
 msgstr ""
 
 #: mainwindow.cpp:56
 #, kde-format
-msgid "Timed game"
+msgctxt "@item:inmenu"
+msgid "Timed Game"
+msgstr ""
+
+#: mainwindow.cpp:57
+#, kde-format
+msgctxt "@item:inmenu"
+msgid "Untimed Game"
 msgstr ""
 
 #: mainwindow.cpp:63
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Start a new game"
 msgstr ""
 
 #: mainwindow.cpp:64
 #, kde-format
-msgid "Start a new game."
+msgctxt "@info:whatsthis"
+msgid "Starts a new game."
 msgstr ""
 
-#: mainwindow.cpp:148
+#: mainwindow.cpp:147
 #, kde-format
 msgid "Untimed"
 msgstr ""
 
-#: mainwindow.cpp:148
+#: mainwindow.cpp:147
 #, kde-format
 msgid "Timed"
 msgstr ""
 
-#: mainwindow.cpp:151 mainwindow.cpp:167
+#: mainwindow.cpp:150 mainwindow.cpp:166
 #, kde-format
 msgid "Mode"
 msgstr ""

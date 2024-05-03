@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-17 00:36+0000\n"
+"POT-Creation-Date: 2024-05-03 00:36+0000\n"
 "PO-Revision-Date: 2012-03-25 03:12+0600\n"
 "Last-Translator: Sairan Kikkarin <sairan@computer.org>\n"
 "Language-Team: Kazakh <kde-i18n-doc@kde.org>\n"
@@ -48,7 +48,7 @@ msgstr "Мүмкін жүрістер: %1"
 msgid "Points: %1"
 msgstr "Ұпайы: %1"
 
-#: infobar.cpp:22 infobar.cpp:35 mainwindow.cpp:57
+#: infobar.cpp:22 infobar.cpp:35
 #, kde-format
 msgid "Untimed game"
 msgstr "Уақыт шектеусіз ойын"
@@ -59,10 +59,11 @@ msgid "Time left: %1"
 msgstr "Қалған уақыт: %1"
 
 #: infobar.cpp:48
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Possible moves: %1"
 msgctxt "Shown when the board is in motion."
-msgid "Possible moves: ..."
-msgstr "Мүмкін жүрістер: ..."
+msgid "Possible moves: …"
+msgstr "Мүмкін жүрістер: %1"
 
 #. i18n: ectx: label, entry (Untimed), group (Preferences)
 #: kdiamond.kcfg:9
@@ -76,7 +77,7 @@ msgstr "Уақыт шектеусіз ойынау"
 msgid "Main Toolbar"
 msgstr "Негізгі құралдар"
 
-#: main.cpp:29 mainwindow.cpp:84
+#: main.cpp:29
 #, kde-format
 msgctxt "The application's name"
 msgid "KDiamond"
@@ -143,37 +144,52 @@ msgid "Technical consultant"
 msgstr "Техникалық кеңесші"
 
 #: mainwindow.cpp:55
-#, kde-format
-msgctxt "new game"
+#, fuzzy, kde-format
+#| msgctxt "new game"
+#| msgid "&New"
+msgctxt "@title:menu new game"
 msgid "&New"
 msgstr "&Жаңа"
 
 #: mainwindow.cpp:56
-#, kde-format
-msgid "Timed game"
+#, fuzzy, kde-format
+#| msgid "Timed game"
+msgctxt "@item:inmenu"
+msgid "Timed Game"
 msgstr "Уақытпен ойнау"
 
+#: mainwindow.cpp:57
+#, fuzzy, kde-format
+#| msgid "Untimed game"
+msgctxt "@item:inmenu"
+msgid "Untimed Game"
+msgstr "Уақыт шектеусіз ойын"
+
 #: mainwindow.cpp:63
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Start a new game"
+msgctxt "@info:tooltip"
 msgid "Start a new game"
 msgstr "Жаңа ойынды бастау"
 
 #: mainwindow.cpp:64
-#, kde-format
-msgid "Start a new game."
+#, fuzzy, kde-format
+#| msgid "Start a new game."
+msgctxt "@info:whatsthis"
+msgid "Starts a new game."
 msgstr "Жаңа ойынды бастау."
 
-#: mainwindow.cpp:148
+#: mainwindow.cpp:147
 #, kde-format
 msgid "Untimed"
 msgstr "Уақыт шектеусіз"
 
-#: mainwindow.cpp:148
+#: mainwindow.cpp:147
 #, kde-format
 msgid "Timed"
 msgstr "Уақытпен"
 
-#: mainwindow.cpp:151 mainwindow.cpp:167
+#: mainwindow.cpp:150 mainwindow.cpp:166
 #, kde-format
 msgid "Mode"
 msgstr "Режімі"
@@ -190,6 +206,10 @@ msgstr ""
 "тұратын қатарларды жинау. Екі көрші гауһарды түртіп ауыстуруға болады. </"
 "p><p>Кезектерін құрып қосымша ұпай табыңыз. Ұзын қатарларды құрып не "
 "бірмезгілде бірнеше қатарды құрып қосымша уақытты ұтып алыңыз.</p>"
+
+#~ msgctxt "Shown when the board is in motion."
+#~ msgid "Possible moves: ..."
+#~ msgstr "Мүмкін жүрістер: ..."
 
 #~ msgid "Theme"
 #~ msgstr "Нақыш"

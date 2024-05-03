@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdiamond\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-17 00:36+0000\n"
+"POT-Creation-Date: 2024-05-03 00:36+0000\n"
 "PO-Revision-Date: 2013-09-08 07:05+0900\n"
 "Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -48,7 +48,7 @@ msgstr ""
 msgid "Points: %1"
 msgstr ""
 
-#: infobar.cpp:22 infobar.cpp:35 mainwindow.cpp:57
+#: infobar.cpp:22 infobar.cpp:35
 #, kde-format
 msgid "Untimed game"
 msgstr ""
@@ -61,7 +61,7 @@ msgstr ""
 #: infobar.cpp:48
 #, kde-format
 msgctxt "Shown when the board is in motion."
-msgid "Possible moves: ..."
+msgid "Possible moves: …"
 msgstr ""
 
 #. i18n: ectx: label, entry (Untimed), group (Preferences)
@@ -76,7 +76,7 @@ msgstr ""
 msgid "Main Toolbar"
 msgstr "ئاساسىي قورال بالداق"
 
-#: main.cpp:29 mainwindow.cpp:84
+#: main.cpp:29
 #, kde-format
 msgctxt "The application's name"
 msgid "KDiamond"
@@ -143,37 +143,50 @@ msgid "Technical consultant"
 msgstr ""
 
 #: mainwindow.cpp:55
-#, kde-format
-msgctxt "new game"
+#, fuzzy, kde-format
+#| msgctxt "new game"
+#| msgid "&New"
+msgctxt "@title:menu new game"
 msgid "&New"
 msgstr "يېڭى(&N)"
 
 #: mainwindow.cpp:56
 #, kde-format
-msgid "Timed game"
+msgctxt "@item:inmenu"
+msgid "Timed Game"
+msgstr ""
+
+#: mainwindow.cpp:57
+#, kde-format
+msgctxt "@item:inmenu"
+msgid "Untimed Game"
 msgstr ""
 
 #: mainwindow.cpp:63
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Start a new game"
+msgctxt "@info:tooltip"
 msgid "Start a new game"
 msgstr "يېڭى ئويۇندىن بىرنى باشلا"
 
 #: mainwindow.cpp:64
-#, kde-format
-msgid "Start a new game."
+#, fuzzy, kde-format
+#| msgid "Start a new game."
+msgctxt "@info:whatsthis"
+msgid "Starts a new game."
 msgstr "يېڭى ئويۇن باشلايدۇ."
 
-#: mainwindow.cpp:148
+#: mainwindow.cpp:147
 #, kde-format
 msgid "Untimed"
 msgstr ""
 
-#: mainwindow.cpp:148
+#: mainwindow.cpp:147
 #, kde-format
 msgid "Timed"
 msgstr ""
 
-#: mainwindow.cpp:151 mainwindow.cpp:167
+#: mainwindow.cpp:150 mainwindow.cpp:166
 #, kde-format
 msgid "Mode"
 msgstr "ھالىتى"

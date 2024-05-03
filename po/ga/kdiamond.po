@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: playground-games/kdiamond.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-17 00:36+0000\n"
+"POT-Creation-Date: 2024-05-03 00:36+0000\n"
 "PO-Revision-Date: 2008-02-10 09:09-0500\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -48,7 +48,7 @@ msgstr "Bearta indéanta: %1"
 msgid "Points: %1"
 msgstr "Pointí: %1"
 
-#: infobar.cpp:22 infobar.cpp:35 mainwindow.cpp:57
+#: infobar.cpp:22 infobar.cpp:35
 #, kde-format
 msgid "Untimed game"
 msgstr "Cluiche gan uaineadóir"
@@ -59,10 +59,11 @@ msgid "Time left: %1"
 msgstr "Am fágtha: %1"
 
 #: infobar.cpp:48
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Possible moves: %1"
 msgctxt "Shown when the board is in motion."
-msgid "Possible moves: ..."
-msgstr "Bearta indéanta: ..."
+msgid "Possible moves: …"
+msgstr "Bearta indéanta: %1"
 
 #. i18n: ectx: label, entry (Untimed), group (Preferences)
 #: kdiamond.kcfg:9
@@ -76,7 +77,7 @@ msgstr "Imir cluiche gan uaineadóir."
 msgid "Main Toolbar"
 msgstr "Príomhbharra Uirlisí"
 
-#: main.cpp:29 mainwindow.cpp:84
+#: main.cpp:29
 #, kde-format
 msgctxt "The application's name"
 msgid "KDiamond"
@@ -143,37 +144,52 @@ msgid "Technical consultant"
 msgstr "Comhairleoir teicniúil"
 
 #: mainwindow.cpp:55
-#, kde-format
-msgctxt "new game"
+#, fuzzy, kde-format
+#| msgctxt "new game"
+#| msgid "&New"
+msgctxt "@title:menu new game"
 msgid "&New"
 msgstr "&Nua"
 
 #: mainwindow.cpp:56
-#, kde-format
-msgid "Timed game"
+#, fuzzy, kde-format
+#| msgid "Timed game"
+msgctxt "@item:inmenu"
+msgid "Timed Game"
 msgstr "Cluiche amaithe"
 
+#: mainwindow.cpp:57
+#, fuzzy, kde-format
+#| msgid "Untimed game"
+msgctxt "@item:inmenu"
+msgid "Untimed Game"
+msgstr "Cluiche gan uaineadóir"
+
 #: mainwindow.cpp:63
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Start a new game"
+msgctxt "@info:tooltip"
 msgid "Start a new game"
 msgstr "Tosaigh cluiche nua"
 
 #: mainwindow.cpp:64
-#, kde-format
-msgid "Start a new game."
+#, fuzzy, kde-format
+#| msgid "Start a new game."
+msgctxt "@info:whatsthis"
+msgid "Starts a new game."
 msgstr "Tosaigh cluiche nua."
 
-#: mainwindow.cpp:148
+#: mainwindow.cpp:147
 #, kde-format
 msgid "Untimed"
 msgstr "Gan uaineadóir"
 
-#: mainwindow.cpp:148
+#: mainwindow.cpp:147
 #, kde-format
 msgid "Timed"
 msgstr "Amaithe"
 
-#: mainwindow.cpp:151 mainwindow.cpp:167
+#: mainwindow.cpp:150 mainwindow.cpp:166
 #, kde-format
 msgid "Mode"
 msgstr "Mód"
@@ -191,6 +207,10 @@ msgstr ""
 "aice le chéile chun iad a bhabhtáil.</p><p>Is féidir pointí breise a fháil "
 "trí chascáidí a thógáil, agus soicindí breise a fháil trí línte móra nó il-"
 "línte a chur le cháile san am céanna.</p>"
+
+#~ msgctxt "Shown when the board is in motion."
+#~ msgid "Possible moves: ..."
+#~ msgstr "Bearta indéanta: ..."
 
 #~ msgid "Theme"
 #~ msgstr "Téama"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdiamond\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-17 00:36+0000\n"
+"POT-Creation-Date: 2024-05-03 00:36+0000\n"
 "PO-Revision-Date: 2011-01-16 13:28+0100\n"
 "Last-Translator: Michal Sulek <misurel@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
@@ -47,7 +47,7 @@ msgstr "Možné ťahy: %1"
 msgid "Points: %1"
 msgstr "Body: %1"
 
-#: infobar.cpp:22 infobar.cpp:35 mainwindow.cpp:57
+#: infobar.cpp:22 infobar.cpp:35
 #, kde-format
 msgid "Untimed game"
 msgstr "Hra bez časového limitu"
@@ -58,10 +58,11 @@ msgid "Time left: %1"
 msgstr "Zostávajúci čas: %1"
 
 #: infobar.cpp:48
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Possible moves: %1"
 msgctxt "Shown when the board is in motion."
-msgid "Possible moves: ..."
-msgstr "Možné ťahy: ..."
+msgid "Possible moves: …"
+msgstr "Možné ťahy: %1"
 
 #. i18n: ectx: label, entry (Untimed), group (Preferences)
 #: kdiamond.kcfg:9
@@ -75,7 +76,7 @@ msgstr "Hrať hru bez časového limitu."
 msgid "Main Toolbar"
 msgstr "Hlavný panel nástrojov"
 
-#: main.cpp:29 mainwindow.cpp:84
+#: main.cpp:29
 #, kde-format
 msgctxt "The application's name"
 msgid "KDiamond"
@@ -142,37 +143,52 @@ msgid "Technical consultant"
 msgstr "Technický konzultant"
 
 #: mainwindow.cpp:55
-#, kde-format
-msgctxt "new game"
+#, fuzzy, kde-format
+#| msgctxt "new game"
+#| msgid "&New"
+msgctxt "@title:menu new game"
 msgid "&New"
 msgstr "&Nová"
 
 #: mainwindow.cpp:56
-#, kde-format
-msgid "Timed game"
+#, fuzzy, kde-format
+#| msgid "Timed game"
+msgctxt "@item:inmenu"
+msgid "Timed Game"
 msgstr "Hra s časovým limitom"
 
+#: mainwindow.cpp:57
+#, fuzzy, kde-format
+#| msgid "Untimed game"
+msgctxt "@item:inmenu"
+msgid "Untimed Game"
+msgstr "Hra bez časového limitu"
+
 #: mainwindow.cpp:63
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Start a new game"
+msgctxt "@info:tooltip"
 msgid "Start a new game"
 msgstr "Spustiť novú hru"
 
 #: mainwindow.cpp:64
-#, kde-format
-msgid "Start a new game."
+#, fuzzy, kde-format
+#| msgid "Start a new game."
+msgctxt "@info:whatsthis"
+msgid "Starts a new game."
 msgstr "Spustiť novú hru."
 
-#: mainwindow.cpp:148
+#: mainwindow.cpp:147
 #, kde-format
 msgid "Untimed"
 msgstr "Bez časového limitu"
 
-#: mainwindow.cpp:148
+#: mainwindow.cpp:147
 #, kde-format
 msgid "Timed"
 msgstr "S časovým limitom"
 
-#: mainwindow.cpp:151 mainwindow.cpp:167
+#: mainwindow.cpp:150 mainwindow.cpp:166
 #, kde-format
 msgid "Mode"
 msgstr "Režim"
@@ -189,3 +205,7 @@ msgstr ""
 "diamanty. Kliknite na dva susedné diamanty na ich prehodenie.</p><p>Získajte "
 "zvláštne body za vytvorenie kaskád, sekundy naviac zhromaždením rozsiahlych "
 "radov, alebo zhromaždením viacerých radov v rovnakom čase.</p>"
+
+#~ msgctxt "Shown when the board is in motion."
+#~ msgid "Possible moves: ..."
+#~ msgstr "Možné ťahy: ..."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdegames\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-17 00:36+0000\n"
+"POT-Creation-Date: 2024-05-03 00:36+0000\n"
 "PO-Revision-Date: 2009-07-17 12:27+0000\n"
 "Last-Translator: Vilson Gjeci <vilsongjeci@gmail.com>\n"
 "Language-Team: Albanian <sq@li.org>\n"
@@ -50,7 +50,7 @@ msgstr ""
 msgid "Points: %1"
 msgstr "Pikët: %1"
 
-#: infobar.cpp:22 infobar.cpp:35 mainwindow.cpp:57
+#: infobar.cpp:22 infobar.cpp:35
 #, kde-format
 msgid "Untimed game"
 msgstr ""
@@ -63,7 +63,7 @@ msgstr ""
 #: infobar.cpp:48
 #, kde-format
 msgctxt "Shown when the board is in motion."
-msgid "Possible moves: ..."
+msgid "Possible moves: …"
 msgstr ""
 
 #. i18n: ectx: label, entry (Untimed), group (Preferences)
@@ -79,7 +79,7 @@ msgstr "Fillo një lojë të re."
 msgid "Main Toolbar"
 msgstr "Shiriti Kryesor"
 
-#: main.cpp:29 mainwindow.cpp:84
+#: main.cpp:29
 #, kde-format
 msgctxt "The application's name"
 msgid "KDiamond"
@@ -146,37 +146,52 @@ msgid "Technical consultant"
 msgstr "Këshilltar teknik"
 
 #: mainwindow.cpp:55
-#, kde-format
-msgctxt "new game"
+#, fuzzy, kde-format
+#| msgctxt "new game"
+#| msgid "&New"
+msgctxt "@title:menu new game"
 msgid "&New"
 msgstr "&I Ri"
 
 #: mainwindow.cpp:56
-#, kde-format
-msgid "Timed game"
+#, fuzzy, kde-format
+#| msgid "Timed game"
+msgctxt "@item:inmenu"
+msgid "Timed Game"
 msgstr "Lojë me kohë"
 
+#: mainwindow.cpp:57
+#, fuzzy, kde-format
+#| msgid "Untimed"
+msgctxt "@item:inmenu"
+msgid "Untimed Game"
+msgstr "Pa Kohë"
+
 #: mainwindow.cpp:63
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Start a new game"
+msgctxt "@info:tooltip"
 msgid "Start a new game"
 msgstr "Fillo një lojë të re"
 
 #: mainwindow.cpp:64
-#, kde-format
-msgid "Start a new game."
+#, fuzzy, kde-format
+#| msgid "Start a new game."
+msgctxt "@info:whatsthis"
+msgid "Starts a new game."
 msgstr "Fillo një lojë të re."
 
-#: mainwindow.cpp:148
+#: mainwindow.cpp:147
 #, kde-format
 msgid "Untimed"
 msgstr "Pa Kohë"
 
-#: mainwindow.cpp:148
+#: mainwindow.cpp:147
 #, kde-format
 msgid "Timed"
 msgstr "Me Kohë"
 
-#: mainwindow.cpp:151 mainwindow.cpp:167
+#: mainwindow.cpp:150 mainwindow.cpp:166
 #, kde-format
 msgid "Mode"
 msgstr "Mënyra"

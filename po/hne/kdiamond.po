@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdiamond\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-17 00:36+0000\n"
+"POT-Creation-Date: 2024-05-03 00:36+0000\n"
 "PO-Revision-Date: 2009-02-25 18:32+0530\n"
 "Last-Translator: Ravishankar Shrivastava <raviratlami@aol.in>\n"
 "Language-Team: Hindi <kde-i18n-doc@lists.kde.org>\n"
@@ -50,7 +50,7 @@ msgstr "संभावित चाल: %1"
 msgid "Points: %1"
 msgstr "अंक :%1"
 
-#: infobar.cpp:22 infobar.cpp:35 mainwindow.cpp:57
+#: infobar.cpp:22 infobar.cpp:35
 #, kde-format
 msgid "Untimed game"
 msgstr "बिना समय के खेल"
@@ -61,10 +61,11 @@ msgid "Time left: %1"
 msgstr "बचा समय : %1"
 
 #: infobar.cpp:48
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Possible moves: %1"
 msgctxt "Shown when the board is in motion."
-msgid "Possible moves: ..."
-msgstr "संभावित चाल..."
+msgid "Possible moves: …"
+msgstr "संभावित चाल: %1"
 
 #. i18n: ectx: label, entry (Untimed), group (Preferences)
 #: kdiamond.kcfg:9
@@ -78,7 +79,7 @@ msgstr "बिना समय के खेल खेलव."
 msgid "Main Toolbar"
 msgstr "मुख्य औजार पट्टी"
 
-#: main.cpp:29 mainwindow.cpp:84
+#: main.cpp:29
 #, kde-format
 msgctxt "The application's name"
 msgid "KDiamond"
@@ -146,37 +147,52 @@ msgid "Technical consultant"
 msgstr "तकनीकी कंसल्टेंट"
 
 #: mainwindow.cpp:55
-#, kde-format
-msgctxt "new game"
+#, fuzzy, kde-format
+#| msgctxt "new game"
+#| msgid "&New"
+msgctxt "@title:menu new game"
 msgid "&New"
 msgstr "नवा (&N)"
 
 #: mainwindow.cpp:56
-#, kde-format
-msgid "Timed game"
+#, fuzzy, kde-format
+#| msgid "Timed game"
+msgctxt "@item:inmenu"
+msgid "Timed Game"
 msgstr "समय के खेल"
 
+#: mainwindow.cpp:57
+#, fuzzy, kde-format
+#| msgid "Untimed game"
+msgctxt "@item:inmenu"
+msgid "Untimed Game"
+msgstr "बिना समय के खेल"
+
 #: mainwindow.cpp:63
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Start a new game"
+msgctxt "@info:tooltip"
 msgid "Start a new game"
 msgstr "नवा खेल चालू करव"
 
 #: mainwindow.cpp:64
-#, kde-format
-msgid "Start a new game."
+#, fuzzy, kde-format
+#| msgid "Start a new game."
+msgctxt "@info:whatsthis"
+msgid "Starts a new game."
 msgstr "नवा खेल चालू करव."
 
-#: mainwindow.cpp:148
+#: mainwindow.cpp:147
 #, kde-format
 msgid "Untimed"
 msgstr "बिनासमय"
 
-#: mainwindow.cpp:148
+#: mainwindow.cpp:147
 #, kde-format
 msgid "Timed"
 msgstr "समय"
 
-#: mainwindow.cpp:151 mainwindow.cpp:167
+#: mainwindow.cpp:150 mainwindow.cpp:166
 #, kde-format
 msgid "Mode"
 msgstr "मोड"
@@ -193,6 +209,10 @@ msgstr ""
 "पंक्तियां बनाव. आपस मं बदले बर दो आसपास के हीरों ल किलिक करव.</p><p>कास्केड बनाकर आप "
 "मन अतिरिक्त पाइंट अर्जित कर सकथो अउ बड़ी पंक्तियों अउ एक बार मं बहुत से पंक्तियां बनाकर "
 "आप अतिरिक्त समय घलोक अर्जित कर सकथो .</p>"
+
+#~ msgctxt "Shown when the board is in motion."
+#~ msgid "Possible moves: ..."
+#~ msgstr "संभावित चाल..."
 
 #~ msgid "Theme"
 #~ msgstr "प्रसंग"

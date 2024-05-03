@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdiamond\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-17 00:36+0000\n"
+"POT-Creation-Date: 2024-05-03 00:36+0000\n"
 "PO-Revision-Date: 2010-12-09 20:11+0100\n"
 "Last-Translator: Federico Zenith <federico.zenith@member.fsf.org>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -49,7 +49,7 @@ msgstr "Mosse possibili: %1"
 msgid "Points: %1"
 msgstr "Punti: %1"
 
-#: infobar.cpp:22 infobar.cpp:35 mainwindow.cpp:57
+#: infobar.cpp:22 infobar.cpp:35
 #, kde-format
 msgid "Untimed game"
 msgstr "Partita senza cronometro"
@@ -60,10 +60,11 @@ msgid "Time left: %1"
 msgstr "Tempo rimasto: %1"
 
 #: infobar.cpp:48
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Possible moves: %1"
 msgctxt "Shown when the board is in motion."
-msgid "Possible moves: ..."
-msgstr "Mosse possibili: ..."
+msgid "Possible moves: …"
+msgstr "Mosse possibili: %1"
 
 #. i18n: ectx: label, entry (Untimed), group (Preferences)
 #: kdiamond.kcfg:9
@@ -77,7 +78,7 @@ msgstr "Gioca una partita senza cronometro."
 msgid "Main Toolbar"
 msgstr "Barra principale"
 
-#: main.cpp:29 mainwindow.cpp:84
+#: main.cpp:29
 #, kde-format
 msgctxt "The application's name"
 msgid "KDiamond"
@@ -144,37 +145,52 @@ msgid "Technical consultant"
 msgstr "Consulente tecnico"
 
 #: mainwindow.cpp:55
-#, kde-format
-msgctxt "new game"
+#, fuzzy, kde-format
+#| msgctxt "new game"
+#| msgid "&New"
+msgctxt "@title:menu new game"
 msgid "&New"
 msgstr "&Nuova"
 
 #: mainwindow.cpp:56
-#, kde-format
-msgid "Timed game"
+#, fuzzy, kde-format
+#| msgid "Timed game"
+msgctxt "@item:inmenu"
+msgid "Timed Game"
 msgstr "Partita a tempo"
 
+#: mainwindow.cpp:57
+#, fuzzy, kde-format
+#| msgid "Untimed game"
+msgctxt "@item:inmenu"
+msgid "Untimed Game"
+msgstr "Partita senza cronometro"
+
 #: mainwindow.cpp:63
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Start a new game"
+msgctxt "@info:tooltip"
 msgid "Start a new game"
 msgstr "Comincia una nuova partita"
 
 #: mainwindow.cpp:64
-#, kde-format
-msgid "Start a new game."
+#, fuzzy, kde-format
+#| msgid "Start a new game."
+msgctxt "@info:whatsthis"
+msgid "Starts a new game."
 msgstr "Comincia una nuova partita."
 
-#: mainwindow.cpp:148
+#: mainwindow.cpp:147
 #, kde-format
 msgid "Untimed"
 msgstr "Senza cronometro"
 
-#: mainwindow.cpp:148
+#: mainwindow.cpp:147
 #, kde-format
 msgid "Timed"
 msgstr "A tempo"
 
-#: mainwindow.cpp:151 mainwindow.cpp:167
+#: mainwindow.cpp:150 mainwindow.cpp:166
 #, kde-format
 msgid "Mode"
 msgstr "Modalità"
@@ -191,6 +207,10 @@ msgstr ""
 "tre diamanti simili. Fai clic su due diamanti adiacenti per scambiarli.</"
 "p><p>Puoi guadagnare punti costruendo cascate, e guadagnare secondi "
 "assemblando grandi linee o linee multiple in una volta.</p>"
+
+#~ msgctxt "Shown when the board is in motion."
+#~ msgid "Possible moves: ..."
+#~ msgstr "Mosse possibili: ..."
 
 #~ msgid "Start with Very Easy difficulty level"
 #~ msgstr "Comincia con il livello di difficoltà molto facile"
