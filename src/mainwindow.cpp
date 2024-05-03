@@ -52,16 +52,16 @@ MainWindow::MainWindow(QWidget *parent)
     , m_game(nullptr)
     , m_view(new KDiamond::View)
     , m_infoBar(nullptr)
-    , m_newAct(new KActionMenu(QIcon::fromTheme(QStringLiteral("document-new")), i18nc("new game", "&New"), this))
-    , m_newTimedAct(new QAction(i18n("Timed game"), this))
-    , m_newUntimedAct(new QAction(i18n("Untimed game"), this))
+    , m_newAct(new KActionMenu(QIcon::fromTheme(QStringLiteral("document-new")), i18nc("@title:menu new game", "&New"), this))
+    , m_newTimedAct(new QAction(i18nc("@item:inmenu", "Timed Game"), this))
+    , m_newUntimedAct(new QAction(i18nc("@item:inmenu", "Untimed Game"), this))
     , m_renderer(new KDiamond::Renderer())
     , m_selector(m_renderer->themeProvider(), KGameThemeSelector::EnableNewStuffDownload)
 {
     m_renderer->setDefaultPrimaryView(m_view);
     //init GUI - "New Action"
-    m_newAct->setToolTip(i18n("Start a new game"));
-    m_newAct->setWhatsThis(i18n("Start a new game."));
+    m_newAct->setToolTip(i18nc("@info:tooltip", "Start a new game"));
+    m_newAct->setWhatsThis(i18nc("@info:whatsthis", "Starts a new game."));
     actionCollection()->addAction(QStringLiteral("game_new"), m_newAct);
     KActionCollection::setDefaultShortcuts(m_newAct, KStandardShortcut::openNew());
     connect(m_newAct, &KActionMenu::triggered, this, &MainWindow::startGameDispatcher);
