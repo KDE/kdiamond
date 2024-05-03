@@ -45,7 +45,7 @@ void KDiamond::InfoBar::updatePoints(int points)
 void KDiamond::InfoBar::updateMoves(int moves)
 {
     if (moves == -1) {
-        mMovement->setText(i18nc("Shown when the board is in motion.", "Possible moves: ..."));
+        mMovement->setText(i18nc("Shown when the board is in motion.", "Possible moves: …"));
     } else {
         mMovement->setText(i18n("Possible moves: %1", moves));
     }
