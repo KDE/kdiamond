@@ -133,7 +133,7 @@ Pauses the game time. Click on the menu item again to make the game resume. Note
 <keycombo action="simul">&Ctrl;<keycap>H</keycap></keycombo>
 </shortcut>
 <guimenu>Game</guimenu>
-<guimenuitem>Show High Scores...</guimenuitem>
+<guimenuitem>Show High Scores…</guimenuitem>
 </menuchoice></term>
 <listitem>
 <para>
@@ -191,7 +191,7 @@ Highlight a diamond which can be moved.
 <varlistentry>
 <term><menuchoice>
 <guimenu>Settings</guimenu>
-<guimenuitem>Configure Notifications...</guimenuitem>
+<guimenuitem>Configure Notifications…</guimenuitem>
 </menuchoice></term>
 <listitem><para>This item displays a standard &kde; notifications configuration
 dialog, where you can change the notifications (sounds, visible messages,
@@ -204,7 +204,7 @@ dialog, where you can change the notifications (sounds, visible messages,
 <keycombo action="simul">&Ctrl;&Shift;<keycap>,</keycap></keycombo>
 </shortcut>
 <guimenu>Settings</guimenu>
-<guimenuitem>Configure &kdiamond;...</guimenuitem>
+<guimenuitem>Configure &kdiamond;…</guimenuitem>
 </menuchoice></term>
 <listitem><para>Shows a dialog for choose a graphical theme for the game. Which themes are available depends on the current installation. You may also download new themes which have been created by third-party designers.</para></listitem>
 </varlistentry>
