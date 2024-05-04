@@ -6,14 +6,14 @@
 # Santi <santi@kde-es.org>, 2008.
 # Huever, 2009, 2010.
 # Kira J. Fernandez <kirajfdez@gmail.com>, 2010.
-# Eloy Cuadra <ecuadra@eloihr.net>, 2021.
+# SPDX-FileCopyrightText: 2021, 2024 Eloy Cuadra <ecuadra@eloihr.net>
 # Sofía Priego <spriego@darksylvania.net>, %Y.
 msgid ""
 msgstr ""
 "Project-Id-Version: kdiamond\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-17 00:36+0000\n"
-"PO-Revision-Date: 2021-10-19 02:05+0100\n"
+"PO-Revision-Date: 2024-05-03 20:04+0100\n"
 "Last-Translator: Sofía Priego <spriego@darksylvania.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 21.08.2\n"
+"X-Generator: Lokalize 24.02.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -36,7 +36,7 @@ msgstr "spriego@darksylvania.net,jaime@kde.org,kirajfdez@gmail.com"
 #: game-state.cpp:103
 #, kde-format
 msgid "Click the pause button again to resume the game."
-msgstr "Pulse de nuevo el botón de pausa para continuar el juego."
+msgstr "Pulsa de nuevo el botón de pausa para continuar el juego."
 
 #: game-state.cpp:110
 #, kde-format
@@ -172,12 +172,12 @@ msgstr "Iniciar una partida nueva."
 #: mainwindow.cpp:148
 #, kde-format
 msgid "Untimed"
-msgstr "Sin cronometrar"
+msgstr "Sin tiempo"
 
 #: mainwindow.cpp:148
 #, kde-format
 msgid "Timed"
-msgstr "Cronometrado"
+msgstr "Con tiempo"
 
 #: mainwindow.cpp:151 mainwindow.cpp:167
 #, kde-format
@@ -193,6 +193,6 @@ msgid ""
 "or multiple lines at one time.</p>"
 msgstr ""
 "<h3>Reglas de juego</h3><p>El objetivo es formar líneas juntando al menos "
-"tres diamantes similares. Pulse sobre dos contiguos para intercambiarlos.</"
-"p><p>Gane puntos extra formando cascadas, y segundos extra juntando grandes "
+"tres diamantes similares. Pulsa sobre dos contiguos para intercambiarlos.</"
+"p><p>Gana puntos extra formando cascadas, y segundos extra juntando grandes "
 "líneas o varias líneas a la vez.</p>"

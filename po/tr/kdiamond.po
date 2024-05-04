@@ -5,13 +5,13 @@
 # Engin ÇAĞATAY <engincagatay@yahoo.com>, 2008.
 # obsoleteman <tulliana@gmail.com>, 2008-2009.
 # Volkan Gezer <volkangezer@gmail.com>, 2013.
-# Emir SARI <emir_sari@icloud.com>, 2022, 2023.
+# SPDX-FileCopyrightText: 2022, 2023, 2024 Emir SARI <emir_sari@icloud.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kdegames-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-17 00:36+0000\n"
-"PO-Revision-Date: 2023-02-07 00:51+0300\n"
+"PO-Revision-Date: 2024-05-04 01:01+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 22.12.2\n"
+"X-Generator: Lokalize 24.07.70\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -50,7 +50,7 @@ msgstr "Olası hareketler: %1"
 #: infobar.cpp:19 infobar.cpp:42
 #, kde-format
 msgid "Points: %1"
-msgstr "Puanlar: %1"
+msgstr "Puan: %1"
 
 #: infobar.cpp:22 infobar.cpp:35 mainwindow.cpp:57
 #, kde-format
@@ -94,7 +94,7 @@ msgstr "K Elmas, üçlü diziler oyunu"
 #: main.cpp:32
 #, kde-format
 msgid "(C) 2008-2010 Stefan Majewsky and others"
-msgstr "(C) 2008-2010 Stefan Majewsky and diğerleri"
+msgstr "(C) 2008–2010 Stefan Majewsky and diğerleri"
 
 #: main.cpp:35
 #, kde-format
@@ -104,7 +104,7 @@ msgstr "Stefan Majewsky"
 #: main.cpp:35
 #, kde-format
 msgid "Original author and current maintainer"
-msgstr "Asıl yazar ve mevcut sağlayıcı"
+msgstr "Özgün yazar ve şu anki bakımcı"
 
 #: main.cpp:36
 #, kde-format
@@ -192,5 +192,5 @@ msgid ""
 msgstr ""
 "<h3>Oyun Kuralları</h3><p>Amacınız en az üç benzer elmastan oluşan diziler "
 "oluşturmaktır. Yerlerini değiştirmek için iki komşu elmas üzerine tıklayın.</"
-"p><p>Katlar yaparak fazladan puan ve aynı anda uzun dizeler ya da çoklu "
-"dizeler oluşturarak fazladan saniyeler kazanın.</p>"
+"p><p>Katlar yaparak fazladan puan ve aynı anda uzun diziler veya çoklu "
+"diziler oluşturarak fazladan saniyeler kazanın.</p>"
