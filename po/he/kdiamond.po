@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kdiamond\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-03 00:36+0000\n"
-"PO-Revision-Date: 2024-03-14 10:27+0200\n"
+"PO-Revision-Date: 2024-05-03 08:31+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Lokalize 23.08.4\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -60,11 +60,10 @@ msgid "Time left: %1"
 msgstr "זמן לסיום: %1"
 
 #: infobar.cpp:48
-#, fuzzy, kde-format
-#| msgid "Possible moves: %1"
+#, kde-format
 msgctxt "Shown when the board is in motion."
 msgid "Possible moves: …"
-msgstr "מהלכים אפשריים: %1"
+msgstr "מהלכים אפשריים: …"
 
 #. i18n: ectx: label, entry (Untimed), group (Preferences)
 #: kdiamond.kcfg:9
@@ -145,37 +144,31 @@ msgid "Technical consultant"
 msgstr "ייעוץ טכני"
 
 #: mainwindow.cpp:55
-#, fuzzy, kde-format
-#| msgctxt "new game"
-#| msgid "&New"
+#, kde-format
 msgctxt "@title:menu new game"
 msgid "&New"
 msgstr "&חדש"
 
 #: mainwindow.cpp:56
-#, fuzzy, kde-format
-#| msgid "Timed game"
+#, kde-format
 msgctxt "@item:inmenu"
 msgid "Timed Game"
 msgstr "משחק מתוזמן"
 
 #: mainwindow.cpp:57
-#, fuzzy, kde-format
-#| msgid "Untimed game"
+#, kde-format
 msgctxt "@item:inmenu"
 msgid "Untimed Game"
 msgstr "משחק ללא זמן"
 
 #: mainwindow.cpp:63
-#, fuzzy, kde-format
-#| msgid "Start a new game"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Start a new game"
 msgstr "התחלת משחק חדש"
 
 #: mainwindow.cpp:64
-#, fuzzy, kde-format
-#| msgid "Start a new game."
+#, kde-format
 msgctxt "@info:whatsthis"
 msgid "Starts a new game."
 msgstr "התחלת משחק חדש."

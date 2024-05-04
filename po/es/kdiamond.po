@@ -6,14 +6,14 @@
 # Santi <santi@kde-es.org>, 2008.
 # Huever, 2009, 2010.
 # Kira J. Fernandez <kirajfdez@gmail.com>, 2010.
-# Eloy Cuadra <ecuadra@eloihr.net>, 2021.
+# SPDX-FileCopyrightText: 2021, 2024 Eloy Cuadra <ecuadra@eloihr.net>
 # Sofía Priego <spriego@darksylvania.net>, %Y.
 msgid ""
 msgstr ""
 "Project-Id-Version: kdiamond\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-03 00:36+0000\n"
-"PO-Revision-Date: 2021-10-19 02:05+0100\n"
+"PO-Revision-Date: 2024-05-03 20:04+0100\n"
 "Last-Translator: Sofía Priego <spriego@darksylvania.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 21.08.2\n"
+"X-Generator: Lokalize 24.02.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -36,7 +36,7 @@ msgstr "spriego@darksylvania.net,jaime@kde.org,kirajfdez@gmail.com"
 #: game-state.cpp:103
 #, kde-format
 msgid "Click the pause button again to resume the game."
-msgstr "Pulse de nuevo el botón de pausa para continuar el juego."
+msgstr "Pulsa de nuevo el botón de pausa para continuar el juego."
 
 #: game-state.cpp:110
 #, kde-format
@@ -65,11 +65,10 @@ msgid "Time left: %1"
 msgstr "Tiempo restante: %1"
 
 #: infobar.cpp:48
-#, fuzzy, kde-format
-#| msgid "Possible moves: %1"
+#, kde-format
 msgctxt "Shown when the board is in motion."
 msgid "Possible moves: …"
-msgstr "Movimientos posibles: %1"
+msgstr "Movimientos posibles: ..."
 
 #. i18n: ectx: label, entry (Untimed), group (Preferences)
 #: kdiamond.kcfg:9
@@ -150,50 +149,44 @@ msgid "Technical consultant"
 msgstr "Consultor técnico."
 
 #: mainwindow.cpp:55
-#, fuzzy, kde-format
-#| msgctxt "new game"
-#| msgid "&New"
+#, kde-format
 msgctxt "@title:menu new game"
 msgid "&New"
-msgstr "&Nuevo"
+msgstr "&Nueva"
 
 #: mainwindow.cpp:56
-#, fuzzy, kde-format
-#| msgid "Timed game"
+#, kde-format
 msgctxt "@item:inmenu"
 msgid "Timed Game"
-msgstr "Juego cronometrado"
+msgstr "Juego con tiempo"
 
 #: mainwindow.cpp:57
-#, fuzzy, kde-format
-#| msgid "Untimed game"
+#, kde-format
 msgctxt "@item:inmenu"
 msgid "Untimed Game"
 msgstr "Juego sin tiempo"
 
 #: mainwindow.cpp:63
-#, fuzzy, kde-format
-#| msgid "Start a new game"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Start a new game"
-msgstr "Iniciar una partida nueva"
+msgstr "Empezar una partida nueva"
 
 #: mainwindow.cpp:64
-#, fuzzy, kde-format
-#| msgid "Start a new game."
+#, kde-format
 msgctxt "@info:whatsthis"
 msgid "Starts a new game."
-msgstr "Iniciar una partida nueva."
+msgstr "Empieza una partida nueva."
 
 #: mainwindow.cpp:147
 #, kde-format
 msgid "Untimed"
-msgstr "Sin cronometrar"
+msgstr "Sin tiempo"
 
 #: mainwindow.cpp:147
 #, kde-format
 msgid "Timed"
-msgstr "Cronometrado"
+msgstr "Con tiempo"
 
 #: mainwindow.cpp:150 mainwindow.cpp:166
 #, kde-format
@@ -209,8 +202,8 @@ msgid ""
 "or multiple lines at one time.</p>"
 msgstr ""
 "<h3>Reglas de juego</h3><p>El objetivo es formar líneas juntando al menos "
-"tres diamantes similares. Pulse sobre dos contiguos para intercambiarlos.</"
-"p><p>Gane puntos extra formando cascadas, y segundos extra juntando grandes "
+"tres diamantes similares. Pulsa sobre dos contiguos para intercambiarlos.</"
+"p><p>Gana puntos extra formando cascadas, y segundos extra juntando grandes "
 "líneas o varias líneas a la vez.</p>"
 
 #~ msgctxt "Shown when the board is in motion."
