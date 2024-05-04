@@ -8,19 +8,21 @@
 
 #include <QGraphicsSceneMouseEvent>
 
+#include <array>
+
 QString colorKey(KDiamond::Color color)
 {
-    QString colors[] = {
-        QLatin1String("kdiamond-selection"),
-        QLatin1String("kdiamond-red"),
-        QLatin1String("kdiamond-green"),
-        QLatin1String("kdiamond-blue"),
-        QLatin1String("kdiamond-yellow"),
-        QLatin1String("kdiamond-white"),
-        QLatin1String("kdiamond-black"),
-        QLatin1String("kdiamond-orange")
+    static const std::array<QString, KDiamond::ColorsCount> colors = {
+        QStringLiteral("kdiamond-selection"),
+        QStringLiteral("kdiamond-red"),
+        QStringLiteral("kdiamond-green"),
+        QStringLiteral("kdiamond-blue"),
+        QStringLiteral("kdiamond-yellow"),
+        QStringLiteral("kdiamond-white"),
+        QStringLiteral("kdiamond-black"),
+        QStringLiteral("kdiamond-orange")
     };
-    return colors[(color < 0 || color >= KDiamond::ColorsCount) ? 0 : color];
+    return colors[(color < 0 || (uint)color >= colors.size()) ? 0 : color];
 }
 
 Diamond::Diamond(KDiamond::Color color, KGameGraphicsViewRenderer *renderer, QGraphicsItem *parent)
