@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kdiamond\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-03 00:36+0000\n"
-"PO-Revision-Date: 2023-06-06 22:02+0100\n"
+"PO-Revision-Date: 2024-05-04 07:47+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -60,11 +60,10 @@ msgid "Time left: %1"
 msgstr "Tempo restanta: %1"
 
 #: infobar.cpp:48
-#, fuzzy, kde-format
-#| msgid "Possible moves: %1"
+#, kde-format
 msgctxt "Shown when the board is in motion."
 msgid "Possible moves: …"
-msgstr "Eblaj movoj: %1"
+msgstr "Eblaj movoj: …"
 
 #. i18n: ectx: label, entry (Untimed), group (Preferences)
 #: kdiamond.kcfg:9
@@ -145,40 +144,34 @@ msgid "Technical consultant"
 msgstr "Teknika konsilanto"
 
 #: mainwindow.cpp:55
-#, fuzzy, kde-format
-#| msgctxt "new game"
-#| msgid "&New"
+#, kde-format
 msgctxt "@title:menu new game"
 msgid "&New"
 msgstr "&Nova"
 
 #: mainwindow.cpp:56
-#, fuzzy, kde-format
-#| msgid "Timed game"
+#, kde-format
 msgctxt "@item:inmenu"
 msgid "Timed Game"
-msgstr "Tempigita ludo"
+msgstr "Tempigita Ludo"
 
 #: mainwindow.cpp:57
-#, fuzzy, kde-format
-#| msgid "Untimed game"
+#, kde-format
 msgctxt "@item:inmenu"
 msgid "Untimed Game"
-msgstr "Netempigita ludo"
+msgstr "Netempigita Ludo"
 
 #: mainwindow.cpp:63
-#, fuzzy, kde-format
-#| msgid "Start a new game"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Start a new game"
 msgstr "Komenci novan ludon"
 
 #: mainwindow.cpp:64
-#, fuzzy, kde-format
-#| msgid "Start a new game."
+#, kde-format
 msgctxt "@info:whatsthis"
 msgid "Starts a new game."
-msgstr "Komenci novan ludon."
+msgstr "Komencas novan ludon."
 
 #: mainwindow.cpp:147
 #, kde-format
@@ -207,7 +200,3 @@ msgstr ""
 "similaj diamantoj. Klaku sur du apudaj diamantoj por interŝanĝi ilin.</"
 "p><p>Gajnu ekstrajn poentojn konstruante kaskadojn kaj gajnu ekstrajn "
 "sekundojn kunmetante grandajn aŭ multoblajn liniojn je sama tempo.</p>"
-
-#~ msgctxt "Shown when the board is in motion."
-#~ msgid "Possible moves: ..."
-#~ msgstr "Eblaj movoj: ..."
