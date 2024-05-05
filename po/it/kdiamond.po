@@ -1,9 +1,10 @@
 # translation of kdiamond.po to Italian
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
-#
 # Federico Zenith <zenith@chemeng.ntnu.no>, 2008.
 # Federico Zenith <federico.zenith@member.fsf.org>, 2008, 2009, 2010.
+# Luigi Toscano <luigi.toscano@tiscali.it>, 2024.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: kdiamond\n"
@@ -17,6 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
