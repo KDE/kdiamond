@@ -1,13 +1,13 @@
 # Copyright (C) YEAR This file is copyright:
 # This file is distributed under the same license as the kdiamond package.
 #
-# giovanni <g.sora@tiscali.it>, 2023.
+# giovanni <g.sora@tiscali.it>, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: kdiamond\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-03 00:36+0000\n"
-"PO-Revision-Date: 2023-09-25 16:06+0200\n"
+"PO-Revision-Date: 2024-05-06 11:26+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -143,9 +143,7 @@ msgid "Technical consultant"
 msgstr ""
 
 #: mainwindow.cpp:55
-#, fuzzy, kde-format
-#| msgctxt "new game"
-#| msgid "&New"
+#, kde-format
 msgctxt "@title:menu new game"
 msgid "&New"
 msgstr "&Nove "
@@ -166,7 +164,7 @@ msgstr ""
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Start a new game"
-msgstr ""
+msgstr "Initia un Nove Joco"
 
 #: mainwindow.cpp:64
 #, kde-format
