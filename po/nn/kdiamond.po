@@ -209,7 +209,3 @@ msgstr ""
 "diamantar ved på rekkje. Trykk på to nabodiamantar for å byta dei.</p><p>Du "
 "får ekstrapoeng viss du klarar å fjerna fleire rekkjer på rad, og meir tid "
 "viss klarar å fjerna lange rekkjer eller fleire rekkjer samtidig.</p>"
-
-#~ msgctxt "Shown when the board is in motion."
-#~ msgid "Possible moves: ..."
-#~ msgstr "Moglege trekk: …"

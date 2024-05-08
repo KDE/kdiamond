@@ -59,11 +59,10 @@ msgid "Time left: %1"
 msgstr "Zbývající čas: %1"
 
 #: infobar.cpp:48
-#, fuzzy, kde-format
-#| msgid "Possible moves: %1"
+#, kde-format
 msgctxt "Shown when the board is in motion."
 msgid "Possible moves: …"
-msgstr "Možné tahy: %1"
+msgstr ""
 
 #. i18n: ectx: label, entry (Untimed), group (Preferences)
 #: kdiamond.kcfg:9
@@ -144,40 +143,34 @@ msgid "Technical consultant"
 msgstr "Technický konzultant"
 
 #: mainwindow.cpp:55
-#, fuzzy, kde-format
-#| msgctxt "new game"
-#| msgid "&New"
+#, kde-format
 msgctxt "@title:menu new game"
 msgid "&New"
-msgstr "&Nová"
+msgstr ""
 
 #: mainwindow.cpp:56
-#, fuzzy, kde-format
-#| msgid "Timed game"
+#, kde-format
 msgctxt "@item:inmenu"
 msgid "Timed Game"
-msgstr "Časovaná hra"
+msgstr ""
 
 #: mainwindow.cpp:57
-#, fuzzy, kde-format
-#| msgid "Untimed game"
+#, kde-format
 msgctxt "@item:inmenu"
 msgid "Untimed Game"
-msgstr "Nečasovaná hra"
+msgstr ""
 
 #: mainwindow.cpp:63
-#, fuzzy, kde-format
-#| msgid "Start a new game"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Start a new game"
-msgstr "Spustit novou hru"
+msgstr ""
 
 #: mainwindow.cpp:64
-#, fuzzy, kde-format
-#| msgid "Start a new game."
+#, kde-format
 msgctxt "@info:whatsthis"
 msgid "Starts a new game."
-msgstr "Spustit novou hru."
+msgstr ""
 
 #: mainwindow.cpp:147
 #, kde-format
@@ -206,7 +199,3 @@ msgstr ""
 "diamanty. Klikněte na dva sousedící diamanty, přejete-li si je prohodit.</"
 "p><p> Získejte zvláštní body za vytvoření kaskád, a sekundy navíc "
 "shromážděním rozsáhlých řad, anebo složených řad ve stejném čase.</p>"
-
-#~ msgctxt "Shown when the board is in motion."
-#~ msgid "Possible moves: ..."
-#~ msgstr "Možné tahy: ..."

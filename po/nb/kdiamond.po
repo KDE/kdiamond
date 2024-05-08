@@ -208,7 +208,3 @@ msgstr ""
 "diamanter på rekke. Trykk på to nabodiamanter for å bytte dem.</p><p>Du får "
 "ekstrapoeng hvis du klarer å fjerne flere rekker på rad, og mer tid hvis du "
 "klarer å fjerne lange rekker eller flere rekker samtidig.</p>"
-
-#~ msgctxt "Shown when the board is in motion."
-#~ msgid "Possible moves: ..."
-#~ msgstr "Mulige trekk: …"

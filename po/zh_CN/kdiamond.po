@@ -59,11 +59,10 @@ msgid "Time left: %1"
 msgstr "剩余时间：%1"
 
 #: infobar.cpp:48
-#, fuzzy, kde-format
-#| msgid "Possible moves: %1"
+#, kde-format
 msgctxt "Shown when the board is in motion."
 msgid "Possible moves: …"
-msgstr "可能的移动：%1"
+msgstr ""
 
 #. i18n: ectx: label, entry (Untimed), group (Preferences)
 #: kdiamond.kcfg:9
@@ -144,40 +143,34 @@ msgid "Technical consultant"
 msgstr "技术顾问"
 
 #: mainwindow.cpp:55
-#, fuzzy, kde-format
-#| msgctxt "new game"
-#| msgid "&New"
+#, kde-format
 msgctxt "@title:menu new game"
 msgid "&New"
 msgstr "新游戏(&N)"
 
 #: mainwindow.cpp:56
-#, fuzzy, kde-format
-#| msgid "Timed game"
+#, kde-format
 msgctxt "@item:inmenu"
 msgid "Timed Game"
-msgstr "有时间限制游戏"
+msgstr ""
 
 #: mainwindow.cpp:57
-#, fuzzy, kde-format
-#| msgid "Untimed game"
+#, kde-format
 msgctxt "@item:inmenu"
 msgid "Untimed Game"
-msgstr "无时间限制游戏"
+msgstr ""
 
 #: mainwindow.cpp:63
-#, fuzzy, kde-format
-#| msgid "Start a new game"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Start a new game"
 msgstr "开始新游戏"
 
 #: mainwindow.cpp:64
-#, fuzzy, kde-format
-#| msgid "Start a new game."
+#, kde-format
 msgctxt "@info:whatsthis"
 msgid "Starts a new game."
-msgstr "开始新游戏。"
+msgstr ""
 
 #: mainwindow.cpp:147
 #, kde-format
@@ -205,7 +198,3 @@ msgstr ""
 "<h3>游戏规则</h3><p>您的目标就是将至少三个相同钻石连成线。在两颗钻石上分别点"
 "击便能交换它们。</p><p>建立连锁消去能赢得额外的分数，一次连成长串或多行钻石可"
 "赢得额外时间。</p>"
-
-#~ msgctxt "Shown when the board is in motion."
-#~ msgid "Possible moves: ..."
-#~ msgstr "可能的移动：..."
