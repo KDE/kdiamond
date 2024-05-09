@@ -198,7 +198,7 @@
 > <guimenu
 >Partita</guimenu
 > <guimenuitem
->Mostra i punteggi migliori...</guimenuitem
+>Mostra la classifica…</guimenuitem
 > </menuchoice
 ></term>
 <listitem>
@@ -302,7 +302,7 @@
 ><guimenu
 >Impostazioni</guimenu
 > <guimenuitem
->Configura le notifiche...</guimenuitem
+>Configura le notifiche…</guimenuitem
 > </menuchoice
 ></term>
 <listitem
@@ -323,7 +323,7 @@
 > <guimenu
 >Impostazioni</guimenu
 > <guimenuitem
->Configura &kdiamond;...</guimenuitem
+>Configura &kdiamond;…</guimenuitem
 > </menuchoice
 ></term>
 <listitem
