@@ -68,7 +68,7 @@ msgstr "Temps restant: %1"
 #, kde-format
 msgctxt "Shown when the board is in motion."
 msgid "Possible moves: ..."
-msgstr "Moviments possibles: ..."
+msgstr "Moviments possibles: …"
 
 #. i18n: ectx: label, entry (Untimed), group (Preferences)
 #: kdiamond.kcfg:9
