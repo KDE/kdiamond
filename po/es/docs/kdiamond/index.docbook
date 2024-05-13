@@ -50,6 +50,20 @@
 ><contrib
 >Traductora</contrib
 ></othercredit
+> <othercredit role="translator"
+><firstname
+>Eloy</firstname
+> <surname
+>Cuadra</surname
+> <affiliation
+><address
+><email
+>ecuadra@eloihr.net</email
+></address
+></affiliation
+> <contrib
+>Corrección de la traducción</contrib
+></othercredit
 > 
 </authorgroup>
 
@@ -115,16 +129,16 @@
 >Cómo jugar</title>
 
 <para
->Ante el jugador se presentará una rejilla rectangular con varios tipos de diamantes. El objeto del juego es intercambiar los diamantes vecinos para crear líneas con tres diamantes similares. Estas líneas desaparecerán y el tablero se rellenará con más diamantes. El tiempo de juego está limitado, por tanto, intente construir el mayor número de líneas posible para obtener la mejor puntuación. </para>
+>Se muestra una rejilla rectangular con varios tipos de diamantes. El objeto del juego es intercambiar los diamantes vecinos para crear líneas con tres diamantes iguales. Estas líneas desaparecerán y el tablero se rellenará con más diamantes. El tiempo de juego está limitado, por lo que debes construir el mayor número de líneas posible para obtener la mejor puntuación. </para>
 
 <para
->Pulse en un diamante y a continuación en uno de sus vecinos. Entonces los diamantes se intercambiarán. (También puede hacer click y arrastrar un diamante sobre uno de sus vecinos para hacer que intercambien su posición) Si no hay, al menos, tres diamantes que formen una línea, volverán a su estado anterior. La barra de estado muestra el tiempo restante, el número de puntos ganados y el número de movimientos posibles. </para>
+>Pulsa en un diamante y, a continuación, en uno de sus vecinos para que los diamantes se intercambien. También puedes hacer clic y arrastrar un diamante sobre uno de sus vecinos para hacer que intercambien su posición. Si no hay al menos tres diamantes que formen una línea, volverán a su posición anterior. La barra de estado muestra el tiempo restante, el número de puntos conseguidos y el número de movimientos posibles. </para>
 
 </chapter>
 
 <chapter id="rules-strategies-tips">
 <title
->Reglas del juego, estrategias y juegos</title>
+>Reglas del juego, estrategias y consejos</title>
 
 <sect1 id="rules">
 <title
@@ -132,25 +146,25 @@
 <itemizedlist>
 <listitem
 ><para
->Cuando se elimina una línea y los diamantes caen para rellenar los huecos, se crean líneas nuevas. Intente conseguir cascadas seleccionado pares de diamantes para obtener puntos extra: Obtendrá 1 punto por la línea construida, 2 puntos por la primera cascada, 3 por la siguiente, y así sucesivamente.</para
+>Cuando se elimina una línea y los diamantes caen para rellenar los huecos, se crean líneas nuevas. Intente conseguir cascadas seleccionado pares de diamantes para obtener puntos extra: obtendrás 1 punto por la línea construida, 2 puntos por la primera cascada, 3 por la siguiente, y así sucesivamente.</para
 ></listitem>
 <listitem
 ><para
->Intente formar líneas con más de 3 diamantes: ganará un segundo extra por cada dos diamantes extra eliminados.</para
+>Intenta formar líneas con más de 3 diamantes: ganarás un segundo adicional por cada dos diamantes extra eliminados.</para
 ></listitem>
 <listitem
 ><para
 >El número de tipos de diamantes se incrementa cuando se eligen niveles de dificultad <guilabel
 >Difícil</guilabel
->, para hacer más complicada la construcción de líneas. En contraposición, el tamaño del tablero se incrementa en los niveles de dificultad <guilabel
+>, para complicar la construcción de líneas. En contraposición, el tamaño del tablero aumenta en los niveles de dificultad <guilabel
 >Fácil</guilabel
-> para hacer más sencillo encontrar los movimientos.</para
+> para facilitar los movimientos.</para
 ></listitem>
 <listitem
 ><para
 >El juego se detendrá una vez que no queden movimientos posibles. Especialmente en el nivel de dificultad <guilabel
 >Difícil</guilabel
->, debería tener esto en cuenta cuando elija su siguiente movimiento.</para
+>, deberías tener esto en cuenta cuando escojas tu siguiente movimiento.</para
 ></listitem>
 </itemizedlist>
 </sect1>
@@ -159,11 +173,11 @@
 
 <chapter id="interface-overview">
 <title
->Visión general de la interfaz</title>
+>Vista general de la interfaz</title>
 
 <sect1 id="menu">
 <title
->Opciones de menú</title>
+>Opciones del menú</title>
 
 <variablelist>
 <varlistentry>
@@ -204,7 +218,7 @@
 ></term>
 <listitem>
 <para
->Detiene el tiempo de la partida. Pulse de nuevo en el elemento de menú para continuar con la partida. Tenga en cuenta que el tablero de juego desaparecerá cuando se detenga el juego, ya que sería injusto si buscara nuevos movimientos sin la presión del tiempo. </para>
+>Detiene el tiempo de la partida. Pulsa de nuevo este elemento del menú para continuar la partida. Ten en cuenta que el tablero de juego desaparecerá cuando se detenga el juego, ya que sería injusto que buscaras nuevos movimientos sin la presión del tiempo. </para>
 </listitem>
 </varlistentry>
 
@@ -254,11 +268,9 @@
 <term
 ><menuchoice
 ><shortcut
-> <keycombo action="simul"
->&Ctrl;<keycap
->Q</keycap
-></keycombo
-> </shortcut
+><keycap
+>H</keycap
+></shortcut
 > <guimenu
 >Movimiento</guimenu
 > <guimenuitem
@@ -282,7 +294,7 @@
 ></term>
 <listitem>
 <para
->Le permite establecer el nivel de dificultad desde un submenú.</para>
+>Permite definir el nivel de dificultad mediante un submenú.</para>
 <para
 >Hay cinco niveles de dificultad: <itemizedlist>
 <listitem
@@ -331,7 +343,7 @@
 ></term>
 <listitem
 ><para
->Este elemento muestra un diálogo estándar para configurar las notificaciones de &kde;, donde puede cambiar las notificaciones (sonidos, mensajes visibles, &etc;) usadas por &kdiamond;.</para
+>Este elemento muestra un diálogo estándar para configurar las notificaciones de &kde;, donde puedes cambiar las notificaciones (sonidos, mensajes visibles, &etc;) que usa &kdiamond;.</para
 ></listitem>
 </varlistentry>
 
@@ -352,7 +364,7 @@
 ></term>
 <listitem
 ><para
->Muestra un diálogo para escoger un tema gráfico para el juego. Los temas disponibles dependerán de la instalación actual. También puede descargar temas nuevos que han sido creados por diseñadores externos.</para
+>Muestra un diálogo para escoger un tema gráfico para el juego. Los temas disponibles dependerán de la instalación actual. También puedes descargar temas nuevos que han sido creados por diseñadores externos.</para
 ></listitem>
 </varlistentry>
 
@@ -363,7 +375,7 @@
 >Preferencias</guimenu
 > y <guimenu
 >Ayuda</guimenu
-> comunes de &kde;. Para obtener más información, consulte las secciones sobre el <ulink url="help:/fundamentals/menus.html#menus-settings"
+> comunes de &kde;. Para obtener más información, consulta las secciones sobre el <ulink url="help:/fundamentals/menus.html#menus-settings"
 >Menú «Preferencias»</ulink
 > y <ulink url="help:/fundamentals/menus.html#menus-help"
 >Menú «Ayuda» </ulink
@@ -395,7 +407,7 @@
 </row>
 <row>
 <entry
->Detener</entry>
+>Poner en pausa</entry>
 <entry>
 <keycombo action="simul"
 ><keysym
@@ -405,7 +417,7 @@
 </row>
 <row>
 <entry
->Mostrar mejores puntuaciones</entry>
+>Mostrar las mejores puntuaciones</entry>
 <entry>
 <keycombo action="simul"
 >&Ctrl;<keycap
@@ -473,10 +485,14 @@
 > </para>
 
 <para
->Traducido por Santiago Fernández Sancho<email
+>Documentación traducida por Santiago Fernández Sancho <email
 >santi@kde-es.org</email
 > y Kira J. Fernández <email
 >kirajfdez@gmail.com</email
+>.</para
+><para
+>Corregida por Eloy Cuadra <email
+>ecuadra@eloihr.net</email
 >.</para
 > &underFDL; &underGPL; </chapter>
 
