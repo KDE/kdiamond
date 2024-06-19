@@ -2,13 +2,13 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Stefan Asserhäll <stefan.asserhall@gmail.com>, 2008, 2009, 2010.
+# SPDX-FileCopyrightText: 2008, 2009, 2010, 2024 Stefan Asserhäll <stefan.asserhall@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kdiamond\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-03 00:36+0000\n"
-"PO-Revision-Date: 2010-07-14 21:58+0200\n"
+"PO-Revision-Date: 2024-06-18 19:43+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@gmail.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 1.0\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -60,11 +60,11 @@ msgid "Time left: %1"
 msgstr "Återstående tid: %1"
 
 #: infobar.cpp:48
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Possible moves: %1"
 msgctxt "Shown when the board is in motion."
 msgid "Possible moves: …"
-msgstr "Möjliga drag: %1"
+msgstr "Möjliga drag: …"
 
 #. i18n: ectx: label, entry (Untimed), group (Preferences)
 #: kdiamond.kcfg:9
@@ -145,7 +145,7 @@ msgid "Technical consultant"
 msgstr "Teknisk konsult"
 
 #: mainwindow.cpp:55
-#, fuzzy, kde-format
+#, kde-format
 #| msgctxt "new game"
 #| msgid "&New"
 msgctxt "@title:menu new game"
@@ -153,32 +153,32 @@ msgid "&New"
 msgstr "&Nytt"
 
 #: mainwindow.cpp:56
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Timed game"
 msgctxt "@item:inmenu"
 msgid "Timed Game"
 msgstr "Spel med tidtagning"
 
 #: mainwindow.cpp:57
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Untimed game"
 msgctxt "@item:inmenu"
 msgid "Untimed Game"
 msgstr "Spel utan tidtagning"
 
 #: mainwindow.cpp:63
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Start a new game"
 msgctxt "@info:tooltip"
 msgid "Start a new game"
 msgstr "Starta ett nytt spel"
 
 #: mainwindow.cpp:64
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Start a new game."
 msgctxt "@info:whatsthis"
 msgid "Starts a new game."
-msgstr "Starta ett nytt spel."
+msgstr "Startar ett nytt spel."
 
 #: mainwindow.cpp:147
 #, kde-format
@@ -263,3 +263,4 @@ msgstr ""
 
 #~ msgid "Show minutes separately on the timer."
 #~ msgstr "Visa minuter separat i tidtagningen."
+
