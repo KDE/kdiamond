@@ -62,7 +62,6 @@ msgstr "Tid igjen: %1"
 
 #: infobar.cpp:48
 #, fuzzy, kde-format
-#| msgid "Possible moves: %1"
 msgctxt "Shown when the board is in motion."
 msgid "Possible moves: …"
 msgstr "Mulige trekk: %1"
@@ -147,36 +146,30 @@ msgstr "Teknisk konsulent"
 
 #: mainwindow.cpp:55
 #, fuzzy, kde-format
-#| msgctxt "new game"
-#| msgid "&New"
 msgctxt "@title:menu new game"
 msgid "&New"
 msgstr "&Ny"
 
 #: mainwindow.cpp:56
 #, fuzzy, kde-format
-#| msgid "Timed game"
 msgctxt "@item:inmenu"
 msgid "Timed Game"
 msgstr "Spill på tid"
 
 #: mainwindow.cpp:57
 #, fuzzy, kde-format
-#| msgid "Untimed game"
 msgctxt "@item:inmenu"
 msgid "Untimed Game"
 msgstr "Spill uten tid"
 
 #: mainwindow.cpp:63
 #, fuzzy, kde-format
-#| msgid "Start a new game"
 msgctxt "@info:tooltip"
 msgid "Start a new game"
 msgstr "Start et nytt spill"
 
 #: mainwindow.cpp:64
 #, fuzzy, kde-format
-#| msgid "Start a new game."
 msgctxt "@info:whatsthis"
 msgid "Starts a new game."
 msgstr "Start et nytt spill."
