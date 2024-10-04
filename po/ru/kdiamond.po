@@ -5,21 +5,22 @@
 # Evgeniy Ivanov <powerfox@kde.ru>, 2008.
 # Nick Shaforostoff <shaforostoff@kde.ru>, 2008.
 # Alexander Potashev <aspotashev@gmail.com>, 2010.
+# SPDX-FileCopyrightText: 2024 Olesya Gerasimenko <translation-team@basealt.ru>
 msgid ""
 msgstr ""
 "Project-Id-Version: kdiamond\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-03 00:36+0000\n"
-"PO-Revision-Date: 2010-09-16 23:17+0400\n"
-"Last-Translator: Alexander Potashev <aspotashev@gmail.com>\n"
-"Language-Team: Russian <kde-russian@lists.kde.ru>\n"
+"PO-Revision-Date: 2024-10-03 09:57+0300\n"
+"Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
+"Language-Team: Basealt Translation Team\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Lokalize 1.1\n"
+"X-Generator: Lokalize 23.08.5\n"
 "X-Environment: kde\n"
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
@@ -27,17 +28,17 @@ msgstr ""
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Артём Середа"
+msgstr "Артём Середа, Олеся Герасименко"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "overmind88@gmail.com"
+msgstr "overmind88@gmail.com, translation-team@basealt.ru"
 
 #: game-state.cpp:103
 #, kde-format
 msgid "Click the pause button again to resume the game."
-msgstr "Нажмите на кнопку паузы ещё раз, чтобы возобновить игру."
+msgstr "Нажмите кнопку паузы ещё раз, чтобы возобновить игру."
 
 #: game-state.cpp:110
 #, kde-format
@@ -58,7 +59,7 @@ msgstr "Очки: %1"
 #: infobar.cpp:22 infobar.cpp:35
 #, kde-format
 msgid "Untimed game"
-msgstr "Асинхронная игра"
+msgstr "Игра без отсчёта времени"
 
 #: infobar.cpp:24 infobar.cpp:68
 #, kde-format
@@ -66,17 +67,16 @@ msgid "Time left: %1"
 msgstr "Осталось времени: %1"
 
 #: infobar.cpp:48
-#, fuzzy, kde-format
-#| msgid "Possible moves: %1"
+#, kde-format
 msgctxt "Shown when the board is in motion."
 msgid "Possible moves: …"
-msgstr "Возможное число ходов: %1"
+msgstr "Возможное число ходов: …"
 
 #. i18n: ectx: label, entry (Untimed), group (Preferences)
 #: kdiamond.kcfg:9
 #, kde-format
 msgid "Play an untimed game."
-msgstr "Играть в асинхронную игру"
+msgstr "Играть в игру без отсчёта времени"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: kdiamondui.rc:11
@@ -93,7 +93,7 @@ msgstr "KDiamond"
 #: main.cpp:31
 #, kde-format
 msgid "KDiamond, a three-in-a-row game."
-msgstr "KDiamond. Убийца вашего времени"
+msgstr "KDiamond. Игра «три в ряд»."
 
 #: main.cpp:32
 #, kde-format
@@ -151,36 +151,31 @@ msgid "Technical consultant"
 msgstr "Технический консультант"
 
 #: mainwindow.cpp:55
-#, fuzzy, kde-format
-#| msgctxt "new game"
-#| msgid "&New"
+#, kde-format
 msgctxt "@title:menu new game"
 msgid "&New"
 msgstr "С&оздать"
 
 #: mainwindow.cpp:56
-#, fuzzy, kde-format
-#| msgid "Timed game"
+#, kde-format
 msgctxt "@item:inmenu"
 msgid "Timed Game"
-msgstr "Синхронная игра"
+msgstr "Игра с отсчётом времени"
 
 #: mainwindow.cpp:57
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@item:inmenu"
 msgid "Untimed Game"
-msgstr "Игра без времени"
+msgstr "Игра без отсчёта времени"
 
 #: mainwindow.cpp:63
-#, fuzzy, kde-format
-#| msgid "Start a new game"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Start a new game"
 msgstr "Начать новую игру"
 
 #: mainwindow.cpp:64
-#, fuzzy, kde-format
-#| msgid "Start a new game."
+#, kde-format
 msgctxt "@info:whatsthis"
 msgid "Starts a new game."
 msgstr "Начать новую игру."
@@ -188,12 +183,12 @@ msgstr "Начать новую игру."
 #: mainwindow.cpp:147
 #, kde-format
 msgid "Untimed"
-msgstr "Асинхронно"
+msgstr "Без отсчёта времени"
 
 #: mainwindow.cpp:147
 #, kde-format
 msgid "Timed"
-msgstr "Синхронно"
+msgstr "С отсчётом времени"
 
 #: mainwindow.cpp:150 mainwindow.cpp:166
 #, kde-format
@@ -208,10 +203,10 @@ msgid ""
 "extra points by building cascades, and extra seconds by assembling big lines "
 "or multiple lines at one time.</p>"
 msgstr ""
-"<h3>Правила игры</h3><p>Вы должны собрать в линию минимум три схожих "
-"бриллианта. Щёлкайте по двум смежным бриллиантам для их перестановки.</"
-"p><p>Получайте дополнительные очки, выстраивая каскады, и дополнительное "
-"время, собирая длинные линии или несколько линий за один раз.</p>"
+"<h3>Правила игры</h3><p>Нужно собрать в линию минимум три схожих бриллианта. "
+"Щёлкайте по двум смежным бриллиантам для их перестановки.</p><p>Получайте "
+"дополнительные очки, выстраивая каскады, и дополнительное время, собирая "
+"длинные линии или несколько линий за один раз.</p>"
 
 #~ msgctxt "Shown when the board is in motion."
 #~ msgid "Possible moves: ..."
