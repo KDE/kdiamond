@@ -41,6 +41,7 @@ target_link_libraries(kdiamond
     KF6::Notifications
     KF6::DBusAddons
     KF6::Crash
+    KF6::IconThemes
 )
 
 install(TARGETS kdiamond  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})

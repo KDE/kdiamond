@@ -17,6 +17,7 @@ Dependencies:
     'frameworks/kxmlgui': '@latest-kf6'
     'frameworks/knotifications': '@latest-kf6'
     'frameworks/knotifyconfig': '@latest-kf6'
+    'frameworks/kiconthemes': '@latest-kf6'
     'games/libkdegames': '@same'
 
 Options:
