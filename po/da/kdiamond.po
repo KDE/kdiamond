@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdiamond\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-03 00:36+0000\n"
+"POT-Creation-Date: 2024-11-22 00:38+0000\n"
 "PO-Revision-Date: 2010-12-04 19:37+0100\n"
 "Last-Translator: Martin Schlander <mschlander@opensuse.org>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -80,68 +80,68 @@ msgstr "Spil uden tidsbegrænsning."
 msgid "Main Toolbar"
 msgstr "Hovedværktøjslinje"
 
-#: main.cpp:29
+#: main.cpp:46
 #, kde-format
 msgctxt "The application's name"
 msgid "KDiamond"
 msgstr "KDiamond"
 
-#: main.cpp:31
+#: main.cpp:48
 #, kde-format
 msgid "KDiamond, a three-in-a-row game."
 msgstr "KDiamond - et tre på linje-spil."
 
-#: main.cpp:32
+#: main.cpp:49
 #, kde-format
 msgid "(C) 2008-2010 Stefan Majewsky and others"
 msgstr "(C) 2008-2010 Stefan Majewsky og andre"
 
-#: main.cpp:35
+#: main.cpp:52
 #, kde-format
 msgid "Stefan Majewsky"
 msgstr "Stefan Majewsky"
 
-#: main.cpp:35
+#: main.cpp:52
 #, kde-format
 msgid "Original author and current maintainer"
 msgstr "Oprindelig udvikler og nuværende vedligeholder"
 
-#: main.cpp:36
+#: main.cpp:53
 #, kde-format
 msgid "Paul Bunbury"
 msgstr "Paul Bunbury"
 
-#: main.cpp:36
+#: main.cpp:53
 #, kde-format
 msgid "Gameplay refinement"
 msgstr "Raffinering af spillet"
 
-#: main.cpp:37
+#: main.cpp:54
 #, kde-format
 msgid "Eugene Trounev"
 msgstr "Eugene Trounev"
 
-#: main.cpp:37
+#: main.cpp:54
 #, kde-format
 msgid "Default theme"
 msgstr "Standardtema"
 
-#: main.cpp:38
+#: main.cpp:55
 #, kde-format
 msgid "Felix Lemke"
 msgstr "Felix Lemke"
 
-#: main.cpp:38
+#: main.cpp:55
 #, kde-format
 msgid "Classic theme"
 msgstr "Klassisk tema"
 
-#: main.cpp:39
+#: main.cpp:56
 #, kde-format
 msgid "Jeffrey Kelling"
 msgstr "Jeffrey Kelling"
 
-#: main.cpp:39
+#: main.cpp:56
 #, kde-format
 msgid "Technical consultant"
 msgstr "Teknisk konsulent"

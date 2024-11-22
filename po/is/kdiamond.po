@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdiamond\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-03 00:36+0000\n"
+"POT-Creation-Date: 2024-11-22 00:38+0000\n"
 "PO-Revision-Date: 2015-01-29 09:07+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <kde-isl@molar.is>\n"
@@ -79,68 +79,68 @@ msgstr ""
 msgid "Main Toolbar"
 msgstr "Aðaltækjaslá"
 
-#: main.cpp:29
+#: main.cpp:46
 #, kde-format
 msgctxt "The application's name"
 msgid "KDiamond"
 msgstr ""
 
-#: main.cpp:31
+#: main.cpp:48
 #, kde-format
 msgid "KDiamond, a three-in-a-row game."
 msgstr ""
 
-#: main.cpp:32
+#: main.cpp:49
 #, kde-format
 msgid "(C) 2008-2010 Stefan Majewsky and others"
 msgstr ""
 
-#: main.cpp:35
+#: main.cpp:52
 #, kde-format
 msgid "Stefan Majewsky"
 msgstr ""
 
-#: main.cpp:35
+#: main.cpp:52
 #, kde-format
 msgid "Original author and current maintainer"
 msgstr ""
 
-#: main.cpp:36
+#: main.cpp:53
 #, kde-format
 msgid "Paul Bunbury"
 msgstr ""
 
-#: main.cpp:36
+#: main.cpp:53
 #, kde-format
 msgid "Gameplay refinement"
 msgstr ""
 
-#: main.cpp:37
+#: main.cpp:54
 #, fuzzy, kde-format
 msgid "Eugene Trounev"
 msgstr "Eugene Trounev"
 
-#: main.cpp:37
+#: main.cpp:54
 #, kde-format
 msgid "Default theme"
 msgstr ""
 
-#: main.cpp:38
+#: main.cpp:55
 #, kde-format
 msgid "Felix Lemke"
 msgstr ""
 
-#: main.cpp:38
+#: main.cpp:55
 #, fuzzy, kde-format
 msgid "Classic theme"
 msgstr "Klassískt þema"
 
-#: main.cpp:39
+#: main.cpp:56
 #, kde-format
 msgid "Jeffrey Kelling"
 msgstr ""
 
-#: main.cpp:39
+#: main.cpp:56
 #, kde-format
 msgid "Technical consultant"
 msgstr ""
