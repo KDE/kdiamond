@@ -44,6 +44,17 @@ target_link_libraries(kdiamond
     KF6::IconThemes
 )
 
+if(APPLE)
+    set_target_properties(kdiamond PROPERTIES
+        MACOSX_BUNDLE_DISPLAY_NAME "KDiamond"
+        MACOSX_BUNDLE_BUNDLE_NAME "KDiamond"
+        MACOSX_BUNDLE_LONG_VERSION_STRING "KDiamond ${RELEASE_SERVICE_VERSION}"
+        MACOSX_BUNDLE_SHORT_VERSION_STRING "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_VERSION_MINOR}"
+        MACOSX_BUNDLE_BUNDLE_VERSION "${RELEASE_SERVICE_VERSION}"
+        MACOSX_BUNDLE_GUI_IDENTIFIER "org.kde.kdiamond"
+	MACOSX_BUNDLE_COPYRIGHT "2024 The KDiamond Developers")
+endif()
+
 install(TARGETS kdiamond  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES kdiamond.knsrc  DESTINATION ${KDE_INSTALL_DATADIR}/knsrcfiles)
 install(PROGRAMS org.kde.kdiamond.desktop  DESTINATION ${KDE_INSTALL_APPDIR})
