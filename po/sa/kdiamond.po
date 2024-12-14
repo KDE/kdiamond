@@ -1,0 +1,200 @@
+# Sanskrit translations for kdiamond package.
+# Copyright (C) 2024 This file is copyright:
+# This file is distributed under the same license as the kdiamond package.
+# Kali <EMAIL@ADDRESS>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kdiamond\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2024-11-22 00:38+0000\n"
+"PO-Revision-Date: 2024-12-13 19:10+0530\n"
+"Last-Translator: Kali <EMAIL@ADDRESS>\n"
+"Language-Team: Sanskrit\n"
+"Language: sa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr ""
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr ""
+
+#: game-state.cpp:103
+#, kde-format
+msgid "Click the pause button again to resume the game."
+msgstr "पुनः क्रीडां आरभ्य विराम-बटनं नुदन्तु ।"
+
+#: game-state.cpp:110
+#, kde-format
+msgctxt "Not meant like 'You have lost', more like 'Time is up'."
+msgid "Game over."
+msgstr ""
+
+#: infobar.cpp:18 infobar.cpp:50
+#, kde-format
+msgid "Possible moves: %1"
+msgstr "सम्भाव्य चालाः : %1"
+
+#: infobar.cpp:19 infobar.cpp:42
+#, kde-format
+msgid "Points: %1"
+msgstr "बिन्दवः %1"
+
+#: infobar.cpp:22 infobar.cpp:35
+#, kde-format
+msgid "Untimed game"
+msgstr "असमय क्रीडा"
+
+#: infobar.cpp:24 infobar.cpp:68
+#, kde-format
+msgid "Time left: %1"
+msgstr "अवशिष्टः समयः : %1"
+
+#: infobar.cpp:48
+#, kde-format
+msgctxt "Shown when the board is in motion."
+msgid "Possible moves: …"
+msgstr ""
+
+#. i18n: ectx: label, entry (Untimed), group (Preferences)
+#: kdiamond.kcfg:9
+#, kde-format
+msgid "Play an untimed game."
+msgstr "असमयः क्रीडां क्रीडतु।"
+
+#. i18n: ectx: ToolBar (mainToolBar)
+#: kdiamondui.rc:11
+#, kde-format
+msgid "Main Toolbar"
+msgstr "मुख्य साधनपट्टी"
+
+#: main.cpp:46
+#, kde-format
+msgctxt "The application's name"
+msgid "KDiamond"
+msgstr ""
+
+#: main.cpp:48
+#, kde-format
+msgid "KDiamond, a three-in-a-row game."
+msgstr "केडायमण्ड् इति त्रयः पङ्क्तिबद्धः क्रीडा ।"
+
+#: main.cpp:49
+#, kde-format
+msgid "(C) 2008-2010 Stefan Majewsky and others"
+msgstr "(C) 2008-2010 स्टीफन् मजेव्स्की इत्यादयः"
+
+#: main.cpp:52
+#, kde-format
+msgid "Stefan Majewsky"
+msgstr "स्टीफन मजेव्स्की"
+
+#: main.cpp:52
+#, kde-format
+msgid "Original author and current maintainer"
+msgstr "मूल लेखक एवं वर्तमान परिपालक"
+
+#: main.cpp:53
+#, kde-format
+msgid "Paul Bunbury"
+msgstr "पौल बन्बरी"
+
+#: main.cpp:53
+#, kde-format
+msgid "Gameplay refinement"
+msgstr "गेमप्ले परिष्कारः"
+
+#: main.cpp:54
+#, kde-format
+msgid "Eugene Trounev"
+msgstr "यूजीन ट्रोनेव"
+
+#: main.cpp:54
+#, kde-format
+msgid "Default theme"
+msgstr "पूर्वनिर्धारित विषयः"
+
+#: main.cpp:55
+#, kde-format
+msgid "Felix Lemke"
+msgstr "फेलिक्स लेम्के"
+
+#: main.cpp:55
+#, kde-format
+msgid "Classic theme"
+msgstr "शास्त्रीय विषय"
+
+#: main.cpp:56
+#, kde-format
+msgid "Jeffrey Kelling"
+msgstr "जेफ्री केलिंग"
+
+#: main.cpp:56
+#, kde-format
+msgid "Technical consultant"
+msgstr "तकनीकी सल्लाहकार"
+
+#: mainwindow.cpp:55
+#, kde-format
+msgctxt "@title:menu new game"
+msgid "&New"
+msgstr ""
+
+#: mainwindow.cpp:56
+#, kde-format
+msgctxt "@item:inmenu"
+msgid "Timed Game"
+msgstr ""
+
+#: mainwindow.cpp:57
+#, kde-format
+msgctxt "@item:inmenu"
+msgid "Untimed Game"
+msgstr ""
+
+#: mainwindow.cpp:63
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Start a new game"
+msgstr ""
+
+#: mainwindow.cpp:64
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "Starts a new game."
+msgstr ""
+
+#: mainwindow.cpp:147
+#, kde-format
+msgid "Untimed"
+msgstr "अकालः"
+
+#: mainwindow.cpp:147
+#, kde-format
+msgid "Timed"
+msgstr "समयबद्धः"
+
+#: mainwindow.cpp:150 mainwindow.cpp:166
+#, kde-format
+msgid "Mode"
+msgstr "मोड्"
+
+#: view.cpp:21
+#, kde-format
+msgid ""
+"<h3>Rules of Game</h3><p>Your goal is to assemble lines of at least three "
+"similar diamonds. Click on two adjacent diamonds to swap them.</p><p>Earn "
+"extra points by building cascades, and extra seconds by assembling big lines "
+"or multiple lines at one time.</p>"
+msgstr ""
+"<h3>क्रीडायाः नियमाः</h3><p> भवतः लक्ष्यं न्यूनातिन्यूनं त्रयाणां समानवज्राणां रेखानां "
+"संयोजनम् अस्ति । स्वैप् कर्तुं समीपस्थद्वयं हीरकं क्लिक् कुर्वन्तु ।</p><p> झरनानिर्माणं कृत्वा "
+"अतिरिक्ताङ्कान् अर्जयन्तु, एकस्मिन् समये बृहत्रेखाः वा बहुरेखाः वा संयोजयित्वा अतिरिक्तसेकेण्ड् "
+"अर्जयन्तु ।</p>"
