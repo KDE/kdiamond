@@ -3,28 +3,31 @@
 # This file is distributed under the same license as the kdiamond package.
 # Kali <EMAIL@ADDRESS>, 2024.
 #
+# SPDX-FileCopyrightText: 2024 kali <skkalwar999@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kdiamond\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-22 00:38+0000\n"
-"PO-Revision-Date: 2024-12-13 19:10+0530\n"
-"Last-Translator: Kali <EMAIL@ADDRESS>\n"
-"Language-Team: Sanskrit\n"
+"PO-Revision-Date: 2024-12-14 01:48+0530\n"
+"Last-Translator: kali <skkalwar999@gmail.com>\n"
+"Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
 "Language: sa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 24.08.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr ""
+msgstr "भवतः नामानि"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr ""
+msgstr "भवतः ईमेलपत्राणि"
 
 #: game-state.cpp:103
 #, kde-format
@@ -35,7 +38,7 @@ msgstr "पुनः क्रीडां आरभ्य विराम-ब�
 #, kde-format
 msgctxt "Not meant like 'You have lost', more like 'Time is up'."
 msgid "Game over."
-msgstr ""
+msgstr "गेम ओवर।"
 
 #: infobar.cpp:18 infobar.cpp:50
 #, kde-format
@@ -61,7 +64,7 @@ msgstr "अवशिष्टः समयः : %1"
 #, kde-format
 msgctxt "Shown when the board is in motion."
 msgid "Possible moves: …"
-msgstr ""
+msgstr "सम्भाव्य चालाः : …"
 
 #. i18n: ectx: label, entry (Untimed), group (Preferences)
 #: kdiamond.kcfg:9
@@ -79,7 +82,7 @@ msgstr "मुख्य साधनपट्टी"
 #, kde-format
 msgctxt "The application's name"
 msgid "KDiamond"
-msgstr ""
+msgstr "केहीरा"
 
 #: main.cpp:48
 #, kde-format
@@ -145,31 +148,31 @@ msgstr "तकनीकी सल्लाहकार"
 #, kde-format
 msgctxt "@title:menu new game"
 msgid "&New"
-msgstr ""
+msgstr "&नूतनम्‌"
 
 #: mainwindow.cpp:56
 #, kde-format
 msgctxt "@item:inmenu"
 msgid "Timed Game"
-msgstr ""
+msgstr "समयबद्ध खेल"
 
 #: mainwindow.cpp:57
 #, kde-format
 msgctxt "@item:inmenu"
 msgid "Untimed Game"
-msgstr ""
+msgstr "असमय खेल"
 
 #: mainwindow.cpp:63
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Start a new game"
-msgstr ""
+msgstr "नूतनं क्रीडां आरभत"
 
 #: mainwindow.cpp:64
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid "Starts a new game."
-msgstr ""
+msgstr "नूतनं क्रीडां आरभते।"
 
 #: mainwindow.cpp:147
 #, kde-format
