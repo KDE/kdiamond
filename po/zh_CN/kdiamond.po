@@ -62,7 +62,7 @@ msgstr "剩余时间：%1"
 #, kde-format
 msgctxt "Shown when the board is in motion."
 msgid "Possible moves: …"
-msgstr ""
+msgstr "可能的移动：..."
 
 #. i18n: ectx: label, entry (Untimed), group (Preferences)
 #: kdiamond.kcfg:9
@@ -152,13 +152,13 @@ msgstr "新游戏(&N)"
 #, kde-format
 msgctxt "@item:inmenu"
 msgid "Timed Game"
-msgstr ""
+msgstr "限时游戏"
 
 #: mainwindow.cpp:57
 #, kde-format
 msgctxt "@item:inmenu"
 msgid "Untimed Game"
-msgstr ""
+msgstr "无限时游戏"
 
 #: mainwindow.cpp:63
 #, kde-format
@@ -170,7 +170,7 @@ msgstr "开始新游戏"
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid "Starts a new game."
-msgstr ""
+msgstr "开始新游戏。"
 
 #: mainwindow.cpp:147
 #, kde-format
