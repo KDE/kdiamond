@@ -1,19 +1,18 @@
-# translation of kdiamond.po to Español
-# Copyright (C) YEAR This_file_is_part_of_KDE
-# This file is distributed under the same license as the PACKAGE package.
+# Spanish translations for kdiamond.po package.
+# Copyright (C) 2008-2025 This_file_is_part_of_KDE
+# This file is distributed under the same license as the kdiamond package.
 #
-# Jaime Robles <jaime@kde.org>, 2008.
-# Santi <santi@kde-es.org>, 2008.
-# Huever, 2009, 2010.
-# Kira J. Fernandez <kirajfdez@gmail.com>, 2010.
+# SPDX-FileCopyrightText: 2008 Jaime Robles <jaime@kde.org>
+# SPDX-FileCopyrightText: 2008 Santi <santi@kde-es.org>
+# SPDX-FileCopyrightText: 2010 Kira J. Fernandez <kirajfdez@gmail.com>
 # SPDX-FileCopyrightText: 2021, 2024 Eloy Cuadra <ecuadra@eloihr.net>
-# Sofía Priego <spriego@darksylvania.net>, %Y.
+# SPDX-FileCopyrightText: 2024, 2025 Sofía Priego <spriego@darksylvania.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: kdiamond\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-22 00:38+0000\n"
-"PO-Revision-Date: 2024-05-03 20:04+0100\n"
+"PO-Revision-Date: 2025-03-19 01:13+0100\n"
 "Last-Translator: Sofía Priego <spriego@darksylvania.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -68,7 +67,7 @@ msgstr "Tiempo restante: %1"
 #, kde-format
 msgctxt "Shown when the board is in motion."
 msgid "Possible moves: …"
-msgstr "Movimientos posibles: ..."
+msgstr "Movimientos posibles: …"
 
 #. i18n: ectx: label, entry (Untimed), group (Preferences)
 #: kdiamond.kcfg:9
@@ -205,7 +204,3 @@ msgstr ""
 "tres diamantes similares. Pulsa sobre dos contiguos para intercambiarlos.</"
 "p><p>Gana puntos extra formando cascadas, y segundos extra juntando grandes "
 "líneas o varias líneas a la vez.</p>"
-
-#~ msgctxt "Shown when the board is in motion."
-#~ msgid "Possible moves: ..."
-#~ msgstr "Movimientos posibles: ..."
