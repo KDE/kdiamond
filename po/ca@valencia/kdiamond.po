@@ -36,7 +36,7 @@ msgstr "aacid@kde.org,joanmaspons@gmail.com,manutortosa@gmail.com"
 #: game-state.cpp:103
 #, kde-format
 msgid "Click the pause button again to resume the game."
-msgstr "Torneu a clicar el botó de pausa per a continuar la partida."
+msgstr "Torneu a clicar damunt del botó de pausa per a continuar la partida."
 
 #: game-state.cpp:110
 #, kde-format
@@ -202,6 +202,6 @@ msgid ""
 "or multiple lines at one time.</p>"
 msgstr ""
 "<h3>Regles del joc</h3><p>L'objectiu és fer línies de com a mínim tres "
-"diamants iguals. Cliqueu sobre dos diamants adjacents per a intercanviar-los."
-"</p><p>Guanyareu punts extres construint cascades i segons addicionals fent "
-"línies grans o múltiples a la vegada.</p>"
+"diamants iguals. Cliqueu damunt de dos diamants adjacents per a intercanviar-"
+"los.</p><p>Guanyareu punts extres construint cascades i segons addicionals "
+"fent línies grans o múltiples a la vegada.</p>"
