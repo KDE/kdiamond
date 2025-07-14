@@ -121,7 +121,7 @@ msgstr "Eugene Trounev"
 #: main.cpp:54
 #, kde-format
 msgid "Default theme"
-msgstr "ნაგულისხმები თემა"
+msgstr "ნაგულისხმევი თემა"
 
 #: main.cpp:55
 #, kde-format
