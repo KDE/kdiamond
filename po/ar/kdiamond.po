@@ -74,7 +74,7 @@ msgstr "العب لعبة غير مؤقتة."
 #: kdiamondui.rc:11
 #, kde-format
 msgid "Main Toolbar"
-msgstr "قائمة الأدوات الرئيسية"
+msgstr "قائمة الأدوات الرئيسة"
 
 #: main.cpp:46
 #, kde-format
