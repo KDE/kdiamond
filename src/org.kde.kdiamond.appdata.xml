@@ -44,7 +44,6 @@
   <name xml:lang="sv">Kdiamant</name>
   <name xml:lang="tr">K Elmas</name>
   <name xml:lang="uk">KDiamond</name>
-  <name xml:lang="x-test">xxKDiamondxx</name>
   <name xml:lang="zh-CN">KDiamond</name>
   <name xml:lang="zh-TW">KDiamond</name>
   <summary>KDiamond is a three-in-a-row game by KDE</summary>
@@ -82,7 +81,6 @@
   <summary xml:lang="sv">Kdiamant är ett tre-i-rad spel av KDE</summary>
   <summary xml:lang="tr">K Elmas, KDE tarafından yapılan bir sıralı üçlü oyunudur</summary>
   <summary xml:lang="uk">KDiamond — гра у три-у-ряд від KDE</summary>
-  <summary xml:lang="x-test">xxKDiamond is a three-in-a-row game by KDExx</summary>
   <summary xml:lang="zh-CN">KDiamond 是一款由 KDE 打造的连三成串游戏。</summary>
   <summary xml:lang="zh-TW">KDiamond 是一個 KDE 所做的寶石方塊遊戲</summary>
   <description>
@@ -122,7 +120,6 @@
     <p xml:lang="sv">Kdiamant är ett pusselspel för en spelare. Spelets mål är att bygga rader av tre liknande diamanter.</p>
     <p xml:lang="tr">K Elmas, tek kişilik bir yapboz oyunudur. Oyunun ereği, üç benzer elmastan oluşan diziler oluşturmaktır.</p>
     <p xml:lang="uk">KDiamond — гра-головоломка для одного гравця. Метою гри є побудова лінії з трьох однакових діамантів.</p>
-    <p xml:lang="x-test">xxKDiamond is a single player puzzle game. The object of the game is to build lines of three similar diamonds.xx</p>
     <p xml:lang="zh-CN">KDiamond 是一款单人解谜游戏，游戏目标是将各行排成三个相同钻石的一排。</p>
     <p xml:lang="zh-TW">KDiamond 是一個單人益智遊戲。遊戲的目標是將三個相似的寶石組合成線。</p>
   </description>
@@ -167,7 +164,6 @@
       <caption xml:lang="sv">Spela Kdiamant</caption>
       <caption xml:lang="tr">K Elmas Oynarken</caption>
       <caption xml:lang="uk">Гра у KDiamond</caption>
-      <caption xml:lang="x-test">xxPlaying KDiamondxx</caption>
       <caption xml:lang="zh-CN">KDiamond 游戏界面</caption>
       <caption xml:lang="zh-TW">KDiamond 遊玩畫面</caption>
       <image>https://cdn.kde.org/screenshots/kdiamond/kdiamond.png</image>
