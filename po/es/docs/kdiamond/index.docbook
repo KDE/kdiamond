@@ -234,7 +234,7 @@
 > <guimenu
 >Juego</guimenu
 > <guimenuitem
->Mostrar mejores puntuaciones...</guimenuitem
+>Mostrar mejores puntuaciones…</guimenuitem
 > </menuchoice
 ></term>
 <listitem>
@@ -338,7 +338,7 @@
 ><guimenu
 >Preferencias</guimenu
 > <guimenuitem
->Configurar notificaciones...</guimenuitem
+>Configurar notificaciones…</guimenuitem
 > </menuchoice
 ></term>
 <listitem
@@ -359,7 +359,7 @@
 > <guimenu
 >Preferencias</guimenu
 > <guimenuitem
->Configurar &kdiamond;...</guimenuitem
+>Configurar &kdiamond;…</guimenuitem
 > </menuchoice
 ></term>
 <listitem
