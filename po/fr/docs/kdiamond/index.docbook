@@ -87,7 +87,7 @@
 >Comment jouer ?</title>
 
 <para
->Une grille rectangulaire contenant plusieurs types de diamant est présentée au joueur. Le but du jeu est de permuter des diamants voisins afin d'assembler une ligne de trois diamants similaires. Ces lignes disparaîtront et le plateau se remplira de nouveaux diamants. La durée de jeu est limitée, essayez d'assembler autant de lignes que possible pour atteindre un score élevé. </para>
+>Une grille rectangulaire contenant plusieurs types de diamant est présentée au joueur. Le but du jeu est de permuter des diamants voisins afin d'assembler une ligne de trois diamants similaires. Ces lignes disparaitront et le plateau se remplira de nouveaux diamants. La durée de jeu est limitée, essayez d'assembler autant de lignes que possible pour atteindre un score élevé. </para>
 
 <para
 >Cliquez sur un diamant, puis sur un de ses voisins. Les diamants seront alors permutés (vous pouvez aussi glisser-déposer un diamant sur un de ses voisins pour effectuer cette permutation). Si aucune ligne d'au moins trois diamants n'est formée grâce à la permutation, celle-ci sera annulée. La barre d'état affiche la durée de jeu restante, le nombre de points que vous avez gagnés, et le nombre de déplacements possibles. </para>
@@ -174,7 +174,7 @@
 ></term>
 <listitem>
 <para
->Met en pause la partie. Cliquez à nouveau sur l'entrée de menu afin de reprendre la partie. Remarquez que le plateau disparaît lorsque la partie est en pause, car il serait injuste si vous pouviez chercher un bon déplacement sans avoir de contrainte de temps. </para>
+>Met en pause la partie. Cliquez à nouveau sur l'entrée de menu afin de reprendre la partie. Remarquez que le plateau disparait lorsque la partie est en pause, car il serait injuste si vous pouviez chercher un bon déplacement sans avoir de contrainte de temps. </para>
 </listitem>
 </varlistentry>
 
@@ -195,7 +195,7 @@
 ></term>
 <listitem>
 <para
->Affiche une boîte de dialogue listant les meilleurs scores dans les différents niveaux de difficulté. </para>
+>Affiche une boite de dialogue listant les meilleurs scores dans les différents niveaux de difficulté. </para>
 </listitem>
 </varlistentry>
 
@@ -299,7 +299,7 @@
 ></term>
 <listitem
 ><para
->Ceci vous permet d'afficher une boîte de dialogue standard de &kde; de configuration des notifications, où vous pouvez modifier les notifications (sons, messages visuels, &etc;) utilisés par &kdiamond;.</para
+>Ceci vous permet d'afficher une boite de dialogue standard de &kde; de configuration des notifications, où vous pouvez modifier les notifications (sons, messages visuels, &etc;) utilisés par &kdiamond;.</para
 ></listitem>
 </varlistentry>
 
@@ -320,7 +320,7 @@
 ></term>
 <listitem
 ><para
->Affiche une boîte de dialogue pour la sélection d'un thème graphique pour le jeu. Les thèmes disponibles dépendent de l'installation actuelle. Vous pouvez aussi télécharger de nouveaux thèmes créés par des concepteurs de tierce partie.</para
+>Affiche une boite de dialogue pour la sélection d'un thème graphique pour le jeu. Les thèmes disponibles dépendent de l'installation actuelle. Vous pouvez aussi télécharger de nouveaux thèmes créés par des concepteurs de tierce partie.</para
 ></listitem>
 </varlistentry>
 
