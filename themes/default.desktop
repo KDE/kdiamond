@@ -2,6 +2,7 @@
 VersionFormat=1
 Name=Egyptian
 Name[ar]=مصري
+Name[bg]=Египетски
 Name[bs]=Egipatski
 Name[ca]=Egipci
 Name[ca@valencia]=Egipci
@@ -55,6 +56,7 @@ Name[zh_CN]=埃及
 Name[zh_TW]=埃及式
 Description=Egyptian style theme.
 Description[ar]=سمة النمط المصري.
+Description[bg]=Тема с египетски мотиви.
 Description[bs]=Tema u Egipatskom stilu.
 Description[ca]=Tema d'estil egipci.
 Description[ca@valencia]=Tema d'estil egipci.
