@@ -205,7 +205,3 @@ msgstr ""
 "diamants iguals. Cliqueu sobre dos diamants adjacents per a intercanviar-los."
 "</p><p>Guanyareu punts extres construint cascades i segons addicionals fent "
 "línies grans o múltiples a la vegada.</p>"
-
-#~ msgctxt "Shown when the board is in motion."
-#~ msgid "Possible moves: ..."
-#~ msgstr "Moviments possibles: ..."
