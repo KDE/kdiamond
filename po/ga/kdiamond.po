@@ -59,11 +59,10 @@ msgid "Time left: %1"
 msgstr "Am fágtha: %1"
 
 #: infobar.cpp:48
-#, fuzzy, kde-format
-#| msgid "Possible moves: %1"
+#, kde-format
 msgctxt "Shown when the board is in motion."
 msgid "Possible moves: …"
-msgstr "Bearta indéanta: %1"
+msgstr ""
 
 #. i18n: ectx: label, entry (Untimed), group (Preferences)
 #: kdiamond.kcfg:9
@@ -144,40 +143,34 @@ msgid "Technical consultant"
 msgstr "Comhairleoir teicniúil"
 
 #: mainwindow.cpp:55
-#, fuzzy, kde-format
-#| msgctxt "new game"
-#| msgid "&New"
+#, kde-format
 msgctxt "@title:menu new game"
 msgid "&New"
-msgstr "&Nua"
+msgstr ""
 
 #: mainwindow.cpp:56
-#, fuzzy, kde-format
-#| msgid "Timed game"
+#, kde-format
 msgctxt "@item:inmenu"
 msgid "Timed Game"
-msgstr "Cluiche amaithe"
+msgstr ""
 
 #: mainwindow.cpp:57
-#, fuzzy, kde-format
-#| msgid "Untimed game"
+#, kde-format
 msgctxt "@item:inmenu"
 msgid "Untimed Game"
-msgstr "Cluiche gan uaineadóir"
+msgstr ""
 
 #: mainwindow.cpp:63
-#, fuzzy, kde-format
-#| msgid "Start a new game"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Start a new game"
-msgstr "Tosaigh cluiche nua"
+msgstr ""
 
 #: mainwindow.cpp:64
-#, fuzzy, kde-format
-#| msgid "Start a new game."
+#, kde-format
 msgctxt "@info:whatsthis"
 msgid "Starts a new game."
-msgstr "Tosaigh cluiche nua."
+msgstr ""
 
 #: mainwindow.cpp:147
 #, kde-format
@@ -207,71 +200,3 @@ msgstr ""
 "aice le chéile chun iad a bhabhtáil.</p><p>Is féidir pointí breise a fháil "
 "trí chascáidí a thógáil, agus soicindí breise a fháil trí línte móra nó il-"
 "línte a chur le cháile san am céanna.</p>"
-
-#~ msgctxt "Shown when the board is in motion."
-#~ msgid "Possible moves: ..."
-#~ msgstr "Bearta indéanta: ..."
-
-#~ msgid "Theme"
-#~ msgstr "Téama"
-
-#~ msgid "The graphical theme to be used."
-#~ msgstr "An téama grafach le húsáid."
-
-#~ msgid "Start with Very Easy difficulty level"
-#~ msgstr "Tosaigh le leibhéal an-éasca"
-
-#~ msgid "Start with Easy difficulty level"
-#~ msgstr "Tosaigh le leibhéal éasca"
-
-#~ msgid "Start with Medium difficulty level"
-#~ msgstr "Tosaigh le meánleibhéal"
-
-#~ msgid "Start with Hard difficulty level"
-#~ msgstr "Tosaigh le leibhéal crua"
-
-#~ msgid "Start with Very Hard difficulty level"
-#~ msgstr "Tosaigh le leibhéal an-chrua"
-
-#~ msgid "The difficulty level."
-#~ msgstr "An leibhéal deacrachta."
-
-#~ msgid "Failed to load \"%1\" theme. Please check your installation."
-#~ msgstr "Níorbh fhéidir téama \"%1\" a luchtú.  Déan seiceáil ar do chóras."
-
-#~ msgid "Time left: 1 second"
-#~ msgid_plural "Time left: %1 seconds"
-#~ msgstr[0] "Am fágtha: %1 soicind"
-#~ msgstr[1] "Am fágtha: %1 shoicind"
-#~ msgstr[2] "Am fágtha: %1 shoicind"
-#~ msgstr[3] "Am fágtha: %1 soicind"
-#~ msgstr[4] "Am fágtha: %1 soicind"
-
-#~ msgid "1 second"
-#~ msgid_plural "%1 seconds"
-#~ msgstr[0] "1 soicind"
-#~ msgstr[1] "%1 shoicind"
-#~ msgstr[2] "%1 shoicind"
-#~ msgstr[3] "%1 soicind"
-#~ msgstr[4] "%1 soicind"
-
-#~ msgid "1 minute"
-#~ msgid_plural "%1 minutes"
-#~ msgstr[0] "1 nóiméad"
-#~ msgstr[1] "%1 nóiméad"
-#~ msgstr[2] "%1 nóiméad"
-#~ msgstr[3] "%1 nóiméad"
-#~ msgstr[4] "%1 nóiméad"
-
-#~ msgctxt "The two parameters are strings like '2 minutes' or '1 second'."
-#~ msgid "Time left: %1, %2"
-#~ msgstr "Am fágtha: %1, %2"
-
-#~ msgid "Show minutes on timer"
-#~ msgstr "Taispeáin nóiméid ar an uaineadóir"
-
-#~ msgid "Show minutes separately on the timer."
-#~ msgstr "Taispeáin nóiméid ar leithligh ar an uaineadóir."
-
-#~ msgid "First theme"
-#~ msgstr "An chéad téama"
