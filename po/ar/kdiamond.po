@@ -1,13 +1,13 @@
 # translation of kdiamond.po to Arabic
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
-# SPDX-FileCopyrightText: 2009, 2021, 2022, 2024, 2026 zayed <zayed.alsaidi@gmail.com>
+# SPDX-FileCopyrightText: 2009, 2021, 2022, 2024 zayed <zayed.alsaidi@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kdiamond\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 11:49+0000\n"
-"PO-Revision-Date: 2026-03-07 16:43+0400\n"
+"PO-Revision-Date: 2024-05-04 11:57+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -16,7 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Lokalize 23.08.5\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -86,7 +85,7 @@ msgstr "لعبة الألماس"
 #: main.cpp:48
 #, kde-format
 msgid "KDiamond, a three-in-a-row game."
-msgstr "لعبة الألماس هي لعبة ثلاث في صف من كِيدِي."
+msgstr "KDiamond, a three-in-a-row game."
 
 #: main.cpp:49
 #, kde-format
