@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kdiamond\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 11:49+0000\n"
-"PO-Revision-Date: 2015-12-29 21:35+0200\n"
+"PO-Revision-Date: 2026-05-21 20:14+0300\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: lt <kde-i18n-lt@kde.org>\n"
 "Language: lt\n"
@@ -18,22 +18,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n%10>=2 && (n%100<10 || n"
 "%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Poedit 3.8\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Andrius Štikonas"
+msgstr "Andrius Štikonas, Moo"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "andrius@stikonas.eu"
+msgstr "andrius@stikonas.eu, <>"
 
 #: game-state.cpp:103
 #, kde-format
 msgid "Click the pause button again to resume the game."
-msgstr "Spauskite pristabdymo mygtuką, kai norėsite tęsti žaidimą."
+msgstr "Norėdami pratęsti žaidimą, dar kartą spustelėkite pristabdymo mygtuką."
 
 #: game-state.cpp:110
 #, kde-format
@@ -44,7 +44,7 @@ msgstr "Žaidimas baigtas."
 #: infobar.cpp:18 infobar.cpp:50
 #, kde-format
 msgid "Possible moves: %1"
-msgstr "Galimi ėjimai: %1"
+msgstr "Galimų ėjimų: %1"
 
 #: infobar.cpp:19 infobar.cpp:42
 #, kde-format
@@ -54,7 +54,7 @@ msgstr "Taškai: %1"
 #: infobar.cpp:22 infobar.cpp:35
 #, kde-format
 msgid "Untimed game"
-msgstr "Žaidimas be laiko ribojimo"
+msgstr "Žaidimas neribotą laiką"
 
 #: infobar.cpp:24 infobar.cpp:68
 #, kde-format
@@ -62,23 +62,22 @@ msgid "Time left: %1"
 msgstr "Liko laiko: %1"
 
 #: infobar.cpp:48
-#, fuzzy, kde-format
-#| msgid "Possible moves: %1"
+#, kde-format
 msgctxt "Shown when the board is in motion."
 msgid "Possible moves: …"
-msgstr "Galimi ėjimai: %1"
+msgstr "Galimų ėjimų: …"
 
 #. i18n: ectx: label, entry (Untimed), group (Preferences)
 #: kdiamond.kcfg:9
 #, kde-format
 msgid "Play an untimed game."
-msgstr "Žaisti laiku neapribotą žaidimą."
+msgstr "Žaisti neribotą laiką."
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: kdiamondui.rc:11
 #, kde-format
 msgid "Main Toolbar"
-msgstr "Pagrindinė įrankinė"
+msgstr "Pagrindinė įrankių juosta"
 
 #: main.cpp:46
 #, kde-format
@@ -89,12 +88,12 @@ msgstr "KDiamond"
 #: main.cpp:48
 #, kde-format
 msgid "KDiamond, a three-in-a-row game."
-msgstr "KDiamond, trijų eilėje žaidimas."
+msgstr "KDiamond, trijų vienoje eilutėje žaidimas."
 
 #: main.cpp:49
 #, kde-format
 msgid "(C) 2008-2010 Stefan Majewsky and others"
-msgstr "(C) 2008-2010 Stefan Majewsky ir kiti"
+msgstr "(C) 2008–2010 Stefan Majewsky ir kiti"
 
 #: main.cpp:52
 #, kde-format
@@ -114,7 +113,7 @@ msgstr "Paul Bunbury"
 #: main.cpp:53
 #, kde-format
 msgid "Gameplay refinement"
-msgstr "Žaidimo tobulinimas"
+msgstr "Žaidimo eigos tobulinimas"
 
 #: main.cpp:54
 #, kde-format
@@ -124,7 +123,7 @@ msgstr "Eugene Trounev"
 #: main.cpp:54
 #, kde-format
 msgid "Default theme"
-msgstr "Numatyta tema"
+msgstr "Numatytasis apipavidalinimas"
 
 #: main.cpp:55
 #, kde-format
@@ -147,55 +146,49 @@ msgid "Technical consultant"
 msgstr "Techninis konsultantas"
 
 #: mainwindow.cpp:55
-#, fuzzy, kde-format
-#| msgctxt "new game"
-#| msgid "&New"
+#, kde-format
 msgctxt "@title:menu new game"
 msgid "&New"
 msgstr "&Naujas"
 
 #: mainwindow.cpp:56
-#, fuzzy, kde-format
-#| msgid "Timed game"
+#, kde-format
 msgctxt "@item:inmenu"
 msgid "Timed Game"
-msgstr "Žaidimas su laiko apribojimu"
+msgstr "Žaidimas ribotą laiką"
 
 #: mainwindow.cpp:57
-#, fuzzy, kde-format
-#| msgid "Untimed game"
+#, kde-format
 msgctxt "@item:inmenu"
 msgid "Untimed Game"
-msgstr "Žaidimas be laiko ribojimo"
+msgstr "Žaidimas neribotą laiką"
 
 #: mainwindow.cpp:63
-#, fuzzy, kde-format
-#| msgid "Start a new game"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Start a new game"
 msgstr "Pradėti naują žaidimą"
 
 #: mainwindow.cpp:64
-#, fuzzy, kde-format
-#| msgid "Start a new game."
+#, kde-format
 msgctxt "@info:whatsthis"
 msgid "Starts a new game."
-msgstr "Pradėti naują žaidimą."
+msgstr "Pradeda naują žaidimą."
 
 #: mainwindow.cpp:147
 #, kde-format
 msgid "Untimed"
-msgstr "Be laiko"
+msgstr "Neribotas laikas"
 
 #: mainwindow.cpp:147
 #, kde-format
 msgid "Timed"
-msgstr "Su laiku"
+msgstr "Ribotas laikas"
 
 #: mainwindow.cpp:150 mainwindow.cpp:166
 #, kde-format
 msgid "Mode"
-msgstr "Režimas"
+msgstr "Veiksena"
 
 #: view.cpp:21
 #, kde-format
@@ -205,11 +198,11 @@ msgid ""
 "extra points by building cascades, and extra seconds by assembling big lines "
 "or multiple lines at one time.</p>"
 msgstr ""
-"<h3>Žaidimo taisyklės</h3><p>Jūsų tikslas - surinkti iš trijų deimantų "
-"sudarytas eiles. Pažymėkite du greta esančius deimantus, kad juos "
+"<h3>Žaidimo taisyklės</h3><p>Jūsų tikslas – sudėti iš bent trijų deimantų "
+"sudarytas eiles. Spustelėkite ant dviejų gretimų deimantų, kad juos "
 "apkeistumėte vietomis.</p><p>Jei krentant naujiems deimantams susiformuos "
-"naujos vienodų deimantų eilės - gausite papildomų taškų. Jei sukursite "
-"daugiau nei iš trijų deimantų sudarytas eiles - gausite papildomų žaidimo "
+"naujos vienodų deimantų eilės – gausite papildomų taškų. Jei sukursite "
+"daugiau nei iš trijų deimantų sudarytas eiles – gausite papildomų žaidimo "
 "sekundžių.</p>"
 
 #~ msgctxt "Shown when the board is in motion."
