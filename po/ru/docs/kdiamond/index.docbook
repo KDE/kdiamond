@@ -1,0 +1,475 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+<!ENTITY % Russian "INCLUDE">
+<!ENTITY % addindex "IGNORE">
+]>
+
+<book id="kdiamond" lang="&language;">
+<bookinfo>
+<title
+>Руководство пользователя &kdiamond;</title>
+
+<authorgroup>
+<author
+><firstname
+>Stefan</firstname
+> <surname
+>Majewsky</surname
+> <affiliation
+><address
+><email
+>majewsky@gmx.net</email
+></address
+></affiliation>
+</author>
+<othercredit role="translator"
+><firstname
+>Олеся</firstname
+><surname
+>Герасименко</surname
+><affiliation
+><address
+><email
+>goa@altlinux.org</email
+></address
+></affiliation
+><contrib
+>Перевод на русский язык</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2008, 2009, 2010</year>
+<holder
+>Stefan Majewsky</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>26 июня 2021 г.</date>
+<releaseinfo
+>KDE Gear 21.04</releaseinfo>
+
+<abstract>
+<para
+>&kdiamond;. Игра «три в ряд».</para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kdegames;игры</keyword>
+<keyword
+>game;игра</keyword>
+<keyword
+>puzzle game;головоломка</keyword>
+<keyword
+>KDiamond</keyword>
+</keywordset>
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Введение</title>
+
+<para
+>&kdiamond; — головоломка для одного игрока. </para>
+
+<screenshot>
+<mediaobject>
+<imageobject>
+<imagedata fileref="gameboard.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Игровое поле &kdiamond;</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Цель игры — собирать линии из трёх схожих бриллиантов. </para>
+</chapter>
+
+<chapter id="how-to-play">
+<title
+>Как играть</title>
+
+<para
+>Игроку представлена прямоугольная сетка с несколькими типами бриллиантов. Цель игры — менять местами соседние бриллианты, чтобы собирать линии из трёх схожих бриллиантов. Эти линии будут исчезать, а поле — пополняться новыми бриллиантами. На игру отводится ограниченное количество времени; постарайтесь собрать как можно больше линий, чтобы получить больше очков. </para>
+
+<para
+>Щёлкните по какому-либо бриллианту, а затем по одному из соседних. После этого бриллианты поменяются местами (также это произойдёт при щелчке по бриллианту и последующем его перетаскивании на место одного из соседних). Если после обмена местами не сформировалась линия из минимум трёх бриллиантов, сделанный ход будет отменён. В строке состояния показано оставшееся время, количество полученных очков и количество возможных ходов. </para>
+
+</chapter>
+
+<chapter id="rules-strategies-tips">
+<title
+>Правила, стратегия и советы по игре</title>
+
+<sect1 id="rules">
+<title
+>Правила</title>
+<itemizedlist>
+<listitem
+><para
+>Когда линия удаляется и бриллианты падают вниз для заполнения промежутков, могут формироваться новые линии. Пробуйте добиться появления таких каскадов при выборе пары бриллиантов, чтобы получить дополнительные очки: 1 очко за собранную линию, 2 очка за первый каскад, 3 очка за возможный следующий каскад и так далее.</para
+></listitem>
+<listitem
+><para
+>Попробуйте собирать линии из более чем 3 бриллиантов: за каждые два дополнительных удалённых бриллианта предоставляется дополнительная секунда игрового времени.</para
+></listitem>
+<listitem
+><para
+>Количество типов бриллиантов увеличивается при выборе <guilabel
+>Тяжёлых</guilabel
+> уровней сложности; это усложняет выстраивание линий. Если же выбирать <guilabel
+>Лёгкие</guilabel
+> уровни сложности, размер игрового поля возрастает, что облегчает выбор хода.</para
+></listitem>
+<listitem
+><para
+>Игра прекращается, когда не остаётся возможных ходов. Это следует учитывать при выборе следующего хода (особенно при игре на <guilabel
+>Тяжёлых</guilabel
+> уровнях сложности).</para
+></listitem>
+</itemizedlist>
+</sect1>
+
+</chapter>
+
+<chapter id="interface-overview">
+<title
+>Обзор интерфейса</title>
+
+<sect1 id="menu">
+<title
+>Пункты меню</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Игра</guimenu
+> <guimenuitem
+>Создать</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Начать новую игру. Создаётся случайное игровое поле с текущим уровнем сложности. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>P</keycap
+></shortcut
+> <guimenu
+>Игра</guimenu
+> <guimenuitem
+>Приостановить</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Приостановить время в игре. Выберите этот пункт меню снова, чтобы возобновить игру. Обратите внимание, что игровое поле исчезает во время приостановки игры (так как было бы нечестным сколь угодно долго подбирать удачные ходы). </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Игра</guimenu
+> <guimenuitem
+>Показать лучшие результаты</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Показать диалоговое окно с лучшими результатами для различных уровней сложностей. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Игра</guimenu
+> <guimenuitem
+>Выход</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Выйти из программы. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>H</keycap
+></shortcut
+> <guimenu
+>Ход</guimenu
+> <guimenuitem
+>Подсказка</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>Подсветить бриллиант, который можно переместить. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Настройка</guimenu
+> <guisubmenu
+>Сложность</guisubmenu
+> </menuchoice
+></term>
+<listitem>
+<para
+>Выбрать уровень сложности во вложенном меню.</para>
+<para
+>Доступно пять уровней сложности: <itemizedlist>
+<listitem
+><para
+><guimenuitem
+>Очень лёгкий</guimenuitem
+>: 12 рядов, 12 столбцов, 5 типов бриллиантов.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Лёгкий</guimenuitem
+>: 10 рядов, 10 столбцов, 5 типов бриллиантов.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Средний</guimenuitem
+>: 8 рядов, 8 столбцов, 5 типов бриллиантов.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Тяжёлый</guimenuitem
+>: 8 рядов, 8 столбцов, 6 типов бриллиантов.</para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Очень тяжёлый</guimenuitem
+>: 8 рядов, 8 столбцов, 7 типов бриллиантов.</para
+></listitem>
+</itemizedlist>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Настроить уведомления…</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>При выборе этого пункта меню будет показан стандартный диалог настройки уведомлений &kde;. Он позволяет изменить используемые в &kdiamond; уведомления (звуки, отображаемые сообщения и так далее).</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>,</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Настроить &kdiamond;…</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Показать диалоговое окно выбора графического оформления для игры. Перечень доступных оформлений зависит от установленного дистрибутива. Также можно загрузить новые оформления, созданные другими пользователями.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>Кроме того, в &kdiamond; присутствуют стандартные меню &kde;: <guimenu
+>Настройка</guimenu
+> и <guimenu
+>Справка</guimenu
+>. Дополнительные сведения доступны в разделе справки «Основы &kde;» (подразделы <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Меню «Настройка»</ulink
+> и <ulink url="help:/fundamentals/menus.html#menus-help"
+>Меню «Справка»</ulink
+>). </para>
+
+</sect1>
+
+<sect1 id="keybindings">
+<title id="keybindings-title"
+>Комбинации клавиш</title>
+
+<para
+>Комбинации клавиш по умолчанию:</para>
+
+<table>
+<title
+>Комбинации клавиш</title>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry
+>Начать новую игру</entry>
+<entry>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Приостановить</entry>
+<entry>
+<keycombo action="simul"
+><keysym
+>P</keysym
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Показать лучшие результаты</entry>
+<entry>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Подсказка</entry>
+<entry
+><keycap
+>H</keycap
+></entry>
+</row>
+<row>
+<entry
+>Выход</entry>
+<entry>
+<keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo>
+</entry>
+</row>
+<row>
+<entry
+>Справка</entry>
+<entry
+><keycap
+>F1</keycap
+></entry>
+</row>
+<row>
+<entry
+>Что это?</entry>
+<entry>
+<keycombo action="simul"
+>&Shift;<keycap
+>F1</keycap
+></keycombo>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+
+</sect1>
+</chapter>
+
+
+<chapter id="credits">
+<title
+>Авторские права и лицензия</title>
+
+<para
+>&kdiamond; </para>
+<para
+>Права на программу принадлежат Stefan Majewsky <email
+>majewsky@gmx.net</email
+>, 2008, 2009 </para>
+<para
+>Права на документацию принадлежат Stefan Majewsky <email
+>majewsky@gmx.net</email
+>, 2008, 2009, 2010 </para>
+
+<para
+>Олеся Герасименко<email
+>goa@altlinux.org</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-always-quote-attributes:t
+sgml-indent-step:0
+sgml-indent-data:t
+End:
+-->
+
