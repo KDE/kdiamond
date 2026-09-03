@@ -4,9 +4,9 @@
 #
 # SPDX-FileCopyrightText: 2008 Albert Astals Cid <aacid@kde.org>
 # SPDX-FileCopyrightText: 2009 Joan Maspons <joanmaspons@gmail.com>
-# SPDX-FileCopyrightText: 2009, 2010 Manuel Tortosa <manutortosa@chakra-project.org>
+# SPDX-FileCopyrightText: 2009-2010 Manuel Tortosa <manutortosa@chakra-project.org>
 # SPDX-FileCopyrightText: 2010, 2015, 2021, 2024 Josep M. Ferrer <txemaq@gmail.com>
-# SPDX-FileCopyrightText: 2020, 2021 Antoni Bella Pérez <antonibella5@yahoo.com>
+# SPDX-FileCopyrightText: 2020-2021 Antoni Bella Pérez <antonibella5@yahoo.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kdiamond\n"
