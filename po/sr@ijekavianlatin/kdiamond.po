@@ -2,13 +2,14 @@
 # Slobodan Simic <slsimic@gmail.com>, 2009.
 # Chusslove Illich <caslav.ilic@gmx.net>, 2009, 2010.
 # Dalibor Djuric <dalibor.djuric@mozilla-srbija.org>, 2010.
+# Nemanja Hiršl <nemhirsl@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: kdiamond\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 11:49+0000\n"
-"PO-Revision-Date: 2010-12-15 16:51+0100\n"
-"Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
+"PO-Revision-Date: 2026-10-05 01:57+0200\n"
+"Last-Translator: Nemanja Hiršl <nemhirsl@gmail.com>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
 "Language: sr@ijekavianlatin\n"
 "MIME-Version: 1.0\n"
@@ -23,12 +24,12 @@ msgstr ""
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Slobodan Simić"
+msgstr "Slobodan Simić,Nemanja Hiršl"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "slsimic@gmail.com"
+msgstr "slsimic@gmail.com,nemhirsl@gmail.com"
 
 #: game-state.cpp:103
 #, kde-format
@@ -67,11 +68,10 @@ msgstr "još %1"
 
 # >> @info:status
 #: infobar.cpp:48
-#, fuzzy, kde-format
-#| msgid "Possible moves: %1"
+#, kde-format
 msgctxt "Shown when the board is in motion."
 msgid "Possible moves: …"
-msgstr "mogućih poteza: %1"
+msgstr "mogućih poteza: …"
 
 #. i18n: ectx: label, entry (Untimed), group (Preferences)
 #: kdiamond.kcfg:9
@@ -129,7 +129,7 @@ msgstr "Jevgenij Trunjov"
 #: main.cpp:54
 #, kde-format
 msgid "Default theme"
-msgstr "podrazumevana tema"
+msgstr "podrazumijevana tema"
 
 #: main.cpp:55
 #, kde-format
@@ -152,41 +152,35 @@ msgid "Technical consultant"
 msgstr "tehnički konsultant"
 
 #: mainwindow.cpp:55
-#, fuzzy, kde-format
-#| msgctxt "new game"
-#| msgid "&New"
+#, kde-format
 msgctxt "@title:menu new game"
 msgid "&New"
 msgstr "&Nova"
 
 #: mainwindow.cpp:56
-#, fuzzy, kde-format
-#| msgid "Timed game"
+#, kde-format
 msgctxt "@item:inmenu"
 msgid "Timed Game"
 msgstr "Mjerena igra"
 
 # >> @info:status
 #: mainwindow.cpp:57
-#, fuzzy, kde-format
-#| msgid "Untimed game"
+#, kde-format
 msgctxt "@item:inmenu"
 msgid "Untimed Game"
-msgstr "nemjerena igra"
+msgstr "Nemjerena igra"
 
 #: mainwindow.cpp:63
-#, fuzzy, kde-format
-#| msgid "Start a new game"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Start a new game"
 msgstr "Počni novu partiju"
 
 #: mainwindow.cpp:64
-#, fuzzy, kde-format
-#| msgid "Start a new game."
+#, kde-format
 msgctxt "@info:whatsthis"
 msgid "Starts a new game."
-msgstr "Započnite novu partiju."
+msgstr "Započinje novu partiju."
 
 # >> @item:intable
 #: mainwindow.cpp:147
@@ -216,11 +210,6 @@ msgid ""
 "or multiple lines at one time.</p>"
 msgstr ""
 "<h3>Pravila igre</h3><p>Cilj je slagati linije od tri ili više istih "
-"dijamanata. Klikom na dva susjedna dijamanta razmjenjujete im mesta.</"
+"dijamanata. Klikom na dva susjedna dijamanta razmjenjujete im mjesta.</"
 "p><p>Dodatni poeni zarađuju se izgradnjom kaskada, a dodatno vrijeme "
 "slaganjem dugačkih linija ili više linija jednim potezom.</p>"
-
-# >> @info:status
-#~ msgctxt "Shown when the board is in motion."
-#~ msgid "Possible moves: ..."
-#~ msgstr "mogućih poteza: ..."
