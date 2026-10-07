@@ -43,6 +43,10 @@
   <name xml:lang="sa">केहीरा</name>
   <name xml:lang="sk">KDiamond</name>
   <name xml:lang="sl">KDiamond</name>
+  <name xml:lang="sr">К‑дијамант</name>
+  <name xml:lang="sr-Latn">K‑dijamant</name>
+  <name xml:lang="sr-ijekavian">К‑дијамант</name>
+  <name xml:lang="sr-ijekavianlatin">K‑dijamant</name>
   <name xml:lang="sv">Kdiamant</name>
   <name xml:lang="tr">K Elmas</name>
   <name xml:lang="ug">KDiamond</name>
@@ -84,6 +88,10 @@
   <summary xml:lang="sa">केडायमण्ड् केडीई इत्यस्य त्रयः पङ्क्तिबद्धः क्रीडा अस्ति</summary>
   <summary xml:lang="sk">KDiamond je hra KDE o troch v rade</summary>
   <summary xml:lang="sl">KDiamond je igra 'treh v vrsto' v KDE</summary>
+  <summary xml:lang="sr">К‑дијамант је игра „три у низу“ из КДЕ‑а</summary>
+  <summary xml:lang="sr-Latn">K‑dijamant je igra „tri u nizu“ iz KDE‑a</summary>
+  <summary xml:lang="sr-ijekavian">К‑дијамант је игра „три у низу“ из КДЕ‑а</summary>
+  <summary xml:lang="sr-ijekavianlatin">K‑dijamant je igra „tri u nizu“ iz KDE‑a</summary>
   <summary xml:lang="sv">Kdiamant är ett tre-i-rad spel av KDE</summary>
   <summary xml:lang="tr">K Elmas, KDE tarafından yapılan bir sıralı üçlü oyunudur</summary>
   <summary xml:lang="ug">KDE دىكى KDiamond بىر-قۇردا-ئۈچ ئويۇنى</summary>
@@ -128,6 +136,10 @@
     <p xml:lang="sa">KDiamond इति एकः खिलाडी पहेलीक्रीडा अस्ति । क्रीडायाः उद्देश्यं त्रयाणां समानानां हीरकानां रेखानिर्माणम् अस्ति ।</p>
     <p xml:lang="sk">KDiamond je logická hra pre jedného hráča. Cieľom hry je postaviť línie troch podobných diamantov.</p>
     <p xml:lang="sl">KDiamond je igra za enega igralca. Cilj igre je zgraditi vrsto treh podobnih rombov (diamantov).</p>
+    <p xml:lang="sr">К‑дијамант је логичка игра за једног играча. Циљ игре је слагање линија од три иста дијаманта.</p>
+    <p xml:lang="sr-Latn">K‑dijamant je logička igra za jednog igrača. Cilj igre je slaganje linija od tri ista dijamanta.</p>
+    <p xml:lang="sr-ijekavian">К‑дијамант је логичка игра за једног играча. Циљ игре је слагање линија од три иста дијаманта.</p>
+    <p xml:lang="sr-ijekavianlatin">K‑dijamant je logička igra za jednog igrača. Cilj igre je slaganje linija od tri ista dijamanta.</p>
     <p xml:lang="sv">Kdiamant är ett pusselspel för en spelare. Spelets mål är att bygga rader av tre liknande diamanter.</p>
     <p xml:lang="tr">K Elmas, tek kişilik bir yapboz oyunudur. Oyunun ereği, üç benzer elmastan oluşan diziler oluşturmaktır.</p>
     <p xml:lang="uk">KDiamond — гра-головоломка для одного гравця. Метою гри є побудова лінії з трьох однакових діамантів.</p>
@@ -175,6 +187,10 @@
       <caption xml:lang="sa">KDiamond इति क्रीडन्</caption>
       <caption xml:lang="sk">Hranie KDiamond</caption>
       <caption xml:lang="sl">Igra KDiamond</caption>
+      <caption xml:lang="sr">Играње К‑дијаманта</caption>
+      <caption xml:lang="sr-Latn">Igranje K‑dijamanta</caption>
+      <caption xml:lang="sr-ijekavian">Играње К‑дијаманта</caption>
+      <caption xml:lang="sr-ijekavianlatin">Igranje K‑dijamanta</caption>
       <caption xml:lang="sv">Spela Kdiamant</caption>
       <caption xml:lang="tr">K Elmas Oynarken</caption>
       <caption xml:lang="uk">Гра у KDiamond</caption>
